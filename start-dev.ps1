@@ -99,8 +99,17 @@ $frontendStarted = Start-DevTerminalIfAvailable "TOUR Frontend $frontendPort" (J
 # /project-tree는 별도 Streamlit 앱을 iframe으로 표시하므로 개발 서버와 함께 시작한다.
 # Streamlit이 아직 없는 PC에서는 나머지 세 서버를 막지 않고 설치 명령을 안내한다.
 $projectTreeStarted = $false
-& $pythonPath -c 'import streamlit' 2>$null
-if ($LASTEXITCODE -eq 0) {
+$streamlitAvailable = $false
+try {
+  & $pythonPath -c 'import streamlit' 2>$null
+  $streamlitAvailable = ($LASTEXITCODE -eq 0)
+} catch {
+  # Windows PowerShell turns a native process's stderr into a terminating
+  # NativeCommandError when ErrorActionPreference is Stop. Missing Streamlit
+  # is optional here, so handle it without aborting the three core services.
+  $streamlitAvailable = $false
+}
+if ($streamlitAvailable) {
   $projectTreeCommand = "& '$pythonPath' -m streamlit run project_tree_explorer/app.py --server.address 0.0.0.0 --server.port $projectTreePort --server.headless true --browser.gatherUsageStats false"
   $projectTreeStarted = Start-DevTerminalIfAvailable "TOUR Project Tree $projectTreePort" $projectRoot $projectTreeCommand $projectTreePort
 } else {
