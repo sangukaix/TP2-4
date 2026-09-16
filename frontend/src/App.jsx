@@ -1,5 +1,6 @@
-import { Component, lazy, Suspense } from 'react'
+import { Component, lazy, Suspense, useEffect } from 'react'
 import { resolveAppRoute } from './routes'
+import { initializeTheme } from './theme'
 
 // 첫 화면에서 Leaflet·Recharts·보고서 코드를 모두 내려받지 않도록 페이지 단위로 분리합니다.
 const TourismHomePage = lazy(() => import('./pages/TourismHomePage'))
@@ -56,6 +57,10 @@ function NotFoundPage() {
 
 /** 현재 페이지 수가 적어 별도 Router 의존성 없이 경로별 화면만 지연 로딩합니다. */
 export default function App() {
+  useEffect(() => {
+    initializeTheme()
+  }, [])
+
   const route = resolveAppRoute(window.location.pathname)
   const pages = {
     home: TourismHomePage,
