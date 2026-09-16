@@ -2,9 +2,9 @@ $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $pythonPath = Join-Path $projectRoot 'backend\.venv\Scripts\python.exe'
-$backendPort = 8100
-$aiPort = 8112
-$frontendPort = 5176
+$backendPort = 8200
+$aiPort = 8212
+$frontendPort = 5177
 $projectTreePort = 8501
 
 # Load .env into this PowerShell process so child server windows use the same settings.
@@ -107,7 +107,7 @@ if ($LASTEXITCODE -eq 0) {
   Write-Warning "Project Tree was not started because Streamlit is missing. Install project_tree_explorer/requirements.txt, then run start-dev.ps1 again."
 }
 
-Write-Host "TP2-3 development services checked. New windows were opened only for ports that were not already listening."
+Write-Host "TP2-4 development services checked. New windows were opened only for ports that were not already listening."
 Write-Host "Local URL: http://localhost:$frontendPort"
 # Print a private LAN address for teammates. Keep this block ASCII-only because
 # Windows PowerShell can misread UTF-8-without-BOM Korean text inside string literals.

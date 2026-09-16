@@ -28,7 +28,7 @@
 
 ## 시작하기 전
 
-지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8112가 필요합니다.
+지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8212가 필요합니다.
 
 2026-09-07: [원주 기획안 정밀 점검·필요 자료 목록](docs/WONJU_PROPOSAL_QUALITY_AUDIT_20260907.md),
 [전국 사례 선택 정책](docs/NATIONWIDE_CASE_SELECTION.md), [전체 기획안 생성 준비도 점검](docs/PROPOSAL_READINESS_AUDIT_20260907.md)을 추가했습니다.
@@ -164,24 +164,24 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 최초 설치가 끝난 뒤 세 서버를 한 번에 실행하려면 프로젝트 루트에서 아래 명령을 사용합니다. Backend, AI Server, Frontend가 각각 별도 PowerShell 창에서 계속 실행됩니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
+cd C:\Users\Admin\mbca\TP2-4
 .\start-dev.ps1
 ```
 
 개별 실행이 필요하면 아래 명령을 사용합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\frontend
-$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8100'
-$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8112'
-npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
+cd C:\Users\Admin\mbca\TP2-4\frontend
+$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8200'
+$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8212'
+npm run dev -- --host 0.0.0.0 --port 5177 --strictPort
 ```
 
-`start-dev.ps1`로 실행한 TP2-3 개발 주소는 `http://localhost:5176`입니다. TP2-2와 동시에 실행해도 충돌하지 않도록 TP2-3은 Backend `8100`, AI Server `8112`, Frontend `5176`을 사용합니다. Windows에서 기존 `8111` 리스너가 중복 잔류한 개발 환경을 피해 AI 포트를 옮겼습니다. 첫 설치 이후에만 `npm install`이 필요합니다.
+`start-dev.ps1`로 실행한 TP2-4 개발 주소는 `http://localhost:5177`입니다. 기존 TP2-3과 동시에 실행해도 충돌하지 않도록 TP2-4는 Backend `8200`, AI Server `8212`, Frontend `5177`을 사용합니다. 첫 설치 이후에만 `npm install`이 필요합니다.
 
 `start-dev.ps1`에서 `Python virtual environment was not found` 오류가 나오면 프로젝트 루트에서 `.\setup-dev.ps1`를 먼저 실행합니다.
 
-같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5176 인바운드 허용이 필요할 수 있습니다.
+같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5177 인바운드 허용이 필요할 수 있습니다.
 
 ## 발표용 프로젝트 구조 탐색기
 
@@ -192,27 +192,27 @@ npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
 & .\backend\.venv\Scripts\python.exe -m streamlit run project_tree_explorer/app.py --server.port 8501
 ```
 
-React 화면에서 `http://localhost:5176/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
+React 화면에서 `http://localhost:5177/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
 
 ## 지도 Backend 실행
 
 새 터미널에서 아래를 실행합니다. 지도에는 루트 `.env`의 `VWORLD_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\backend
+cd C:\Users\Admin\mbca\TP2-4\backend
 .\.venv\Scripts\Activate.ps1
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8100
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8200
 ```
 
-Backend와 프론트엔드가 모두 실행되면 `http://localhost:5176/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
+Backend와 프론트엔드가 모두 실행되면 `http://localhost:5177/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
 
 ## AI 서버와 Word 기획서 실행
 
 강남구 AI 전략기획서와 Word 다운로드는 별도 AI 서버가 담당합니다. 루트 `.env`에 `OPENAI_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
-.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8112
+cd C:\Users\Admin\mbca\TP2-4
+.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8212
 ```
 
 - 화면의 `AI 전략기획서 생성`은 Evidence Agent가 선택 지역 근거를 모으고, Case Scout가 전국 공식 성공사례의 실행 방식·예산·성과를 조사합니다. Transferability Agent가 지역 적합성을 평가한 뒤 Planner가 3~6개월 기획안을 작성하고 Reviewer가 사례 오용과 실행 가능성을 검토합니다. 기준 미달 시 한 번 수정합니다.
@@ -269,7 +269,7 @@ PPT는 승인된 양식을 유지하며 사례 소개 다음에 선정 근거 �
 
 전체 구조 지도에서도 **ML 결과 → 전략**을 선택해 같은 ML 연결 설명을 기존 단계별 파일 탐색 방식으로 확인할 수 있습니다.
 
-관리자 [머신러닝 결과](http://localhost:5176/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
+관리자 [머신러닝 결과](http://localhost:5177/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
 
 PPT 사례 카드는 오른쪽 여백과 자동 줄바꿈을 적용합니다. 출력 버전은 `pptx-case-wrap-v13`입니다.
 
