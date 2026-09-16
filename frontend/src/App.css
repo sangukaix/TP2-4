@@ -606,3 +606,19 @@ html[data-theme='day'] .workspace-shell.oligo-seoul-page .strategy-board-table{b
   .global-header-actions .theme-toggle{width:38px;justify-content:center;padding:0}
   .global-header-actions .theme-toggle span{display:none}
 }
+
+.tourism-home.oligo-seoul-page{padding-top:64px}
+.tourism-home.oligo-seoul-page>.home-header{position:fixed;z-index:2000;top:0;right:0;left:0;border-bottom-color:#2d5e79;background:#0c3450;box-shadow:0 2px 16px rgb(2 24 43 / 24%)}
+.tourism-home.oligo-seoul-page>.home-header>div{width:100%;height:64px;margin:0;padding:0 24px}
+.tourism-home.oligo-seoul-page .home-brand-wrap{display:flex;width:100%;align-items:center}
+.tourism-home.oligo-seoul-page .home-brand-logo{width:auto;height:58px;max-width:min(430px,calc(100vw - 180px));object-fit:contain}
+.workspace-global-header .ml-learning-dot,
+.tourism-home.oligo-seoul-page .ml-learning-dot{top:5px;right:auto;left:174px}
+html[data-theme='day'] .tourism-home.oligo-seoul-page>.home-header{border-bottom-color:#e2e8f0;background:#fffffff2;box-shadow:0 1px 0 rgb(15 23 42 / 3%)}
+
+@media(max-width:500px){
+  .tourism-home.oligo-seoul-page>.home-header>div{justify-content:flex-start;padding:0 10px}
+  .tourism-home.oligo-seoul-page .home-brand-logo{height:48px;max-width:calc(100vw - 136px)}
+  .workspace-global-header .ml-learning-dot,
+  .tourism-home.oligo-seoul-page .ml-learning-dot{top:7px;left:144px}
+}
