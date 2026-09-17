@@ -73,7 +73,7 @@ class ProposalPresentationTest(unittest.TestCase):
     def test_generates_strategy_deck_with_calculation_pages(self) -> None:
         output = create_strategy_proposal_presentation(_sample_report())
         presentation = Presentation(output)
-        self.assertEqual(len(presentation.slides), 14)
+        self.assertEqual(len(presentation.slides), 16)
         all_text = '\n'.join(
             shape.text
             for slide in presentation.slides
@@ -81,8 +81,8 @@ class ProposalPresentationTest(unittest.TestCase):
             if hasattr(shape, 'text')
         )
         for label in (
-            '야간 체류와 상권 소비', '사업 설계', '실행 가이드', '머신러닝 예측값',
-            '견적', '근거·데이터', '머신러닝 예측치', '산출 근거 ①', '산출 근거 ②', '감사합니다',
+            '야간 체류와 상권 소비', '사업 목표', '실행 가이드', '머신러닝 예측값',
+            '견적', '근거·데이터', '머신러닝 예측치', '목표 KPI 산출근거', '운영 규모와 산출 근거', '감사합니다',
         ):
             self.assertIn(label, all_text)
 

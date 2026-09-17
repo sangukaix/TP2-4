@@ -355,7 +355,11 @@ def reference_case_typography(slide):
             fit_text(shape,value,size/0.75,DARK if 'title' in name else MUTED,'title' in name)
         for p in shape.text_frame.paragraphs:
             for run in p.runs:
-                run.font.size=Pt(size)
+                # Preserve the size just fitted to long case prose/title. A
+                # second forced enlargement invalidates wrapping and overlaps
+                # neighbouring cards even though the text box itself fits.
+                if not name.startswith(('case-title-','case-body-')):
+                    run.font.size=Pt(size)
                 run.font.name='Century Gothic'
                 props=run._r.get_or_add_rPr()
                 east=props.find('{http://schemas.openxmlformats.org/drawingml/2006/main}ea')

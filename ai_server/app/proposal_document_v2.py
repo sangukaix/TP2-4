@@ -163,10 +163,11 @@ def metric_rows(scenario, key):
 
 
 def target_basis_page(doc, report, b):
+    section_start = len(doc.paragraphs)
     heading(doc, '02  목표 KPI 산출근거', True)
     subheading(doc, '목표율을 정한 이유')
     reason = b['target_explanation'].split('방문 수가 0보다 큰 월은')[0].strip()
-    paragraph(doc, reason, size=10).paragraph_format.space_after = Pt(16)
+    paragraph(doc, reason, size=10).paragraph_format.space_after = Pt(10)
     scenario = report.get('execution_scenario') or {}
     paragraph(doc, f"최종월 계획 목표  방문 +{scenario.get('visitor_target_pct', 0):.2f}%  ·  소비 +{scenario.get('spending_target_pct', 0):.2f}%",
               size=15, bold=True, color=BLUE)
@@ -190,8 +191,17 @@ def target_basis_page(doc, report, b):
             [s['label'], f"{s['participants']:,}명", f"{s['additional_visitors']:,}명",
              f"{s['additional_spending_krw']/10000:,.0f}만 원"] for s in plan['scenarios']]], [30,44,44,52])
         paragraph(doc, plan['spending_formula'], size=9)
-        paragraph(doc, plan['disclosure'], size=9, color=GRAY)
-        paragraph(doc, '산출한 추가 방문·소비 규모는 각 달의 ML 전망과 단계 운영 비중에 따라 배분합니다.', size=9, color=GRAY)
+        # Keep the related disclosures in one paragraph so a final sentence
+        # cannot become a near-empty continuation page. All wording is kept.
+        paragraph(doc, plan['disclosure'] + ' '
+                  + '산출한 추가 방문·소비 규모는 각 달의 ML 전망과 단계 운영 비중에 따라 배분합니다.',
+                  size=9, color=GRAY)
+        # Reduce spacing only in this dense section, never its text or type.
+        for p in doc.paragraphs[section_start + 1:]:
+            if p.paragraph_format.space_after and p.paragraph_format.space_after > Pt(4):
+                p.paragraph_format.space_after = Pt(4)
+            if p.paragraph_format.space_before and p.paragraph_format.space_before > Pt(9):
+                p.paragraph_format.space_before = Pt(9)
         return
     subheading(doc, '목표가 월별 수치로 이어지는 과정')
     table(doc, [['단계', '계산 방법'],
@@ -231,7 +241,7 @@ def case_result_page(doc, report):
         source_link(doc, url, label)
 
 
-def case_card(doc, report, source, index, primary):
+def case_card(doc, report, source, index, primary, *, add_gap=True):
     t = doc.add_table(rows=1, cols=2)
     t.autofit = False
     for col, width in zip(t.columns, (116, 54)): col.width = Mm(width)
@@ -267,7 +277,8 @@ def case_card(doc, report, source, index, primary):
         cell._tc.remove(cell.paragraphs[0]._p)
         for p in cell.paragraphs:
             p.paragraph_format.space_after = Pt(5)
-    paragraph(doc, '', size=2).paragraph_format.space_after = Pt(4)
+    if add_gap:
+        paragraph(doc, '', size=2).paragraph_format.space_after = Pt(4)
 
 
 def pipeline_page(doc, report, b):
@@ -284,7 +295,7 @@ def pipeline_page(doc, report, b):
                 ['③ 후보 비교\n'+provider('transferability','비교 모델'), 'Transferability Agent가 지역 지표와 사례의 운영 방식을 비교하여 지역에 맞는 후보를 선택합니다.'],
                 ['④ 본문 작성\n'+provider('planner','작성 모델'), 'Planner Agent가 선정 후보·수치·공식 근거로 사업 소개와 실행 계획을 작성합니다.'],
                 ['⑤ 품질 검수\n'+provider('reviewer','검수 모델'), 'Reviewer Agent와 코드 검사가 수치·출처·기간·본문 연결을 확인합니다. 필요한 부분은 보완 후 다시 검수합니다.'],
-                ['저장과 문서 출력', '저장 보고서에서 웹·PPT·Word를 출력합니다. 문서 출력 시 LLM이나 ML을 새로 실행하지 않습니다.']], [47, 123])
+                ['저장과 문서 출력', '저장 보고서를 출력하며 LLM 재호출·모델 재학습은 하지 않습니다. 전국 비교 캐시가 없으면 저장 ML로 비교값을 계산합니다.']], [47, 123])
     subheading(doc, '7개 머신러닝 결과의 사용처')
     table(doc, [['입력', '결과가 사용되는 곳'],
                 ['방문자 수 · 관광소비액 전망', '전망 그래프 → 월별 목표 → 추가 규모 → 견적 운영량 가정'],
@@ -365,7 +376,7 @@ def create_strategy_proposal_document(report):
     paragraph(doc, '공식 문서에서 사업의 실제 운영 방식이 연결되는 사례를 참고합니다. 아래 구분은 선정 사업의 근거와 추가 참고 사례의 역할을 나타냅니다.', size=9, color=GRAY)
     cases, primary = report_cases(report)
     for i, source in enumerate(cases):
-        case_card(doc, report, source, i, primary)
+        case_card(doc, report, source, i, primary, add_gap=i < len(cases) - 1)
 
     case_result_page(doc, report)
     heading(doc, '04  사례 선정과 지역 적용', True)

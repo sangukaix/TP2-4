@@ -30,7 +30,7 @@ import {
 import { downloadAiStrategyPresentation, downloadAiStrategyProposal, getAiRegionDashboard, getAiRegionOpenApiInfo, getSidoBoundaries, getSigunguBoundaries, getRegionReadinessAudit } from '../api/dashboardApi'
 import TourismAssistant from '../components/TourismAssistant'
 import ConsumptionCategoryHelp from '../components/ConsumptionCategoryHelp'
-import { regionReadinessLabel } from '../features/planning/regionReadinessLabel'
+import { regionReadinessLabel, regionDataReady } from '../features/planning/regionReadinessLabel'
 import WorkspaceShell from '../components/WorkspaceShell'
 import '../App.css'
 
@@ -711,7 +711,6 @@ function DashboardApp() {
     const timer = window.setInterval(refresh, 60000)
     return () => { active = false; window.clearInterval(timer) }
   }, [])
-  const auditedRegion = readinessAudit.regions.find((r) => r.region_code === selectedCode)
   const [regionSearchMessage, setRegionSearchMessage] = useState('')
   const [isRegionInfoVisible, setIsRegionInfoVisible] = useState(false)
   const [regionInfo, setRegionInfo] = useState(null)
@@ -1080,14 +1079,14 @@ function DashboardApp() {
                   <span>시군구</span>
                   <select
                     disabled={!selectedSidoCode}
-                    style={{ color: auditedRegion?.data_ready ? '#15803d' : undefined }}
-                    title="초록색: 원자료·저장 모델·SQL 비교·공식 사례 준비됨. 모델 연결은 별도 확인합니다."
+                    style={{ color: regionDataReady(readinessAudit, selectedCode) ? '#15803d' : undefined }}
+                    title="초록색은 입력자료 점검 통과입니다. 기획서 품질·출력·제출 승인은 별도 검증이 필요합니다."
                     value={sigunguInSelectedSido.some((feature) => feature.properties.region_code === selectedCode) ? selectedCode : ''}
                     onChange={(event) => selectSigungu(event.target.value)}
                   >
                     <option value="">시군구 전체</option>
                     {sigunguInSelectedSido.map((feature) => (
-                      <option key={feature.properties.region_code} value={feature.properties.region_code} style={{ color: readinessAudit.regions.some((r) => r.region_code === feature.properties.region_code && r.data_ready) ? '#15803d' : undefined }}>
+                      <option key={feature.properties.region_code} value={feature.properties.region_code} style={{ color: regionDataReady(readinessAudit, feature.properties.region_code) ? '#15803d' : undefined }}>
                         {feature.properties.display_name ?? feature.properties.region_name} · {regionReadinessLabel(readinessAudit, feature.properties.region_code)}
                       </option>
                     ))}
@@ -1099,7 +1098,7 @@ function DashboardApp() {
                   {(sigunguBoundaries?.features ?? []).map((feature) => <option key={feature.properties.region_code} value={feature.properties.region_name} />)}
                 </datalist>
                 <p className="map-region-search-message" role="status">
-                  초록색: 원자료·저장 모델·SQL 비교·공식 사례 준비됨. 모델 연결 상태는 별도로 표시합니다.
+                  초록색은 원자료·저장 모델·SQL 비교·공식 사례의 입력자료 점검 통과입니다. 기획서 품질·출력·제출 승인은 별도 검증이 필요합니다.
                   {` 선택 지역: ${regionReadinessLabel(readinessAudit, selectedCode)}. `}
                   {readinessAudit.refreshFailed ? '상태 조회 연결 끊김 · 마지막 확인 결과 표시' : readinessAudit.local_model_message}
                 </p>

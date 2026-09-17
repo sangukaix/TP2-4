@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date
-from io import BytesIO
 import json
 import logging
 import os
@@ -18,7 +17,7 @@ import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 from .openai_responses import OpenAIResponseError, check_openai_readiness
@@ -73,7 +72,7 @@ LOGGER = logging.getLogger(__name__)
 
 # 저장 문서의 레이아웃·생성 규칙이 바뀌면 이 값만 올려 과거 캐시를 안전하게 다시 만듭니다.
 DOCUMENT_RENDER_VERSIONS = {
-    'docx': 'strategy-docx-v18-linked-cost',
+    'docx': 'strategy-docx-v20-selected-case',
     'pptx': PRESENTATION_RENDER_VERSION,
 }
 # Matplotlib의 전역 상태와 문서 렌더러를 동시에 사용하지 않습니다.
@@ -1519,7 +1518,7 @@ async def update_saved_strategy_report(report_id: str, region_code: str, report:
 
 
 @app.get('/ai/v1/strategy-reports/{report_id}/documents/{file_format}')
-async def download_saved_strategy_document(report_id: str, file_format: Literal['docx', 'pptx']) -> StreamingResponse:
+async def download_saved_strategy_document(report_id: str, file_format: Literal['docx', 'pptx']) -> Response:
     """현재 기획안 내용·출력 버전과 일치하는 Word/PPT만 캐시에서 내려보냅니다."""
     try:
         render_version = DOCUMENT_RENDER_VERSIONS[file_format]
@@ -1540,7 +1539,8 @@ async def download_saved_strategy_document(report_id: str, file_format: Literal[
         if file_format == 'docx'
         else 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
     )
-    return StreamingResponse(BytesIO(content), media_type=media_type, headers={'Content-Disposition': f'attachment; filename="tourism-strategy-proposal.{file_format}"'})
+    # 이미 메모리에 완성된 ZIP 바이너리를 줄 단위로 순회하지 않고 그대로 전송합니다.
+    return Response(content, media_type=media_type, headers={'Content-Disposition': f'attachment; filename="tourism-strategy-proposal.{file_format}"'})
 
 
 @app.get('/ai/v1/ml/{region_code}/planning-evidence', response_model=PlanningMlEvidence)
@@ -2054,13 +2054,13 @@ async def chat_with_tourism_assistant(region_code: str, request: AssistantChatRe
 
 
 @app.post('/ai/v1/demo/{region_code}/strategy-proposal.docx')
-async def download_region_strategy_proposal(region_code: str, report: ReportResponse) -> StreamingResponse:
-    """이미 검증된 OpenAI 보고서를 최대 5쪽의 도표 중심 Word 기획서로 내려보냅니다."""
+async def download_region_strategy_proposal(region_code: str, report: ReportResponse) -> Response:
+    """전달된 보고서의 본문·수치·출처를 Word 기획서로 내려보냅니다."""
     try:
-        document = BytesIO(await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'docx'))
+        document = await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'docx')
     except (KeyError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=500, detail={'code': 'PROPOSAL_DOCUMENT_ERROR', 'message': 'Word 기획서를 생성하지 못했습니다.'}) from exc
-    return StreamingResponse(
+    return Response(
         document,
         media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         headers={'Content-Disposition': 'attachment; filename="tourism-strategy-proposal.docx"'},
@@ -2068,13 +2068,13 @@ async def download_region_strategy_proposal(region_code: str, report: ReportResp
 
 
 @app.post('/ai/v1/demo/{region_code}/strategy-proposal.pptx')
-async def download_region_strategy_presentation(region_code: str, report: ReportResponse) -> StreamingResponse:
-    """같은 구조화 보고서를 편집 가능한 12장 PowerPoint로 내려보냅니다."""
+async def download_region_strategy_presentation(region_code: str, report: ReportResponse) -> Response:
+    """같은 구조화 보고서와 출처를 편집 가능한 PowerPoint로 내려보냅니다."""
     try:
-        presentation = BytesIO(await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'pptx'))
+        presentation = await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'pptx')
     except (KeyError, TypeError, ValueError, OSError) as exc:
         raise HTTPException(status_code=500, detail={'code': 'PROPOSAL_PRESENTATION_ERROR', 'message': 'PowerPoint 기획서를 생성하지 못했습니다.'}) from exc
-    return StreamingResponse(
+    return Response(
         presentation,
         media_type='application/vnd.openxmlformats-officedocument.presentationml.presentation',
         headers={'Content-Disposition': 'attachment; filename="tourism-strategy-proposal.pptx"'},
