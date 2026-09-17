@@ -1,6 +1,11 @@
 import {
+  Bot,
+  BrainCircuit,
+  CodeXml,
   FileBarChart,
   LayoutDashboard,
+  Network,
+  Route as RouteIcon,
   Sparkles,
   ClipboardList,
 } from 'lucide-react'
@@ -9,13 +14,35 @@ import dayLogo from '../assets/logo-day.png'
 import { resolveAppRoute } from '../routes'
 import HeaderActions from './HeaderActions'
 
-const menuItems = [
+const workspaceNavItems = [
   { href: '/dashboard', label: '지역선택', icon: LayoutDashboard },
   { href: '/planning', label: '기획안 생성', icon: ClipboardList },
   { href: '/strategy', label: '기획안 수정 · 출력', icon: Sparkles },
 ]
 const savedPlansMenuItem = { href: '/saved-plans', label: '저장된 기획서', icon: FileBarChart }
-const themedWorkspacePaths = new Set(['/dashboard', '/planning', '/strategy', '/saved-plans'])
+const adminNavItems = [
+  { href: '/ml-test', label: '머신러닝 결과', icon: BrainCircuit },
+  { href: '/openai-test', label: 'OpenAI', icon: Bot },
+  { href: '/react-test', label: 'React', icon: CodeXml },
+  { href: '/llm-control', label: 'AI Router', icon: RouteIcon },
+  { href: '/project-tree', label: '전체 구조', icon: Network },
+]
+const workspacePaths = new Set([
+  ...workspaceNavItems.map(({ href }) => href),
+  savedPlansMenuItem.href,
+  ...adminNavItems.map(({ href }) => href),
+])
+const topbarLabels = Object.freeze({
+  '/dashboard': '1. 희망 지역을 선택해주세요',
+  '/planning': '2. 필수 조건을 선택 후 기획안 생성',
+  '/strategy': '3. 기획안 수정 및 출력',
+  '/saved-plans': '저장공간',
+  '/ml-test': '머신러닝 결과',
+  '/openai-test': 'OpenAI · Agent AI 구조',
+  '/react-test': 'React · Vite 구조',
+  '/llm-control': 'AI Router · LLM Control Center',
+  '/project-tree': '발표용 프로젝트 구조 지도',
+})
 
 /**
  * bid3의 224px 사이드바·64px 상단바 비율을 React + Vite에 맞춰 옮긴 공통 화면 틀입니다.
@@ -23,28 +50,11 @@ const themedWorkspacePaths = new Set(['/dashboard', '/planning', '/strategy', '/
  */
 export default function WorkspaceShell({ children }) {
   const currentPath = resolveAppRoute(window.location.pathname).canonicalPath
-  const pageClassName = themedWorkspacePaths.has(currentPath)
-    ? 'workspace-shell oligo-seoul-page'
+  const pageClassName = workspacePaths.has(currentPath)
+    ? 'workspace-shell oligo-seoul-page tp23-workspace'
     : 'workspace-shell'
-  const topbarLabel = currentPath === '/dashboard'
-    ? '1. 희망 지역을 선택해주세요'
-    : currentPath === '/planning'
-      ? '2. 필수 조건을 선택 후 기획안 생성'
-      : currentPath === '/strategy'
-        ? '3. 기획안 수정 및 출력'
-        : currentPath === '/saved-plans'
-          ? '저장공간'
-          : currentPath === '/ml-test'
-            ? '머신러닝 결과'
-            : currentPath === '/openai-test'
-              ? 'OpenAI · Agent AI 구조'
-              : currentPath === '/react-test'
-                ? 'React · Vite 구조'
-                : currentPath === '/llm-control'
-                  ? 'AI Router · LLM Control Center'
-                : currentPath === '/project-tree'
-                    ? '발표용 프로젝트 구조 지도'
-          : '지역관광 전략 업무공간'
+  const topbarLabel = topbarLabels[currentPath] || '지역관광 전략 업무공간'
+  const mobileNavItems = [...workspaceNavItems, savedPlansMenuItem]
 
   return (
     <div className={pageClassName}>
@@ -64,8 +74,11 @@ export default function WorkspaceShell({ children }) {
       <aside className="workspace-sidebar">
         <nav className="workspace-nav" aria-label="관광 분석 메뉴">
           <p>분석 업무</p>
-          {menuItems.map(({ href, label, icon: Icon }) => (
-            <a className={currentPath === href ? 'is-active' : ''} href={href} key={href}><Icon size={17} /><span>{label}</span></a>
+          {workspaceNavItems.map(({ href, label }, index) => (
+            <a className={currentPath === href ? 'is-active' : ''} href={href} key={href}>
+              <span className="workspace-nav-number">{index + 1}</span>
+              <span>{label}</span>
+            </a>
           ))}
           <p>기획서 관리</p>
           <a className={currentPath === '/saved-plans' ? 'is-active' : ''} href="/saved-plans"><FileBarChart size={17} /><span>저장된 기획서</span></a>
@@ -83,7 +96,7 @@ export default function WorkspaceShell({ children }) {
       </section>
 
       <nav className="workspace-mobile-nav" aria-label="모바일 관광 분석 메뉴">
-        {[...menuItems, savedPlansMenuItem].map(({ href, label, icon: Icon }) => (
+        {mobileNavItems.map(({ href, label, icon: Icon }) => (
           <a className={currentPath === href ? 'is-active' : ''} href={href} key={href}><Icon size={17} /><span>{label}</span></a>
         ))}
       </nav>
