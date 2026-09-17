@@ -1,0 +1,20 @@
+{
+  "changed_slides": [
+    "slide-01.png",
+    "slide-03.png"
+  ],
+  "different_cover_photo": true,
+  "blue_captions": true,
+  "charts_tables_identical": true,
+  "selected_photo": {
+    "source_id": "tour-api:127870",
+    "source_type": "open_api",
+    "title": "곽지해수욕장",
+    "source_url": "https://apis.data.go.kr/B551011/KorService2",
+    "content_id": "127870",
+    "content_type_id": "12",
+    "address": "제주특별자치도 제주시 애월읍 곽지리 1565",
+    "image_url": "http://tong.visitkorea.or.kr/cms/resource/30/3053130_image2_1.jpg",
+    "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+  }
+}

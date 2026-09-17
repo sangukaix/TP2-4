@@ -21,7 +21,8 @@ export const CONTEXT_OPTIONS = [['families', '가족 방문객 중심'], ['young
 export const optionLabels = (options, selected = []) => options.filter(([key]) => selected.includes(key)).map(([, label]) => label).join(' · ')
 export function nextThreeMonthSchedule(now = new Date()) {
   const korea = new Date(now.getTime() + 9 * 60 * 60 * 1000)
-  const start = new Date(Date.UTC(korea.getUTCFullYear(), korea.getUTCMonth() + 1, 1))
+  const offset = korea.getUTCDate() <= 15 ? 1 : 2
+  const start = new Date(Date.UTC(korea.getUTCFullYear(), korea.getUTCMonth() + offset, 1))
   return threeMonthSchedule(start.toISOString().slice(0, 7))
 }
 export function simplifiedDraft(code) {

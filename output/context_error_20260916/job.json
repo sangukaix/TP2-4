@@ -1,0 +1,9 @@
+{
+  "job_id": "edf2ba1f0fab4316995f0ab5a84e631a",
+  "region_code": "51780",
+  "region_name": "강원특별자치도 철원군",
+  "status": "failed",
+  "error": "지역 적용 가능성 검토 단계에서 처리하지 못했습니다: 실제 입력 토큰이 로컬 모델의 문맥 한도를 넘습니다. 근거를 자르지 않고 중단했습니다.",
+  "request_json": "{\"region_name\": \"강원특별자치도 철원군\", \"planning_brief\": {\"version\": 1, \"end_date\": \"2026-12-31\", \"references\": [], \"start_date\": \"2026-10-01\", \"preferences\": \"\", \"region_code\": \"51780\", \"budget_status\": \"unknown\", \"field_context\": \"\", \"input_profile\": \"guided_v2\", \"budget_max_krw\": null, \"budget_min_krw\": null, \"context_options\": [], \"schedule_status\": \"fixed\", \"hard_constraints\": \"\", \"resource_options\": [], \"resources_status\": \"unknown\", \"budget_hard_limit\": false, \"business_direction\": \"auto\", \"constraints_status\": \"unknown\", \"resources_possible\": \"\", \"visitor_target_pct\": null, \"excluded_operations\": [], \"resources_confirmed\": \"\", \"spending_target_pct\": null}}",
+  "updated_at": "2026-09-16 16:53:44"
+}

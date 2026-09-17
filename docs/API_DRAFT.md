@@ -1,5 +1,7 @@
 # 프론트엔드 연동 API 초안
 
+D-192: LLM 설정 mode에 `local_first_gemma` 추가. status.cost_policy에 `gemma_only_local`, `local_context_lengths`를 추가한다. 이 모드의 providers와 지역 준비 상태는 Gemma만 로컬 필수 대상으로 삼는다. [정책](GEMMA_FIRST_MODE.md).
+
 2026-09-17 기획 핵심 보완: 공개 API/스키마는 변경하지 않습니다. 운영량의 사업 유형은 선정 후보 mechanism을 우선하고, 명시된 '운영 시작' 일정도 개시월로 인식합니다. 모니터링만으로 개시일을 추정하지 않습니다. 공통 작성 지침은 KPI 예시·명시적 운영 개시·미확인 집행 조건을 안내하며 저장 원본과 검수 점수는 바꾸지 않습니다.
 
 2026-09-17 문서 다운로드 후속: 저장본 GET 및 지역별 Word/PPT POST의 완성 바이너리 전송은 바이트 응답과 `Content-Length`를 사용합니다. URL·파일명·MIME·보고서 스키마는 그대로입니다. 최종 캐시 버전은 Word `strategy-docx-v20-selected-case`, PPT `pptx-v47-selected-case`입니다. 빈 페이지·긴 URL·사례 카드 글자 겹침을 보정하고 선정 후보의 상세 운영 방식으로 출처를 표시합니다. 활성 생성이 끝난 뒤 AI 재시작으로 적용했습니다. 저장 보고서의 품질 점수·미승인 상태는 변경하지 않습니다.
@@ -584,3 +586,8 @@ D-175: PPT `pptx-v36-operating-capacity`, Word `strategy-docx-v13-operating-capa
 ### 소속 시도 관측 맥락 (D-187)
 
 새 생성의 내부 snapshot에 `provincial_context`를 추가한다. `available`, `province_code/name`, `observation_month`, `comparisons`, `source_records`, `read_rule`을 갖는다. 같은 관측월의 방문/소비 전년 대비 증감률과 숙박 비율/일수만 비교하며, 시도 생성 endpoint나 ML 예측 응답은 추가하지 않는다. 기존 `get_region_metrics` 도구와 Evidence/Case Scout 입력에 전달하고 공개 보고서의 `evidence_sources`에 비교 요약·출처를 보존한다. 자료/월이 없으면 비교만 생략한다. [상세](PROVINCIAL_TOURISM_CONTEXT.md).
+
+
+### 사업기간 자동 선택 규칙 (2026-09-17)
+
+한국 시간 기준 생성일이 1~15일이면 다음 달부터, 16일~말일이면 다다음 달부터 연속 3개월로 정한다. 예: 2026-09-15 → 2026-10~12, 2026-09-16 → 2026-11~2027-01. 웹 입력·대시보드와 신규 보고서 API는 같은 규칙을 사용하고, 서버가 생성 요청 시 날짜를 확정한다. ML은 종료월까지 실제 월별 전망을 계산하고 PPT·Word·웹 목표는 저장된 같은 기간을 사용한다. 기존 저장본·진행 중 작업을 현재 날짜로 이동하지 않는다. 신규 본문은 첫 사업월 운영 개시를 명시하며 실제 준비일에는 운영량을 배분하지 않는다.

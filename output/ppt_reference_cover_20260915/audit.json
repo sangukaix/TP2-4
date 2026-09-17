@@ -1,0 +1,20 @@
+{
+  "changed_slides": [
+    "slide-01.png",
+    "slide-15.png"
+  ],
+  "three_distinct_photos": true,
+  "blue_caption": true,
+  "charts_tables_identical": true,
+  "selected_photo": {
+    "source_id": "tour-api:2791433",
+    "source_type": "open_api",
+    "title": "고내포구",
+    "source_url": "https://apis.data.go.kr/B551011/KorService2",
+    "content_id": "2791433",
+    "content_type_id": "12",
+    "address": "제주특별자치도 제주시 애월읍 고내리 1111-4",
+    "image_url": "http://tong.visitkorea.or.kr/cms/resource/19/3589219_image2_1.jpg",
+    "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "health": 200,
+  "preview": 200,
+  "central": {
+    "label": "기준",
+    "utilization_pct": 65.0,
+    "additional_visitor_share_pct": 30.0,
+    "participants": 7488,
+    "additional_visitors": 2246,
+    "additional_spending_krw": 157353164,
+    "visitor_growth_pct": 0.021228402392590284,
+    "spending_growth_pct": 0.03536671084606522,
+    "visitor_target_pct": 0.03221447862482329,
+    "spending_target_pct": 0.05311575279200933
+  },
+  "estimate": 168080000
+}

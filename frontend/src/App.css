@@ -622,3 +622,6 @@ html[data-theme='day'] .tourism-home.oligo-seoul-page>.home-header{border-bottom
   .workspace-global-header .ml-learning-dot,
   .tourism-home.oligo-seoul-page .ml-learning-dot{top:7px;left:144px}
 }
+
+/* Admin pages reserve space for the fixed 64px global header. */
+.workspace-shell:not(.oligo-seoul-page) > .workspace-main{padding-top:64px}

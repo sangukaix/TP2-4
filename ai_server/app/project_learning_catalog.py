@@ -144,7 +144,7 @@ def _build_openai_catalog() -> ProjectLearningCatalog:
             if line.strip().startswith('OPENAI_') and '=' in line
         ]
     pipeline = [
-        LearningNode(id='input', title='사용자 조건', role='지역·사업 방향·참고 예산·자원·현장 선호 선택. 서버가 다음 달부터 3개월 확정', file='frontend/src/pages/TourismPlanningPage.jsx', kind='input'),
+        LearningNode(id='input', title='사용자 조건', role='지역·사업 방향·참고 예산·자원·현장 선호 선택. 서버가 15일까지 다음 달, 16일부터 다다음 달 시작으로 3개월 확정', file='frontend/src/pages/TourismPlanningPage.jsx', kind='input'),
         LearningNode(id='snapshot', title='공식 데이터 Snapshot', role='관측값과 사용자 조건을 분리해 고정', file='ai_server/app/main.py', kind='data'),
         LearningNode(id='ml', title='ML 전망 근거', role='저장 모델의 기간별 전망·오차·조사 질문 생성', file='ai_server/ml/planning_evidence.py', kind='ml'),
         *[LearningNode(id=row['name'], title=row['name'], role=row['role'], file=row['file'], kind='agent') for row in core_agents],

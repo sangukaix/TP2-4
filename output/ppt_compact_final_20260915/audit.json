@@ -1,0 +1,16 @@
+{
+  "native_charts_tables_unchanged": true,
+  "numbered_headings_left_aligned": 12,
+  "requested_text_changes_only": true,
+  "reference_font_sizes_pt": {
+    "title": 26,
+    "case-title-0": 14,
+    "case-body-0": 11,
+    "case-image-caption-0": 9
+  },
+  "caption_short_long_height_px": [
+    42.0,
+    60.0
+  ],
+  "cover_source_in_notes": true
+}

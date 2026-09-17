@@ -29,7 +29,7 @@ from .report_review_status import review_label
 PRESENTATION_TEMPLATE_PATH = (
     Path(__file__).resolve().parent / "templates" / "tourism_strategy_12_slide_template_v6.pptx"
 )
-PRESENTATION_RENDER_VERSION = "pptx-v47-selected-case"
+PRESENTATION_RENDER_VERSION = "pptx-v54-overview-aligned-cards"
 FINAL_SLIDE_COUNT = 12
 
 BLUE = RGBColor(0x00, 0x4E, 0xA2)
@@ -877,6 +877,10 @@ def create_strategy_proposal_presentation(report: dict[str, Any]) -> BytesIO:
     polish(prs, report)
     from .proposal_operating_slides import append_operating_pages
     append_operating_pages(prs, report)
+    from .proposal_business_overview import insert_business_overview
+    from .proposal_case_merge import merge_case_application
+    merge_case_application(prs, report)
+    insert_business_overview(prs, report)
     output = BytesIO()
     prs.save(output)
     output.seek(0)

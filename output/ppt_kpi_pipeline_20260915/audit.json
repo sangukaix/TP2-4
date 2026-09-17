@@ -1,0 +1,13 @@
+{
+  "slides": 15,
+  "native_charts_unchanged": true,
+  "kpi_tables_unchanged": true,
+  "estimate_unchanged": true,
+  "all_original_source_links_retained": true,
+  "case_result_slide": 6,
+  "source_pages": 2,
+  "llm_calls": 0,
+  "paid_calls": 0,
+  "visual_review": "All slides rendered in native PowerPoint; revised sources rechecked.",
+  "layout_warnings": "Original cover/thanks bleed and contents watermark overlap are intentional; visually inspected."
+}

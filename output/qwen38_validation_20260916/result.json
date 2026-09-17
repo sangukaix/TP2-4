@@ -1,0 +1,76 @@
+{
+  "model": "qwen3.8:27b",
+  "requested_context": 65536,
+  "paid_calls": 0,
+  "short_json": {
+    "elapsed_seconds": 22.15,
+    "usage": {
+      "input_tokens": 95,
+      "output_tokens": 52,
+      "total_tokens": 147
+    },
+    "answer": {
+      "capacity": 19200,
+      "participants": 14400,
+      "additional_visitors": 4320,
+      "is_observed_effect": false
+    },
+    "passed": false
+  },
+  "loaded_after_short": {
+    "models": [
+      {
+        "name": "qwen3.8:27b",
+        "model": "qwen3.8:27b",
+        "size": 20245496459,
+        "digest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "27.3B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-09-16T18:35:01.5009189+09:00",
+        "size_vram": 10220543670,
+        "context_length": 65536
+      }
+    ]
+  },
+  "input_probe": {
+    "prompt_eval_count": 29809,
+    "eval_count": 1,
+    "done_reason": "length",
+    "load_duration": 36917800,
+    "prompt_eval_duration": 55322922000,
+    "eval_duration": 1000,
+    "elapsed_seconds": 55.54,
+    "scope": "reconstructed local input; excludes original paid web evidence; one token, not full report quality"
+  },
+  "loaded_after_input": {
+    "models": [
+      {
+        "name": "qwen3.8:27b",
+        "model": "qwen3.8:27b",
+        "size": 20245496459,
+        "digest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "27.3B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-09-16T18:35:57.1273135+09:00",
+        "size_vram": 10220543670,
+        "context_length": 65536
+      }
+    ]
+  }
+}

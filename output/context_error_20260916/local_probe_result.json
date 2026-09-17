@@ -1,0 +1,10 @@
+{
+  "http_status": 200,
+  "elapsed_seconds": 23.18,
+  "prompt_eval_count": 32887,
+  "eval_count": 1,
+  "done_reason": "length",
+  "error": null,
+  "scope": "local reconstructed input only; not the original paid web evidence",
+  "requested_context": 40960
+}

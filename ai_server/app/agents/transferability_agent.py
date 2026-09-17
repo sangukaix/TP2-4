@@ -66,7 +66,7 @@ TRANSFERABILITY_SCHEMA = {
                       'properties': DESIGN_CANDIDATE_FIELDS, 'required': list(DESIGN_CANDIDATE_FIELDS)},
         },
         'selected_candidate_id': {'type': 'string'},
-        'selection_reason': {'type': 'string', 'description': '실제 비교한 후보 이름과 선택 지역의 관측/ML 근거를 연결해 선택안의 장점과 대안보다 불리한 점을 설명한다. 인용 연결 성공이나 다시 비교할 수 있다는 처리 안내는 선정 이유가 아니다.'},
+        'selection_reason': {'type': 'string', 'description': '선택안과 대안 이름을 명시하고, 같은 지역 지표에 대해 각 방식이 바꾸려는 행동·준비 부담·성과 근거를 비교한다. 선택 이유와 포기한 장점을 2~3문장으로 설명한다. 소비 비중이 높다는 사실만으로 환급이 최선이라고 단정하지 않는다. 인용 연결 성공이나 다시 비교할 수 있다는 처리 안내는 선정 이유가 아니다.'},
         'selection_status': {'type': 'string', 'enum': ['ready', 'needs_evidence']},
         'candidate_assessments': {
             'type': 'array',

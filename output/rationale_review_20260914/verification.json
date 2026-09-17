@@ -1,0 +1,42 @@
+{
+  "source": "storage\\previews\\case_research_diagnostics\\20260914_202911_929238_28237_rationale_handoff\\diagnostic.json",
+  "source_sha256": "3a4f0f73d0c062fbf04183f14030f1a69f886b49eb9ba5d264694746965093f9",
+  "source_unchanged": true,
+  "latest_offline_precheck": {
+    "checked": true,
+    "issues": [
+      {
+        "severity": "major",
+        "field": "planning_decision.selection_status",
+        "problem": "선택 후보의 지역 적용 조건이 미확인 상태입니다.",
+        "revision_instruction": "후보 수 부족과 구분하세요. prerequisites/selection_reason의 미확인 조건과 필요한 공식 문서를 명시하고, 확인 전 집행 승인이나 ready 변경을 하지 마세요."
+      },
+      {
+        "severity": "major",
+        "field": "planning_decision.design_candidates[3].local_fit",
+        "problem": "후보의 지역 적합성에 선택 지역/전국 비교 지표가 연결되지 않았습니다.",
+        "revision_instruction": "get_region_metrics/compare_regions의 실제 지표·기간으로 local_fit을 보완하고 해당 source_id를 evidence_source_ids에 연결하세요. 사례 효과를 지역 근거로 대신 쓰지 마세요."
+      }
+    ],
+    "issue_count": 2
+  },
+  "paid_calls": 0,
+  "report_approved": false,
+  "human_review": {
+    "improved": [
+      "선정 후보에 관측 dataset과 ML 전망을 분리 결합",
+      "측정하지 않은 소비 전환 저하 사실 단정을 운영 가설로 교정",
+      "본문에서 서울 사례 전후 매출 변화의 인과 단정 제거",
+      "본문에 야간/디지털주민증 대안과 비교한 판단 추가",
+      "완주·할인 자격 조건과 담당 역할 추가"
+    ],
+    "remaining": [
+      "ML만으로 지역 사업 우열을 입증할 수 없음",
+      "대안3은 지역 관측 근거 연결이 부족",
+      "미확인 협약에도 후보 모델 ready 반환; 기존 보정 이후 needs_evidence 유지",
+      "코스·참여처·동일 대상 매출/이용률의 측정 가능성 추가 확인 필요",
+      "Qwen 확대 계약 완료 및 별도 지역/순서 반전 반복성 미검증",
+      "로컬 Reviewer·OpenAI 최종검수·저장·운영 전체 실생성은 이번 범위에서 미실행"
+    ]
+  }
+}

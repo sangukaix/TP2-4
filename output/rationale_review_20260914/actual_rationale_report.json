@@ -1,0 +1,1985 @@
+{
+  "region_name": "인천광역시 부평구",
+  "planning_decision": {
+    "diagnosis_summary": "부평구는 2026년 10~12월 전망에서 방문자 수(-2.15%)와 관광소비액(-3.24%)이 전년 동기 대비 감소할 것으로 예측됩니다. 관측된 업종별 소비 비중은 쇼핑(35.4%)과 식음료업(35.3%)이 높으나 숙박업(0.5%)은 매우 낮습니다. 따라서 기존 거점 방문객의 동선을 인근 상권으로 유도하여 결제로 연결하는 운영 가설을 제안합니다.",
+    "design_candidates": [
+      {
+        "candidate_id": "cand_001",
+        "candidate_type": "spend_conversion",
+        "title": "부평 상권 연계 가든 스탬프 투어 및 상점 할인 프로모션",
+        "mechanism": "지역 거점(공원·문화시설) 방문객이 인근 상권(전통시장·쇼핑몰)을 방문하도록 스탬프 투어와 할인 혜택을 결합하여 소비를 유도함",
+        "local_fit": "2026년 10~12월 전망된 관광소비액 감소 추세(ml:28237:regional-demand-v3.1:202606)에 대응하여, 높은 쇼핑 및 식음료업 비중(dataset:28237:3)을 가진 방문객의 소비를 상권으로 유도함",
+        "differentiation": "서울 사례의 대규모 정원 박람회 대신, 부평의 기존 문화시설과 인근 상권(부평종합시장 등)을 잇는 소규모 거점 중심의 스탬프 투어로 운영",
+        "prerequisites": "참여 상점 모집, 스탬프/할인 시스템 구축, 상인회와 정산 방식 협의",
+        "budget_formula": "기획 가정/미확정 견적: (참여 상점 수 × 지원금 단가) + (스탬프 시스템 운영비) + (홍보비). 단가는 2026년 10월 이전 가맹점 모집 단계에서 확정 필요",
+        "measurement_plan": "지표: 참여 상점 내 쿠폰/할인 결제액 합계(취소 제외), 기준기간: 2026-10~2026-12, 측정 주기: 월간, 원자료: 카드 결제 데이터 및 쿠폰 사용 기록, 비교집단: 사업 미실시 기간 또는 인근 유사 상권",
+        "stop_or_scale_rule": "사업 전 상인회와 합의된 목표 결제액 달성 여부 및 예산 소진 속도에 따라 규모 조정",
+        "evidence_source_ids": [
+          "ml:28237:regional-demand-v3.1:202606",
+          "dataset:28237:3",
+          "case:e4d3e4b6fd4903"
+        ],
+        "case_source_ids": [
+          "case:e4d3e4b6fd4903"
+        ],
+        "reasoning": {
+          "fact_ids": [
+            "dataset:28237:3",
+            "forecast:3f0af113eca76470"
+          ],
+          "application_hypothesis": "행사장 방문객의 소비가 인근 상권(부평종합시장, 모다아울렛 등)으로 이동하도록 스탬프와 할인 혜택을 제공한다.",
+          "visitor_action": "거점 시설 방문 후 스탬프를 모아 인근 상점에서 할인 혜택을 받으며 결제한다.",
+          "operating_requirements": "상인회 협의, 스탬프 투어 플랫폼 운영, 참여 상점 모집 및 교육을 준비한다.",
+          "measurement": "참여 상점의 매출 증가분과 쿠폰 사용 건수를 확인한다.",
+          "tradeoff": "대규모 행사 대비 방문객 유입 규모는 작을 수 있으며, 상점별 매출 편차가 발생할 수 있다."
+        },
+        "case_linkage": {
+          "method": "operation-document-v2",
+          "operation_family": "spend_conversion",
+          "original_case_source_ids": [
+            "case:e4d3e4b6fd4903"
+          ],
+          "matched_source_ids": [
+            "case:e4d3e4b6fd4903"
+          ],
+          "regional_similarity_verified": false,
+          "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+        }
+      },
+      {
+        "candidate_id": "cand_002",
+        "candidate_type": "stay_conversion",
+        "title": "부평 야간 문화 산책 및 숙박 연계 패키지",
+        "mechanism": "야간 콘텐츠(공연·야시장)와 숙박 시설을 연계하여 당일 방문객의 체류 시간을 늘리고 숙박 전환을 유도함",
+        "local_fit": "2026년 10~12월 전망된 평균 숙박일수 증가(ml:28237:regional-demand-v3.1:202606) 신호를 활용하여, 낮은 숙박 비율(6.6%, dataset:28237:4)을 개선함",
+        "differentiation": "인천 송도/월미도의 해안 경관 대신, 부평의 문화시설·공연장·전통시장을 잇는 압축된 저녁 동선과 실내 프로그램을 중심으로 구성",
+        "prerequisites": "야간 운영 가능 상점/시설 확보, 숙박 시설 협약, 야간 보행 안전 및 교통 대책",
+        "budget_formula": "기획 가정/미확정 견적: (야간 콘텐츠 운영비) + (숙박 할인 지원금) + (안전/교통 관리비). 단가는 2026년 10월 이전 협약 단계에서 확정 필요",
+        "measurement_plan": "지표: 사업 기간 내 숙박 방문자 수 및 평균 숙박일수, 기준기간: 2026-10~2026-12, 측정 주기: 월간, 원자료: 이동통신 기반 숙박 데이터, 비교집단: 전년 동기 숙박 데이터",
+        "stop_or_scale_rule": "숙박 비율 및 체류 시간의 전년 대비 증가폭이 목표치에 미달할 경우 프로그램 구성 변경",
+        "evidence_source_ids": [
+          "ml:28237:regional-demand-v3.1:202606",
+          "dataset:28237:4",
+          "case:2c54c6aaf2117a"
+        ],
+        "case_source_ids": [
+          "case:2c54c6aaf2117a"
+        ],
+        "reasoning": {
+          "fact_ids": [
+            "dataset:28237:4",
+            "forecast:72b53a8068a1dae8"
+          ],
+          "application_hypothesis": "저녁 시간대 문화 콘텐츠를 제공하여 방문객이 부평에 더 오래 머물거나 숙박하도록 유도한다.",
+          "visitor_action": "야간 공연이나 야시장을 관람한 후 연계된 숙박 시설을 이용하거나 늦은 시간까지 상권에 체류한다.",
+          "operating_requirements": "야간 콘텐츠 기획, 참여 숙박업소 및 상점 모집, 야간 교통/안전 인력을 준비한다.",
+          "measurement": "야간 시간대 유동 인구 및 숙박 데이터 변화를 확인한다.",
+          "tradeoff": "야간 운영에 따른 안전 관리 비용과 상점 영업시간 조정 협의가 필요하다."
+        },
+        "case_linkage": {
+          "method": "operation-document-v2",
+          "operation_family": "night_time_experience",
+          "original_case_source_ids": [
+            "case:2c54c6aaf2117a"
+          ],
+          "matched_source_ids": [
+            "case:2c54c6aaf2117a"
+          ],
+          "regional_similarity_verified": false,
+          "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+        }
+      },
+      {
+        "candidate_id": "cand_003",
+        "candidate_type": "return_visit",
+        "title": "부평 디지털 관광주민증 기반 지역 혜택 프로그램",
+        "mechanism": "디지털 인증을 통해 지역 내 다양한 업종(식음·체험·숙박)의 할인 혜택을 제공하여 재방문과 다각적 소비를 유도함",
+        "local_fit": "방문자 수 감소 전망(ml:28237:regional-demand-v3.1:202606)에 대응하여, 한 번의 방문이 다양한 업종의 소비로 이어지도록 설계함",
+        "differentiation": "인구감소지역의 광역적 접근성 중심 모델과 달리, 부평의 높은 쇼핑/식음료 비중을 고려하여 도심형 혜택 구조로 설계",
+        "prerequisites": "디지털 인증 플랫폼 연계, 지역 내 가맹점 확보, 업종별 할인율 협의",
+        "budget_formula": "기획 가정/미확정 견적: (디지털 인증 플랫폼 운영비) + (가맹점 할인 지원금 총액) + (홍보비). 가맹점 수와 할인율은 모집 결과에 따라 변동",
+        "measurement_plan": "지표: 디지털 관광주민증 발급 건수 및 가맹점 이용 완료 건수(취소 제외), 기준기간: 2026-10~2026-12, 측정 주기: 월간, 원자료: 플랫폼 이용 기록, 비교집단: 사업 미참여 방문객",
+        "stop_or_scale_rule": "발급 대비 실제 가맹점 이용률(전환율)이 기준치 미달 시 혜택 업종 및 할인율 재설계",
+        "evidence_source_ids": [
+          "ml:28237:regional-demand-v3.1:202606",
+          "case:digital_tourism_resident_2024"
+        ],
+        "case_source_ids": [
+          "case:digital_tourism_resident_2024"
+        ],
+        "reasoning": {
+          "fact_ids": [
+            "forecast:46a21b7d0804e215"
+          ],
+          "application_hypothesis": "디지털 인증을 통해 방문객이 식음, 쇼핑, 체험 등 다양한 업종을 경험하고 재방문하도록 유도한다.",
+          "visitor_action": "디지털 인증을 통해 지역 내 가맹점에서 할인 혜택을 받고 다양한 서비스를 이용한다.",
+          "operating_requirements": "디지털 플랫폼 연계, 지역 내 다양한 업종의 가맹점 모집 및 인증 체계 구축을 준비한다.",
+          "measurement": "인증 건수와 실제 가맹점 결제 데이터를 통해 이용 결과를 확인한다.",
+          "tradeoff": "플랫폼 이용 편의성이 낮을 경우 혜택 사용률이 저조할 위험이 있다."
+        },
+        "case_linkage": {
+          "method": "operation-document-v2",
+          "operation_family": "return_visit",
+          "original_case_source_ids": [
+            "case:digital_tourism_resident_2024"
+          ],
+          "matched_source_ids": [
+            "case:digital_tourism_resident_2024"
+          ],
+          "regional_similarity_verified": false,
+          "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+        }
+      }
+    ],
+    "selected_candidate_id": "cand_001",
+    "selection_reason": "선택안은 기존 상점의 결제 원장을 확인하는 흐름을 설계하기 용이하여 소비 전환 효과를 측정하기에 유리함. 대안인 야간 프로그램은 야간 운영 시간 및 안전 관리 준비가 더 필요하며, 디지털 주민증은 플랫폼 연계 및 가맹점 확보의 불확실성이 있음. 다만 선택안도 상인회와의 정산 협약 확보가 선행되어야 함.",
+    "selection_status": "ready",
+    "candidate_assessments": [
+      {
+        "case_source_id": "case:2c54c6aaf2117a",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "인천 내 사업이나 해안 경관 중심의 도시 단위 사업으로 부평의 도심 상권과는 성격이 다름",
+        "adaptation": "해안 경관 대신 문화시설과 시장을 잇는 압축된 저녁 동선으로 변경 필요",
+        "rejection_risks": [
+          "야간 교통과 안전이 확보되지 않으면 참여 만족도와 상점 이용시간이 제한될 수 있음",
+          "일회성 공연 관람이 상시 체류나 상권 결제로 이어지지 않을 위험이 있음"
+        ],
+        "validation_plan": "예약 회차별 정원 및 프로그램 전후 상권 결제 데이터를 통한 효과 측정 필요"
+      },
+      {
+        "case_source_id": "case:e4d3e4b6fd4903",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "공공행사 관람객을 주변 상권으로 유도하는 운영 원리가 부평의 스탬프 투어와 유사함",
+        "adaptation": "대규모 박람회 대신 부평의 기존 거점과 인접 상권을 연결하는 소규모 모델로 축소 운영",
+        "rejection_risks": [
+          "대규모 행사의 성과를 부평구 규모에 비례하여 환산할 수 없음",
+          "무료 대형행사의 경우 참여 상점별 매출 효과가 불균등할 수 있음"
+        ],
+        "validation_plan": "사업 전후 1주일간의 카드 결제액 및 생활인구 변화를 동일 요일 기준으로 비교"
+      },
+      {
+        "case_source_id": "case:digital_tourism_resident_2024",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "디지털 인증을 통한 혜택 제공 방식이 유사하나 부평은 도심형 소비 구조에 맞춰야 함",
+        "adaptation": "인구감소지역의 광역적 접근성 모델 대신 부평의 높은 쇼핑/식음 비중을 고려한 혜택 설계",
+        "rejection_risks": [
+          "발급 건수와 실제 지역 소비 간의 인과관계를 증명하기 어려움",
+          "혜택 사용률이 낮을 경우 홍보비 대비 효율이 저하될 수 있음"
+        ],
+        "validation_plan": "디지털 인증 발급 건수 대비 실제 가맹점 이용 완료 건수(전환율) 측정"
+      }
+    ],
+    "recommended_case_ids": [
+      "case:e4d3e4b6fd4903"
+    ],
+    "strategy_brief": {
+      "working_title": "부평 상권 활력 제고를 위한 거점 연계 스탬프 투어 및 소비 지원 사업",
+      "target_problem": "관측된 높은 쇼핑·식음 비중(각 35.4%, 35.3%)에도 불구하고 낮은 숙박 비율(6.6%)과 관광소비액 감소 전망(-3.24%)에 대응하기 위해, 거점 방문객을 상권 결제로 연결하는 운영 가설을 제안함",
+      "mechanism": "거점 시설(문화/공원) 방문 인증 → 인근 상권(시장/쇼핑몰) 스탬프 투어 → 할인 혜택 제공",
+      "target_users": "부평구 내 주요 거점 및 상권을 방문하는 외지인 관광객",
+      "pilot_scope": "부평종합시장, 부평문화의거리, 모다아울렛 등 주요 상권 및 인근 문화시설 권역",
+      "budget_formula": "기획 가정/미확정 견적: (참여 상점 수 × 지원금 단가) + (스탬프 시스템 운영비) + (홍보비). 단가는 2026년 10월 이전 가맹점 모집 단계에서 확정 필요",
+      "success_metrics": "사업 기간 내 참여 상점의 결제액 증가율 및 스탬프 완주자 수 (착수 전 기준선 확정 필요)",
+      "stop_or_scale_rule": "예산 소진 속도 및 참여 상점의 결제 데이터 기반 목표 달성률에 따라 규모 조정",
+      "supporting_case_ids": [
+        "case:e4d3e4b6fd4903"
+      ]
+    },
+    "rationale_evidence": {
+      "version": "source-bound-rationale-v1",
+      "candidates": {
+        "cand_001": {
+          "facts": {
+            "dataset:28237:3": {
+              "kind": "observed",
+              "source_id": "dataset:28237:3",
+              "record": {
+                "title": "한국관광 데이터랩 · 인천광역시 부평구 관광소비 추이_외지인",
+                "summary": "월간 외지인 관광소비 총액: 77,138,204,000원 (관측 기준월: 2026-06)",
+                "source_id": "dataset:28237:3",
+                "source_url": "https://datalab.visitkorea.or.kr/",
+                "source_type": "dataset",
+                "observation_period": "2026-06",
+                "published_or_updated_at": "2026-06"
+              }
+            },
+            "forecast:3f0af113eca76470": {
+              "kind": "forecast",
+              "source_id": "ml:28237:regional-demand-v3.1:202606",
+              "record": {
+                "kind": "forecast_signal",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "reliability": "exploratory_longer_horizon",
+                "model_reliability": "below_baseline_on_test",
+                "metric": "spending_krw",
+                "period": "202610~202612",
+                "aggregation": "3_month_sum",
+                "forecast_value": 243545949020.0,
+                "previous_year_same_months_value": 251691159000.0,
+                "change_percent": -3.24,
+                "unit": "원",
+                "source_id": "ml:28237:regional-demand-v3.1:202606",
+                "interpretation": "입력 일정 전망에서 관광소비액의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다."
+              }
+            }
+          },
+          "unresolved_fact_ids": [],
+          "case_source_ids": [
+            "case:e4d3e4b6fd4903"
+          ],
+          "candidate_fingerprint": "7bc1b3381998c09d338b6db04b04adf715b7d68b04a4183b5c89daee36cd0bed"
+        },
+        "cand_002": {
+          "facts": {
+            "dataset:28237:4": {
+              "kind": "observed",
+              "source_id": "dataset:28237:4",
+              "record": {
+                "title": "한국관광 데이터랩 · 인천광역시 부평구 숙박방문자 비율 추이 (이동통신 기반 외지인)",
+                "summary": "외지인 숙박 방문 비율: 6.6% (관측 기준월: 2026-06)",
+                "source_id": "dataset:28237:4",
+                "source_url": "https://datalab.visitkorea.or.kr/",
+                "source_type": "dataset",
+                "observation_period": "2026-06",
+                "published_or_updated_at": "2026-06"
+              }
+            },
+            "forecast:72b53a8068a1dae8": {
+              "kind": "forecast",
+              "source_id": "ml:28237:regional-demand-v3.1:202606",
+              "record": {
+                "kind": "forecast_signal",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "reliability": "exploratory_longer_horizon",
+                "model_reliability": "limited_backtest_support",
+                "metric": "lodging_nights",
+                "period": "202610~202612",
+                "aggregation": "3_month_average",
+                "forecast_value": 2.8966666666666665,
+                "previous_year_same_months_value": 2.8766666666666665,
+                "change_percent": 0.7,
+                "unit": "일",
+                "source_id": "ml:28237:regional-demand-v3.1:202606",
+                "interpretation": "입력 일정 전망에서 평균 숙박일수의 전년 동기간 대비 증가 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다."
+              }
+            }
+          },
+          "unresolved_fact_ids": [],
+          "case_source_ids": [
+            "case:2c54c6aaf2117a"
+          ],
+          "candidate_fingerprint": "5544dc45522419158fc78683589129714c2ed7895f08da2ca51efef474ad2820"
+        },
+        "cand_003": {
+          "facts": {
+            "forecast:46a21b7d0804e215": {
+              "kind": "forecast",
+              "source_id": "ml:28237:regional-demand-v3.1:202606",
+              "record": {
+                "kind": "forecast_signal",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "reliability": "exploratory_longer_horizon",
+                "model_reliability": "below_baseline_on_test",
+                "metric": "visitors",
+                "period": "202610~202612",
+                "aggregation": "3_month_sum",
+                "forecast_value": 11268139.0,
+                "previous_year_same_months_value": 11515444.0,
+                "change_percent": -2.15,
+                "unit": "명",
+                "source_id": "ml:28237:regional-demand-v3.1:202606",
+                "interpretation": "입력 일정 전망에서 방문자 수의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다."
+              }
+            }
+          },
+          "unresolved_fact_ids": [],
+          "case_source_ids": [
+            "case:digital_tourism_resident_2024"
+          ],
+          "candidate_fingerprint": "8d6dfa073fcec7a400245986029b9e5d58f296e7d41bddea62a4a38da3b7e898"
+        }
+      },
+      "selection_at_binding": {
+        "candidate_id": "cand_001",
+        "reason": "선택안은 기존 상점의 결제 원장을 확인하는 흐름을 설계하기 용이하여 소비 전환 효과를 측정하기에 유리함. 대안인 야간 프로그램은 야간 운영 시간 및 안전 관리 준비가 더 필요하며, 디지털 주민증은 플랫폼 연계 및 가맹점 확보의 불확실성이 있음. 다만 선택안도 상인회와의 정산 협약 확보가 선행되어야 함."
+      },
+      "comparison_criteria": {
+        "visitor_action": "이용 행동 · 방문객이 무엇을 하고 어떤 조건으로 혜택을 받는가",
+        "operating_requirements": "운영 준비 · 참여처·인력·시간·시스템 중 무엇을 준비하는가",
+        "measurement": "성과 확인 · 어떤 원장과 분자·분모로 이용 결과를 확인하는가"
+      }
+    },
+    "original_candidate_assessments": [
+      {
+        "case_source_id": "case:2c54c6aaf2117a",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "인천 내 사업이나 해안 경관 중심의 도시 단위 사업으로 부평의 도심 상권과는 성격이 다름",
+        "adaptation": "해안 경관 대신 문화시설과 시장을 잇는 압축된 저녁 동선으로 변경 필요",
+        "rejection_risks": [
+          "야간 교통과 안전이 확보되지 않으면 참여 만족도와 상점 이용시간이 제한될 수 있음",
+          "일회성 공연 관람이 상시 체류나 상권 결제로 이어지지 않을 위험이 있음"
+        ],
+        "validation_plan": "예약 회차별 정원 및 프로그램 전후 상권 결제 데이터를 통한 효과 측정 필요"
+      },
+      {
+        "case_source_id": "case:e4d3e4b6fd4903",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "공공행사 관람객을 주변 상권으로 유도하는 운영 원리가 부평의 스탬프 투어와 유사함",
+        "adaptation": "대규모 박람회 대신 부평의 기존 거점과 인접 상권을 연결하는 소규모 모델로 축소 운영",
+        "rejection_risks": [
+          "대규모 행사의 성과를 부평구 규모에 비례하여 환산할 수 없음",
+          "무료 대형행사의 경우 참여 상점별 매출 효과가 불균등할 수 있음"
+        ],
+        "validation_plan": "사업 전후 1주일간의 카드 결제액 및 생활인구 변화를 동일 요일 기준으로 비교"
+      },
+      {
+        "case_source_id": "case:digital_tourism_resident_2024",
+        "fit_score": 0,
+        "evidence_score": 0,
+        "similarity_reason": "디지털 인증을 통한 혜택 제공 방식이 유사하나 부평은 도심형 소비 구조에 맞춰야 함",
+        "adaptation": "인구감소지역의 광역적 접근성 모델 대신 부평의 높은 쇼핑/식음 비중을 고려한 혜택 설계",
+        "rejection_risks": [
+          "발급 건수와 실제 지역 소비 간의 인과관계를 증명하기 어려움",
+          "혜택 사용률이 낮을 경우 홍보비 대비 효율이 저하될 수 있음"
+        ],
+        "validation_plan": "디지털 인증 발급 건수 대비 실제 가맹점 이용 완료 건수(전환율) 측정"
+      }
+    ],
+    "case_linkage": {
+      "method": "operation-document-v2",
+      "operation_family": "spend_conversion",
+      "original_case_source_ids": [
+        "case:e4d3e4b6fd4903"
+      ],
+      "matched_source_ids": [
+        "case:e4d3e4b6fd4903"
+      ],
+      "regional_similarity_verified": false,
+      "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+    }
+  },
+  "evidence_sources": [
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 순 방문자 수 및 숙박 비율 (이동통신 기반 외지인)",
+      "summary": "월간 순 방문자 수: 3,514,485명 (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:1",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 월간 순 방문자 수 (이동통신 기반 외지인)",
+      "summary": "전년동월 외지인 방문자 증감률: -2.2% (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:2",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 관광소비 추이_외지인",
+      "summary": "월간 외지인 관광소비 총액: 77,138,204,000원 (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:3",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 숙박방문자 비율 추이 (이동통신 기반 외지인)",
+      "summary": "외지인 숙박 방문 비율: 6.6% (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:4",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 평균 숙박일 (이동통신 기반 외지인)",
+      "summary": "외지인 평균 숙박일수: 2.90일 (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 내비게이션 목적지 유형별 검색량",
+      "summary": "내비게이션 목적지 검색량: 121,606건 (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:6",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 인천광역시 부평구 SNS 언급량",
+      "summary": "SNS 언급량: 44,932건 (관측 기준월: 2026-06)",
+      "source_id": "dataset:28237:7",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/관광소비/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:088dce68db8c:f9e07528e9cc",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/숙박_체류시간/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:12893561bbea:153ed3aa5a6e",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/방문자/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:328e6d50da04:877452ad2b59",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/방문자/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:5104039977f5:37dc3b7e64b5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/숙박_체류시간/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:b7bac265962d:97cf4d1db102",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 인천광역시_부평구/관광소비/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:bd21758c8a88:9597865e62ef",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140607__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:23ea68053684:6bfbcf8aabf6",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141710_전국_202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:98d4ae590d9a:3be52dd54323",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820140046__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:367cd0294ec4:873930d645e5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140355__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:553a0dad4bb4:5a31355dffe8",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820195507__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:a53dbe1c21df:77a052de41d5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140614__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:823a38d1d61c:5385261d02e5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141649_전국_202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:2723bdb0d589:1666a34058ed",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820135957__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:83177a234971:c02cb7972e0f",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140409__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:58ded7732251:589c76395cbc",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820132007__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:e28c947cb52f:bb4cb344a6ba",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140624__202401-202412_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:8815bbb11a39:1a5988f5f8ec",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141639_전국_202401-202412_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:19fd67fbb73d:afa4f0f54a2f",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 인천광역시 부평구 · 지역집중률",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:0b32b3d6db4d:a1a67792e3b1",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 인천광역시 부평구 · 유입유출",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:98eebe8613d3:723745281038",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 인천광역시 부평구 · 인기관광지",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:b12ff2da0892:a553d7015259",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "지역 관광수요 ML 전망 · 공식 관측값 아님",
+      "summary": "학습 202401~202606 · 모델 regional-demand-v3.1 · 자연 추세 예측",
+      "source_id": "ml:28237:regional-demand-v3.1:202606",
+      "source_url": "",
+      "source_type": "model_forecast",
+      "model_version": "regional-demand-v3.1",
+      "data_fingerprint": "06231bffd046b8ec0625c675881feb25e51324ad265d5b5ecf0dc8d247440a7d"
+    },
+    {
+      "title": "굴포천 생태하천",
+      "address": "인천광역시 부평구 굴포로 141 (삼산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/60/3523760_image2_1.jpg",
+      "source_id": "tour-api:1619098",
+      "content_id": "1619098",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "대왕김밥",
+      "address": "인천광역시 부평구 부평문화로 41 (부평동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/03/2875403_image2_1.jpg",
+      "source_id": "tour-api:2875411",
+      "content_id": "2875411",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "돈타래게장정식",
+      "address": "인천광역시 부평구 열우물로 59",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/35/2790235_image2_1.jpg",
+      "source_id": "tour-api:2768148",
+      "content_id": "2768148",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "면박사가야밀면",
+      "address": "인천광역시 부평구 주부토로172번길 28",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/52/2873452_image2_1.jpg",
+      "source_id": "tour-api:2873461",
+      "content_id": "2873461",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "모녀떡볶이 부평남부역점",
+      "address": "강원특별자치도 태백시 광장로 16 (황지동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/58/2833858_image2_1.jpg",
+      "source_id": "tour-api:2833868",
+      "content_id": "2833868",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "백운공원",
+      "address": "인천광역시 부평구 십정동 186-419",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/55/3395555_image2_1.JPG",
+      "source_id": "tour-api:2768156",
+      "content_id": "2768156",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "별미칡냉면원조",
+      "address": "인천광역시 부평구 주부토로145번길 28 (갈산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/46/2875446_image2_1.jpg",
+      "source_id": "tour-api:2875455",
+      "content_id": "2875455",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "부영공원",
+      "address": "인천광역시 부평구 안남로 146",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/62/3395562_image2_1.JPG",
+      "source_id": "tour-api:2767563",
+      "content_id": "2767563",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "부평 굴포누리 기후변화체험관",
+      "address": "인천광역시 부평구 장제로 267 (갈산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/89/3456089_image2_1.jpg",
+      "source_id": "tour-api:3456754",
+      "content_id": "3456754",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "부평 종합시장",
+      "address": "인천광역시 부평구 부흥로316번길 38-3",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/47/3395547_image2_1.JPG",
+      "source_id": "tour-api:1025514",
+      "content_id": "1025514",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "부평 해물탕거리",
+      "address": "인천광역시 부평구 부평동",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/95/3309195_image2_1.jpg",
+      "source_id": "tour-api:749211",
+      "content_id": "749211",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "부평모두몰(부평지하도상가)",
+      "address": "인천광역시 부평구 부평대로 지하 69",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/07/3395507_image2_1.JPG",
+      "source_id": "tour-api:2021033",
+      "content_id": "2021033",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "부평시장",
+      "address": "인천광역시 부평구 부흥로316번길 38-3",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/42/3523842_image2_1.jpg",
+      "source_id": "tour-api:2768142",
+      "content_id": "2768142",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "부평아트센터",
+      "address": "인천광역시 부평구 아트센터로 166 (십정동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/55/3457455_image2_1.jpg",
+      "source_id": "tour-api:3457385",
+      "content_id": "3457385",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "14"
+    },
+    {
+      "title": "부평역북광장",
+      "address": "인천광역시 부평구 광장로 지하30 (부평동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/90/3395490_image2_1.JPG",
+      "source_id": "tour-api:2768190",
+      "content_id": "2768190",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "부흥기사식당",
+      "address": "인천광역시 부평구 부흥로 387 (부개동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/66/2875466_image2_1.jpg",
+      "source_id": "tour-api:2875488",
+      "content_id": "2875488",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "삼산건강공원",
+      "address": "인천광역시 부평구 영성동로18번길 48 (삼산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/25/3523825_image2_1.jpg",
+      "source_id": "tour-api:2768180",
+      "content_id": "2768180",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "신트리공원(인천)",
+      "address": "인천광역시 부평구 신트리로 21",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/73/3030773_image2_1.jpg",
+      "source_id": "tour-api:126568",
+      "content_id": "126568",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "양평신내서울해장국 부평직영점",
+      "address": "인천광역시 부평구 마장로 191 (산곡동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/45/2835945_image2_1.jpg",
+      "source_id": "tour-api:2835948",
+      "content_id": "2835948",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "열우물전통시장",
+      "address": "인천광역시 부평구 배곶남로21번길 18",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/31/3523831_image2_1.jpg",
+      "source_id": "tour-api:2765473",
+      "content_id": "2765473",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "44제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 한국관광공사는 본래의 기능인 해외 홍보마케팅을 통한 인지 형성, 지역 관광생태계 육성, 관광사업 추진을 여정 단계에 맞춰 재배치해야 한다. 해외지사와 국내지사를 연결한 중점지사제를 '관문-연계도시' 단위로 운영하고, 글로벌 OTA 와 현지 여행사가 실제 상품을 만들 수 있도록 상품화 모듈과 전세·임시편 유치를 고도화하며, 선상 마케팅처럼 항공사 기내·LCC 채널을 활용한 권역 홍보를 확대할 수 있어야 할 것이다. 특히 성과지표를 입국자 수와 공급석 중심에서 '입국객의 권역 내 첫 숙박률이나, 1인당 권역 내 소비, 지방 이동 비중' 중심으로 전환하고, 통신·카드 데이터에 소셜 담론 데이터를 결합한 공항-권역 대시보드를 상시 운영해 데이터 기반 성과관리를 지속적으로 보여주는 데이터 기반의 지방공항 중심 관광권 상황실을 구축하여야 한다. 지방자치단체와 한국공항공사는 공항에서 지역 상권까지 이어지는 현장 수용태세를 보다 면밀히 고려하는 정책과 사업이 필요하다. 공항 접근 교통과 안내·결제, 다국어 환경, 터미널과 도심·거점 관광지를 잇는 셔틀, 권역 내 숙박과 야간 콘텐츠는 지자체의 실행력이 좌우하는 영역이다. 공항 소재 지자체 단위 협의를 넘어 청주는 대전·세종·충남, 대구는 경북과 함께 상품·교통·마케팅 예산을 묶는 관광권 협의체를 구성하고, 중장기적으로는 일본의 광역연계 DMO처럼 권역 단위의 상설 조직과 재원으로 발전시켜야 한다. 민관협력은 이 체계를 지속 가능하게 만드는 가장 중요한 동인이라 할 수 있다. 항공사·LCC에는 신규 노선의 초기 리스크를 지방정부·공사와 분담하는 노선 개발 협약과 기내 권역 홍보를, 글로벌 OTA·현지 여행사에는 권역 루트 상품의",
+      "chunk_id": "reference:kto:2026:local-airport:page:044:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "결제",
+        "관광사업",
+        "상권",
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "실제",
+        "연결한",
+        "연계",
+        "예산",
+        "운영",
+        "이어지는",
+        "전환",
+        "중심으로",
+        "지역",
+        "체류",
+        "함께",
+        "현장",
+        "협약"
+      ],
+      "page_references": "PDF 44쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "43제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 (전문가 제언) 지방공항 관문 활성화를 넘어 '지방관광 권역 활성화'로5. 지방공항을 통한 방한 입국은 분명한 성장 국면이다. 그러나 지방공항 관문 활성화가 곧바로 지방공항과 지역관광의 경쟁력으로 해석하기에는 아직 이르다. 최근의 지방공항 입국 증가는 대만 시장의 고성장, LCC의 공격적 공급 확대, 중국 단체 무비자와 중·일 관계 변화에 따른 수요 이동 등 외부 요인과 일부 결합되어 나타난 측면도 있기 때문이다. 지금 필요한 것은 입국자 수와 노선 수의 증가에 만족하는 것이 아니라, 이를 지역관광의 체질 전환과 고부가가치화로 연결하는 전략이 필요하다. 또한 특정 관광시장에 대한 의존도가 높을수록 공항은 외부 변수에 취약해질 수밖에 없고, 체류 전환이 약할수록 늘어난 유입은 지역에 효과를 남기지 않으며, 공항별 차이를 무시한 일률적 지원은 성과를 도출하기 어렵게 만든다. 결국 이제는 정책의 단위를 '공항' 중심에서 보다 관문과 연결되는 연계된 도시로 확장할 필요가 있다. 지방공항 활성화의 중장기 과제는 단순히 더 많은 노선을 유치하는 데서 끝나서는 안 되며, 공항을 관문으로 하는 배후 관광권 단위로 성과를 설계하고 측정하는 방향으로 전환되어야 한다. 정책의 단위를 '지방공항'에서 '지방관광 권역'으로 지방공항과 지방관광이 동시에 활성화하려면 두 관점이 함께 필요하다. 하나는 관문 기능의 고도화(노선·운수권·전세기 유치, CIQ와 터미널 용량, 공항-거점 교통의 직결성)이고, 다른 하나는 배후권역의 체류 전환(입국 이후 첫 숙박·첫 소비를 권역 안에서 완결되게 설계, 권역 내 이동의 관광 루트화, 지역 특화 업종의 객단가 제고)이다. 지금까지의 정책이",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "연계",
+        "이후",
+        "전환",
+        "전환과",
+        "지역",
+        "체류",
+        "측정",
+        "필요한",
+        "함께"
+      ],
+      "page_references": "PDF 43쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "36제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 [제안 1] 의료·쇼핑 소비를 영남권 체류형 관광루트로 연결 대구공항 입국 방한객의 소비가 대구의 의료·쇼핑을 중심으로 형성되고, 경산·구미·포항·경주 등 경북 지역으로 이동하고 있는 점을 활용한다. 대구에서 시작된 의료·쇼핑 소비를 영남의 역사문화·해양·미식 등 관광자원과 연계해, 이미 형성된 지역 간 이동을 체류형 관광루트로 고도화한다. 특히 대만(30~40대)·중국(20대)·일본(20대·50대)으로 국가별 핵심 연령층이 다른 만큼, 연령층별 관심사와 이동 패턴을 반영한 맞춤형 루트를 함께 구성하는 것이 효과적이다. [제안 2] 의료 수요를 5박 6일 프리미엄 체류 패키지로 상품화 피부·성형을 핵심 의료 서비스로, 한방·치과·종합검진을 선택형 연계 서비스로 구성한 '대구 프리미엄 의료 패키지(5박 6 일)'를 개발한다. 진료와 회복 일정에 쇼핑·미식·문화관광을 결합하고 대경권 주요 관광지까지 동선을 확장해, 의료 목적 방문을 장기 체류와 광역 소비로 연결한다. 국가별 핵심 연령층이 다른 점을 고려해 대만 30~40대를 겨냥한 프리미엄 의료·웰니스 상품, 중국·일본 20대를 겨냥한 미용·체험 중심 상품으로 타깃을 세분화한다. [제안 3] 교통·결제 편의성 개선으로 소비 동선의 단절 해소 공항-도심-경북 주요 도시 간 이동정보와 예약을 다국어로 연결하고, 해외카드를 활용한 대중교통 이용 등 외국인이 도착 직후 겪는 교통·결제 불편을 줄여 의료·관광 소비 동선이 끊기지 않도록 한다. 취항 국가는 7개국에서 10개국으로, 취항 도시는 15개에서 27개로 늘었지만 실제 운항 편수는 오히려 줄어, 연결 범위 확대가 아직 공급 증가로 이어지지 않고 있다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:036:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "결제",
+        "방문",
+        "소비",
+        "실제",
+        "연결하고",
+        "연결한",
+        "연계",
+        "예약",
+        "이용",
+        "일정",
+        "중심으로",
+        "지역",
+        "체류",
+        "체험",
+        "함께"
+      ],
+      "page_references": "PDF 36쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "남부관광의 해 연계 지역상품 홍보 타이베이 지사가 개발한 2025년 대구 파워풀페스티벌 상품 홍보 로고 일본 시장은 다른 방식으로 접근하고 있다. 일본은 방한 재방문율이 높고 서울 이외의 새로운 지역과 관광콘텐츠를 찾는 수요가 비교적 뚜렷한 시장이다. 공사는 지방 직항노선을 기반으로 동남권 각 도시의 특색을 여행 목적과 테마로 재구성하고, 현지 여행사·항공사와 연계해 실제 상품과 모객으로 이어지도록 하는 방식을 추진하고 있다. 같은 지방공항 유치 사업이라도 시장 특성에 따라 대만은 지역의 범위를 단계적으로 넓히고, 일본은 재방문객에게 새로운 지역 방문 이유를 만드는 방식으로 접근하는 것이다. 해외에서 지방공항을 선택하게 하려면 노선과 함께 '도착한 뒤 무엇을 할 것인가'가 제시돼야 한다. 이를 위해 공사는 청주· 대구공항을 중심으로 지역 관광콘텐츠를 발굴하고, 이를 공항과 연결된 권역형·초광역형 관광코스로 구성했다. 2026년 6월 기준 발굴된 콘텐츠는 17개 테마 333개, 관광코스는 35개다. 럭셔리·한류·의료·웰니스·해양·축제·역사문화·미식·쇼핑 등 지역의 다양한 관광자원을 활용하되, 개별 콘텐츠에 그치지 않고 공항을 시작점으로 여러 지역을 이동할 수 있도록 연결한 것이 특징이다. 대표적으로 청주공항에서는 청주-공주-부여-전주를 잇는 백제 역사문화 루트와 같이 충청권과 인접 지역을 연결하는 코스를, 대구공항에서는 대구-경주-울산-부산을 잇는 유네스코 헤리티지 루트와 같이 영남권의 주요 관광자원을 묶은 광역 코스를 구성했다. 지방공항을 특정 도시 하나의 관문이 아니라 여러 지역으로 이동하는 여행의 출발점으로 활용하는 방식이다. 추진사업 2. 지역 콘텐츠를 실제 방한상품으로 연결",
+      "chunk_id": "reference:kto:2026:local-airport:page:040:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "소비",
+        "실제",
+        "연결한",
+        "연계",
+        "중심으로",
+        "지역의",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 40쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "41제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 관광상품을 만들어도 공항에서 관광지까지 이동하기 어렵다면 실제 지역 방문으로 연결되기 어렵다. 이에 공사는 지자체· 공항공사·교통기관 등 대외 협업체계와 함께 지방공항으로 유입된 방한객이 지역 관광지까지 불편 없이 이동할 수 있도록 교통 연계와 이용 편의 인프라를 개선하는 방향으로 사업을 추진하고 있다. 공사는 충청남도, 충청북도(광역지자체) 및 충 남문화재단, 충북문화재단(RTO)과 협업하여 청주공항과 오 송역, 공주터미널, 부여터미널 등 충청권 주요 관광지를 연결하는 광역 순환버스와 DRT(수요 응답형 버스) 운영을 지원하고 있다. 2026년 상반기 순환버스와 DRT 이용객은 총 7 ,470명으로, 공항에서 충청권 주요 관광지까지 직접 이동할 수 있는 선택지가 확대되고 있다. 대구공항에서는 외국인이 별도의 교통카드 없이 해외 신용카드 등으로 대중교통을 이용할 수 있는 개방형 교통결제 시스템 도입을 지원하고 있으며, 간편결제·관광안내·환전 및 면세 등 이용 편의도 단계적으로 보완하고 있다. 지방공항의 역할을 항공기에서 내리는 지점에 그치지 않고 지역 여행을 실제로 시작할 수 있는 관문으로 넓히는 과정이다. 추진사업 3. 교통 편의 인프라 - 공항 도착 이후 지역으로 이어지는 이동·편의 기반 구축 성과 | 전방위 유치·마케팅 성과 가시화…청주공항 방한객 6만 명 돌파, 부정기 항공편도 대폭 확대 한국관광공사, 공항활성화 협의체 및 관계기관의 협업체계가 잘 작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "결제",
+        "방문",
+        "방문으로",
+        "사업을",
+        "성과",
+        "소비",
+        "실제",
+        "연계",
+        "운영",
+        "이어지는",
+        "이용",
+        "이후",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 41쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "부평풍물대축제ㅣ여행지ㅣ인천투어",
+      "summary": "제30회 부평풍물대축제는 2026년 10월 2일부터 10월 4일까지 부평대로 및 부평 일대에서 개최되며, 운영시간은 10:00~21:30, 입장료는 무료로 안내되어 있다. 축제 공간은 굴포천 일대까지 확장될 예정이며, 주최는 인천광역시 부평구, 주관은 부평구 축제위원회·부평구문화재단·부평문화원이다.",
+      "source_id": "web:28237:1",
+      "source_url": "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=APD21112609174959336",
+      "source_type": "official_web",
+      "why_relevant": "고정 일정의 첫 주말에 이미 확정된 대규모 거리·생활문화 행사와 운영 주체가 있으므로, 별도 축제를 신설하기보다 축제 방문객이 시장·주변 문화공간으로 이동하도록 하는 현장 안내, 회유 콘텐츠, 참여점포 모집을 우선 검토할 수 있다. 다만 축제 방문이 시장 소비 또는 숙박 증가를 일으킨다고는 자료만으로 판단할 수 없다.",
+      "published_or_updated_at": "최종수정 2026-09-09"
+    },
+    {
+      "title": "부평시장 일대 부평종합시장, 부평깡시장, 부평문화의 거리 | 인천지역유산 만나보기",
+      "summary": "인천광역시 공식 문화유산 자료는 부평종합시장·부평깡시장·부평문화의 거리 일대를 생활문화 유산으로 소개하며, 해당 권역이 여러 시장이 경계를 이루는 특징을 가진다고 명시한다. 소재지는 부평구 부흥로316번길 38-3 일대이다.",
+      "source_id": "web:28237:2",
+      "source_url": "https://www.incheon.go.kr/culture/CU06010002/3064078",
+      "source_type": "official_web",
+      "why_relevant": "축제 연계 동선의 도착·체류 권역을 단일 점포가 아니라 시장과 문화의 거리로 구성할 수 있는 공식 공간 근거다. 음식·구매·공연·전시를 묶는 방식은 가능 후보이나, 개별 상인의 참여·영업시간·할인 제공 여부는 공식 자료에서 확인되지 않았으므로 사전 협의가 필요하다.",
+      "published_or_updated_at": "최종업데이트 2026-02-13"
+    },
+    {
+      "title": "관광지·명소(상세) | 무장애 관광정보 | 열린관광 모두의 여행 - 부평아트센터",
+      "summary": "부평아트센터는 인천광역시 부평구 아트센터로 166에 위치한 문화시설이며, 공식 열린관광 정보에는 장애인 화장실 설치 등 접근성 정보가 안내되어 있다.",
+      "source_id": "web:28237:3",
+      "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=7e599a22-ea47-4f8d-8daa-e347e6a94e4a",
+      "source_type": "official_web",
+      "why_relevant": "11~12월의 실내 체류 프로그램 후보 공간으로 검토할 수 있으며, 야외 축제 이후 계절 전환기에 활용 가능하다. 다만 대관 가능일, 대관료, 실제 공연·전시 일정, 운영 주체의 협력 가능 범위는 해당 자료만으로 확인되지 않는다.",
+      "published_or_updated_at": "수정 2025-08-20"
+    },
+    {
+      "title": "17-1. 부평역세권 복합환승센터 건설",
+      "summary": "부평역세권 복합환승센터 건설은 부평구 광장로 16 일원의 부평역을 대상으로 환승정류장·환승편의시설을 조성하는 인천광역시 사업이다. 공식 공약 자료는 GTX 개통에 따른 환승센터 운영을 2030년으로 제시하고, 현재 공약 이행 현황에서는 정상추진 사업으로 표시한다.",
+      "source_id": "web:28237:4",
+      "source_url": "https://www.incheon.go.kr/humanframe/theme/mayor_8/data/elect/17-1.%20%EB%B6%80%ED%8F%89%EC%97%AD%EC%84%B8%EA%B6%8C%20%EB%B3%B5%ED%95%A9%ED%99%98%EC%8A%B9%EC%84%BC%ED%84%B0%20%EA%B1%B4%EC%84%A4.pdf",
+      "source_type": "official_web",
+      "why_relevant": "중장기적으로는 부평역 접근성과 권역 안내체계의 변화 가능성을 검토할 기반이지만, 2026년 10~12월 파일럿의 완공 인프라 또는 운영 거점으로 전제해서는 안 된다. 이번 사업에서는 현행 보행·대중교통·행사장 안전 동선을 별도 현장점검해야 한다.",
+      "published_or_updated_at": "공약 자료상 사업기간 2022~2030"
+    },
+    {
+      "title": "공약목록 | 인천광역시장실",
+      "summary": "인천광역시 공약 현황 페이지는 부평역세권 복합환승센터 건설을 교통 분야의 임기후 신규사업으로 분류하고, 인천광역시를 사업주체로 표시한다.",
+      "source_id": "web:28237:5",
+      "source_url": "https://www.incheon.go.kr/mayor_8/MA0202010106?curPage=3",
+      "source_type": "official_web",
+      "why_relevant": "환승센터 관련 협의 상대와 사업의 장기성을 확인하는 보조 근거다. 관광사업의 행사 운영 권한이나 단기 예산을 의미하지는 않는다.",
+      "published_or_updated_at": "페이지 크롤링 기준 2026-08경"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다. 인바운드 비중도 7 .9%에서 11.1%로 전년 동기 대비 3.2%p 상승했고, 국제선 공급석은 146만 3,061석으로 전년보다 43.0% 대폭 확대됐다. 대구공항도 같은 기간 방한객이 5만 7 ,058명으로 전년 동기 대비 2.6% 증가했고, 국제선 공급석은 90만 2,286석으로 6.3% 늘었다. 특히 부정기 항공편에서는 확대 폭이 더욱 뚜렷하다. 2026년 상반기 부정기 항공편은 청주공항 574회, 대구공항 458회로 총 1,032회가 확정됐으며, 전년 동기 대비 각각 178.6%, 854.2% 급증했다. 부정기 확대편의 사례로 공사에서 유치한 후쿠시마-청주 전세기 운영을 들 수 있다. 공사 도쿄지사가 한일 비운항지역인 후쿠시마를 대상으로, 현지 여행사, 항공사가 협력해 운항한 두 차례 전세기 360석이 모두 매진됐다. 해외 현지 수요를 발굴하고 항공편과 관광상품을 함께 구성해 지방공항 입국으로 연결한 사례라는 데 의미가 있다. 발굴한 콘텐츠가 실제 해외 여행상품으로 이어질 수 있도록 '인바운드 관광 상품화 툴킷'도 함께 마련했다. 지역별 교통· 숙박·쇼핑·식당과 관광사업자, 지자체 지원정보 등 해외 여행사가 상품을 구성할 때 필요한 정보를 한데 모아 제공하는 자료다. 해외지사는 이를 활용해 현지 여행사 ·OTA와 지방공항 연계 상품 을 개발하고 있으며, 2026년 6월 기준 청주공항 연계 상품 49개, 대구공항 연계 상품 10개가 개발됐다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광사업",
+        "사례",
+        "성과",
+        "소비",
+        "숙박",
+        "실제",
+        "연결한",
+        "연계",
+        "운영",
+        "지역",
+        "체류",
+        "필요한",
+        "함께",
+        "활용해"
+      ],
+      "page_references": "PDF 41쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "발전시켜야 한다. 민관협력은 이 체계를 지속 가능하게 만드는 가장 중요한 동인이라 할 수 있다. 항공사·LCC에는 신규 노선의 초기 리스크를 지방정부·공사와 분담하는 노선 개발 협약과 기내 권역 홍보를, 글로벌 OTA·현지 여행사에는 권역 루트 상품의 공동 개발과 판매 데이터 공유를, 지역 숙박·의료·외식 사업체에는 외국인 수용 인증과 바우처·즉시 환급 참여를 각각 요구하고 지원해야 한다. 방한객의 대다수가 개별여행객인 시대에 권역의 체류와 소비를 만드는 것은 결국 지역의 민간 사업자들이며, 이들이 참여할 유인과 수익 구조를 설계하는 것이 공공의 역할이라 할 것이다. 결국 지방공항 활성화의 과제는 더 많은 방한외래객을 지역 공항에 내리게 하는 데서 끝나지 않는다. 핵심은 지방공항을 수도권의 보조 관문이 아니라 권역 관광이 시작되는 출발점으로 자리 잡게 하고, 입국 이후의 인지·이동·체류·소비가 권역 안에서 완결되는 구조를 만드는 것이다. 단기적으로는 공항별 병목 단계에 맞춘 맞춤 전략으로 체류와 소비 전환율을 높이고, 중장기적으로는 5대 관광권 단위의 성과체계와 거버넌스, 민간 참여 구조를 정착시켜야 한다. 지금의 지방공항 성장세는 일시적인 수요 이동에 머물 수도 있고, 수도권에 집중된 방한 관광 구조를 바꾸는 전환점이 될 수도 있다. 필요한 것은 더 많은 노선이 아니라, 지역에서 첫 밤을 보내고 더 오래 머물며 더 깊게 소비하는 방한 여정으로의 전환이다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:044:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "공공",
+        "민간",
+        "성과",
+        "소비",
+        "숙박",
+        "연계",
+        "이후",
+        "전환",
+        "지역",
+        "지역의",
+        "체류",
+        "필요한",
+        "협약",
+        "환급"
+      ],
+      "page_references": "PDF 44쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "권·전세기 유치, CIQ와 터미널 용량, 공항-거점 교통의 직결성)이고, 다른 하나는 배후권역의 체류 전환(입국 이후 첫 숙박·첫 소비를 권역 안에서 완결되게 설계, 권역 내 이동의 관광 루트화, 지역 특화 업종의 객단가 제고)이다. 지금까지의 정책이 전자에 집중되어 왔다면, 앞으로의 무게중심은 후자를 함께 설계하는 데 있으며 지방공항 활성화의 성과는 공항 소재 시· 도 행정구역이 아니라 권역단위로 측정되어야 한다. 한국관광공사 관광컨설팅팀 협조를 통해 본 신세시오를 활용한 다국어 소셜 데이터에서도 청주는 여정 7단계 1) 가운데 '숙박·체류' 담론이 가장 약하고 대구는 '인지·정보·예약' 단계가 가장 약한 것 으로 나타난다. 같은 지방공항이라도 방한객의 여정에서 막히는 지점이 다르며, 전략은 그 병목 단계에 맞춰 설계되어야 할 것이다. 또한 지역 단위로 분산된 해외 홍보를 관문공항 단위의 공동 홍보로 전환해야 한다. 아직도 일부 방한외래객은 지역을 알지 못하기 때문에 서울만 방문하고, 정보의 다수는 글로벌 앱이나 유튜브 등에서 얻는 현실에서 시·군 단위 개별 마케팅은 효과가 제한적일 수밖에 없다. 대만 시장에서 부산을 출 발점으로 경남·남부권·중부권으로 대상 지역을 단계적으로 넓혀 온 ‘남부관광의 해’ 등 권역 중심의 홍보 전략은 시장 특성에 맞춘 권역형 인지 전략의 좋은 선례라 할 수 있다. 여기에 AI 검색 시대에 대응한 5대 관광권 정보의 AEO(AI 답변 최적화) 표준화가 더해진다면 보다 효과적인 마케팅이 가능할 것이다. 명확한 기관별 역할분담과 민관협력 문화체육관광부는 지방공항과 5대 관광권 2) 정책을 하나의 체계로 묶는 컨트롤타워가 되어야 한다. 5대 관광권의 지정과",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "검색",
+        "방문",
+        "성과",
+        "소비",
+        "숙박",
+        "연계",
+        "예약",
+        "이후",
+        "전환",
+        "지역",
+        "체류",
+        "측정",
+        "함께"
+      ],
+      "page_references": "PDF 43쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "광권 정보의 AEO(AI 답변 최적화) 표준화가 더해진다면 보다 효과적인 마케팅이 가능할 것이다. 명확한 기관별 역할분담과 민관협력 문화체육관광부는 지방공항과 5대 관광권 2) 정책을 하나의 체계로 묶는 컨트롤타워가 되어야 한다. 5대 관광권의 지정과 예산 통합, 국토교통부·법무부·지방정부와의 협업을 통해 운수권·슬롯·공항시설 사용료 인센티브, 비자·입국 절차, 광역 교통을 권역 단위로 조율하고, 민간의 지역 투자를 끌어내기 위한 장기적 관점의 규제 특례를 마련해야 한다. 무엇보다 공항별 성장 단계와 시장 구조에 따라 KPI와 사업적 특성을 권역에 맞게 적용하는 유형별 육성 로드맵이 필요하다. 1) 소셜 데이터의 담론을 7가지의 여정으로 구분하였는데, 여정은 1) 인지, 정보 및 예약, 2) 입국 및 방문, 3) 교통 및 이동, 4) 숙박 및 체류, 5) 관광 및 체험, 6) 쇼핑 및 식음, 7) 공유 및 재방문으로 구분하였다. 2) 시도 및 시군구 등 행정권역을 넘어 방한객의 여행 동선을 따라 여러 지역이 이어지는 관광 중심 권역을 의미하며, 방한객의 지역 입국이 시작되는 지 방국제공항이 있는 김해·대구·청주·무안·양양공항 등 관문도시를 중심으로 해 인근에 특화 관광자원을 보유한 연계 도시를 연결하는 전략으로 '관광권' 을 설계(출처: 대한민국 정책브리핑, 2026). 프로젝트수 대표, 한양대학교 관광학부 겸임교수 정란수",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:03",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "민간",
+        "방문",
+        "방문으로",
+        "소비",
+        "숙박",
+        "연계",
+        "예산",
+        "예약",
+        "이어지는",
+        "중심으로",
+        "지역",
+        "체류",
+        "체험"
+      ],
+      "page_references": "PDF 43쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "source_id": "case:2c54c6aaf2117a",
+      "source_type": "benchmark_case",
+      "title": "6월부터 밤마다 인천으로—야간관광 특화도시 성과 및 운영계획 ([incheon.go.kr](https://www.incheon.go.kr/IC010205/view?curPage=233&repSeq=DOM_0000000010085993&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/IC010205/view?curPage=233&repSeq=DOM_0000000010085993",
+      "published_or_updated_at": "2024-06-11",
+      "summary": "인천광역시 송도·월미도·개항장 중심 · 야간 콘텐츠·야시장·공연·경관·교통·안전을 묶은 야간관광 특화도시 운영 · 인천시는 2022년 11월~2023년 사업을 통해 관광객 29만2,034명, 지역소비 220억 원, 간접일자리 751명을 기록했다고 공개했다. 사업 운영과 지표가 함께 관측된 결과로, 다른 행사·계절·지역경제 요인을 통제한 인과효과는 아니다.",
+      "case_region": "인천광역시 송도·월미도·개항장 중심",
+      "intervention": "야간 콘텐츠·야시장·공연·경관·교통·안전을 묶은 야간관광 특화도시 운영",
+      "operating_model": "야간관광 콘텐츠 개발, 야간 여건 개선, 야간명소 조성, 홍보마케팅 등 4개 분야 21개 세부사업을 운영했다. 공연·야시장·체험뿐 아니라 교통과 안전 환경을 함께 다루는 도시 단위 방식이다.",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": null,
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      },
+      "observed_result": "인천시는 2022년 11월~2023년 사업을 통해 관광객 29만2,034명, 지역소비 220억 원, 간접일자리 751명을 기록했다고 공개했다. 사업 운영과 지표가 함께 관측된 결과로, 다른 행사·계절·지역경제 요인을 통제한 인과효과는 아니다.",
+      "measurement_period": "2022년 11월~2023년 12월에 해당하는 1·2차 연도 성과로 제시",
+      "transfer_conditions": [
+        "부평구에서는 해안경관을 복제하지 말고 문화시설·공연장·시장·식음 상권을 잇는 압축된 저녁 동선으로 변경",
+        "2026년 10~12월 기온과 일몰시간에 맞춰 실내 프로그램 비중과 우천 대체편을 마련",
+        "예약 회차별 정원을 두고 시작·종료 시각, 중도이탈, 프로그램 전후 상권 결제를 측정",
+        "금·토요일 대중교통 막차, 보행 안전, 야간 화장실과 상점 영업시간을 사전 확인",
+        "대규모 신규 경관시설 대신 기존 시설·민간공연·상점 프로그램을 조합해 3개월 일정에 맞춤"
+      ]
+    },
+    {
+      "source_id": "case:e4d3e4b6fd4903",
+      "source_type": "benchmark_case",
+      "title": "2025 서울국제정원박람회 주요 추진 성과 ([seoul.go.kr](https://www.seoul.go.kr/festa/files/2025/11/690b1ba4a58636.93147611.pdf?utm_source=openai))",
+      "source_url": "https://www.seoul.go.kr/festa/files/2025/11/690b1ba4a58636.93147611.pdf",
+      "published_or_updated_at": "2025-11",
+      "summary": "서울특별시 동작구·관악구 보라매공원 및 인근 상권 · 장기 행사와 지역상권 스탬프 할인·지역상품권·푸드트럭을 결합한 서울국제정원박람회 · 158일 동안 누적 관람객 1,000만 명, 전년 동기 대비 보라매공원 방문객 평균 2.6배를 기록했다. 개막 전후 각 1주일 비교에서는 인근 상권 신용카드 매출액이 20%, 생활인구가 40% 증가했다. 개막 초기 약 10일간 푸드트럭 등 행사장 판매 매출은 9억5천만 원으로 공개됐다. 단순 전후 비교이므로 박람회의 단독 인과효과로 단정할 수 없다.",
+      "case_region": "서울특별시 동작구·관악구 보라매공원 및 인근 상권",
+      "intervention": "장기 행사와 지역상권 스탬프 할인·지역상품권·푸드트럭을 결합한 서울국제정원박람회",
+      "operating_model": "기존 공원을 장기 행사장으로 활용해 계절별 정원·체험·야간 프로그램을 운영하고, 가든 스탬프투어 참여자에게 주변 상점 할인 혜택을 제공했다. 자치구·상인회 공동 마케팅, 지역사랑상품권 특별발행, 푸드트럭 운영을 함께 적용했다.",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": null,
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "observed_result": "158일 동안 누적 관람객 1,000만 명, 전년 동기 대비 보라매공원 방문객 평균 2.6배를 기록했다. 개막 전후 각 1주일 비교에서는 인근 상권 신용카드 매출액이 20%, 생활인구가 40% 증가했다. 개막 초기 약 10일간 푸드트럭 등 행사장 판매 매출은 9억5천만 원으로 공개됐다. 단순 전후 비교이므로 박람회의 단독 인과효과로 단정할 수 없다.",
+      "measurement_period": "누적 관람객은 2025-05-22~2025-10-26 기준 158일; 상권 비교는 개막 전후 각 1주일",
+      "transfer_conditions": [
+        "부평구의 기존 공원·문화시설·시장 중 장기 설치 없이 사용할 수 있는 거점을 선정",
+        "행사장과 상권 사이 도보 경로에 스탬프 또는 예약 완료 지점을 배치",
+        "상인회와 공통 할인조건·정산절차를 합의하고 업종별 참여 편중을 관리",
+        "사업 전 2~4주와 운영기간의 카드결제 또는 쿠폰 결제를 같은 공간·요일 기준으로 비교",
+        "서울의 규모를 복제하지 않고 하나의 거점과 인접 상권으로 축소"
+      ]
+    },
+    {
+      "source_id": "case:digital_tourism_resident_2024",
+      "source_type": "benchmark_case",
+      "title": "2024년 6월 여행가는 달 추진 보도자료",
+      "source_url": "https://mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%280514%29%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-6%EC%9B%94_%EC%97%AC%ED%96%89%EA%B0%80%EB%8A%94_%EB%8B%AC_%EC%B6%94%EC%A7%84.pdf&pPath=0302000000&pRealName=20240514083202149235802932_PRESS20240514083202456506.pdf",
+      "published_or_updated_at": "2024-05-14",
+      "summary": "전국 인구감소지역 34곳 · 디지털 관광주민증과 교통·숙박·상점 할인 결합 · 2024년 34개 지역 약 800개 관광업체에 혜택 구조를 적용",
+      "case_region": "전국 인구감소지역 34곳",
+      "intervention": "디지털 관광주민증과 교통·숙박·상점 할인 결합",
+      "operating_model": "디지털 관광주민증 참여업체 현장 인증과 숙박·식음·관람·체험 할인, 특정 시간대 KTX 할인과 방문 후 교통 할인권을 결합",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "observed_result": "2024년 34개 지역 약 800개 관광업체에 혜택 구조를 적용",
+      "measurement_period": "2024년 6월 운영 계획",
+      "transfer_conditions": [
+        "지역 내 참여업체 수와 혜택 매력도 확보",
+        "QR 또는 위치인증과 실제 사용기록 수집",
+        "교통 할인 제공기관과 협약 필요"
+      ]
+    },
+    {
+      "source_id": "case:kto_stay_discount_2022",
+      "source_type": "benchmark_case",
+      "title": "2022 대한민국 숙박대전 경제파급효과 공개자료",
+      "source_url": "https://kto.visitkorea.or.kr/upload/flexer/upload/ktobiz/20220928/b623b5f9-3ec0-11ed-9832-ddf31964842e.hwp.files/Sections1.html",
+      "published_or_updated_at": "2022-09-28",
+      "summary": "전국 숙박할인쿠폰 지원사업 · 온라인 예약 채널 숙박할인쿠폰 · 한국관광공사 자료는 약 104만 명이 할인혜택을 이용했고 서울·제주를 제외한 지역 사용 비율이 76%였다고 소개함",
+      "case_region": "전국 숙박할인쿠폰 지원사업",
+      "intervention": "온라인 예약 채널 숙박할인쿠폰",
+      "operating_model": "온라인 여행사 예약 단계에서 할인쿠폰을 제공하고, 지역 숙소에서 사용할 수 있도록 참여 채널과 기간을 통합 운영",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "observed_result": "한국관광공사 자료는 약 104만 명이 할인혜택을 이용했고 서울·제주를 제외한 지역 사용 비율이 76%였다고 소개함",
+      "measurement_period": "2022년 사업 종료 후 한국관광공사 공개 자료",
+      "transfer_conditions": [
+        "참여 숙소·예약 채널·쿠폰 조건을 사전에 확정",
+        "주말과 성수기 쏠림을 막을 사용 가능일 설계",
+        "쿠폰 발급량이 아니라 실제 숙박 완료·지역소비를 함께 측정"
+      ]
+    },
+    {
+      "source_id": "case:d3579ecd36c485",
+      "source_type": "benchmark_case",
+      "title": "‘인천e지’ K-스마트관광 대표 여행 앱으로 우뚝 ([incheon.go.kr](https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=1&repSeq=DOM_0000000013699756&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=1&repSeq=DOM_0000000013699756",
+      "published_or_updated_at": "2025-12-09",
+      "summary": "인천광역시 전역, 개항장 등 주요 관광권역 · 스마트관광 플랫폼 ‘인천e지’의 AI 동선 추천·스탬프·축제 프로모션·상점 쿠폰 결합 · 2025년 회원 12만 명, 누적 다운로드 32만 건, 사용자 만족도 4.47/5점으로 공개됐다. 지역축제 연계 프로모션 참여자는 10만 명 이상이며 앱 쿠폰으로 약 2억8천만 원의 직접 매출액이 발생했다고 발표했다. 이는 플랫폼 이용·쿠폰 정산 실적이며 인천 전체 관광소비의 순증 인과효과로 단정할 수 없다.",
+      "case_region": "인천광역시 전역, 개항장 등 주요 관광권역",
+      "intervention": "스마트관광 플랫폼 ‘인천e지’의 AI 동선 추천·스탬프·축제 프로모션·상점 쿠폰 결합",
+      "operating_model": "AI 기반 일정·동선 추천, GPS 스탬프투어, 축제·행사 연계 프로모션, 교통·주차정보와 스마트쿠폰을 하나의 앱에서 제공하고 쿠폰 사용·정산기록을 축적했다.",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": null,
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      },
+      "observed_result": "2025년 회원 12만 명, 누적 다운로드 32만 건, 사용자 만족도 4.47/5점으로 공개됐다. 지역축제 연계 프로모션 참여자는 10만 명 이상이며 앱 쿠폰으로 약 2억8천만 원의 직접 매출액이 발생했다고 발표했다. 이는 플랫폼 이용·쿠폰 정산 실적이며 인천 전체 관광소비의 순증 인과효과로 단정할 수 없다.",
+      "measurement_period": "2025년 1년간 운영성과; 2025년 12월 9일 공개",
+      "transfer_conditions": [
+        "별도 앱을 새로 구축하기보다 인천e지 안에 부평 전용 패스·쿠폰·예약 페이지를 개설할 수 있는지 인천시·인천관광공사와 협의",
+        "부평역·문화의거리·전통시장·문화시설 등 실제 참여 지점을 모집하고 영업시간·휴무일·접근성을 검증",
+        "노출→패스 저장→GPS 방문→쿠폰 사용→결제액을 익명 참여자 단위로 연결",
+        "비참여 가맹점 또는 직전 동기간을 비교기준으로 두되 기상·공휴일·대형행사 영향을 별도로 기록"
+      ]
+    },
+    {
+      "source_id": "case:ec3256094ff9a4",
+      "source_type": "benchmark_case",
+      "title": "인천시, 전통시장 모바일 스탬프 투어 완주하면 5천 원 쿠폰 ([incheon.go.kr](https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=618&repSeq=DOM_0000000008264854&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=618&repSeq=DOM_0000000008264854",
+      "published_or_updated_at": "2023년 공식 게시자료; 정확한 게시일은 검색 결과에서 확인되지 않음",
+      "summary": "인천광역시 11개 전통시장·상권, 부평로터리·부평문화의거리·부평종합시장 포함 · GPS 기반 전통시장 모바일 스탬프투어와 완주 소비쿠폰 · 대상 시장·코스·쿠폰 조건·가맹점 수는 확인되지만 완주자 수, 쿠폰 사용률, 결제액 및 비참여 기간과의 비교 결과는 공식 자료에서 확인되지 않음",
+      "case_region": "인천광역시 11개 전통시장·상권, 부평로터리·부평문화의거리·부평종합시장 포함",
+      "intervention": "GPS 기반 전통시장 모바일 스탬프투어와 완주 소비쿠폰",
+      "operating_model": "11개 시장과 주변 관광지를 8개 추천코스로 구성하고 GPS로 방문을 자동 인증했다. 한 코스 완주자에게 5천 원 소비쿠폰을 즉시 지급하고 약 140개 참여시장 가맹점에서 사용하도록 했다. 코스별 중복 참여가 가능하며 쿠폰 예산 소진 시 조기 종료하는 구조였다.",
+      "evidence_strength": "low",
+      "quantitative_result_approved": null,
+      "document_type": null,
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      },
+      "observed_result": "대상 시장·코스·쿠폰 조건·가맹점 수는 확인되지만 완주자 수, 쿠폰 사용률, 결제액 및 비참여 기간과의 비교 결과는 공식 자료에서 확인되지 않음",
+      "measurement_period": "운영 공고 시점의 사업구조만 확인; 사후 성과 측정기간 확인되지 않음",
+      "transfer_conditions": [
+        "부평 3개 참여 상권을 전부 묶기보다 도보 이동 가능한 1개 권역부터 축소 실증",
+        "단순 지점 방문이 아니라 상점 영수증, 프로그램 예약 또는 현장 체험 중 하나를 완료조건에 포함",
+        "발급 수와 실제 사용 수를 분리하고 업종·요일·시간대별 쿠폰 사용액을 집계",
+        "쿠폰 예산이 소진되더라도 스탬프 코스는 계속 운영할 수 있도록 비금전 보상 대안 마련"
+      ]
+    },
+    {
+      "source_id": "case:gangjin_half_price_2024",
+      "source_type": "benchmark_case",
+      "title": "강진 반값여행 지역경제 효과 소개",
+      "source_url": "https://jnfarm.jeonnam.go.kr/board/FARM_BOARD_008/boardView.do?bdId=BD_00000000000011721&menuCd=farm004002",
+      "published_or_updated_at": "2025-01-02",
+      "summary": "전라남도 강진군 · 반값여행 지역환급 · 상품권 결제 변화에 관한 소개 자료는 있으나, 사업 참여자 범위·정확한 비교 기간·원자료를 확인하지 못해 성과 수치 인용을 보류한다.",
+      "case_region": "전라남도 강진군",
+      "intervention": "반값여행 지역환급",
+      "operating_model": "여행자가 지역에서 지출한 비용의 일부를 지역상품권으로 돌려받게 하여 혜택이 다시 지역 상점에서 사용되도록 설계",
+      "evidence_strength": "low",
+      "quantitative_result_approved": false,
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "observed_result": "상품권 결제 변화에 관한 소개 자료는 있으나, 사업 참여자 범위·정확한 비교 기간·원자료를 확인하지 못해 성과 수치 인용을 보류한다.",
+      "measurement_period": "게시일과 사업 측정기간은 다르며, 비교기간과 집계범위 원자료 확인 필요",
+      "transfer_conditions": [
+        "지역상품권 사용처와 관광업체 참여 기준 필요",
+        "여행 지출 증빙과 중복수혜 방지 절차 필요",
+        "지원금보다 추가 지역소비가 큰지 사후 측정 필요"
+      ]
+    },
+    {
+      "source_id": "case:night_festival_2025",
+      "source_type": "benchmark_case",
+      "title": "2025 대한민국 밤밤페스타 개최 도시 및 일정",
+      "source_url": "https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=f9c636b2-dd7c-4f09-af3d-6af43b33d371",
+      "published_or_updated_at": "2025",
+      "summary": "야간관광 특화도시 10곳 · 도시별 야간 콘텐츠를 순회형 축제로 묶는 운영 · 공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음",
+      "case_region": "야간관광 특화도시 10곳",
+      "intervention": "도시별 야간 콘텐츠를 순회형 축제로 묶는 운영",
+      "operating_model": "10개 야간관광 특화도시의 대표 장소와 시간대를 연결하고, 공연·체험·지역 디저트·판매상품 등 도시별 콘텐츠를 순회 일정으로 운영",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "observed_result": "공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음",
+      "measurement_period": "2025년 행사 일정",
+      "transfer_conditions": [
+        "야간에도 이용 가능한 교통·안전·식음 운영을 함께 설계",
+        "하나의 행사보다 지역별 대표 콘텐츠와 상점 참여를 연결",
+        "행사일과 비행사일을 분리해 방문·결제·숙박 변화를 측정"
+      ]
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "44제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 한국관광공사는 본래의 기능인 해외 홍보마케팅을 통한 인지 형성, 지역 관광생태계 육성, 관광사업 추진을 여정 단계에 맞춰 재배치해야 한다. 해외지사와 국내지사를 연결한 중점지사제를 '관문-연계도시' 단위로 운영하고, 글로벌 OTA 와 현지 여행사가 실제 상품을 만들 수 있도록 상품화 모듈과 전세·임시편 유치를 고도화하며, 선상 마케팅처럼 항공사 기내·LCC 채널을 활용한 권역 홍보를 확대할 수 있어야 할 것이다. 특히 성과지표를 입국자 수와 공급석 중심에서 '입국객의 권역 내 첫 숙박률이나, 1인당 권역 내 소비, 지방 이동 비중' 중심으로 전환하고, 통신·카드 데이터에 소셜 담론 데이터를 결합한 공항-권역 대시보드를 상시 운영해 데이터 기반 성과관리를 지속적으로 보여주는 데이터 기반의 지방공항 중심 관광권 상황실을 구축하여야 한다. 지방자치단체와 한국공항공사는 공항에서 지역 상권까지 이어지는 현장 수용태세를 보다 면밀히 고려하는 정책과 사업이 필요하다. 공항 접근 교통과 안내·결제, 다국어 환경, 터미널과 도심·거점 관광지를 잇는 셔틀, 권역 내 숙박과 야간 콘텐츠는 지자체의 실행력이 좌우하는 영역이다. 공항 소재 지자체 단위 협의를 넘어 청주는 대전·세종·충남, 대구는 경북과 함께 상품·교통·마케팅 예산을 묶는 관광권 협의체를 구성하고, 중장기적으로는 일본의 광역연계 DMO처럼 권역 단위의 상설 조직과 재원으로 발전시켜야 한다. 민관협력은 이 체계를 지속 가능하게 만드는 가장 중요한 동인이라 할 수 있다. 항공사·LCC에는 신규 노선의 초기 리스크를 지방정부·공사와 분담하는 노선 개발 협약과 기내 권역 홍보를, 글로벌 OTA·현지 여행사에는 권역 루트 상품의",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "결제",
+        "관광사업",
+        "상권",
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "실제",
+        "연결한",
+        "예산",
+        "운영",
+        "이어지는",
+        "전환",
+        "중심으로",
+        "지역",
+        "체류",
+        "함께",
+        "현장",
+        "협약"
+      ],
+      "page_references": "PDF 44쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:044:chunk:01",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "36제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 [제안 1] 의료·쇼핑 소비를 영남권 체류형 관광루트로 연결 대구공항 입국 방한객의 소비가 대구의 의료·쇼핑을 중심으로 형성되고, 경산·구미·포항·경주 등 경북 지역으로 이동하고 있는 점을 활용한다. 대구에서 시작된 의료·쇼핑 소비를 영남의 역사문화·해양·미식 등 관광자원과 연계해, 이미 형성된 지역 간 이동을 체류형 관광루트로 고도화한다. 특히 대만(30~40대)·중국(20대)·일본(20대·50대)으로 국가별 핵심 연령층이 다른 만큼, 연령층별 관심사와 이동 패턴을 반영한 맞춤형 루트를 함께 구성하는 것이 효과적이다. [제안 2] 의료 수요를 5박 6일 프리미엄 체류 패키지로 상품화 피부·성형을 핵심 의료 서비스로, 한방·치과·종합검진을 선택형 연계 서비스로 구성한 '대구 프리미엄 의료 패키지(5박 6 일)'를 개발한다. 진료와 회복 일정에 쇼핑·미식·문화관광을 결합하고 대경권 주요 관광지까지 동선을 확장해, 의료 목적 방문을 장기 체류와 광역 소비로 연결한다. 국가별 핵심 연령층이 다른 점을 고려해 대만 30~40대를 겨냥한 프리미엄 의료·웰니스 상품, 중국·일본 20대를 겨냥한 미용·체험 중심 상품으로 타깃을 세분화한다. [제안 3] 교통·결제 편의성 개선으로 소비 동선의 단절 해소 공항-도심-경북 주요 도시 간 이동정보와 예약을 다국어로 연결하고, 해외카드를 활용한 대중교통 이용 등 외국인이 도착 직후 겪는 교통·결제 불편을 줄여 의료·관광 소비 동선이 끊기지 않도록 한다. 취항 국가는 7개국에서 10개국으로, 취항 도시는 15개에서 27개로 늘었지만 실제 운항 편수는 오히려 줄어, 연결 범위 확대가 아직 공급 증가로 이어지지 않고 있다.",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "결제",
+        "방문",
+        "소비",
+        "실제",
+        "연결하고",
+        "연결한",
+        "예약",
+        "이용",
+        "일정",
+        "중심으로",
+        "지역",
+        "체류",
+        "체험",
+        "함께"
+      ],
+      "page_references": "PDF 36쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:036:chunk:01",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "41제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 관광상품을 만들어도 공항에서 관광지까지 이동하기 어렵다면 실제 지역 방문으로 연결되기 어렵다. 이에 공사는 지자체· 공항공사·교통기관 등 대외 협업체계와 함께 지방공항으로 유입된 방한객이 지역 관광지까지 불편 없이 이동할 수 있도록 교통 연계와 이용 편의 인프라를 개선하는 방향으로 사업을 추진하고 있다. 공사는 충청남도, 충청북도(광역지자체) 및 충 남문화재단, 충북문화재단(RTO)과 협업하여 청주공항과 오 송역, 공주터미널, 부여터미널 등 충청권 주요 관광지를 연결하는 광역 순환버스와 DRT(수요 응답형 버스) 운영을 지원하고 있다. 2026년 상반기 순환버스와 DRT 이용객은 총 7 ,470명으로, 공항에서 충청권 주요 관광지까지 직접 이동할 수 있는 선택지가 확대되고 있다. 대구공항에서는 외국인이 별도의 교통카드 없이 해외 신용카드 등으로 대중교통을 이용할 수 있는 개방형 교통결제 시스템 도입을 지원하고 있으며, 간편결제·관광안내·환전 및 면세 등 이용 편의도 단계적으로 보완하고 있다. 지방공항의 역할을 항공기에서 내리는 지점에 그치지 않고 지역 여행을 실제로 시작할 수 있는 관문으로 넓히는 과정이다. 추진사업 3. 교통 편의 인프라 - 공항 도착 이후 지역으로 이어지는 이동·편의 기반 구축 성과 | 전방위 유치·마케팅 성과 가시화…청주공항 방한객 6만 명 돌파, 부정기 항공편도 대폭 확대 한국관광공사, 공항활성화 협의체 및 관계기관의 협업체계가 잘 작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다.",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "결제",
+        "방문",
+        "방문으로",
+        "사업을",
+        "성과",
+        "소비",
+        "실제",
+        "운영",
+        "이어지는",
+        "이용",
+        "이후",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 41쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:01",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "남부관광의 해 연계 지역상품 홍보 타이베이 지사가 개발한 2025년 대구 파워풀페스티벌 상품 홍보 로고 일본 시장은 다른 방식으로 접근하고 있다. 일본은 방한 재방문율이 높고 서울 이외의 새로운 지역과 관광콘텐츠를 찾는 수요가 비교적 뚜렷한 시장이다. 공사는 지방 직항노선을 기반으로 동남권 각 도시의 특색을 여행 목적과 테마로 재구성하고, 현지 여행사·항공사와 연계해 실제 상품과 모객으로 이어지도록 하는 방식을 추진하고 있다. 같은 지방공항 유치 사업이라도 시장 특성에 따라 대만은 지역의 범위를 단계적으로 넓히고, 일본은 재방문객에게 새로운 지역 방문 이유를 만드는 방식으로 접근하는 것이다. 해외에서 지방공항을 선택하게 하려면 노선과 함께 '도착한 뒤 무엇을 할 것인가'가 제시돼야 한다. 이를 위해 공사는 청주· 대구공항을 중심으로 지역 관광콘텐츠를 발굴하고, 이를 공항과 연결된 권역형·초광역형 관광코스로 구성했다. 2026년 6월 기준 발굴된 콘텐츠는 17개 테마 333개, 관광코스는 35개다. 럭셔리·한류·의료·웰니스·해양·축제·역사문화·미식·쇼핑 등 지역의 다양한 관광자원을 활용하되, 개별 콘텐츠에 그치지 않고 공항을 시작점으로 여러 지역을 이동할 수 있도록 연결한 것이 특징이다. 대표적으로 청주공항에서는 청주-공주-부여-전주를 잇는 백제 역사문화 루트와 같이 충청권과 인접 지역을 연결하는 코스를, 대구공항에서는 대구-경주-울산-부산을 잇는 유네스코 헤리티지 루트와 같이 영남권의 주요 관광자원을 묶은 광역 코스를 구성했다. 지방공항을 특정 도시 하나의 관문이 아니라 여러 지역으로 이동하는 여행의 출발점으로 활용하는 방식이다. 추진사업 2. 지역 콘텐츠를 실제 방한상품으로 연결",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "관광콘텐츠",
+        "다양한",
+        "방문",
+        "방식으로",
+        "방식을",
+        "소비",
+        "실제",
+        "연결한",
+        "중심으로",
+        "지역",
+        "체류",
+        "콘텐츠를",
+        "함께"
+      ],
+      "page_references": "PDF 40쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:040:chunk:02",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다. 인바운드 비중도 7 .9%에서 11.1%로 전년 동기 대비 3.2%p 상승했고, 국제선 공급석은 146만 3,061석으로 전년보다 43.0% 대폭 확대됐다. 대구공항도 같은 기간 방한객이 5만 7 ,058명으로 전년 동기 대비 2.6% 증가했고, 국제선 공급석은 90만 2,286석으로 6.3% 늘었다. 특히 부정기 항공편에서는 확대 폭이 더욱 뚜렷하다. 2026년 상반기 부정기 항공편은 청주공항 574회, 대구공항 458회로 총 1,032회가 확정됐으며, 전년 동기 대비 각각 178.6%, 854.2% 급증했다. 부정기 확대편의 사례로 공사에서 유치한 후쿠시마-청주 전세기 운영을 들 수 있다. 공사 도쿄지사가 한일 비운항지역인 후쿠시마를 대상으로, 현지 여행사, 항공사가 협력해 운항한 두 차례 전세기 360석이 모두 매진됐다. 해외 현지 수요를 발굴하고 항공편과 관광상품을 함께 구성해 지방공항 입국으로 연결한 사례라는 데 의미가 있다. 발굴한 콘텐츠가 실제 해외 여행상품으로 이어질 수 있도록 '인바운드 관광 상품화 툴킷'도 함께 마련했다. 지역별 교통· 숙박·쇼핑·식당과 관광사업자, 지자체 지원정보 등 해외 여행사가 상품을 구성할 때 필요한 정보를 한데 모아 제공하는 자료다. 해외지사는 이를 활용해 현지 여행사 ·OTA와 지방공항 연계 상품 을 개발하고 있으며, 2026년 6월 기준 청주공항 연계 상품 49개, 대구공항 연계 상품 10개가 개발됐다.",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "관광사업",
+        "사례",
+        "성과",
+        "소비",
+        "숙박",
+        "실제",
+        "연결한",
+        "운영",
+        "지역",
+        "체류",
+        "필요한",
+        "함께",
+        "활용해"
+      ],
+      "page_references": "PDF 41쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:02",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "43제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 (전문가 제언) 지방공항 관문 활성화를 넘어 '지방관광 권역 활성화'로5. 지방공항을 통한 방한 입국은 분명한 성장 국면이다. 그러나 지방공항 관문 활성화가 곧바로 지방공항과 지역관광의 경쟁력으로 해석하기에는 아직 이르다. 최근의 지방공항 입국 증가는 대만 시장의 고성장, LCC의 공격적 공급 확대, 중국 단체 무비자와 중·일 관계 변화에 따른 수요 이동 등 외부 요인과 일부 결합되어 나타난 측면도 있기 때문이다. 지금 필요한 것은 입국자 수와 노선 수의 증가에 만족하는 것이 아니라, 이를 지역관광의 체질 전환과 고부가가치화로 연결하는 전략이 필요하다. 또한 특정 관광시장에 대한 의존도가 높을수록 공항은 외부 변수에 취약해질 수밖에 없고, 체류 전환이 약할수록 늘어난 유입은 지역에 효과를 남기지 않으며, 공항별 차이를 무시한 일률적 지원은 성과를 도출하기 어렵게 만든다. 결국 이제는 정책의 단위를 '공항' 중심에서 보다 관문과 연결되는 연계된 도시로 확장할 필요가 있다. 지방공항 활성화의 중장기 과제는 단순히 더 많은 노선을 유치하는 데서 끝나서는 안 되며, 공항을 관문으로 하는 배후 관광권 단위로 성과를 설계하고 측정하는 방향으로 전환되어야 한다. 정책의 단위를 '지방공항'에서 '지방관광 권역'으로 지방공항과 지방관광이 동시에 활성화하려면 두 관점이 함께 필요하다. 하나는 관문 기능의 고도화(노선·운수권·전세기 유치, CIQ와 터미널 용량, 공항-거점 교통의 직결성)이고, 다른 하나는 배후권역의 체류 전환(입국 이후 첫 숙박·첫 소비를 권역 안에서 완결되게 설계, 권역 내 이동의 관광 루트화, 지역 특화 업종의 객단가 제고)이다. 지금까지의 정책이",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "이후",
+        "전환",
+        "전환과",
+        "지역",
+        "체류",
+        "측정",
+        "필요한",
+        "함께"
+      ],
+      "page_references": "PDF 43쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:01",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "권·전세기 유치, CIQ와 터미널 용량, 공항-거점 교통의 직결성)이고, 다른 하나는 배후권역의 체류 전환(입국 이후 첫 숙박·첫 소비를 권역 안에서 완결되게 설계, 권역 내 이동의 관광 루트화, 지역 특화 업종의 객단가 제고)이다. 지금까지의 정책이 전자에 집중되어 왔다면, 앞으로의 무게중심은 후자를 함께 설계하는 데 있으며 지방공항 활성화의 성과는 공항 소재 시· 도 행정구역이 아니라 권역단위로 측정되어야 한다. 한국관광공사 관광컨설팅팀 협조를 통해 본 신세시오를 활용한 다국어 소셜 데이터에서도 청주는 여정 7단계 1) 가운데 '숙박·체류' 담론이 가장 약하고 대구는 '인지·정보·예약' 단계가 가장 약한 것 으로 나타난다. 같은 지방공항이라도 방한객의 여정에서 막히는 지점이 다르며, 전략은 그 병목 단계에 맞춰 설계되어야 할 것이다. 또한 지역 단위로 분산된 해외 홍보를 관문공항 단위의 공동 홍보로 전환해야 한다. 아직도 일부 방한외래객은 지역을 알지 못하기 때문에 서울만 방문하고, 정보의 다수는 글로벌 앱이나 유튜브 등에서 얻는 현실에서 시·군 단위 개별 마케팅은 효과가 제한적일 수밖에 없다. 대만 시장에서 부산을 출 발점으로 경남·남부권·중부권으로 대상 지역을 단계적으로 넓혀 온 ‘남부관광의 해’ 등 권역 중심의 홍보 전략은 시장 특성에 맞춘 권역형 인지 전략의 좋은 선례라 할 수 있다. 여기에 AI 검색 시대에 대응한 5대 관광권 정보의 AEO(AI 답변 최적화) 표준화가 더해진다면 보다 효과적인 마케팅이 가능할 것이다. 명확한 기관별 역할분담과 민관협력 문화체육관광부는 지방공항과 5대 관광권 2) 정책을 하나의 체계로 묶는 컨트롤타워가 되어야 한다. 5대 관광권의 지정과",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "검색",
+        "방문",
+        "성과",
+        "소비",
+        "숙박",
+        "예약",
+        "이후",
+        "전환",
+        "지역",
+        "체류",
+        "측정",
+        "함께"
+      ],
+      "page_references": "PDF 43쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:02",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "source_id": "reference:kto:2026:local-airport",
+      "source_type": "rag",
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "published_or_updated_at": "2026-08",
+      "document_type": "policy",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "case_region": "",
+      "intervention": "",
+      "evidence_strength": "medium",
+      "summary": "광권 정보의 AEO(AI 답변 최적화) 표준화가 더해진다면 보다 효과적인 마케팅이 가능할 것이다. 명확한 기관별 역할분담과 민관협력 문화체육관광부는 지방공항과 5대 관광권 2) 정책을 하나의 체계로 묶는 컨트롤타워가 되어야 한다. 5대 관광권의 지정과 예산 통합, 국토교통부·법무부·지방정부와의 협업을 통해 운수권·슬롯·공항시설 사용료 인센티브, 비자·입국 절차, 광역 교통을 권역 단위로 조율하고, 민간의 지역 투자를 끌어내기 위한 장기적 관점의 규제 특례를 마련해야 한다. 무엇보다 공항별 성장 단계와 시장 구조에 따라 KPI와 사업적 특성을 권역에 맞게 적용하는 유형별 육성 로드맵이 필요하다. 1) 소셜 데이터의 담론을 7가지의 여정으로 구분하였는데, 여정은 1) 인지, 정보 및 예약, 2) 입국 및 방문, 3) 교통 및 이동, 4) 숙박 및 체류, 5) 관광 및 체험, 6) 쇼핑 및 식음, 7) 공유 및 재방문으로 구분하였다. 2) 시도 및 시군구 등 행정권역을 넘어 방한객의 여행 동선을 따라 여러 지역이 이어지는 관광 중심 권역을 의미하며, 방한객의 지역 입국이 시작되는 지 방국제공항이 있는 김해·대구·청주·무안·양양공항 등 관문도시를 중심으로 해 인근에 특화 관광자원을 보유한 연계 도시를 연결하는 전략으로 '관광권' 을 설계(출처: 대한민국 정책브리핑, 2026). 프로젝트수 대표, 한양대학교 관광학부 겸임교수 정란수",
+      "retrieval_method": "local_curated_chunk",
+      "matched_terms": [
+        "민간",
+        "방문",
+        "방문으로",
+        "소비",
+        "숙박",
+        "예산",
+        "예약",
+        "이어지는",
+        "중심으로",
+        "지역",
+        "체류",
+        "체험"
+      ],
+      "page_references": "PDF 43쪽",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:03",
+      "parent_source_id": "reference:kto:2026:local-airport"
+    },
+    {
+      "case_region": "인천광역시 송도·월미도·개항장 중심",
+      "intervention": "야간 콘텐츠·야시장·공연·경관·교통·안전을 묶은 야간관광 특화도시 운영",
+      "problem_addressed": "주간 중심 방문을 저녁 체류와 지역 내 소비로 확장하고 구도심의 야간 콘텐츠 부족을 보완",
+      "target_group": "인천을 당일 또는 숙박 일정으로 방문하는 국내외 관광객",
+      "operating_model": "야간관광 콘텐츠 개발, 야간 여건 개선, 야간명소 조성, 홍보마케팅 등 4개 분야 21개 세부사업을 운영했다. 공연·야시장·체험뿐 아니라 교통과 안전 환경을 함께 다루는 도시 단위 방식이다.",
+      "duration": "1·2차 연도 2022년 11월~2023년; 후속 사업은 2025년까지 추진",
+      "public_budget": "인천 개별 연도·세부사업 총집행액은 해당 공식 성과자료에서 확인되지 않음",
+      "observed_result": "인천시는 2022년 11월~2023년 사업을 통해 관광객 29만2,034명, 지역소비 220억 원, 간접일자리 751명을 기록했다고 공개했다. 사업 운영과 지표가 함께 관측된 결과로, 다른 행사·계절·지역경제 요인을 통제한 인과효과는 아니다.",
+      "measurement_period": "2022년 11월~2023년 12월에 해당하는 1·2차 연도 성과로 제시",
+      "evidence_strength": "medium",
+      "transfer_conditions": [
+        "부평구에서는 해안경관을 복제하지 말고 문화시설·공연장·시장·식음 상권을 잇는 압축된 저녁 동선으로 변경",
+        "2026년 10~12월 기온과 일몰시간에 맞춰 실내 프로그램 비중과 우천 대체편을 마련",
+        "예약 회차별 정원을 두고 시작·종료 시각, 중도이탈, 프로그램 전후 상권 결제를 측정",
+        "금·토요일 대중교통 막차, 보행 안전, 야간 화장실과 상점 영업시간을 사전 확인",
+        "대규모 신규 경관시설 대신 기존 시설·민간공연·상점 프로그램을 조합해 3개월 일정에 맞춤"
+      ],
+      "risks": [
+        "송도·개항장 중심 도시사업은 부평구와 관광자원·야경·방문 목적이 다름",
+        "관광객 집계와 소비액 산정의 대상·방법이 세부적으로 공개되지 않으면 재현성이 낮음",
+        "일회성 공연 관람객 수가 반복 방문이나 상시 체류로 이어지지 않을 수 있음",
+        "야간 교통과 안전이 확보되지 않으면 참여 만족도와 상점 이용시간이 제한됨"
+      ],
+      "source_title": "6월부터 밤마다 인천으로—야간관광 특화도시 성과 및 운영계획 ([incheon.go.kr](https://www.incheon.go.kr/IC010205/view?curPage=233&repSeq=DOM_0000000010085993&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/IC010205/view?curPage=233&repSeq=DOM_0000000010085993",
+      "published_or_updated_at": "2024-06-11",
+      "source_id": "case:2c54c6aaf2117a",
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      }
+    },
+    {
+      "case_region": "서울특별시 동작구·관악구 보라매공원 및 인근 상권",
+      "intervention": "장기 행사와 지역상권 스탬프 할인·지역상품권·푸드트럭을 결합한 서울국제정원박람회",
+      "problem_addressed": "대규모 공공행사 관람객의 소비가 행사장 안에서 끝나지 않고 주변 상권으로 이동하도록 유도",
+      "target_group": "보라매공원 방문객과 동작·관악구 인근 상점, 외식·판매 사업자",
+      "operating_model": "기존 공원을 장기 행사장으로 활용해 계절별 정원·체험·야간 프로그램을 운영하고, 가든 스탬프투어 참여자에게 주변 상점 할인 혜택을 제공했다. 자치구·상인회 공동 마케팅, 지역사랑상품권 특별발행, 푸드트럭 운영을 함께 적용했다.",
+      "duration": "2025년 5월 22일~11월 2일, 158일",
+      "public_budget": "행사 총 공공예산은 해당 성과자료에서 확인되지 않음",
+      "observed_result": "158일 동안 누적 관람객 1,000만 명, 전년 동기 대비 보라매공원 방문객 평균 2.6배를 기록했다. 개막 전후 각 1주일 비교에서는 인근 상권 신용카드 매출액이 20%, 생활인구가 40% 증가했다. 개막 초기 약 10일간 푸드트럭 등 행사장 판매 매출은 9억5천만 원으로 공개됐다. 단순 전후 비교이므로 박람회의 단독 인과효과로 단정할 수 없다.",
+      "measurement_period": "누적 관람객은 2025-05-22~2025-10-26 기준 158일; 상권 비교는 개막 전후 각 1주일",
+      "evidence_strength": "medium",
+      "transfer_conditions": [
+        "부평구의 기존 공원·문화시설·시장 중 장기 설치 없이 사용할 수 있는 거점을 선정",
+        "행사장과 상권 사이 도보 경로에 스탬프 또는 예약 완료 지점을 배치",
+        "상인회와 공통 할인조건·정산절차를 합의하고 업종별 참여 편중을 관리",
+        "사업 전 2~4주와 운영기간의 카드결제 또는 쿠폰 결제를 같은 공간·요일 기준으로 비교",
+        "서울의 규모를 복제하지 않고 하나의 거점과 인접 상권으로 축소"
+      ],
+      "risks": [
+        "1,000만 명 규모 광역행사의 방문 성과를 부평구에 비례 환산할 수 없음",
+        "개막 전후 1주 비교는 날씨·휴일·화제성 등 외부 요인의 영향을 포함",
+        "무료 대형행사는 방문자 수는 높아도 참여 상점별 매출 효과가 불균등할 수 있음",
+        "장기 설치형 시설은 3개월 준비·운영 일정과 미정 예산에 맞지 않을 수 있음"
+      ],
+      "source_title": "2025 서울국제정원박람회 주요 추진 성과 ([seoul.go.kr](https://www.seoul.go.kr/festa/files/2025/11/690b1ba4a58636.93147611.pdf?utm_source=openai))",
+      "source_url": "https://www.seoul.go.kr/festa/files/2025/11/690b1ba4a58636.93147611.pdf",
+      "published_or_updated_at": "2025-11",
+      "source_id": "case:e4d3e4b6fd4903",
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      }
+    },
+    {
+      "source_id": "case:digital_tourism_resident_2024",
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "region_code": "ALL",
+      "region_name": "전국 공통 사례",
+      "case_region": "전국 인구감소지역 34곳",
+      "intervention": "디지털 관광주민증과 교통·숙박·상점 할인 결합",
+      "problem_addressed": "한 번의 방문을 숙박·식음·체험·지역상점 이용으로 연결",
+      "target_group": "인구감소지역을 방문하는 외지인",
+      "operating_model": "디지털 관광주민증 참여업체 현장 인증과 숙박·식음·관람·체험 할인, 특정 시간대 KTX 할인과 방문 후 교통 할인권을 결합",
+      "duration": "2024년 여행가는 달 연계",
+      "public_budget": "개별 지역별 집행예산은 공식 자료에서 확인 필요",
+      "observed_result": "2024년 34개 지역 약 800개 관광업체에 혜택 구조를 적용",
+      "measurement_period": "2024년 6월 운영 계획",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "transfer_conditions": [
+        "지역 내 참여업체 수와 혜택 매력도 확보",
+        "QR 또는 위치인증과 실제 사용기록 수집",
+        "교통 할인 제공기관과 협약 필요"
+      ],
+      "risks": [
+        "발급 건수와 실제 지역소비를 혼동할 수 있음",
+        "혜택 사용률이 낮으면 홍보비만 증가할 수 있음"
+      ],
+      "source_title": "2024년 6월 여행가는 달 추진 보도자료",
+      "source_url": "https://mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%280514%29%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-6%EC%9B%94_%EC%97%AC%ED%96%89%EA%B0%80%EB%8A%94_%EB%8B%AC_%EC%B6%94%EC%A7%84.pdf&pPath=0302000000&pRealName=20240514083202149235802932_PRESS20240514083202456506.pdf",
+      "published_or_updated_at": "2024-05-14",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      }
+    },
+    {
+      "source_id": "case:kto_stay_discount_2022",
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "region_code": "ALL",
+      "region_name": "전국 공통 사례",
+      "case_region": "전국 숙박할인쿠폰 지원사업",
+      "intervention": "온라인 예약 채널 숙박할인쿠폰",
+      "problem_addressed": "비수기 국내여행 수요와 지역 숙박 전환 촉진",
+      "target_group": "국내 숙박여행을 예약하는 이용자와 참여 숙박업체",
+      "operating_model": "온라인 여행사 예약 단계에서 할인쿠폰을 제공하고, 지역 숙소에서 사용할 수 있도록 참여 채널과 기간을 통합 운영",
+      "duration": "2022년 대한민국 숙박대전",
+      "public_budget": "개별 지자체 예산이 아니라 중앙정부 지원사업으로 운영되어 지역별 단가·분담액은 별도 확인 필요",
+      "observed_result": "한국관광공사 자료는 약 104만 명이 할인혜택을 이용했고 서울·제주를 제외한 지역 사용 비율이 76%였다고 소개함",
+      "measurement_period": "2022년 사업 종료 후 한국관광공사 공개 자료",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "transfer_conditions": [
+        "참여 숙소·예약 채널·쿠폰 조건을 사전에 확정",
+        "주말과 성수기 쏠림을 막을 사용 가능일 설계",
+        "쿠폰 발급량이 아니라 실제 숙박 완료·지역소비를 함께 측정"
+      ],
+      "risks": [
+        "공식 생산유발효과 추정치를 특정 지역의 순증 효과로 단정할 수 없음",
+        "할인만 제공하면 식음·체험 소비로 이어지지 않을 수 있음"
+      ],
+      "source_title": "2022 대한민국 숙박대전 경제파급효과 공개자료",
+      "source_url": "https://kto.visitkorea.or.kr/upload/flexer/upload/ktobiz/20220928/b623b5f9-3ec0-11ed-9832-ddf31964842e.hwp.files/Sections1.html",
+      "published_or_updated_at": "2022-09-28",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      }
+    },
+    {
+      "case_region": "인천광역시 전역, 개항장 등 주요 관광권역",
+      "intervention": "스마트관광 플랫폼 ‘인천e지’의 AI 동선 추천·스탬프·축제 프로모션·상점 쿠폰 결합",
+      "problem_addressed": "온라인 관광정보와 축제 관심을 실제 관광지 방문 및 지역 가맹점 결제로 전환",
+      "target_group": "인천을 방문하거나 방문 일정을 준비하는 시민·관광객과 플랫폼 가맹점",
+      "operating_model": "AI 기반 일정·동선 추천, GPS 스탬프투어, 축제·행사 연계 프로모션, 교통·주차정보와 스마트쿠폰을 하나의 앱에서 제공하고 쿠폰 사용·정산기록을 축적했다.",
+      "duration": "2021년 출시 후 지속 운영; 제시된 성과는 2025년",
+      "public_budget": "플랫폼 구축·2025년 운영에 투입된 총 공공예산은 해당 공식 성과자료에서 확인되지 않음",
+      "observed_result": "2025년 회원 12만 명, 누적 다운로드 32만 건, 사용자 만족도 4.47/5점으로 공개됐다. 지역축제 연계 프로모션 참여자는 10만 명 이상이며 앱 쿠폰으로 약 2억8천만 원의 직접 매출액이 발생했다고 발표했다. 이는 플랫폼 이용·쿠폰 정산 실적이며 인천 전체 관광소비의 순증 인과효과로 단정할 수 없다.",
+      "measurement_period": "2025년 1년간 운영성과; 2025년 12월 9일 공개",
+      "evidence_strength": "medium",
+      "transfer_conditions": [
+        "별도 앱을 새로 구축하기보다 인천e지 안에 부평 전용 패스·쿠폰·예약 페이지를 개설할 수 있는지 인천시·인천관광공사와 협의",
+        "부평역·문화의거리·전통시장·문화시설 등 실제 참여 지점을 모집하고 영업시간·휴무일·접근성을 검증",
+        "노출→패스 저장→GPS 방문→쿠폰 사용→결제액을 익명 참여자 단위로 연결",
+        "비참여 가맹점 또는 직전 동기간을 비교기준으로 두되 기상·공휴일·대형행사 영향을 별도로 기록"
+      ],
+      "risks": [
+        "회원·다운로드 증가가 부평구 방문 증가를 뜻하지 않음",
+        "쿠폰 직접 매출은 쿠폰이 없었어도 발생했을 기존 결제를 포함할 수 있음",
+        "앱 설치와 회원가입 단계가 복잡하면 현장 이탈률이 높아질 수 있음",
+        "인천 전체 플랫폼 성과를 부평구 사업 효과로 바꾸어 쓸 수 없음"
+      ],
+      "source_title": "‘인천e지’ K-스마트관광 대표 여행 앱으로 우뚝 ([incheon.go.kr](https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=1&repSeq=DOM_0000000013699756&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=1&repSeq=DOM_0000000013699756",
+      "published_or_updated_at": "2025-12-09",
+      "source_id": "case:d3579ecd36c485",
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      }
+    },
+    {
+      "case_region": "인천광역시 11개 전통시장·상권, 부평로터리·부평문화의거리·부평종합시장 포함",
+      "intervention": "GPS 기반 전통시장 모바일 스탬프투어와 완주 소비쿠폰",
+      "problem_addressed": "주변 관광지에 대한 관심과 이동을 전통시장 방문 및 가맹점 결제로 연결",
+      "target_group": "인천 전통시장과 주변 관광지를 방문하는 시민·관광객",
+      "operating_model": "11개 시장과 주변 관광지를 8개 추천코스로 구성하고 GPS로 방문을 자동 인증했다. 한 코스 완주자에게 5천 원 소비쿠폰을 즉시 지급하고 약 140개 참여시장 가맹점에서 사용하도록 했다. 코스별 중복 참여가 가능하며 쿠폰 예산 소진 시 조기 종료하는 구조였다.",
+      "duration": "2023년 시행; 공식 검색자료에서 정확한 시작·종료일은 확인되지 않음",
+      "public_budget": "쿠폰 총 발행예산과 운영비는 공식 자료에서 확인되지 않음",
+      "observed_result": "대상 시장·코스·쿠폰 조건·가맹점 수는 확인되지만 완주자 수, 쿠폰 사용률, 결제액 및 비참여 기간과의 비교 결과는 공식 자료에서 확인되지 않음",
+      "measurement_period": "운영 공고 시점의 사업구조만 확인; 사후 성과 측정기간 확인되지 않음",
+      "evidence_strength": "low",
+      "transfer_conditions": [
+        "부평 3개 참여 상권을 전부 묶기보다 도보 이동 가능한 1개 권역부터 축소 실증",
+        "단순 지점 방문이 아니라 상점 영수증, 프로그램 예약 또는 현장 체험 중 하나를 완료조건에 포함",
+        "발급 수와 실제 사용 수를 분리하고 업종·요일·시간대별 쿠폰 사용액을 집계",
+        "쿠폰 예산이 소진되더라도 스탬프 코스는 계속 운영할 수 있도록 비금전 보상 대안 마련"
+      ],
+      "risks": [
+        "공식 사후평가가 없어 성공사례로 단정할 수 없음",
+        "GPS 근접 인증만으로 실제 상점 이용이나 관광 경험을 확인하기 어려움",
+        "낮은 쿠폰액은 방문 동기가 약할 수 있고 높은 쿠폰액은 기존 결제 대체 가능성이 커짐",
+        "여러 상권을 한꺼번에 묶으면 도보 동선이 길어져 완주율이 낮아질 수 있음"
+      ],
+      "source_title": "인천시, 전통시장 모바일 스탬프 투어 완주하면 5천 원 쿠폰 ([incheon.go.kr](https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=618&repSeq=DOM_0000000008264854&utm_source=openai))",
+      "source_url": "https://www.incheon.go.kr/mayor_8/MA040101/view?curPage=618&repSeq=DOM_0000000008264854",
+      "published_or_updated_at": "2023년 공식 게시자료; 정확한 게시일은 검색 결과에서 확인되지 않음",
+      "source_id": "case:ec3256094ff9a4",
+      "retrieval_method": "official_web_search",
+      "retrieval_context": {
+        "scope": "same_province",
+        "peer_region_code": null
+      }
+    },
+    {
+      "source_id": "case:gangjin_half_price_2024",
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "region_code": "ALL",
+      "region_name": "전국 공통 사례",
+      "case_region": "전라남도 강진군",
+      "intervention": "반값여행 지역환급",
+      "problem_addressed": "방문객 지출을 지역 안의 결제와 재방문으로 연결",
+      "target_group": "강진을 여행하며 정해진 조건을 충족한 방문객",
+      "operating_model": "여행자가 지역에서 지출한 비용의 일부를 지역상품권으로 돌려받게 하여 혜택이 다시 지역 상점에서 사용되도록 설계",
+      "duration": "2024년 사업",
+      "public_budget": "공식 자료에서 총사업비 확인 필요",
+      "observed_result": "상품권 결제 변화에 관한 소개 자료는 있으나, 사업 참여자 범위·정확한 비교 기간·원자료를 확인하지 못해 성과 수치 인용을 보류한다.",
+      "measurement_period": "게시일과 사업 측정기간은 다르며, 비교기간과 집계범위 원자료 확인 필요",
+      "evidence_strength": "low",
+      "quantitative_result_approved": false,
+      "transfer_conditions": [
+        "지역상품권 사용처와 관광업체 참여 기준 필요",
+        "여행 지출 증빙과 중복수혜 방지 절차 필요",
+        "지원금보다 추가 지역소비가 큰지 사후 측정 필요"
+      ],
+      "risks": [
+        "사업 참여자 증가와 지역 전체 소비 증가를 같은 인과효과로 단정할 수 없음",
+        "환급이 기존 방문객에게만 지급되면 순증 효과가 작을 수 있음"
+      ],
+      "source_title": "강진 반값여행 지역경제 효과 소개",
+      "source_url": "https://jnfarm.jeonnam.go.kr/board/FARM_BOARD_008/boardView.do?bdId=BD_00000000000011721&menuCd=farm004002",
+      "published_or_updated_at": "2025-01-02",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      }
+    },
+    {
+      "source_id": "case:night_festival_2025",
+      "document_type": "case_study",
+      "retrieval_method": "curated_registry",
+      "region_code": "ALL",
+      "region_name": "전국 공통 사례",
+      "case_region": "야간관광 특화도시 10곳",
+      "intervention": "도시별 야간 콘텐츠를 순회형 축제로 묶는 운영",
+      "problem_addressed": "낮 시간대 중심 방문을 저녁 체류·지역상점 이용으로 확장",
+      "target_group": "여름철 저녁 시간에 지역을 방문하는 국내 관광객",
+      "operating_model": "10개 야간관광 특화도시의 대표 장소와 시간대를 연결하고, 공연·체험·지역 디저트·판매상품 등 도시별 콘텐츠를 순회 일정으로 운영",
+      "duration": "2025년 6월~8월 대한민국 밤밤페스타",
+      "public_budget": "공식 여행기사에는 총사업비가 공개되지 않아 예산 비교에는 사용할 수 없음",
+      "observed_result": "공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음",
+      "measurement_period": "2025년 행사 일정",
+      "evidence_strength": "medium",
+      "quantitative_result_approved": null,
+      "transfer_conditions": [
+        "야간에도 이용 가능한 교통·안전·식음 운영을 함께 설계",
+        "하나의 행사보다 지역별 대표 콘텐츠와 상점 참여를 연결",
+        "행사일과 비행사일을 분리해 방문·결제·숙박 변화를 측정"
+      ],
+      "risks": [
+        "행사 방문 인원만으로 체류·소비 전환 성과를 판단할 수 없음",
+        "야간 프로그램이 지역 정체성과 맞지 않으면 재방문 동기가 약해질 수 있음"
+      ],
+      "source_title": "2025 대한민국 밤밤페스타 개최 도시 및 일정",
+      "source_url": "https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=f9c636b2-dd7c-4f09-af3d-6af43b33d371",
+      "published_or_updated_at": "2025",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      }
+    }
+  ]
+}

@@ -57,7 +57,7 @@ def case_image(source):
         metadata=SIMILAR_IMAGES['stay_conversion']
         kind='general_tourism_reference'
     path = ROOT / metadata['filename']
-    prefix={'exact_case':'','similar_operation':'유사 사업 참고 · ',
+    prefix={'exact_case':'','similar_operation':'다른 지역 참고 사진 · ',
             'general_tourism_reference':'관광 참고 이미지 · '}[kind]
     return {**metadata, 'caption':prefix+metadata['caption'], 'match_kind':kind,
             'path': path, 'retrieved_at': '2026-09-10'} if path.is_file() else None

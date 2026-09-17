@@ -1,0 +1,61 @@
+diff --git a/frontend/src/pages/TourismHomePage.jsx b/frontend/src/pages/TourismHomePage.jsx
+index 6a0f58f..bcf3de8 100644
+--- a/frontend/src/pages/TourismHomePage.jsx
++++ b/frontend/src/pages/TourismHomePage.jsx
+@@ -1,7 +1,9 @@
+ import { useEffect, useState } from 'react'
+ import { ArrowRight, BarChart3, Bot, FileText, MapPinned } from 'lucide-react'
++import HeaderActions from '../components/HeaderActions'
+ import '../App.css'
+-import logo from '../assets/logo.png'
++import nightLogo from '../assets/logo-night.png'
++import dayLogo from '../assets/logo-day.png'
+ 
+ const STEPS = [
+   {
+@@ -57,11 +59,15 @@ export default function TourismHomePage() {
+ 
+   return (
+-    <main className="tourism-home">
++    <main className="tourism-home oligo-seoul-page">
+       <header className="home-header">
+         <div>
+           <div className="home-brand-wrap">
+-            <a className="home-brand" href="/" aria-label="OLIGO 홈"><img className="home-brand-logo" src={logo} alt="OLIGO (가제)" /></a>
++            <a className="home-brand" href="/" aria-label="OLIGO 홈">
++              <img className="home-brand-logo theme-logo theme-logo--night" src={nightLogo} alt="OLIGO-K" />
++              <img className="home-brand-logo theme-logo theme-logo--day" src={dayLogo} alt="OLIGO-K" />
++            </a>
+             <a className="ml-learning-dot" href="/ml-test" aria-label="머신러닝 학습 결과 보기" title="머신러닝 학습 결과" />
++            <HeaderActions />
+           </div>
+         </div>
+       </header>
+diff --git a/frontend/src/App.css b/frontend/src/App.css
+index 56e0455..06c0a5a 100644
+--- a/frontend/src/App.css
++++ b/frontend/src/App.css
+@@ -602,7 +602,23 @@ html[data-theme='day'] .workspace-shell.oligo-seoul-page .strategy-board-table{b
+ @media(max-width:500px){
+   .workspace-global-header>div{justify-content:flex-start;padding:0 10px}
+   .workspace-global-header .home-brand-logo{height:48px;max-width:calc(100vw - 136px)}
+   .global-header-actions{right:10px}
+   .global-header-actions .theme-toggle{width:38px;justify-content:center;padding:0}
+   .global-header-actions .theme-toggle span{display:none}
+ }
++
++.tourism-home.oligo-seoul-page{padding-top:64px}
++.tourism-home.oligo-seoul-page>.home-header{position:fixed;z-index:2000;top:0;right:0;left:0;border-bottom-color:#2d5e79;background:#0c3450;box-shadow:0 2px 16px rgb(2 24 43 / 24%)}
++.tourism-home.oligo-seoul-page>.home-header>div{width:100%;height:64px;margin:0;padding:0 24px}
++.tourism-home.oligo-seoul-page .home-brand-wrap{display:flex;width:100%;align-items:center}
++.tourism-home.oligo-seoul-page .home-brand-logo{width:auto;height:58px;max-width:min(430px,calc(100vw - 180px));object-fit:contain}
++.workspace-global-header .ml-learning-dot,
++.tourism-home.oligo-seoul-page .ml-learning-dot{top:5px;right:auto;left:174px}
++html[data-theme='day'] .tourism-home.oligo-seoul-page>.home-header{border-bottom-color:#e2e8f0;background:#fffffff2;box-shadow:0 1px 0 rgb(15 23 42 / 3%)}
++
++@media(max-width:500px){
++  .tourism-home.oligo-seoul-page>.home-header>div{justify-content:flex-start;padding:0 10px}
++  .tourism-home.oligo-seoul-page .home-brand-logo{height:48px;max-width:calc(100vw - 136px)}
++  .workspace-global-header .ml-learning-dot,
++  .tourism-home.oligo-seoul-page .ml-learning-dot{top:7px;left:144px}
++}

@@ -90,17 +90,17 @@ class OperatingTargetTest(unittest.TestCase):
     def test_refund_uses_expected_payment_not_claim_ceiling(self):
         plan=build_operating_target(report(100000, '반값여행 지역상품권 환급'))
         e=plan['estimate']; c=plan['central']
-        # 30,000 won planned purchase, 10% refund; 50,000 is only a ceiling.
-        self.assertEqual(e['unit_krw'], 3000)
+        # 30,000 won planned purchase, 30% refund; 50,000 is only a ceiling.
+        self.assertEqual(e['unit_krw'], 9000)
         self.assertEqual(e['per_claim_cap_krw'], 50000)
         self.assertEqual(e['qualifying_spend_krw'], c['participant_purchases_krw'])
-        self.assertEqual(e['items'][0]['amount'], c['participants']*3000)
+        self.assertEqual(e['items'][0]['amount'], c['participants']*9000)
         self.assertEqual(e['total_krw'], c['expected_budget_krw'])
         self.assertGreater(e['full_participation_budget_krw'], e['total_krw'])
         self.assertLess(c['additional_spending_krw'], c['participant_purchases_krw'])
         for scenario in plan['scenarios']:
             self.assertEqual(scenario['participant_purchases_krw'], scenario['participants']*30000)
-            self.assertEqual(scenario['expected_support_krw'], scenario['participants']*3000)
+            self.assertEqual(scenario['expected_support_krw'], scenario['participants']*9000)
 
     def test_linked_refund_budget_limits_and_manual_override(self):
         from ai_server.app.idea_proposal import scale_estimate
@@ -127,7 +127,7 @@ class OperatingTargetTest(unittest.TestCase):
         self.assertEqual(estimate['unit_krw'],10000)
         data['planning_decision']={}
         data['evidence_sources']=[{'operating_model':'환급률 50%, 건별 상한 1만원'}]
-        self.assertEqual(build_operating_target(data)['estimate']['refund_rate_pct'],10)
+        self.assertEqual(build_operating_target(data)['estimate']['refund_rate_pct'],30)
 
     def test_case_rate_requires_scope_source_and_review(self):
         data=report();data['planning_decision']={'recommended_case_ids':['case:a']}
@@ -174,3 +174,13 @@ class OperatingTargetTest(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+
+
+def test_larger_refund_does_not_invent_additional_visitors():
+    data=report(100000, '지역상품권 환급')
+    before=build_operating_target(data)
+    data['planning_decision']={'selected_candidate_id':'a','design_candidates':[{'candidate_id':'a','budget_formula':'환급률 10%'}]}
+    lower=build_operating_target(data)
+    assert before['central']['additional_visitors']==lower['central']['additional_visitors']
+    assert before['central']['additional_spending_krw']==lower['central']['additional_spending_krw']
+    assert before['estimate']['total_krw']>lower['estimate']['total_krw']

@@ -1,0 +1,17 @@
+{
+  "model": "qwen3:14b",
+  "elapsed_seconds": 8.34,
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 46,
+    "total_tokens": 158
+  },
+  "answer": {
+    "capacity": 7200,
+    "participants": 5400,
+    "additional_visitors": 1620,
+    "is_observed_effect": false
+  },
+  "passed": false,
+  "scope": "one short question, not full report quality benchmark"
+}

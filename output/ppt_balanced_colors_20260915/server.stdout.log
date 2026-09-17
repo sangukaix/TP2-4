@@ -1,0 +1,14 @@
+INFO:     127.0.0.1:1424 - "GET /ai/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:13292 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:13645 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:13878 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:14998 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:1941 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:13781 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8288 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:9468 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:7600 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:5816 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:1137 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:1536 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:6902 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK

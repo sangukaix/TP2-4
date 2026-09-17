@@ -1,0 +1,10 @@
+오전 9:25:08 [vite] (client) Re-optimizing dependencies because vite config has changed
+
+  VITE v8.2.2  ready in 1878 ms
+
+  ➜  Local:   http://127.0.0.1:5176/
+  ➜  press h + enter to show help
+오전 9:25:10 [vite] (client) [optimizer] bundling dependencies...
+오후 6:53:26 [vite] (client) hmr update /src/pages/TourismStrategyPage.jsx
+오후 7:01:16 [vite] (client) hmr update /src/pages/TourismStrategyPage.jsx
+오후 7:01:46 [vite] (client) hmr update /src/pages/TourismStrategyPage.jsx

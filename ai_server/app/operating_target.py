@@ -14,7 +14,7 @@ from .case_recommendation import operation_family
 from .report_projection import select_report_forecast
 from .operating_schedule import operating_schedule
 
-VERSION = 'operating-capacity-v4-linked-cost'
+VERSION = 'operating-capacity-v5-refund-incentive'
 MIN_PARTICIPATION_RATE = .75
 # days/month, sessions/day, people/session, allowance/slot, existing-visitor extra spend
 # These are disclosed planning settings, not official standards or trained parameters.
@@ -107,7 +107,7 @@ def refund_settings(report):
     formula = str(selected.get('budget_formula') or (decision.get('strategy_brief') or {}).get('budget_formula') or '')
     rates = re.findall(r'(?:환급률\s*[:：]?\s*|(?:인정\s*)?지출액\s*[×*]\s*)(\d+(?:\.\d+)?)\s*%', formula)
     caps = re.findall(r'건별\s*(?:환급\s*)?상한\s*[:：]?\s*(\d[\d,]*(?:\.\d+)?)\s*(만)?\s*원', formula)
-    rate = float(rates[0]) / 100 if len(set(rates)) == 1 and 0 < float(rates[0]) <= 100 else .10
+    rate = float(rates[0]) / 100 if len(set(rates)) == 1 and 0 < float(rates[0]) <= 100 else .30
     cap = round(float(caps[0][0].replace(',', '')) * (10000 if caps[0][1] else 1)) if len(set(caps)) == 1 else 50000
     if not 0 < cap <= 1000000: cap = 50000
     return rate, cap
@@ -234,7 +234,7 @@ def build_operating_target(report):
                    f'{central["additional_visitors"]:,}명 유치를 제안합니다. '
                    f'기간 합계 ML 전망 대비 방문 +{central["visitor_growth_pct"]:.2f}%, '
                    f'소비 +{central["spending_growth_pct"]:.2f}%의 계획 시나리오입니다. '
-                   + uptake_basis['reason'])
+                   + uptake_basis['reason'] + (f' 계획 결제 {purchase:,}원에 환급률 {refund_rate*100:g}%를 적용해 건당 {payout:,}원을 지원합니다. 환급 혜택과 추가 방문 비중은 별도의 운영 목표이며, 혜택을 높였다고 방문 목표를 자동 상향하지 않습니다.' if refund else ''))
     plan = {'version': VERSION, 'status': 'budget_below_operating_floor' if below_floor else 'proposed',
             'minimum_operating_budget_krw': minimum_budget,
             'family': family, 'program_label': label, 'site_label': site_label, 'months': months,
@@ -282,6 +282,7 @@ def build_operating_target(report):
                                           '견적은 같은 참여 목표의 사업비이며, 결제액 전체를 신규 소비나 사업 수익으로 계산하지 않습니다.'),
                         'items': items, 'sources': [], 'assumptions': [
                             '기획용 예상 견적이며 실제 액수와 다를 수 있습니다.',
+                            '환급률 미지정 시 30%를 제안합니다. 이는 참여 혜택을 위한 계획 설정이며 공식 사례 실적이나 추정 효과가 아닙니다.' if refund else '지원단가는 사업 유형별 계획 설정입니다.',
                             '100% 참여 참고예산도 같은 계획 결제액을 사용한 참고값이며 최대 지급 책임액이 아닙니다.',
                             plan['purchase_basis'],
                             f'기존 방문 참여자의 추가 구매액은 유형별 기준 {extra_spend:,}원과 ML 소비/방문 비율의 50% 중 작은 값입니다.',

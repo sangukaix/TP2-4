@@ -1,0 +1,7 @@
+INFO:     127.0.0.1:3857 - "GET /ai/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:3897 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:4043 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:3150 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:6241 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:14803 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:6959 - "GET /ai/v1/learning/assistant-status HTTP/1.1" 200 OK

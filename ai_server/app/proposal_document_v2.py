@@ -392,9 +392,10 @@ def create_strategy_proposal_document(report):
     paragraph(doc, b['estimate'].get('scale_basis') or '입력 예산 총액 안에서 참여량과 운영 인력을 배분합니다.')
     subheading(doc, '사례에서 우리 지역의 제안으로')
     paragraph(doc, prose(strategy.get('solution')))
-    if strategy.get('comparison_analysis'):
-        subheading(doc, '선정 판단')
-        paragraph(doc, prose(strategy['comparison_analysis']), size=9)
+    selection_reason = (report.get('planning_decision') or {}).get('selection_reason') or strategy.get('comparison_analysis')
+    if selection_reason:
+        subheading(doc, '후보 비교와 선정 판단')
+        paragraph(doc, prose(selection_reason), size=9)
     paragraph(doc, '연결 근거  '+str(source.get('title') or ''), size=8, color=GRAY)
 
     heading(doc, '05  4단계 실행 가이드 예시안', True)
