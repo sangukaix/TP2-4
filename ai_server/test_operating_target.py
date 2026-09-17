@@ -68,6 +68,25 @@ class OperatingTargetTest(unittest.TestCase):
         self.assertLess(limited['funded_capacity'],original['funded_capacity'])
         self.assertLessEqual(limited['estimate']['total_krw'],100000000)
 
+    def test_unfundable_budget_is_not_marked_as_a_feasible_zero_quote(self):
+        for cap in (0, 1, 1000000):
+            with self.subTest(cap=cap):
+                data=report(3000000,'지역상품권 환급')
+                data['planning_brief']={'budget_max_krw':cap,'budget_hard_limit':True}
+                before=copy.deepcopy(data)
+                prepared=prepare_idea_report(data)
+                plan=prepared['target_proposal_basis']['capacity_plan'];estimate=prepared['reference_estimate']
+                self.assertEqual(plan['status'],'budget_below_operating_floor')
+                self.assertEqual(estimate['status'],'budget_below_operating_floor')
+                self.assertFalse(estimate['within_hard_budget'])
+                self.assertEqual(estimate['total_krw'],0)
+                self.assertEqual(sum(i['amount'] for i in estimate['items']),0)
+                self.assertGreater(estimate['minimum_operating_budget_krw'],cap)
+                self.assertIn('운영안 미편성',estimate['scenario_note'])
+                self.assertEqual(data,before)
+                self.assertEqual(prepared['ml_analysis'],before['ml_analysis'])
+                self.assertEqual(prepare_idea_report(prepared),prepared)
+
     def test_refund_uses_expected_payment_not_claim_ceiling(self):
         plan=build_operating_target(report(100000, '반값여행 지역상품권 환급'))
         e=plan['estimate']; c=plan['central']

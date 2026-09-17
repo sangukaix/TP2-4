@@ -191,7 +191,7 @@ class StrategyDocumentCacheMainTests(unittest.IsolatedAsyncioTestCase):
             patch('ai_server.app.main.write_document') as write_document,
         ):
             response = await main.download_saved_strategy_document('report-1', 'pptx')
-            content = b''.join([chunk async for chunk in response.body_iterator])
+            content = response.body
 
         self.assertEqual(content, b'new-ppt')
         read_document.assert_called_once_with(
@@ -204,6 +204,53 @@ class StrategyDocumentCacheMainTests(unittest.IsolatedAsyncioTestCase):
             render_version=main.DOCUMENT_RENDER_VERSIONS['pptx'],
             report_payload=report,
         )
+
+    async def _assert_binary_response(self, response, content, file_format):
+        self.assertEqual(response.body, content)
+        self.assertEqual(response.headers['content-length'], str(len(content)))
+        self.assertIn(file_format, response.headers['content-disposition'])
+        media_suffix = ('wordprocessingml.document' if file_format == 'docx'
+                        else 'presentationml.presentation')
+        self.assertEqual(response.media_type, f'application/vnd.openxmlformats-officedocument.{media_suffix}')
+        # 이미 완성된 파일은 바이너리 내부의 개행 수와 무관하게 한 번에 전송합니다.
+        sent = []
+
+        async def send(message):
+            sent.append(message)
+
+        await response({'type': 'http'}, None, send)
+        bodies = [message for message in sent if message['type'] == 'http.response.body']
+        self.assertEqual(len(bodies), 1)
+        self.assertEqual(bodies[0]['body'], content)
+
+    async def test_cached_download_preserves_binary_without_rendering(self):
+        content = b'PK\x00\r\n\xff\n' * 20000
+        for file_format in ('docx', 'pptx'):
+            with (
+                self.subTest(file_format=file_format),
+                patch.object(main, 'read_document', return_value=content),
+                patch.object(main, 'read_strategy_report') as read_report,
+                patch.object(main, '_render_strategy_document') as render,
+                patch.object(main, 'write_document') as write,
+            ):
+                response = await main.download_saved_strategy_document('report-1', file_format)
+                await self._assert_binary_response(response, content, file_format)
+                read_report.assert_not_called()
+                render.assert_not_called()
+                write.assert_not_called()
+
+    async def test_direct_downloads_preserve_binary_in_one_body(self):
+        content = b'PK\x00\r\n\xff\n' * 20000
+        report = _ReportStub({'region_name': '대전광역시 서구'})
+        for file_format, endpoint in (
+            ('docx', main.download_region_strategy_proposal),
+            ('pptx', main.download_region_strategy_presentation),
+        ):
+            with self.subTest(file_format=file_format), \
+                    patch.object(main, '_render_strategy_document', return_value=content) as render:
+                response = await endpoint('30170', report)
+                await self._assert_binary_response(response, content, file_format)
+                render.assert_called_once_with(report.payload, file_format)
 
 
 if __name__ == '__main__':

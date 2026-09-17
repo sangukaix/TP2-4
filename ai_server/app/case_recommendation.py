@@ -145,7 +145,11 @@ def report_cases(report, limit=3):
     sources = [s for s in report.get('evidence_sources') or [] if s.get('source_type') == 'benchmark_case'
                and allowed_operation(s, report.get('planning_brief') or {})]
     selected = next((row for row in decision.get('design_candidates') or [] if row.get('candidate_id') == decision.get('selected_candidate_id')), {})
-    primary = match_cases({**strategy, 'case_source_ids': selected.get('case_source_ids') or decision.get('recommended_case_ids') or []}, sources)
+    # Export the selected candidate's documented operation. A shortened Planner
+    # solution (e.g. mentioning lodging but omitting 'refund') must not silently
+    # reclassify it and substitute a different candidate's reference.
+    primary = match_cases({**strategy, 'mechanism': selected.get('mechanism') or strategy.get('solution'),
+                           'case_source_ids': selected.get('case_source_ids') or decision.get('recommended_case_ids') or []}, sources)
     # Same function for alternatives; each card explains its own operation.
     rows = list(primary[:1])
     for candidate in decision.get('design_candidates') or []:

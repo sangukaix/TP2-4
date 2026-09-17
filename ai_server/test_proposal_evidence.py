@@ -6,6 +6,7 @@ from ai_server.test_proposal_presentation_v3_contract import _sample_report, _sl
 from ai_server.app.proposal_presentation import create_strategy_proposal_presentation
 from ai_server.app.proposal_evidence import build_reference_estimate, complete_source_records, source_display_name
 from ai_server.app.report_projection import select_report_forecast
+from ai_server.presentation_test_support import slide_with_title
 
 
 def table_text(slide):
@@ -19,7 +20,7 @@ class ProposalEvidenceTest(unittest.TestCase):
         original=deepcopy(report)
         deck=Presentation(create_strategy_proposal_presentation(report))
         rows=select_report_forecast(report)['rows']
-        charts=[s.chart for s in deck.slides[3].shapes if getattr(s,'has_chart',False)]
+        charts=[s.chart for s in slide_with_title(deck,'2.1 사업 목표').shapes if getattr(s,'has_chart',False)]
         self.assertEqual(len(charts),2)
         for chart,key,unit in zip(charts,['visitors','spending_krw'],[1e4,1e8]):
             self.assertEqual(len(chart.plots[0].categories),len(rows))
@@ -31,7 +32,7 @@ class ProposalEvidenceTest(unittest.TestCase):
     def test_target_uses_final_month_not_first_month(self):
         report=_sample_report();deck=Presentation(create_strategy_proposal_presentation(report))
         rows=select_report_forecast(report)['rows']; last=rows[-1]
-        data=table_text(deck.slides[7])
+        data=table_text(slide_with_title(deck,'3.3 머신러닝 예측값과 목표 KPI'))
         self.assertIn(f"{last['visitors']*1.01:,.0f}명",data)
         self.assertIn(f"{last['spending_krw']*1.02/1e8:,.2f}억 원",data)
 
@@ -39,7 +40,7 @@ class ProposalEvidenceTest(unittest.TestCase):
         report=_sample_report();report['execution_scenario']=None
         report['strategies'][0]['title']='지역 반값 여행 환급'
         deck=Presentation(create_strategy_proposal_presentation(report))
-        slide=deck.slides[8];text=_slide_text(slide)+table_text(slide)
+        slide=slide_with_title(deck,'3.3 머신러닝 예측값과 목표 KPI');text=_slide_text(slide)+table_text(slide)
         self.assertIn('목표 KPI',text);self.assertNotIn('목표율 미입력',text)
         self.assertNotIn('산출 보류',text)
         self.assertNotIn('운영 후 실제 확인',text)
@@ -51,7 +52,8 @@ class ProposalEvidenceTest(unittest.TestCase):
         self.assertGreater(estimate['quantity'],1000)
         larger=__import__('copy').deepcopy(report)
         larger['execution_scenario']={'visitor_target_pct':2,'spending_target_pct':2}
-        self.assertGreater(build_reference_estimate(larger)['total_krw'],estimate['total_krw'])
+        # Explicit user targets do not invent a larger operating capacity/cost.
+        self.assertEqual(build_reference_estimate(larger)['total_krw'],estimate['total_krw'])
         self.assertEqual(sum(i['amount'] for i in estimate['items']),estimate['total_krw'])
         report['planning_brief'].update(budget_hard_limit=True,budget_max_krw=40_000_000)
         estimate=build_reference_estimate(report)

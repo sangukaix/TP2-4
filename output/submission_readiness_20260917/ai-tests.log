@@ -1,0 +1,234 @@
+C:\Users\Admin\mbca\TP2-4\backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+...................Executing <Handle BaseProactorEventLoop._loop_self_reading() created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\windows_events.py:321> took 0.204 seconds
+{"event": "comparison_input", "request_sha256": "0f60b6a4048bdf91ab974d4ae8d4e4154adcf20d2db7cfdf7e2db29bcb86c516", "input_file": "storage/candidate_comparison_input_25f119f772044736a8404a8c00d61a16.json", "context_length": 40960, "timeout_seconds": 420, "temperature": 0.15, "max_output_tokens": 5600, "tool_trace": [{"tool": "required"}], "report_approved": false}
+..Executing <Task finished name='Task-12' coro=<ThinkingComparisonTest.test_capture_only_writes_request_without_final_model_calls() done, defined at C:\Users\Admin\mbca\TP2-4\ai_server\test_candidate_thinking_comparison.py:60> result=None created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.281 seconds
+......................Executing <Task pending name='Task-54' coro=<ResearchFailureFlowTests.test_research_failure_does_not_reach_planner() running at C:\Users\Admin\mbca\TP2-4\ai_server\test_case_research_plan.py:168> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\futures.py:389, Task.task_wakeup()] created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:448> cb=[_run_until_complete_cb() at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:181] created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.547 seconds
+................................................................................................Strategy document save failed: job_id=test-id format=docx error=ValueError
+.....Executing <Task pending name='Task-196' coro=<BaseEventLoop.shutdown_default_executor() running at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:605> wait_for=<Future pending cb=[Task.task_wakeup()] created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:448> cb=[_run_until_complete_cb() at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:181] created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\tasks.py:695> took 0.125 seconds
+.F.......................................................................................................Executing <Task finished name='Task-437' coro=<LocalFirstRouterTests.test_runtime_configuration_accepts_student_budget() done, defined at C:\Users\Admin\mbca\TP2-4\ai_server\test_local_first_policy.py:114> result=None created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.141 seconds
+.................................OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+....OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+.OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+..OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+..OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+..OpenAI token retry: schema=test model=test-model limit=16000 next_limit=24000
+.........s..............................Executing <Task finished name='Task-667' coro=<BriefAgentFlowTest.test_direct_agents_receive_separate_conditions() done, defined at C:\Users\Admin\mbca\TP2-4\ai_server\test_planning_brief.py:140> result=None created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.109 seconds
+....invalid pdf header: b'pdf'
+EOF marker not found
+EOF marker not found
+..................................................................F.F......F.F..FFFEE..EEF.E..FEFFF.F.F................................F..................F....Executing <Task pending name='Task-823' coro=<StrategyDocumentCacheMainTests.test_download_regenerates_when_cache_version_is_stale() running at C:\Users\Admin\mbca\TP2-4\ai_server\test_strategy_document_cache.py:194> wait_for=<Future pending cb=[Task.task_wakeup()] created at C:\Users\Admin\mbca\TP2-4\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2672> cb=[_run_until_complete_cb() at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:181, <1 more>, WorkerThread.stop()] created at C:\Users\Admin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.141 seconds
+.........
+======================================================================
+ERROR: test_missing_targets_never_generate_uplift (test_proposal_layout_v7.LayoutV7Test.test_missing_targets_never_generate_uplift)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v7.py", line 24, in test_missing_targets_never_generate_uplift
+    table=next(s.table for s in deck.slides[7].shapes if s.has_table)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_native_chart_values_and_input_immutability (test_proposal_layout_v7.LayoutV7Test.test_native_chart_values_and_input_immutability)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v7.py", line 14, in test_native_chart_values_and_input_immutability
+    self.assertEqual(list(charts[0].series[0].values),[1800,1810,1820])
+                          ~~~~~~^^^
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_labels_totals_and_removed_sections (test_proposal_layout_v8.LayoutV8Test.test_labels_totals_and_removed_sections)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v8.py", line 22, in test_labels_totals_and_removed_sections
+    chart=next(s.chart for s in slide.shapes if s.has_chart)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_five_steps_preserve_operation_and_evaluation_dates_in_both_outputs (test_proposal_layout_v9.ExecutionDetailTest.test_five_steps_preserve_operation_and_evaluation_dates_in_both_outputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v9.py", line 28, in test_five_steps_preserve_operation_and_evaluation_dates_in_both_outputs
+    self.assertIn('2026-11 ~ 2026-12', periods['execution-period-2'])
+                                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'execution-period-2'
+
+======================================================================
+ERROR: test_selection_uses_linked_case_without_environment_claim (test_proposal_layout_v9.ExecutionDetailTest.test_selection_uses_linked_case_without_environment_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v9.py", line 50, in test_selection_uses_linked_case_without_environment_claim
+    matrix=next(s for s in slide.shapes if s.name=='selection-matrix')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_approved_template_positions_and_final_decision_copy_are_preserved (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_approved_template_positions_and_final_decision_copy_are_preserved)
+출력 때 이미 정돈한 최신 템플릿을 다시 이동하거나 축소하지 않습니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 278, in test_approved_template_positions_and_final_decision_copy_are_preserved
+    tuple(getattr(after[name], attr) for attr in ('left', 'top', 'width', 'height')),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 278, in <genexpr>
+    tuple(getattr(after[name], attr) for attr in ('left', 'top', 'width', 'height')),
+                  ~~~~~^^^^^^
+KeyError: 'title-panel'
+
+======================================================================
+FAIL: test_budget_total_allocated_without_changing_ml (test_guided_planning.GuidedPlanningTest.test_budget_total_allocated_without_changing_ml)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_guided_planning.py", line 57, in test_budget_total_allocated_without_changing_ml
+    self.assertEqual(result['reference_estimate']['total_krw'],30000000)
+AssertionError: 27885000 != 30000000
+
+======================================================================
+FAIL: test_react_catalog_discovers_routes_and_source_files (test_project_learning_catalog.ProjectLearningCatalogTest.test_react_catalog_discovers_routes_and_source_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_project_learning_catalog.py", line 36, in test_react_catalog_discovers_routes_and_source_files
+    self.assertEqual(catalog.architecture['current']['services'][0]['port'], '5176')
+AssertionError: '5177' != '5176'
+- 5177
+?    ^
++ 5176
+?    ^
+
+
+======================================================================
+FAIL: test_goal_basis_follows_business_goal_and_package_parts_are_unique (test_proposal_calculation_basis.CalculationPagesTest.test_goal_basis_follows_business_goal_and_package_parts_are_unique)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_calculation_basis.py", line 34, in test_goal_basis_follows_business_goal_and_package_parts_are_unique
+    self.assertIn('1.2 사례 실적', title(4))
+AssertionError: '1.2 사례 실적' not found in '\n1.2 참고 사례 실적\n\n공식 자료에서 확인한 운영 사례\n\n사례에서 참고한 이용 흐름\n\n공식 운영 확인\n사례의 대상·이용 방식 확인\n\n지역 조건 연결\n우리 지역 자원·참여처와 비교\n\n실행안 구성\n일정·규모·집계 방법을 제안\n공식 사업 내용에 맞춰 운영 범위를 설계합니다.\n사례의 운영 내용 → 지역 조건에 맞춘 실행 계획\n자료 구분: 운영 사례. 수치 목표와 견적은 뒤의 산출 근거에서 제시합니다.\n1. 지역별 사례\n05 / 16\n\n관광 참고 이미지 · 인천 섬 · 로컬체험 여행 소개 사진\n출처: 인천광역시 섬포털'
+
+======================================================================
+FAIL: test_exact_months_and_values_are_used_without_observation_splice (test_proposal_evidence.ProposalEvidenceTest.test_exact_months_and_values_are_used_without_observation_splice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_evidence.py", line 23, in test_exact_months_and_values_are_used_without_observation_splice
+    self.assertEqual(len(charts),2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_missing_target_does_not_invent_regional_uplift (test_proposal_evidence.ProposalEvidenceTest.test_missing_target_does_not_invent_regional_uplift)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_evidence.py", line 43, in test_missing_target_does_not_invent_regional_uplift
+    self.assertIn('목표 KPI',text);self.assertNotIn('목표율 미입력',text)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '목표 KPI' not found in '2. 사업 목표\n2.4 기대 변화의 시나리오\n같은 운영량에서 이용률과 추가 방문 비중을 달리한 계획 범위\n추가 방문 목표 · 명\n기준 시나리오 · 기간 합계 ML 전망 대비 +0.01%\n추가 소비 목표 · 만 원\n기준 시나리오 · 기간 합계 ML 전망 대비 +0.02%\n이용률·추가 방문 비중 보수 75%·15% / 기준 75%·30% / 확대 90%·45%\n추가 방문 × 계획 결제 26,188원 + 기존 방문 참여 × 추가 구매 12,000원\n계획 가정을 바꾼 범위이며 통계적 신뢰구간이 아닙니다. 소비/방문 비율은 실측 객단가가 아니며 사업 효과는 사후 확인합니다.\n09 / 16'
+
+======================================================================
+FAIL: test_reference_budget_sums_and_hard_limit (test_proposal_evidence.ProposalEvidenceTest.test_reference_budget_sums_and_hard_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_evidence.py", line 54, in test_reference_budget_sums_and_hard_limit
+    self.assertGreater(build_reference_estimate(larger)['total_krw'],estimate['total_krw'])
+AssertionError: 255200000 not greater than 255200000
+
+======================================================================
+FAIL: test_target_uses_final_month_not_first_month (test_proposal_evidence.ProposalEvidenceTest.test_target_uses_final_month_not_first_month)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_evidence.py", line 35, in test_target_uses_final_month_not_first_month
+    self.assertIn(f"{last['visitors']*1.01:,.0f}명",data)
+AssertionError: '18,382,000명' not found in ''
+
+======================================================================
+FAIL: test_five_steps_are_kept_in_four_rows (test_proposal_layout_v7.LayoutV7Test.test_five_steps_are_kept_in_four_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v7.py", line 31, in test_five_steps_are_kept_in_four_rows
+    self.assertEqual(len([s for s in deck.slides[6].shapes if s.name.startswith('flow-node-')]),4)
+AssertionError: 0 != 4
+
+======================================================================
+FAIL: test_page_order_and_overview_headers (test_proposal_layout_v9.ExecutionDetailTest.test_page_order_and_overview_headers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_layout_v9.py", line 57, in test_page_order_and_overview_headers
+    self.assertIn('지역 적용 방법',_slide_text(p.slides[5]))
+AssertionError: '지역 적용 방법' not found in '2.1 사업 목표\n사업내용\n야간 동선·식음쇼핑 혜택·숙박 완료\n인증을 하나의 패스로 연결합니다.\n사업기간\n3개월 시범 운영\n준비·협의 → 시범 운영 → 성과 확인\n목표 KPI\n3개월 월별 합계\n방문자 5,466만 명\n관광소비액 14,410억 원\n관광객 방문자 수\nML 기준 전망\n목표 KPI\n관광소비액\nML 기준 전망\n목표 KPI\n청록선: 한국관광 데이터랩의 과거 월별 방문·소비 기록과 계절 흐름을 바탕으로 계산한 전망입니다.\n빨간선: 공식 사례를 참고해 정한 사업 목표입니다. 목표율은 조정할 수 있으며, 산출 근거 페이지에서 설명합니다.\n2. 사업 목표\n06 / 16\n3개월 목표: ML 전망 대비 방문자 +362,667명, 관광소비액 +1.34%'
+
+======================================================================
+FAIL: test_generates_strategy_deck_with_calculation_pages (test_proposal_presentation.ProposalPresentationTest.test_generates_strategy_deck_with_calculation_pages)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation.py", line 76, in test_generates_strategy_deck_with_calculation_pages
+    self.assertEqual(len(presentation.slides), 14)
+AssertionError: 16 != 14
+
+======================================================================
+FAIL: test_comparison_uses_selected_case_and_only_plots_observed_yoy (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_comparison_uses_selected_case_and_only_plots_observed_yoy)
+사례 선택을 보존하고 수치가 없을 때는 장식 막대를 사실처럼 남기지 않습니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 300, in test_comparison_uses_selected_case_and_only_plots_observed_yoy
+    self.assertIn('선정된 공식 문화 프로그램 사례', text)
+AssertionError: '선정된 공식 문화 프로그램 사례' not found in '1.2 참고 사례 실적 공식 자료에서 확인한 운영 사례 사례에서 참고한 이용 흐름 공식 운영 확인 사례의 대상·이용 방식 확인 지역 조건 연결 우리 지역 자원·참여처와 비교 실행안 구성 일정·규모·집계 방법을 제안 문화시설 이용을 확인한 예약 참여자에게 혜택 제공 사례의 운영 내용 → 지역 조건에 맞춘 실행 계획 자료 구분: 운영 사례. 수치 목표와 견적은 뒤의 산출 근거에서 제시합니다. 1. 지역별 사례 05 / 16 유사 사업 참고 · 인천 섬 · 로컬체험 여행 소개 사진 출처: 인천광역시 섬포털'
+
+======================================================================
+FAIL: test_estimate_and_provenance_do_not_invent_missing_facts (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_estimate_and_provenance_do_not_invent_missing_facts)
+참고 견적을 확정 견적과 구분하고 요청대로 AI 검수 블록을 제외합니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 315, in test_estimate_and_provenance_do_not_invent_missing_facts
+    self.assertIn('실제 액수와 다를 수 있습니다', estimate_text)
+AssertionError: '실제 액수와 다를 수 있습니다' not found in '3.1 사례 선정과 지역 적용\n동일 운영 방식의 공식 사례를 추가 연결할 수 있습니다.\n사례 → 우리 지역의 제안\n야간 동선·식음쇼핑 혜택·숙박 완료 인증을 하나의 패스로 연결합니다.\n문서 기반 함수 연결 · 기록 없음\n3. 지역 적용과 실행\n10 / 16'
+
+======================================================================
+FAIL: test_generates_editable_slides_with_native_charts_and_calculations (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_generates_editable_slides_with_native_charts_and_calculations)
+각 장을 이미지 한 장으로 붙이지 않고 텍스트·사진·차트를 편집 가능하게 유지합니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 216, in test_generates_editable_slides_with_native_charts_and_calculations
+    self.assertIn(label, texts_by_slide[slide_number - 1], f'{slide_number}장 필수 문구 누락: {label}')
+AssertionError: '서울특별시 강남구' not found in '강남 이브닝 스테이 패스 실행 기획안\n사업기간 2026.08 ~ 2026.10\n2026.09.17\n서울특별시' : 1장 필수 문구 누락: 서울특별시 강남구
+
+======================================================================
+FAIL: test_missing_optional_image_and_ml_data_keeps_twelve_slide_structure (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_missing_optional_image_and_ml_data_keeps_twelve_slide_structure)
+사진 URL이나 ML 전망이 없어도 외부 통신 없이 동일한 템플릿으로 출력합니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 263, in test_missing_optional_image_and_ml_data_keeps_twelve_slide_structure
+    self.assertIn('예측치 미제공', _slide_text(deck.slides[3]))
+AssertionError: '예측치 미제공' not found in '1.1 지역별 참고 사례\n1. 지역별 사례\n04 / 14'
+
+======================================================================
+FAIL: test_public_entrypoint_uses_approved_template_renderer (test_proposal_presentation_v3_contract.ProposalPresentationV4ContractTest.test_public_entrypoint_uses_approved_template_renderer)
+기존 API import가 새 구현을 가리키고 템플릿 파일이 실제로 존재해야 합니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_proposal_presentation_v3_contract.py", line 180, in test_public_entrypoint_uses_approved_template_renderer
+    self.assertEqual(proposal_presentation_v4.PRESENTATION_RENDER_VERSION, 'pptx-source-bound-rationale-v20')
+AssertionError: 'pptx-v46-linked-cost' != 'pptx-source-bound-rationale-v20'
+- pptx-v46-linked-cost
++ pptx-source-bound-rationale-v20
+
+
+======================================================================
+FAIL: test_word_proposal_uses_ml_natural_trend_without_default_policy_effect (test_report_orchestrator.ReportOrchestratorTest.test_word_proposal_uses_ml_natural_trend_without_default_policy_effect)
+사용자 목표가 없으면 임의 +5%/+8%를 만들지 않고 ML 전망만 표시합니다.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_report_orchestrator.py", line 394, in test_word_proposal_uses_ml_natural_trend_without_default_policy_effect
+    self.assertIn('머신러닝 전망과 목표 KPI', text)
+AssertionError: '머신러닝 전망과 목표 KPI' not found in '서울특별시 강남구\n시범사업\n관광 전략기획안\n사업기간  26.07 ~ 26.09\n핵심 제안\n요약\n사업의 목표\n\n목표는 월별 ML 기준 전망에 계획 증가율을 적용한 값입니다. 방문 합계는 월간 순 방문 수의 합계이며, 3개월 동안 중복을 제거한 인원이 아닙니다.\n제안의 방향\n문제\nQR 쿠폰을 운영합니다.\n문서 구성\n01 사업 목표  ·  02 목표 KPI 산출근거  ·  03 참고 사례와 실적\n04 지역 적용  ·  05 실행 가이드  ·  06 견적  ·  07 생성 과정  ·  출처\n01  사업 목표\n방문자 수\n\n\n수치 해석과 계산 기준\n파란선은 한국관광 데이터랩의 과거 월별 방문·소비 기록과 계절 흐름을 바탕으로 계산한 전망입니다. 주황선은 공식 사례를 참고해 정한 계획 목표입니다.\n준비월 추가 목표는 0명·0원입니다. 운영월 추가 목표 = 월별 전망 × 최종월 목표율 × 경과 운영월/전체 운영월. 합계 증가율은 월별 목표 합계 ÷ 기준 전망 합계 − 1로 계산합니다.\n소비액 표시는 억 원 단위 소수 둘째 자리로 반올림합니다. 합계와 증가율은 반올림 전 값으로 계산합니다. 방문 합계는 3개월 고유 인원이 아닌 월간 순 방문 수의 합계입니다.\n01  사업 목표 관광소비액\n관광소비액\n\n\n수치 해석과 계산 기준\n파란선은 한국관광 데이터랩의 과거 월별 방문·소비 기록과 계절 흐름을 바탕으로 계산한 전망입니다. 주황선은 공식 사례를 참고해 정한 계획 목표입니다.\n준비월 추가 목표는 0명·0원입니다. 운영월 추가 목표 = 월별 전망 × 최종월 목표율 × 경과 운영월/전체 운영월. 합계 증가율은 월별 목표 합계 ÷ 기준 전망 합계 − 1로 계산합니다.\n소비액 표시는 억 원 단위 소수 둘째 자리로 반올림합니다. 합계와 증가율은 반올림 전 값으로 계산합니다. 방문 합계는 3개월 고유 인원이 아닌 월간 순 방문 수의 합계입니다.\n02  목표 KPI 산출근거\n목표율을 정한 이유\n지역 소비·환급: 1개 × 월 20일 × 3개월 × 하루 1회 × 회당 20명 = 1,200명분. 편성 한도 1,088명분에 이용률 75%를 적용해 816명 참여, 추가 방문 비중 30%로 244명 유치를 제안합니다. 기간 합계 ML 전망 대비 방문 +6.89%, 소비 +14.97%의 계획 시나리오입니다. 참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다. 실제 운영 산정: 2026-07~2026-09, 3개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다.\n최종월 계획 목표  방문 +10.31%  ·  소비 +22.39%\n3개월 동안 추가로 달성할 규모\n\n운영 규모와 계획 범위\n1개 × 월 20일 × 3개월 × 하루 1회 × 회당 20명 = 1,200명분\n실제 운영 산정: 2026-07~2026-09, 3개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다.\n운영 거점 = ceil(√(월평균 ML 방문 전망 ÷ 100,000)), 최소 1·최대 12개 · 확보 시설 수가 아닌 운영 제안입니다.\n참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다.\n\n추가 방문 × 계획 결제 10,000원 + 기존 방문 참여 × 추가 구매 5,000원\n보수·기준·확대는 이용률과 추가 방문 비중을 ±15%p 바꾼 계획 범위이며 통계적 오차범위가 아닙니다. 참여 목표는 75~100% 안에서 적용합니다. 거점 수는 운영 제안이며 소비/방문 비율은 실측 객단가가 아닙니다.\n산출한 추가 방문·소비 규모는 각 달의 ML 전망과 단계 운영 비중에 따라 배분합니다.\n03  지역별 참고 사례\n공식 문서에서 사업의 실제 운영 방식이 연결되는 사례를 참고합니다. 아래 구분은 선정 사업의 근거와 추가 참고 사례의 역할을 나타냅니다.\n04  사례 선정과 지역 적용\n사업의 이용 흐름\n\n결제·혜택·재이용 또는 예약·체류 등 실제 이용 흐름이 같은 사례를 연결합니다.\n선택 지역의 소비와 체류\n\n지역 소비·체류 지표를 보고 참여 업종과 이용 대상을 정합니다.\n운영 규모\n1개 × 월 20일 × 3개월 × 하루 1회 × 회당 20명 = 1,200명분 → 참여 목표 816건의 예상 집행액. 모든 단가는 기획 가정.\n사례에서 우리 지역의 제안으로\nQR 쿠폰을 운영합니다.\n선정 판단\n근거\n연결 근거  \n05  4단계 실행 가이드 예시안\n\n일정은 저장 기획안, 업무 설명은 사업 유형별 운영 안내 함수를 사용한 실행 예시입니다. 담당 역할과 운영 조건은 협의해 조정할 수 있습니다.\n06  견적 예시안\n총 28,397,600원\n예상 견적이며 실제 액수와 다를 수 있습니다.\n\n규모를 정한 기준\n1개 × 월 20일 × 3개월 × 하루 1회 × 회당 20명 = 1,200명분 → 참여 목표 816건의 예상 집행액. 모든 단가는 기획 가정.\n참여자 결제 8,160,000원 중 추가 소비 목표 5,300,000원. 견적은 같은 참여 목표의 사업비이며, 결제액 전체를 신규 소비나 사업 수익으로 계산하지 않습니다.\n100% 참여 시 참고예산: 28,696,800원 (같은 계획 결제액·단가 기준)\n직접비 = 참여 혜택 + 운영·정산 + 시스템 + 홍보 + 평가. 예비비 = 직접비 × 10%. 단가와 처리량은 기획 가정입니다.\n기획용 예상 견적이며 실제 액수와 다를 수 있습니다.\n100% 참여 참고예산도 같은 계획 결제액을 사용한 참고값이며 최대 지급 책임액이 아닙니다.\n계획 결제액은 3개월 ML 소비 합계 ÷ ML 방문 합계를 참고한 기획값입니다. 실제 객단가가 아닙니다.\n기존 방문 참여자의 추가 구매액은 유형별 기준 20,000원과 ML 소비/방문 비율의 50% 중 작은 값입니다.\n환급률 10%, 건별 상한 50,000원 및 점포 묶음 최대 4개당 정산팀 1개는 계획 설정입니다. 지급 총액은 편성 예산 내에서 운영합니다.\n07  기획서 생성 과정\n지역 데이터와 공식 사례를 연결하고, 5개 에이전트가 조사·비교·작성·검수를 나누어 수행합니다.\n\n7개 머신러닝 결과의 사용처\n\n저장된 공식 사례 0건 → 설계 후보 0개 → 참고 사례 0건 표시\n사례 선정은 7개 예측값으로 학습한 지역 추천 모델이 아니라, 지역 지표와 공식 문서의 운영 방식을 읽고 후보를 비교하는 과정입니다. 목표와 견적은 별도의 계획 가정과 Python 산식으로 구성합니다.\n참고 자료와 출처\n저장 보고서의 전체 근거 목록입니다. 원자료·ML 전망·공식 사례를 구분하고 원문 주소와 문서 위치를 유지합니다.'
+
+======================================================================
+FAIL: test_native_ppt_table_and_notes_use_saved_budget (test_saved_budget_view.SavedBudgetViewTest.test_native_ppt_table_and_notes_use_saved_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Admin\mbca\TP2-4\ai_server\test_saved_budget_view.py", line 18, in test_native_ppt_table_and_notes_use_saved_budget
+    self.assertIn('운영 규모를 가정한 시범 예산', text)
+AssertionError: '운영 규모를 가정한 시범 예산' not found in '\n\n강남 이브닝 스테이 패스 실행 기획안\n사업기간 2026.08 ~ 2026.10\n2026.09.17\n\n서울특별시\n\n\nCONTENTS\n목차\n\n서울특별시 강남구 관광 전략기획안\n0\n개요\n\n1\n지역별 사례와 실적\n\n2\n사업 목표와 KPI 산출근거\n\n3\n지역 적용과 실행\n\n4\n견적 예시안\n\n5\n기획서 생성 과정\n\n6\n근거·데이터·출처\n\n\n참고 이미지 · 실제 장소 사진 아님\n강남구 관광 발전 기획안\n월별 관광 흐름을 확인하고, 공식 사례에서 지역에 맞는\n실행 아이디어를 찾습니다.\n방문·소비 전망 → 공식 사례 비교 → 지역에 맞춘 실행 제안\n0. 개요\n03 / 16\n1.1 지역별 참고 사례\n1. 지역별 사례\n04 / 16\n\n1.2 참고 사례 실적\n\n공식 자료에서 확인한 운영 사례\n\n사례에서 참고한 이용 흐름\n\n공식 운영 확인\n사례의 대상·이용 방식 확인\n\n지역 조건 연결\n우리 지역 자원·참여처와 비교\n\n실행안 구성\n일정·규모·집계 방법을 제안\n공식 사업 내용에 맞춰 운영 범위를 설계합니다.\n사례의 운영 내용 → 지역 조건에 맞춘 실행 계획\n자료 구분: 운영 사례. 수치 목표와 견적은 뒤의 산출 근거에서 제시합니다.\n1. 지역별 사례\n05 / 16\n\n관광 참고 이미지 · 인천 섬 · 로컬체험 여행 소개 사진\n출처: 인천광역시 섬포털\n2.1 사업 목표\n\n사업내용\n야간 동선·식음쇼핑 혜택·숙박 완료\n인증을 하나의 패스로 연결합니다.\n\n사업기간\n3개월 시범 운영\n준비·협의 → 시범 운영 → 성과 확인\n\n목표 KPI\n3개월 월별 합계\n방문자 5,466만 명\n관광소비액 14,410억 원\n\n관광객 방문자 수\n\nML 기준 전망\n\n목표 KPI\n\n관광소비액\n\nML 기준 전망\n\n목표 KPI\n청록선: 한국관광 데이터랩의 과거 월별 방문·소비 기록과 계절 흐름을 바탕으로 계산한 전망입니다.\n빨간선: 공식 사례를 참고해 정한 사업 목표입니다. 목표율은 조정할 수 있으며, 산출 근거 페이지에서 설명합니다.\n2. 사업 목표\n06 / 16\n3개월 목표: ML 전망 대비 방문자 +362,667명, 관광소비액 +1.34%\n\n2.2 목표 KPI 산출근거\n목표율을 정한 이유와 3개월 동안 추가로 달성할 규모\n목표를 정한 이유\n현재 목표는 사용자가 지정한 값입니다.\n운영 규모 시나리오는 다음 장의 참고안입니다.\n\n방문 +1.00% · 소비 +2.00% 적용\n추가 방문·소비 규모를 먼저 계산하고\n월별 전망과 단계 운영 비중에 따라 배분합니다.\n\n추가 방문 목표\n↑ 362,667명\n3개월 월별 합계 · +0.67%\n\n추가 소비 목표\n↑ 190.13억 원\n3개월 월별 합계 · +1.34%\n목표는 계획 가정입니다. 사례의 사업 효과를 예측한 값이 아니며, 방문 합계에는 월간 중복이 포함됩니다.\n2. 사업 목표\n07 / 16\n2. 사업 목표\n2.3 운영 규모와 산출 근거\n운영량을 먼저 제안하고, 참여와 추가 방문을 차례로 계산합니다\n\n지역 관광 규모\n월평균 1,810.0만 명\n저장 ML 방문 전망\n\n제안 운영 규모\n12개 운영 거점\n월 8일 · 하루 2회\n\n참여 목표\n17,280명\n편성 한도 23,040 × 이용률 75%\n\n추가 방문 목표\n5,184명\n참여 목표 × 추가 방문\n비중 30%\n\n운영량 계산\n12개 × 월 8일 × 3개월 × 하루 2회 × 회당 40명 = 23,040명분\n2026-08~2026-10 운영 · 예상 견적 2.55억 원\n사례와의 차이\n공식 사례의 운영 방식을 참고하며, 발표 실적을 우리 지역 정원으로 환산하지 않습니다.\n서울특별시 강남구: 월평균 ML 방문 1,810.0만 명을 규모 입력으로 사용.\n거점은 √(월평균 방문 ÷ 10만)을 올려 1~12개로 제안한 뒤 예산을 반영합니다. 인구 보정·학습 모델의 결과는 아닙니다.\n참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다.\n사용자 지정 목표·견적과 별도로 계산한 운영 참고안입니다.\n08 / 16\n2. 사업 목표\n2.4 기대 변화의 시나리오\n같은 운영량에서 이용률과 추가 방문 비중을 달리한 계획 범위\n\n추가 방문 목표 · 명\n기준 시나리오 · 기간 합계 ML 전망 대비 +0.01%\n\n추가 소비 목표 · 만 원\n기준 시나리오 · 기간 합계 ML 전망 대비 +0.02%\n이용률·추가 방문 비중 보수 75%·15% / 기준 75%·30% / 확대 90%·45%\n추가 방문 × 계획 결제 26,188원 + 기존 방문 참여 × 추가 구매 12,000원\n계획 가정을 바꾼 범위이며 통계적 신뢰구간이 아닙니다. 소비/방문 비율은 실측 객단가가 아니며 사업 효과는 사후 확인합니다.\n사용자 지정 목표·견적과 별도로 계산한 운영 참고안입니다.\n09 / 16\n3.1 사례 선정과 지역 적용\n동일 운영 방식의 공식 사례를 추가 연결할 수 있습니다.\n\n사례 → 우리 지역의 제안\n야간 동선·식음쇼핑 혜택·숙박 완료 인증을 하나의 패스로 연결합니다.\n문서 기반 함수 연결 · 기록 없음\n3. 지역 적용과 실행\n10 / 16\n3.2 4단계 실행 가이드 예시안\n\n01\n준비와 협의\n1단계 / 2단계 · 사업 총괄\n함께 운영할 곳과 업무 범위를 정합니다.\n계획에 나온 참여처와 운영 가능 시간을 확인합니다. 누가 이용자를 안내하고 문의에 답할지 정한 뒤, 신청\n대상과 이용 조건을 하나의 안내문으로 정리합니다.\n\n02\n운영 절차 점검\n3단계 · 운영·정산 담당\n이용자 입장에서 전 과정을 시험합니다.\n안내를 보고 신청한 뒤 현장에서 이용을 마칠 때까지 직접 따라가 봅니다. 예약이 안 되거나 취소가 생겼을\n때의 처리 방법을 정하고 담당자에게 공유합니다.\n\n03\n시범 운영\n4단계 · 현장 운영 담당\n제한된 범위에서 먼저 운영합니다.\n협의된 참여처와 시간대로 시작합니다. 현장 담당자가 안내와 안전 상태를 확인하고, 매일 신청 수와 실제\n이용 수를 기록합니다. 반복되는 문의는 안내문에 반영합니다.\n\n04\n실적 확인과 평가\n5단계 · 사업·평가 담당\n이용 실적과 비용을 함께 정리합니다.\n매주 이용 기록과 지출 내역을 확인하고 불편이 생긴 원인을 정리합니다. 종료 후 같은 기준의 운영 전 자료와\n비교하되, 계절 변화와 사업 효과를 구분해 보고합니다.\n작성 기준: 저장된 일정 + 사업 유형별 운영 안내 함수. 공식 협약·법정 절차를 인용한 내용이 아니라 조정 가능한 실행 예시입니다.\n3. 지역 적용과 실행\n11 / 16\n3.3 머신러닝 예측값과 목표 KPI\n관광객 방문자 수\n3개월 목표 추가 규모 ↑ 362,667명\n관광소비액\n3개월 목표 추가 규모 ↑ 190.13억 원\n월별 목표 = 해당 월 ML 전망 × (1 + 최종월 목표율 × 경과 월 수 ÷ 전체 월 수). 방문·소비 목표율은 각각 적용합니다.\n합계 증가율 = (목표 합계 ÷ ML 합계 − 1) × 100. 방문 합계는 월 간 중복을 포함하며, 보장된 사업 효과가 아닙니다.\n3. 지역 적용과 실행\n12 / 16\n4.1 견적 예시안\n참여 목표에 따른 예상 사업비\n총 25,520만 원\n참여자 결제 452,525,967원 중 추가 소비 목표 280,909,790원. 견적은 같은 참여 목표의 사업비이며, 결제액 전체를 신규 소비나 사업 수익으로 계산하지 않습니다.\n100% 참여 시 참고예산 318,560,000원 · 같은 계획 결제·단가 기준, 지급 상한 총액은 아님. 예비비는 직접비의 10%.\n예상 견적이며 실제 액수와 다를 수 있습니다. 세금 포함 여부·업무 범위·수량·단가는 계약 전에 조정합니다.\n4. 예상 견적\n13 / 16\n\n\n\n5.1 기획서 생성 파이프라인\n5개 전문 에이전트가 조사·비교·작성·검수를 나누어 수행합니다\n\n① 지역\n근거 정리\nSQL · 공식 관광자료\n② 타지역\n사례 조사\n저장 근거 · 공식 사업·성과\n기획서 생성\n클릭\n비교 모델\n③ 후보 비교\n지역에 맞는\n사업 선택\n작성 모델\n④ 본문 작성\n선정 근거로\n실행 계획 작성\n검수 모델\n⑤ 품질 검수\n수치·출처와\n본문 연결 확인\n저장·출력\n웹\nPPT · Word\n\n지역 관측값 + 7개 ML 전망\n조사 방향과 후보 비교에 함께 전달\n필요한 부분은 보완 작성 후 다시 검수\nOpenAI는 공식 웹에서 사업 사례와 출처를 조사합니다. 이미 확보한 공식 근거는 재사용합니다.\n5. 생성 과정\n14 / 16\n6.1 근거·데이터·출처\n전체 자료명과 머신러닝 모델 1/1 · 파란 자료명을 누르면 원문으로 이동합니다.\n예측거리·누락 범위의 해석 주의가 필요합니다.\n관측 데이터 D01 한국관광 데이터랩 강남구 월간\n원자료 2025-08~2026-07\n머신러닝 예측치 방문자 수 RandomForestRegressor\n최종 월 18,200,000명\n머신러닝 예측치 관광소비액 전년동월 계절 기준선\n최종 월 4,780.00억 원\n6. 근거와 출처\n15 / 16\n\n감사합니다\n데이터로 확인하고,\n현장에서 완성합니다\n서울특별시 강남구\n강남 이브닝 스테이 패스'
+
+----------------------------------------------------------------------
+Ran 505 tests in 528.193s
+
+FAILED (failures=17, errors=6, skipped=1)

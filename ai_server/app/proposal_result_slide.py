@@ -8,6 +8,7 @@ from .proposal_case_outcomes import report_outcome
 def case_performance(slide, report):
     from .case_recommendation import report_cases
     from .case_images import case_image
+    from .proposal_layout_v10 import case_narrative
     header(slide, '사례 실적')
     _, primary = report_cases(report)
     source = primary[0] if primary else {}
@@ -63,7 +64,14 @@ def case_performance(slide, report):
             text(slide,f'result-flow-title-{i}',label,838,y+10,628,30,24,'26323C',True)
             text(slide,f'result-flow-detail-{i}',detail,838,y+45,628,28,21,SLATE)
             if i<2:route(slide,f'result-flow-arrow-{i}',[(797,y+83),(797,y+97)],color='839BA7')
-        text(slide,'result-operation',verified_result or source.get('operating_model') or '공식 사업 내용에 맞춰 운영 범위를 설계합니다.',753,717,741,73,20,SLATE)
+        operation = case_narrative(verified_result or source.get('operating_model')) or '공식 사업 내용에 맞춰 운영 범위를 설계합니다.'
+        # Markdown URL tokens are not narrative: retain their destination as a
+        # clickable link and full source metadata in notes, like the case cards.
+        operation_shape = text(slide,'result-operation',operation,753,717,741,73,20,SLATE)
+        for p in operation_shape.text_frame.paragraphs:
+            for r in p.runs:
+                if str(source.get('source_url') or '').startswith(('https://', 'http://')):
+                    r.hyperlink.address = source['source_url']
         action='사례의 운영 내용 → 지역 조건에 맞춘 실행 계획'
         foot=('집계 기준: '+str(source.get('measurement_period') or '인용한 공식 자료의 집계 기간')+'. 우리 지역의 목표는 별도로 설정합니다.' if verified_result else
               '자료 구분: 운영 사례. 수치 목표와 견적은 뒤의 산출 근거에서 제시합니다.')

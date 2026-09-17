@@ -12,7 +12,7 @@ class AuditTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'audit.json'
             payload={'checked_at':(datetime.now(timezone.utc)-timedelta(days=days)).isoformat(),
-                     'regions':[{'region_code':'43114','verified':False,'data_ready':ready,
+                     'regions':[{'region_code':'43114','verified':True,'data_ready':ready,
                                  'input_signature':'files','sql_signature':'sql',
                                  'details':{'latest_observed_month':'202606'}}],'status':'completed'}
             p.write_text(json.dumps(payload))
@@ -32,6 +32,7 @@ class AuditTest(unittest.TestCase):
             with self.subTest(kwargs=kwargs):
                 row=self.inspect(**kwargs)
                 self.assertFalse(row['data_ready'])
+                self.assertFalse(row['verified'])
                 self.assertTrue(row['readiness_reason'])
 
     def test_missing_audit_is_not_green(self):

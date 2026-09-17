@@ -15,9 +15,10 @@ class SavedBudgetViewTest(unittest.TestCase):
         text = '\n'.join(shape.text for slide in deck.slides for shape in slide.shapes if shape.has_text_frame)
         cells = '\n'.join(cell.text for slide in deck.slides for shape in slide.shapes if shape.has_table
                           for row in shape.table.rows for cell in row.cells)
-        self.assertIn('운영 규모를 가정한 시범 예산', text)
+        self.assertIn('참여 목표에 따른 예상 사업비', text)
+        self.assertIn('예상 견적이며 실제 액수와 다를 수 있습니다', text)
         self.assertEqual(report['strategies'][0]['budget'], '총 1,000,000,000원 (기획 가정: 항목별 단가 미확정)')
-        self.assertIn('기존 시스템 설정 1식 × 800만원', cells)
+        self.assertIn('기존 수단 설정 1식 × 가정 단가 8,000,000원', cells)
         notes = '\n'.join(slide.notes_slide.notes_text_frame.text for slide in deck.slides)
         self.assertNotIn('reference-estimate-v1', notes)
 

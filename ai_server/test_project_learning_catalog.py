@@ -33,7 +33,7 @@ class ProjectLearningCatalogTest(unittest.TestCase):
         self.assertTrue(all(path.startswith('/') for path in fetch_paths))
         self.assertTrue(any(file.path == 'frontend/src/App.jsx' for file in catalog.files))
         self.assertTrue(any(item['name'] == 'react' for item in catalog.dependencies))
-        self.assertEqual(catalog.architecture['current']['services'][0]['port'], '5176')
+        self.assertEqual(catalog.architecture['current']['services'][0]['port'], '5177')
         self.assertEqual(catalog.architecture['deployment']['status'], 'planned')
         self.assertTrue(any(item['path'] == 'src/pages/' for item in catalog.folder_tree))
 

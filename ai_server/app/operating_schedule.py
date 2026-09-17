@@ -4,7 +4,7 @@ import re
 
 def is_launch_step(step):
     task = str(step.get('task') or '')
-    return bool(re.search(r'시범\s*운영|본격\s*운영|축제\s*실행|사업\s*개시|운영\s*개시', task)
+    return bool(re.search(r'시범\s*운영|본격\s*운영|축제\s*실행|사업\s*개시|운영\s*(?:개시|시작)', task)
                 and not re.search(r'(?:계획|준비|구성|매뉴얼).{0,6}(?:수립|작성|검토)', task))
 
 

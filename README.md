@@ -1,5 +1,13 @@
 # STAY-UP AI
 
+2026-09-17 간결한 기획 보완: 다음 생성의 공통 지침에 핵심 KPI 예시, 준비와 실제 운영 개시의 구분, 상품권·협약의 집행 전 확인 절차를 명시했습니다. 운영 규모는 선정 후보의 상세 운영 방식에 맞춥니다. 관련 검사 62개 중 61개 통과·1개 skip. 추가 LLM 생성/전체 반복 검사는 하지 않았으며 실제 생성 검토는 사용자가 웹에서 생성한 뒤 진행합니다.
+
+대전 서구 동일 조건 1건 실생성은 완료했으나 **78점·미승인**입니다. KPI 측정 조건·실행월·지역 적용 조건을 더 확인해야 하므로 제출 완료로 판정하지 않습니다. 실생성에서 발견한 PPT 출력 오류·잘못된 적용 사례 표시·글자 겹침·Word 빈 페이지는 보정했으며, 기존 기획서와 새 결과의 ML·검수 상태는 보존합니다. [상세 결과](docs/SUBMISSION_VALIDATION_20260917.md).
+
+문서 출력 후속: Word 산출근거의 한 문장짜리 넘침 페이지를 내용 손실 없이 정리했습니다. 이미 완성된 Word/PPT는 바이너리 줄 단위 스트리밍 대신 바이트 응답으로 다운로드합니다. 첫 전국 비교 출력은 저장 ML 비교 캐시 계산 때문에 오래 걸릴 수 있습니다. 활성 기획서 생성 중에는 출력 수정을 적용하려고 AI 서버를 재시작하지 않습니다.
+
+2026-09-17 TP2-4 후속 점검: 초록색은 **입력자료 준비**이며 기획서 품질·출력·제출 승인이 아닙니다. 조회 실패 또는 파일/SQL 변경 시 이전 확인 상태를 재사용하지 않습니다. 최소 운영비 미만의 0원 견적은 실행 가능한 견적으로 표시하지 않습니다. 정상 예산 산식·원자료·저장 ML·기존 보고서는 보존합니다. [검증 진행 기록](docs/SUBMISSION_VALIDATION_20260917.md).
+
 2026-09-16 개인 환경 Qwen 전환: `qwen3.8:27b`, 요청 문맥 70,000. 재시작 후 웹의 새 모델 경로와 별도 로컬 시험의 실제 70,000 할당을 확인했습니다. 전체 기획 품질 승인은 별도입니다. [적용·14B 복구 방법](docs/QWEN_MODEL_SWITCH_20260916.md).
 
 2026-09-16 대전 서구 재점검: 긴 축제 사례 원문이 도구별 크기 제한으로 읽히지 않던 오류를 무손실 분할 전달로 수정했습니다. PPT·Word의 4단계 요약도 실제 시범 운영 시작월과 일치하도록 맞췄습니다. 관련 71개 검사와 실제 저장 사례의 전문 복원을 확인했으며, 새 LLM 생성 품질 승인은 별도입니다. [실측·수정 범위](docs/DAEJEON_SECOND_REPORT_REVIEW_20260916.md).
@@ -28,7 +36,7 @@
 
 ## 시작하기 전
 
-지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8112가 필요합니다.
+지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8212가 필요합니다.
 
 2026-09-07: [원주 기획안 정밀 점검·필요 자료 목록](docs/WONJU_PROPOSAL_QUALITY_AUDIT_20260907.md),
 [전국 사례 선택 정책](docs/NATIONWIDE_CASE_SELECTION.md), [전체 기획안 생성 준비도 점검](docs/PROPOSAL_READINESS_AUDIT_20260907.md)을 추가했습니다.
@@ -164,24 +172,24 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 최초 설치가 끝난 뒤 세 서버를 한 번에 실행하려면 프로젝트 루트에서 아래 명령을 사용합니다. Backend, AI Server, Frontend가 각각 별도 PowerShell 창에서 계속 실행됩니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
+cd C:\Users\Admin\mbca\TP2-4
 .\start-dev.ps1
 ```
 
 개별 실행이 필요하면 아래 명령을 사용합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\frontend
-$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8100'
-$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8112'
-npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
+cd C:\Users\Admin\mbca\TP2-4\frontend
+$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8200'
+$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8212'
+npm run dev -- --host 0.0.0.0 --port 5177 --strictPort
 ```
 
-`start-dev.ps1`로 실행한 TP2-3 개발 주소는 `http://localhost:5176`입니다. TP2-2와 동시에 실행해도 충돌하지 않도록 TP2-3은 Backend `8100`, AI Server `8112`, Frontend `5176`을 사용합니다. Windows에서 기존 `8111` 리스너가 중복 잔류한 개발 환경을 피해 AI 포트를 옮겼습니다. 첫 설치 이후에만 `npm install`이 필요합니다.
+`start-dev.ps1`로 실행한 TP2-4 개발 주소는 `http://localhost:5177`입니다. 기존 TP2-3과 동시에 실행해도 충돌하지 않도록 TP2-4는 Backend `8200`, AI Server `8212`, Frontend `5177`을 사용합니다. 첫 설치 이후에만 `npm install`이 필요합니다.
 
 `start-dev.ps1`에서 `Python virtual environment was not found` 오류가 나오면 프로젝트 루트에서 `.\setup-dev.ps1`를 먼저 실행합니다.
 
-같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5176 인바운드 허용이 필요할 수 있습니다.
+같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5177 인바운드 허용이 필요할 수 있습니다.
 
 ## 발표용 프로젝트 구조 탐색기
 
@@ -192,27 +200,27 @@ npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
 & .\backend\.venv\Scripts\python.exe -m streamlit run project_tree_explorer/app.py --server.port 8501
 ```
 
-React 화면에서 `http://localhost:5176/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
+React 화면에서 `http://localhost:5177/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
 
 ## 지도 Backend 실행
 
 새 터미널에서 아래를 실행합니다. 지도에는 루트 `.env`의 `VWORLD_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\backend
+cd C:\Users\Admin\mbca\TP2-4\backend
 .\.venv\Scripts\Activate.ps1
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8100
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8200
 ```
 
-Backend와 프론트엔드가 모두 실행되면 `http://localhost:5176/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
+Backend와 프론트엔드가 모두 실행되면 `http://localhost:5177/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
 
 ## AI 서버와 Word 기획서 실행
 
 강남구 AI 전략기획서와 Word 다운로드는 별도 AI 서버가 담당합니다. 루트 `.env`에 `OPENAI_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
-.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8112
+cd C:\Users\Admin\mbca\TP2-4
+.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8212
 ```
 
 - 화면의 `AI 전략기획서 생성`은 Evidence Agent가 선택 지역 근거를 모으고, Case Scout가 전국 공식 성공사례의 실행 방식·예산·성과를 조사합니다. Transferability Agent가 지역 적합성을 평가한 뒤 Planner가 3~6개월 기획안을 작성하고 Reviewer가 사례 오용과 실행 가능성을 검토합니다. 기준 미달 시 한 번 수정합니다.
@@ -269,7 +277,7 @@ PPT는 승인된 양식을 유지하며 사례 소개 다음에 선정 근거 �
 
 전체 구조 지도에서도 **ML 결과 → 전략**을 선택해 같은 ML 연결 설명을 기존 단계별 파일 탐색 방식으로 확인할 수 있습니다.
 
-관리자 [머신러닝 결과](http://localhost:5176/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
+관리자 [머신러닝 결과](http://localhost:5177/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
 
 PPT 사례 카드는 오른쪽 여백과 자동 줄바꿈을 적용합니다. 출력 버전은 `pptx-case-wrap-v13`입니다.
 

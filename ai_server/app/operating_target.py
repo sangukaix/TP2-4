@@ -120,7 +120,12 @@ def build_operating_target(report):
         return {'version': VERSION, 'status': 'no_comparable_forecast', 'scenarios': [],
                 'explanation': '지역 전망과 운영 조건을 연결해 참여 규모를 제안합니다.'}
     strategy = (report.get('strategies') or [{}])[0]
-    family = operation_family(strategy)
+    decision = report.get('planning_decision') or {}
+    selected = next((c for c in decision.get('design_candidates') or []
+                     if c.get('candidate_id') == decision.get('selected_candidate_id')), {})
+    # Use the same detailed selected operation as case export, not an incidental
+    # lodging word in the shortened solution. Never change the stored decision.
+    family = operation_family({**strategy, 'mechanism': selected.get('mechanism') or strategy.get('solution')})
     label, site_label, days, sessions, seats, allowance, extra_spend = PROFILES.get(family, PROFILES['other_operation'])
     schedule = operating_schedule(rows, strategy)
     months = len(schedule['active_months'])
@@ -258,7 +263,7 @@ def build_operating_target(report):
     plan['operating_period'] = f'{active[0][:4]}-{active[0][4:]}~{active[-1][:4]}-{active[-1][4:]}'
     plan['schedule_note'] = f"실제 운영 산정: {plan['operating_period']}, {months}개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다."
     plan['explanation'] += ' ' + plan['schedule_note']
-    plan['estimate'] = {'version': VERSION, 'status': 'planning_assumption_not_quote',
+    plan['estimate'] = {'version': VERSION, 'status': 'budget_below_operating_floor' if below_floor else 'planning_assumption_not_quote',
                         'scale_basis': formula + f" → 참여 목표 {central['participants']:,}건의 예상 집행액. 모든 단가는 기획 가정.",
                         'months': months, 'refund': refund, 'quantity': central['participants'], 'unit_krw': payout,
                         'capacity_quantity': funded, 'per_claim_cap_krw': allowance if refund else None,
@@ -267,7 +272,9 @@ def build_operating_target(report):
                         'purchase_per_participant_krw': proxy_for_program,
                         'qualifying_spend_krw': central['participant_purchases_krw'] if refund else None,
                         'subtotal_krw': subtotal, 'reserve_krw': reserve,
-                        'total_krw': subtotal + reserve, 'within_hard_budget': budget is None or subtotal + reserve <= budget,
+                        # A zero placeholder for an unplanned operation is not a
+                        # feasible quote, even though zero is below the ceiling.
+                        'total_krw': subtotal + reserve, 'within_hard_budget': not below_floor and (budget is None or subtotal + reserve <= budget),
                         'full_participation_budget_krw': cost(funded) if not below_floor else 0,
                         'participant_purchases_krw': central['participant_purchases_krw'],
                         'additional_spending_krw': central['additional_spending_krw'],
@@ -279,4 +286,8 @@ def build_operating_target(report):
                             plan['purchase_basis'],
                             f'기존 방문 참여자의 추가 구매액은 유형별 기준 {extra_spend:,}원과 ML 소비/방문 비율의 50% 중 작은 값입니다.',
                         ] + ([f'환급률 {refund_rate*100:g}%, 건별 상한 {allowance:,}원 및 점포 묶음 최대 4개당 정산팀 1개는 계획 설정입니다. 지급 총액은 편성 예산 내에서 운영합니다.'] if refund else [])}
+    if below_floor:
+        plan['estimate'].update(scale_basis=plan['explanation'],
+                                scenario_note='운영안 미편성: 입력 예산이 기본 운영비보다 작아 0원은 집행 가능한 견적이 아닙니다.',
+                                minimum_operating_budget_krw=minimum_budget)
     return plan
