@@ -32,6 +32,7 @@ import TourismAssistant from '../components/TourismAssistant'
 import ConsumptionCategoryHelp from '../components/ConsumptionCategoryHelp'
 import { regionReadinessLabel, regionDataReady } from '../features/planning/regionReadinessLabel'
 import WorkspaceShell from '../components/WorkspaceShell'
+import predictionLoadingVideo from '../assets/prediction-animation-alpha-v7.webm'
 import '../App.css'
 
 // 섬이 많거나 길쭉한 시도는 도형의 가운데에 자동으로 이름을 찍으면 글자가 바다 쪽으로 밀릴 수 있습니다.
@@ -525,6 +526,7 @@ function TourismChartLegend({ payload }) {
   return (
     <ul className="tourism-chart-legend" aria-label="그래프 항목">
       {payload.map((entry) => {
+        if (entry.dataKey === 'spending_bridge_krw') return null
         const series = TOURISM_CHART_CONFIG[entry.dataKey]
         return <li key={entry.dataKey}><i style={{ background: series?.color ?? entry.color }} />{series?.label ?? entry.value}{entry.dataKey === 'visitors' && <small>(만 단위)</small>}</li>
       })}
@@ -538,9 +540,16 @@ function TourismChartLegend({ payload }) {
  */
 function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 원자료를 불러오는 중입니다.' }) {
   const hasForecast = Boolean(trend?.some((point) => point.is_forecast))
+  const forecastKey = trend?.filter((point) => point.is_forecast).map((point) => point.month).join('|') || ''
+  const forecastCount = trend?.filter((point) => point.is_forecast).length || 0
   const [isMobileChart, setIsMobileChart] = useState(() => (
     typeof window !== 'undefined' && window.matchMedia('(max-width: 500px)').matches
   ))
+  const [forecastRevealCount, setForecastRevealCount] = useState(0)
+  const [showForecastBridge, setShowForecastBridge] = useState(false)
+  const [forecastVideoState, setForecastVideoState] = useState('playing')
+  const [forecastRevealStart, setForecastRevealStart] = useState(null)
+  const forecastRevealStartedRef = useRef(false)
   const formatVisitorTick = (value) => `${Math.round(value / 10_000).toLocaleString('ko-KR')}만`
   const formatMobileVisitorTick = (value) => {
     const amount = Math.round(value / 10_000)
@@ -565,7 +574,50 @@ function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 �
     return () => mediaQuery.removeEventListener?.('change', handleViewportChange)
   }, [])
 
+  const startForecastReveal = useCallback(() => {
+    if (forecastRevealStartedRef.current) return
+    forecastRevealStartedRef.current = true
+    setForecastVideoState('fading')
+    setForecastRevealStart(Date.now())
+  }, [])
+
+  useEffect(() => {
+    if (!hasForecast || forecastCount === 0) {
+      setForecastRevealCount(forecastCount)
+      setShowForecastBridge(false)
+      setForecastVideoState('hidden')
+      setForecastRevealStart(null)
+      return undefined
+    }
+
+    setForecastRevealCount(0)
+    setShowForecastBridge(false)
+    setForecastVideoState('playing')
+    setForecastRevealStart(null)
+    forecastRevealStartedRef.current = false
+    const fallbackTimer = window.setTimeout(startForecastReveal, 7000)
+    return () => window.clearTimeout(fallbackTimer)
+  }, [hasForecast, forecastCount, forecastKey, startForecastReveal])
+
+  useEffect(() => {
+    if (!forecastRevealStart) return undefined
+    const timers = Array.from({ length: forecastCount }, (_, index) => (
+      window.setTimeout(() => setForecastRevealCount(index + 1), index * 500)
+    ))
+    timers.push(window.setTimeout(() => setShowForecastBridge(true), 1650))
+    return () => timers.forEach((timer) => window.clearTimeout(timer))
+  }, [forecastRevealStart, forecastCount])
+
+  useEffect(() => {
+    if (forecastVideoState !== 'fading') return undefined
+    const timer = window.setTimeout(() => setForecastVideoState('hidden'), 450)
+    return () => window.clearTimeout(timer)
+  }, [forecastVideoState])
+
+  const showForecast = !hasForecast || forecastRevealCount > 0
+
   const renderVisitorBarLabel = ({ x, y, width, height: barHeight, value, payload }) => {
+    if (hasForecast && (!payload || (payload.is_forecast && payload.forecastIndex >= forecastRevealCount))) return null
     const amount = Number(value)
     // 매우 낮은 막대는 두 줄 라벨이 겹칠 수 있어 표시하지 않습니다.
     if (!Number.isFinite(amount) || Number(barHeight) < 32) return null
@@ -574,18 +626,8 @@ function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 �
       : Math.round(amount / 10_000).toLocaleString('ko-KR')
     const centerX = Number(x) + Number(width) / 2
     const centerY = Number(y) + Number(barHeight) / 2
-    const isForecastBar = Boolean(payload?.is_forecast)
     return (
-      <text
-        x={centerX}
-        y={centerY}
-        fill="#fff"
-        fontSize={10}
-        fontWeight={500}
-        textAnchor="middle"
-        className={isForecastBar ? 'monthly-trend-forecast-value' : undefined}
-        style={isForecastBar ? { '--forecast-reveal-delay': `${(payload.forecastIndex ?? 0) * 0.18}s` } : undefined}
-      >
+      <text x={centerX} y={centerY} fill="#fff" fontSize={10} fontWeight={500} textAnchor="middle">
         <tspan x={centerX} dy=".35em">{number}</tspan>
       </text>
     )
@@ -604,12 +646,12 @@ function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 �
   let forecastIndex = 0
   const chartData = trend.map((point) => {
     const pointForecastIndex = point.is_forecast ? forecastIndex++ : -1
+    const isForecastVisible = !point.is_forecast || pointForecastIndex < forecastRevealCount
     return {
       ...point,
       forecastIndex: pointForecastIndex,
       spending_actual_krw: point.is_forecast ? null : point.spending_krw,
-      // 예측선은 첫 예측월부터 실제선과 다른 색으로 표시합니다. 값 자체는 API 응답을 그대로 사용합니다.
-      spending_forecast_krw: point.is_forecast ? point.spending_krw : null,
+      spending_forecast_krw: point.is_forecast && isForecastVisible ? point.spending_krw : null,
     }
   })
   const lastActualIndex = chartData.reduce((lastIndex, point, index) => (point.is_forecast ? lastIndex : index), -1)
@@ -620,25 +662,33 @@ function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 �
   }))
   const visitorAxisMax = paddedAxisMax(Math.max(...chartData.map((point) => Number(point.visitors) || 0)))
   const spendingAxisMax = paddedAxisMax(Math.max(...chartData.map((point) => Number(point.spending_krw) || 0)))
-  const forecastZoneStart = firstForecastIndex > 0
-    ? `${Math.round((firstForecastIndex / chartData.length) * 100)}%`
-    : '50%'
   const chartMargin = isMobileChart
     ? { top: 28, right: 4, left: 4, bottom: 10 }
     : { top: 28, right: 20, left: 14, bottom: 10 }
 
   return (
-    <div
-      className={`monthly-trend-chart${hasForecast ? ' monthly-trend-chart--forecast is-ready' : ''}`}
-      style={hasForecast ? { '--forecast-zone-start': forecastZoneStart } : undefined}
-    >
+    <div className={`monthly-trend-chart${hasForecast ? ' monthly-trend-chart--forecast' : ''}${showForecast ? ' is-ready' : ' is-loading'}`}>
       {hasForecast && (
         <>
-          <div className="monthly-trend-actual-zone" aria-label="관측값 구간">
-            <span className="monthly-trend-actual-status">관측값</span>
+          <div className="monthly-trend-actual-zone" aria-label="최근 3개월">
+            <span className="monthly-trend-actual-status">최근 3개월</span>
           </div>
-          <div className="monthly-trend-forecast-zone" aria-label="ML 예측 구간">
-            <span className="monthly-trend-forecast-status">예측</span>
+          <div className="monthly-trend-forecast-zone" aria-live="polite">
+            {forecastVideoState !== 'hidden' && (
+              <video
+                key={forecastKey}
+                className={`monthly-trend-forecast-loading-video${forecastVideoState === 'fading' ? ' is-fading' : ''}`}
+                src={predictionLoadingVideo}
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                aria-hidden="true"
+                onEnded={startForecastReveal}
+                onError={startForecastReveal}
+              />
+            )}
+            <span className="monthly-trend-forecast-status">{showForecast ? '예측' : '예측 데이터 계산 중...'}</span>
           </div>
         </>
       )}
@@ -652,14 +702,14 @@ function MonthlyActualTrendChart({ trend, height = 278, emptyMessage = '월간 �
         <Legend verticalAlign="bottom" content={<TourismChartLegend />} />
         <Bar yAxisId="visitors" dataKey="visitors" name={TOURISM_CHART_CONFIG.visitors.label} fill={TOURISM_CHART_CONFIG.visitors.color} barSize={25} radius={[4, 4, 0, 0]}>
           {/* 8월부터는 저장 모델의 예측값이므로 실제값과 부드러운 보라색으로 구분합니다. */}
-          {chartData.map((point) => <Cell key={`visitor-${point.month}`} className={point.is_forecast ? 'monthly-trend-forecast-cell' : undefined} style={point.is_forecast ? { '--forecast-reveal-delay': `${point.forecastIndex * 0.18}s` } : undefined} fill={point.is_forecast ? '#7a87d8' : TOURISM_CHART_CONFIG.visitors.color} />)}
+          {chartData.map((point) => <Cell key={`visitor-${point.month}`} className={point.is_forecast ? 'monthly-trend-forecast-cell' : undefined} fill={point.is_forecast ? '#7a87d8' : TOURISM_CHART_CONFIG.visitors.color} opacity={point.is_forecast && point.forecastIndex >= forecastRevealCount ? 0 : 1} />)}
           {/* 막대 내부 중앙에 두 줄로 표시해 어떤 화면 크기에서도 라벨이 막대 밖으로 튀지 않게 합니다. */}
           <LabelList content={renderVisitorBarLabel} />
         </Bar>
         <Line yAxisId="spending" type="monotone" dataKey="spending_actual_krw" name={TOURISM_CHART_CONFIG.spending_krw.label} stroke={TOURISM_CHART_CONFIG.spending_krw.color} strokeWidth={3.5} dot={{ r: 4, fill: '#fff', stroke: TOURISM_CHART_CONFIG.spending_krw.color, strokeWidth: 2 }} activeDot={{ r: 6 }} />
-        <Line yAxisId="spending" type="monotone" dataKey="spending_forecast_krw" name="관광소비액 예상" stroke="#ee7180" strokeWidth={3.5} dot={{ r: 4, fill: '#fff', stroke: '#ee7180', strokeWidth: 2 }} activeDot={{ r: 6 }} legendType="none" isAnimationActive={hasForecast} animationBegin={Math.max(0, forecastIndex - 1) * 180} animationDuration={650} />
-        {hasForecast && lastActualIndex >= 0 && firstForecastIndex >= 0 && (
-          <Line yAxisId="spending" type="monotone" dataKey="spending_bridge_krw" name="" stroke="#16a34a" strokeWidth={3.5} dot={false} activeDot={false} connectNulls legendType="none" isAnimationActive animationBegin={Math.max(0, forecastIndex - 1) * 180} animationDuration={600} animationEasing="ease-out" />
+        <Line yAxisId="spending" type="monotone" dataKey="spending_forecast_krw" name="관광소비액 예상" stroke="#ee7180" strokeWidth={3.5} dot={{ r: 4, fill: '#fff', stroke: '#ee7180', strokeWidth: 2 }} activeDot={{ r: 6 }} legendType="none" opacity={showForecast ? 1 : 0} />
+        {showForecastBridge && lastActualIndex >= 0 && firstForecastIndex >= 0 && (
+          <Line yAxisId="spending" type="monotone" dataKey="spending_bridge_krw" name="" stroke="#16a34a" strokeWidth={3.5} dot={false} activeDot={false} connectNulls legendType="none" isAnimationActive animationDuration={600} animationEasing="ease-out" />
         )}
       </ComposedChart>
       </ResponsiveContainer>
