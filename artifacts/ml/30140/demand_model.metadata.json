@@ -1,8 +1,8 @@
 {
-  "version": "regional-demand-v3.1",
+  "version": "regional-demand-v3.3-learned-all",
   "region_code": "30140",
   "region_name": "대전광역시 중구",
-  "trained_at": "2026-09-11T02:39:47.668183+00:00",
+  "trained_at": "2026-09-18T11:36:43.569226+00:00",
   "data_fingerprint": "55e7eb7ede22f24524015b7919ce2275fadc28d25573f50c1d6adfdd7317ac56",
   "target": {
     "visitors": "월간 외지인 순 방문자 수",
@@ -89,7 +89,8 @@
   "evaluation": {
     "visitors": {
       "selected_model": "RandomForestRegressor",
-      "selection_basis": "validation_mae_only",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": true,
       "validation": {
         "candidate": {
           "mae": 86655.84,
@@ -132,7 +133,8 @@
     },
     "spending_krw": {
       "selected_model": "LinearRegression",
-      "selection_basis": "validation_mae_only",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": true,
       "validation": {
         "candidate": {
           "mae": 4162078908.92,
@@ -174,8 +176,9 @@
       "train_target_count": 11
     },
     "lodging_nights": {
-      "selected_model": "seasonal_naive_previous_year_same_month",
-      "selection_basis": "validation_mae_only",
+      "selected_model": "LinearRegression",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": false,
       "validation": {
         "candidate": {
           "mae": 0.03,
@@ -200,9 +203,9 @@
         "mape_sample_count": 4
       },
       "selected_model_metrics": {
-        "mae": 0.08,
-        "rmse": 0.09,
-        "mape_percent": 2.87,
+        "mae": 0.09,
+        "rmse": 0.11,
+        "mape_percent": 3.44,
         "sample_count": 4,
         "mape_sample_count": 4
       },
@@ -218,7 +221,8 @@
     },
     "lodging_rate_pct": {
       "selected_model": "LinearRegression",
-      "selection_basis": "validation_mae_only",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": true,
       "validation": {
         "candidate": {
           "mae": 0.62,
@@ -260,8 +264,9 @@
       "train_target_count": 11
     },
     "stay_minutes": {
-      "selected_model": "seasonal_naive_previous_year_same_month",
-      "selection_basis": "validation_mae_only",
+      "selected_model": "LinearRegression",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": false,
       "validation": {
         "candidate": {
           "mae": 50.08,
@@ -286,9 +291,9 @@
         "mape_sample_count": 4
       },
       "selected_model_metrics": {
-        "mae": 87.75,
-        "rmse": 125.2,
-        "mape_percent": 12.41,
+        "mae": 161.69,
+        "rmse": 184.27,
+        "mape_percent": 22.83,
         "sample_count": 4,
         "mape_sample_count": 4
       },
@@ -304,7 +309,8 @@
     },
     "navigation_searches": {
       "selected_model": "RandomForestRegressor",
-      "selection_basis": "validation_mae_only",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": true,
       "validation": {
         "candidate": {
           "mae": 10504.34,
@@ -346,8 +352,9 @@
       "train_target_count": 11
     },
     "lodging_searches": {
-      "selected_model": "seasonal_naive_previous_year_same_month",
-      "selection_basis": "validation_mae_only",
+      "selected_model": "RandomForestRegressor",
+      "selection_basis": "learned_model_required_with_baseline_disclosure",
+      "candidate_beats_baseline_on_validation": false,
       "validation": {
         "candidate": {
           "mae": 944.12,
@@ -372,9 +379,9 @@
         "mape_sample_count": 4
       },
       "selected_model_metrics": {
-        "mae": 702.5,
-        "rmse": 788.76,
-        "mape_percent": 11.0,
+        "mae": 613.95,
+        "rmse": 646.9,
+        "mape_percent": 9.26,
         "sample_count": 4,
         "mape_sample_count": 4
       },
@@ -385,7 +392,7 @@
         "sample_count": 4,
         "mape_sample_count": 4
       },
-      "beats_baseline_on_test": false,
+      "beats_baseline_on_test": true,
       "train_target_count": 11
     }
   },
@@ -499,9 +506,9 @@
       "lodging_nights": {
         "1": {
           "selected": {
-            "mae": 0.05,
+            "mae": 0.03,
             "rmse": 0.05,
-            "mape_percent": 1.8,
+            "mape_percent": 1.22,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -515,9 +522,9 @@
         },
         "2": {
           "selected": {
-            "mae": 0.1,
-            "rmse": 0.12,
-            "mape_percent": 3.75,
+            "mae": 0.12,
+            "rmse": 0.15,
+            "mape_percent": 4.69,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -531,9 +538,9 @@
         },
         "3": {
           "selected": {
-            "mae": 0.1,
-            "rmse": 0.12,
-            "mape_percent": 3.94,
+            "mae": 0.07,
+            "rmse": 0.1,
+            "mape_percent": 2.82,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -599,9 +606,9 @@
       "stay_minutes": {
         "1": {
           "selected": {
-            "mae": 24.5,
-            "rmse": 33.95,
-            "mape_percent": 3.66,
+            "mae": 76.59,
+            "rmse": 82.55,
+            "mape_percent": 10.59,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -615,9 +622,9 @@
         },
         "2": {
           "selected": {
-            "mae": 142.5,
-            "rmse": 170.99,
-            "mape_percent": 20.04,
+            "mae": 149.17,
+            "rmse": 149.18,
+            "mape_percent": 21.57,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -631,9 +638,9 @@
         },
         "3": {
           "selected": {
-            "mae": 151.0,
-            "rmse": 173.77,
-            "mape_percent": 21.16,
+            "mae": 102.9,
+            "rmse": 103.32,
+            "mape_percent": 14.65,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -699,9 +706,9 @@
       "lodging_searches": {
         "1": {
           "selected": {
-            "mae": 904.5,
-            "rmse": 956.31,
-            "mape_percent": 15.04,
+            "mae": 661.5,
+            "rmse": 667.94,
+            "mape_percent": 10.86,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -715,9 +722,9 @@
         },
         "2": {
           "selected": {
-            "mae": 406.5,
-            "rmse": 447.66,
-            "mape_percent": 6.05,
+            "mae": 608.5,
+            "rmse": 738.52,
+            "mape_percent": 8.55,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -731,9 +738,9 @@
         },
         "3": {
           "selected": {
-            "mae": 500.5,
-            "rmse": 574.23,
-            "mape_percent": 6.95,
+            "mae": 690.5,
+            "rmse": 692.73,
+            "mape_percent": 9.58,
             "sample_count": 2,
             "mape_sample_count": 2
           },
@@ -751,6 +758,7 @@
   "limitations": [
     "30개월·한 지역의 초기 모델이며 3개월 재귀 시험 origin은 제한적일 수 있습니다.",
     "모델 선택은 Validation에서만 하며 Test 결과를 보고 선택을 바꾸지 않습니다.",
+    "7개 전망값은 모두 학습모델로 산출하며 전년 동월 값은 성능 비교 기준으로만 사용합니다.",
     "예측은 기존 이력의 자연 추세이며 정책 미실행 반사실이나 사업 인과효과가 아닙니다.",
     "검색량은 관심 신호이며 실제 방문자·숙박 예약 건수와 같은 지표가 아닙니다.",
     "업종별 소비비중과 SNS 언급량은 이번 1차 추가 ML의 Target이 아닙니다."

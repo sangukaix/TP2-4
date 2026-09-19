@@ -37,33 +37,21 @@ def operating_page(slide, plan, report=None):
         x=106+i*355
         panel=rect(slide,f'capacity-stage-{i}',x,277,325,247,WHITE);rounded(panel)
         icon(slide,f'capacity-icon-{i}',symbol,x+22,295,46)
-        text(slide,f'capacity-label-{i}',label,x+81,305,228,39,24,DARK,True)
-        text(slide,f'capacity-value-{i}',value,x+20,369,289,62,33,color,True)
-        text(slide,f'capacity-detail-{i}',detail,x+20,446,289,61,20,MUTED)
+        text(slide,f'capacity-label-{i}',label,x+81,305,228,39,21,DARK,True)
+        text(slide,f'capacity-value-{i}',value,x+20,369,289,62,28,color,True)
+        text(slide,f'capacity-detail-{i}',detail,x+20,446,289,61,18,MUTED)
         if i<3:route(slide,f'capacity-arrow-{i}',[(x+329,393),(x+352,393)])
     panel=rect(slide,'capacity-formula-panel',106,550,1388,128,WHITE);rounded(panel)
     text(slide,'capacity-formula-label','운영량 계산',127,568,250,40,25,JADE,True)
-    text(slide,'capacity-formula',plan['capacity_formula'],385,567,1080,48,27,DARK,True)
-    text(slide,'capacity-limit',f"{plan.get('operating_period', plan['forecast_period'])} 운영 · 예상 견적 {amount(plan['estimate']['total_krw'])}",385,620,1080,38,23,MUTED)
+    text(slide,'capacity-formula',plan['capacity_formula'],385,567,1080,48,24,DARK,True)
+    text(slide,'capacity-limit',f"{plan.get('operating_period', plan['forecast_period'])} 운영 · 예상 견적 {amount(plan['estimate']['total_krw'])}",385,620,1080,38,21,MUTED)
     if plan.get('status')=='budget_below_operating_floor':
         get(slide,'capacity-limit').text=f"기본 운영비 가정 {amount(plan['minimum_operating_budget_krw'])} · 입력 예산 내 현재 운영안 미편성"
-    from .proposal_case_outcomes import report_outcome
-    case=next(iter(plan['case_sources']),{})
-    outcome=report_outcome(report) if report else None
-    comparison='공식 사례의 운영 방식을 참고하며, 발표 실적을 우리 지역 정원으로 환산하지 않습니다.'
-    source_url=case.get('source_url')
-    if outcome:
-        delta=outcome['after']-outcome['before']
-        comparison=(f"{outcome['title']}: {outcome['metric']} {outcome['before']:,} → "
-                    f"{outcome['after']:,}명, 차이 {delta:+,}명. 우리 지역 운영 정원과 집계 기준이 다릅니다.")
-        source_url=outcome['references'][1 if len(outcome['references'])>1 else 0][1]
-    text(slide,'capacity-case','사례와의 차이',106,700,230,36,23,JADE,True)
-    copy=text(slide,'capacity-case-name',comparison,350,700,1144,62,21,DARK)
-    if source_url:copy.click_action.hyperlink.address=source_url
     region=(report or {}).get('region_name') or '선택 지역'
-    rule=(f"{region}: 월평균 ML 방문 {plan['mean_monthly_visitors']/10000:,.1f}만 명을 규모 입력으로 사용.\n"
-          f"거점은 √(월평균 방문 ÷ 10만)을 올려 1~12개로 제안한 뒤 예산을 반영합니다. 인구 보정·학습 모델의 결과는 아닙니다.")
-    text(slide,'capacity-scale-rule',rule,106,767,1388,60,20,MUTED)
+    rule=(f"{region}의 월평균 방문 전망을 기준으로 {plan['sites']}개 운영 거점을 제안했습니다.\n"
+          f"위 식으로 계산한 {plan['funded_capacity']:,}명분 중 {c['utilization_pct']:g}%인 {c['participants']:,}명을 참여 목표로 잡았습니다.\n"
+          f"참여자 중 {c['additional_visitor_share_pct']:g}%가 사업 때문에 추가로 방문한다고 보고, {c['additional_visitors']:,}명을 추가 방문 목표로 계산했습니다.")
+    text(slide,'capacity-scale-rule',rule,106,708,1388,104,21,MUTED)
     label=plan.get('participation_basis','참여 목표의 비율과 운영 정원을 함께 적용합니다.')
     disclosure=text(slide,'capacity-disclosure',label,
          106,832,1388,57,19,MUTED)

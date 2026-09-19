@@ -98,6 +98,8 @@ class OperatingTargetTest(unittest.TestCase):
         self.assertEqual(e['total_krw'], c['expected_budget_krw'])
         self.assertGreater(e['full_participation_budget_krw'], e['total_krw'])
         self.assertLess(c['additional_spending_krw'], c['participant_purchases_krw'])
+        self.assertGreater(e['additional_spend_to_budget_ratio'], 1)
+        self.assertIn('기존 지역화폐·웹 신청 수단', e['items'][2]['basis'])
         for scenario in plan['scenarios']:
             self.assertEqual(scenario['participant_purchases_krw'], scenario['participants']*30000)
             self.assertEqual(scenario['expected_support_krw'], scenario['participants']*9000)

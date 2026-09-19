@@ -306,14 +306,14 @@ async def orchestrate_strategy_report(
     ).strip()
     evidence_pack['quality_contract_version'] = QUALITY_CONTRACT_VERSION
     started = perf_counter()
-    notify_progress(2, 'Qwen이 공식 사례를 비교하고 지역에 적용할 사업 후보를 설계하고 있습니다.')
+    notify_progress(2, 'AI가 공식 사례를 비교하고 지역에 적용할 사업 후보를 설계하고 있습니다.')
     transfer_assessment = await _run_openai_stage(
         'transferability',
         '지역 적용 가능성 검토',
         TransferabilityAgent(api_key=api_key, model=transfer_model, llm_router=llm_router).assess(evidence_pack=evidence_pack),
     )
     trace.extend(llm_router.consume_trace())
-    # 저장된 사례가 실제 지역 문제에 부족하다고 Qwen이 판단한 경우에만 공식 웹 보강 1회를 허용합니다.
+    # 저장된 사례가 실제 지역 문제에 부족하다고 지역 비교 AI가 판단한 경우에만 공식 웹 보강 1회를 허용합니다.
     if (llm_router.local_first and not llm_router.student_budget
             and transfer_assessment.get('selection_status') == 'needs_evidence'
             and not transfer_assessment.get('constraint_repair') and not case_pack.get('web_research_attempted')):

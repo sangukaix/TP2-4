@@ -96,7 +96,10 @@ def _compact_evaluation(model: dict[str, Any], forecast_horizon_months: int) -> 
         }
     return {
         'validation_period': model['validation_period'], 'test_period': model['test_period'],
-        'selection_basis': 'validation_mae_only',
+        'selection_basis': ('learned_all_targets_with_baseline_benchmark'
+                            if any(result.get('selection_basis') == 'learned_model_required_with_baseline_disclosure'
+                                   for result in model['evaluation'].values())
+                            else 'validation_mae_only'),
         'recursive_backtest_horizon_months': [1, 2, 3],
         'forecast_horizon_months': forecast_horizon_months,
         'longer_horizon_status': (

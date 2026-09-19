@@ -49,7 +49,7 @@ def build_standard_pipeline_functions(entry: RegionDataCatalogEntry) -> Standard
         load_monthly=load_history,
         write_processed=write_processed,
         artifact_directory=PROJECT_ROOT / 'artifacts' / 'ml' / entry.region_code,
-        model_version='regional-demand-v3.1',
+        model_version='regional-demand-v3.3-learned-all',
     )
 
     def train() -> dict[str, Any]:

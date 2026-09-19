@@ -72,7 +72,7 @@ LOGGER = logging.getLogger(__name__)
 
 # 저장 문서의 레이아웃·생성 규칙이 바뀌면 이 값만 올려 과거 캐시를 안전하게 다시 만듭니다.
 DOCUMENT_RENDER_VERSIONS = {
-    'docx': 'strategy-docx-v21-incentive',
+    'docx': 'strategy-docx-v24-learned-all-forecast',
     'pptx': PRESENTATION_RENDER_VERSION,
 }
 # Matplotlib의 전역 상태와 문서 렌더러를 동시에 사용하지 않습니다.

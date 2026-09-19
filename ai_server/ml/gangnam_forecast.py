@@ -23,7 +23,7 @@ from .validation import TARGETS, data_fingerprint
 ARTIFACT_DIRECTORY = PROJECT_ROOT / 'artifacts' / 'ml' / REGION_CODE
 MODEL_PATH = ARTIFACT_DIRECTORY / 'demand_model.joblib'
 METADATA_PATH = ARTIFACT_DIRECTORY / 'demand_model.metadata.json'
-MODEL_VERSION = 'demand-v3.0'
+MODEL_VERSION = 'demand-v3.3-learned-all'
 
 # 방문자와 소비액은 서로의 과거 흐름을 함께 사용하고, 나머지는 해당 지표의 과거값만 사용합니다.
 FEATURE_NAMES = (
@@ -214,7 +214,12 @@ def _recursive_forecasts(artifact: dict, monthly: pd.DataFrame, horizon: int) ->
         row = {'month': month, 'is_forecast': True}
         for key in TARGETS:
             model = models.get(key)
-            value = float(model.predict(_model_inputs(histories, key, month))[0]) if model is not None else histories[key][-12]
+            if model is None:
+                raise ValueError(
+                    f'ML_LEARNED_MODEL_MISSING: {key} 학습모델이 없습니다. '
+                    '전년 동월 값을 예측값으로 대체하지 않고 모델 재학습이 필요합니다.'
+                )
+            value = float(model.predict(_model_inputs(histories, key, month))[0])
             if not np.isfinite(value):
                 raise ValueError('ML_PREDICTION_INVALID: 유한한 예측값을 만들지 못했습니다.')
             row[key] = _round_prediction(key, value)
@@ -226,12 +231,11 @@ def _recursive_forecasts(artifact: dict, monthly: pd.DataFrame, horizon: int) ->
 
 
 def _fit_selected_models(monthly: pd.DataFrame, evaluation: dict[str, Any]) -> dict[str, Any]:
-    """Validation에서 선택된 Target만 후보모델을 fit하고 기준선 Target은 None으로 둡니다."""
+    """7개 Target의 학습모델을 재귀 시험용 과거 구간에 다시 fit합니다."""
     models = {}
     for key in TARGETS:
         if evaluation[key]['selected_model'] == BASELINE:
-            models[key] = None
-            continue
+            raise ValueError(f'ML_BASELINE_SELECTION_FORBIDDEN: {key}가 전년 동월 기준선을 선택했습니다.')
         features, targets, _, _ = _training_frame(monthly, key)
         models[key] = _factory_for(key)().fit(features, targets)
     return models
@@ -278,7 +282,10 @@ def train_region_models(settings: RegionForecastSettings) -> dict[str, Any]:
     evaluation, models, target_months = {}, {}, None
     for key in TARGETS:
         features, targets, baseline, months = _training_frame(monthly, key)
-        model, result = select_and_evaluate(features, targets, baseline, _factory_for(key))
+        model, result = select_and_evaluate(
+            features, targets, baseline, _factory_for(key),
+            prefer_learned_model=True,
+        )
         models[key], evaluation[key] = model, result
         target_months = target_months or months
 
@@ -310,6 +317,7 @@ def train_region_models(settings: RegionForecastSettings) -> dict[str, Any]:
         'limitations': [
             f'{len(monthly)}개월·한 지역의 초기 모델이며 3개월 재귀 시험 origin은 제한적일 수 있습니다.',
             '모델 선택은 Validation에서만 하며 Test 결과를 보고 선택을 바꾸지 않습니다.',
+            '7개 전망값은 모두 학습모델로 산출하며 전년 동월 값은 성능 비교 기준으로만 사용합니다.',
             '예측은 기존 이력의 자연 추세이며 정책 미실행 반사실이나 사업 인과효과가 아닙니다.',
             '검색량은 관심 신호이며 실제 방문자·숙박 예약 건수와 같은 지표가 아닙니다.',
             '업종별 소비비중과 SNS 언급량은 이번 1차 추가 ML의 Target이 아닙니다.',
@@ -338,6 +346,11 @@ def predict_region_future_months(settings: RegionForecastSettings, horizon: int 
         raise ValueError('예측 기간은 3개월 이상 24개월 이하여야 합니다.')
     artifact, metadata = _load_region_artifact(settings)
     monthly = settings.load_monthly()
+    if artifact.get('version') != settings.model_version or metadata.get('version') != settings.model_version:
+        raise ValueError(
+            'ML_MODEL_VERSION_STALE: 전년 동월 기준선을 전망으로 사용할 수 있는 구형 모델입니다. '
+            'train_regions CLI로 7개 학습모델을 다시 생성하세요.'
+        )
     if artifact.get('data_fingerprint') and artifact['data_fingerprint'] != data_fingerprint(monthly):
         raise ValueError('ML_MODEL_STALE: 원자료가 변경되었습니다. train_regions CLI로 재학습하세요.')
     if metadata.get('data_fingerprint') != artifact.get('data_fingerprint'):
