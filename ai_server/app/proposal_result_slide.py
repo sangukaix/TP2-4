@@ -9,7 +9,7 @@ def case_performance(slide, report):
     from .case_recommendation import report_cases
     from .case_images import case_image
     from .proposal_layout_v10 import case_narrative
-    header(slide, '사례 실적')
+    header(slide, '사례 실적' if report_outcome(report) else '참고 사례 운영 방식')
     _, primary = report_cases(report)
     source = primary[0] if primary else {}
     result = report_outcome(report)

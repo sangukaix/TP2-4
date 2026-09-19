@@ -38,7 +38,7 @@ from .agents.chat_assistant_agent import TourismChatAssistantAgent
 from .agents.ml_learning_assistant_agent import MlLearningAssistantAgent
 from .agents.project_learning_assistant_agent import ProjectLearningAssistantAgent
 from .tourism_open_api import TourismOpenApiClient
-from .planning_brief import PlanningBrief, resolve_new_planning_brief, brief_fingerprint, extract_brief_reference, without_reference_text
+from .planning_brief import PlanningBrief, next_three_months, resolve_new_planning_brief, brief_fingerprint, extract_brief_reference, without_reference_text
 from .project_learning_catalog import ProjectLearningCatalog, build_project_learning_catalog
 from .strategy_store import (
     initialize_strategy_store,
@@ -72,7 +72,7 @@ LOGGER = logging.getLogger(__name__)
 
 # 저장 문서의 레이아웃·생성 규칙이 바뀌면 이 값만 올려 과거 캐시를 안전하게 다시 만듭니다.
 DOCUMENT_RENDER_VERSIONS = {
-    'docx': 'strategy-docx-v20-selected-case',
+    'docx': 'strategy-docx-v24-learned-all-forecast',
     'pptx': PRESENTATION_RENDER_VERSION,
 }
 # Matplotlib의 전역 상태와 문서 렌더러를 동시에 사용하지 않습니다.
@@ -358,7 +358,7 @@ class LlmRouteUpdate(BaseModel):
 
 
 class LlmRuntimeConfigUpdate(BaseModel):
-    mode: Literal['openai_only', 'hybrid', 'local_only', 'local_first', 'student_budget'] | None = None
+    mode: Literal['openai_only', 'hybrid', 'local_only', 'local_first', 'local_first_gemma', 'student_budget'] | None = None
     routes: dict[str, LlmRouteUpdate] = Field(default_factory=dict)
 
 
@@ -667,12 +667,9 @@ def _change_direction(value: float) -> Literal['up', 'down', 'same']:
 
 
 def _next_calendar_month() -> str:
-    """화면의 대표 예측월을 현재 달의 다음 달로 정합니다."""
-    current = date.today()
-    year, month = current.year, current.month + 1
-    if month == 13:
-        year, month = year + 1, 1
-    return f'{year}{month:02d}'
+    """웹 전망과 신규 기획안에 동일한 한국 시간 15일 마감 규칙을 씁니다."""
+    start, _ = next_three_months()
+    return start.strftime('%Y%m')
 
 
 def _months_between(start_month: str, end_month: str) -> int:
@@ -681,7 +678,7 @@ def _months_between(start_month: str, end_month: str) -> int:
 
 
 def _select_display_forecasts(forecasts: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
-    """차트의 전체 예측 중 현재 시점의 다음 달을 카드 대표값으로 고릅니다."""
+    """차트의 전체 예측 중 공통 사업기간의 첫 달을 카드 대표값으로 고릅니다."""
     target_month = _next_calendar_month()
     for index, forecast in enumerate(forecasts):
         if forecast['month'] == target_month:
@@ -702,7 +699,7 @@ def _build_registered_ml_dashboard(region_code: str, region_name: str) -> Dashbo
     target_month = _next_calendar_month()
     history = pipeline.load_history()
     latest_observed_month = str(history['year_month'].iloc[-1])
-    # 최신 원자료가 늦게 공개돼도, 다음 달부터 3개월을 끊김 없이 보여 줄 만큼만 재귀 예측합니다.
+    # 최신 원자료가 늦게 공개돼도, 선택 사업기간 3개월을 끊김 없이 보여 줄 만큼만 재귀 예측합니다.
     required_horizon = max(4, _months_between(latest_observed_month, target_month) + 2)
     forecast_result = predict_region_demand(region_code, required_horizon)
     visible_forecasts, previous_forecast = _select_display_forecasts(forecast_result['forecasts'])
@@ -1711,15 +1708,15 @@ async def read_regions_readiness_audit():
     from .region_readiness_audit import read_audit
     audit=await asyncio.to_thread(read_audit)
     router = _llm_router()
-    states = await asyncio.gather(*(router.providers[name].health() for name in ('qwen', 'gemma')), return_exceptions=True)
+    states = await asyncio.gather(*(router.providers[name].health() for name in router.required_local_providers), return_exceptions=True)
     routes = router.effective_routes()
-    installed = dict(zip(('qwen', 'gemma'), states))
+    installed = dict(zip(router.required_local_providers, states))
     local_ready = all(not isinstance(state, Exception) and state.status == 'active' for state in states) and all(
         routes[task]['provider'] in installed and routes[task]['model'] in installed[routes[task]['provider']].models
         for task in ('transferability', 'planner'))
     return {'checked_at':audit['checked_at'],'status':audit['status'],
             'local_models_ready': local_ready,
-            'local_model_message': 'Qwen·Gemma 연결 확인' if local_ready else 'Qwen·Gemma 연결 또는 모델 설정 확인 필요',
+            'local_model_message': ('Gemma 연결 확인' if router.gemma_only_local else 'Qwen·Gemma 연결 확인') if local_ready else '선택 로컬 모델 연결 또는 설정 확인 필요',
             'regions':[{**{k:r[k] for k in ('region_code','region_name','verified','data_ready','issues')},
                         'readiness_reason': r.get('readiness_reason'),
                         'generation_ready': bool(r['data_ready'] and local_ready)} for r in audit['regions']]}
@@ -1885,7 +1882,7 @@ async def read_planning_reference(request: Request, filename: str) -> dict:
 @app.post('/ai/v1/demo/{region_code}/strategy-report/jobs', response_model=StrategyReportJobResponse, status_code=202)
 async def start_region_strategy_report_job(region_code: str, request: ReportRequest) -> StrategyReportJobResponse:
     """AI 전략기획 생성을 백그라운드에 등록하고 즉시 작업 ID를 반환합니다."""
-    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief)}, deep=True)
+    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief or PlanningBrief(region_code=region_code, input_profile='guided_v2'))}, deep=True)
     if request.planning_brief and request.planning_brief.region_code != region_code:
         raise HTTPException(status_code=422, detail={'code': 'BRIEF_REGION_MISMATCH', 'message': '기획 조건의 지역과 선택 지역이 다릅니다.'})
     # 큐 등록 전에 차단해 오래된 자료에서 OpenAI·로컬 LLM·문서 렌더링이 시작되지 않게 합니다.
@@ -1966,7 +1963,7 @@ async def read_region_strategy_report_job(region_code: str, job_id: str) -> Stra
 @app.post('/ai/v1/demo/{region_code}/strategy-report', response_model=ReportResponse)
 async def create_region_strategy_report(region_code: str, request: ReportRequest) -> ReportResponse:
     """선택 지역 근거와 공식 성공사례를 다섯 Agent가 처리한 전략 보고서를 생성합니다."""
-    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief)}, deep=True)
+    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief or PlanningBrief(region_code=region_code, input_profile='guided_v2'))}, deep=True)
     try:
         return await generate_orchestrated_report(region_code, request)
     except (FileNotFoundError, KeyError, ValueError) as exc:

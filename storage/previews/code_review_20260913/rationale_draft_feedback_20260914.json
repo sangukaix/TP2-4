@@ -1,0 +1,62 @@
+[
+  {
+    "severity": "major",
+    "field": "planning_decision.selection_status",
+    "problem": "선택 후보의 지역 적용 조건이 미확인 상태입니다.",
+    "revision_instruction": "후보 수 부족과 구분하세요. prerequisites/selection_reason의 미확인 조건과 필요한 공식 문서를 명시하고, 확인 전 집행 승인이나 ready 변경을 하지 마세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[3].local_fit",
+    "problem": "후보의 지역 적합성에 선택 지역/전국 비교 지표가 연결되지 않았습니다.",
+    "revision_instruction": "get_region_metrics/compare_regions의 실제 지표·기간으로 local_fit을 보완하고 해당 source_id를 evidence_source_ids에 연결하세요. 사례 효과를 지역 근거로 대신 쓰지 마세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].implementation_steps[1].task",
+    "problem": "실행 단계의 담당 역할이 없습니다.",
+    "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].implementation_steps[2].task",
+    "problem": "실행 단계의 담당 역할이 없습니다.",
+    "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].implementation_steps[3].task",
+    "problem": "실행 단계의 담당 역할이 없습니다.",
+    "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].implementation_steps[4].task",
+    "problem": "실행 단계의 담당 역할이 없습니다.",
+    "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].implementation_steps[5].task",
+    "problem": "실행 단계의 담당 역할이 없습니다.",
+    "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].comparison_analysis",
+    "problem": "서울 사례는 대규모 정원 박람회와 지역 상권을 결합하여 매출을 증대시켰다는 인과 표현으로 바뀌었다. 후보의 비교 기준과 선택 이유도 본문에서 빠졌다.",
+    "revision_instruction": "공식 사례에서 가져온 장치는 방문 거점과 상점 혜택의 연결이다. 전후 매출 변화는 행사 단독 효과로 표현하지 않는다. 선택 후보 reasoning의 세 기준과 selection_reason을 읽고 운영 준비 차이·정산 협약 조건을 설명한다. 가설을 사실로 바꾸지 말고, 본문에도 야간안·디지털주민증 대안과 비교한 이유를 간결하게 넣는다."
+  },
+  {
+    "severity": "major",
+    "field": "strategies[1].kpi / solution",
+    "problem": "혜택을 받는 완료 조건과 이용률/취소 제외 매출의 비교 범위가 명확하지 않다.",
+    "revision_instruction": "모집 단계에서 코스 완주 기준과 할인 자격을 확정하며 이 조건을 solution/실행/KPI에 같이 사용한다. 실제 이용/할인 원장에서 같은 자격·관찰기간 집단의 분모로 이용률을 집계하고, 전후 매출은 같은 상점·요일·기간·취소 제외 금액으로 별도 확인한다. 자료 수집은 참여처 협약에서 확정할 조건이다. 인과효과를 확정하지 않는다."
+  },
+  {
+    "severity": "major",
+    "field": "observed_findings",
+    "problem": "전망값과 관측값이 같은 배열에 들어간다.",
+    "revision_instruction": "배열 구조는 유지하되 전망 행의 metric과 interpretation에 ML 전망임을 명시하고 기준모델보다 약한 평가라는 경계를 표시한다. 전망을 관측되었다거나 사업 효과라고 표현하지 않는다."
+  }
+]

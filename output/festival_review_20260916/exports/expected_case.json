@@ -1,0 +1,31 @@
+{
+  "title": "경상북도 문경시 · 문경찻사발축제",
+  "scope": "관광데이터랩 축제 관측구역의 개최기간 방문 실적",
+  "action": "문경찻사발축제 · 10일→9일 개최",
+  "metric": "축제 관측구역 전체 방문자",
+  "before": 245750,
+  "after": 256570,
+  "before_label": "2024년 · 10일",
+  "after_label": "2025년 · 9일",
+  "before_note": "외지인 179,998명",
+  "after_note": "외지인 196,700명",
+  "interpretation": "일평균 방문 +16.00%. 행사 방문 실적이며 도시 전체 순증·사업 단독 효과가 아닙니다.",
+  "references": [
+    [
+      "한국관광 데이터랩 다운로드 · 20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+      "https://datalab.visitkorea.or.kr/"
+    ]
+  ],
+  "photo": null,
+  "source_file": {
+    "downloaded_at": "2026-08-20",
+    "file_name": "20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+    "provenance_status": "team_download_exact_query_url_unrecorded",
+    "provider": "한국관광 데이터랩",
+    "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+    "sha256": "dfcb5b619f820d7ce4451f5e89294681bc37f49f8200ba859754d423602e51a1",
+    "source_id": "festival-file:dfcb5b619f820d7ce445",
+    "source_url": "https://datalab.visitkorea.or.kr/"
+  },
+  "verified_at": "CSV 합계·일수·증감 산술 대조"
+}

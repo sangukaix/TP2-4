@@ -15,8 +15,17 @@ import '../App.css'
 function StrategyQualityNotice({ report }) {
   const decision = report.planning_decision || {}
   const candidates = (decision.design_candidates || []).filter((row) => row.case_source_ids?.length)
-  return <section className="strategy-quality-notice is-approved" aria-label="챗봇 수정 안내">
-    <strong>챗봇으로 기획안을 조정하세요</strong>
+  const review = report.quality_review || {}
+  const scoreValue = Number(review.overall_score)
+  const score = Number.isFinite(scoreValue) && scoreValue > 0 ? Math.round(scoreValue) : null
+  const findings = [...(review.issues || []), ...(review.validation_findings || [])]
+  const findingMessages = [...new Set(findings.map((item) => typeof item === 'string' ? item : item?.problem || item?.message).filter(Boolean))].slice(0, 4)
+  const approved = review.approved === true && review.final_audit_completed !== false && review.review_stale !== true
+  return <section className={'strategy-quality-notice ' + (approved ? 'is-approved' : 'needs-review')} aria-label="기획안 품질검토와 챗봇 수정 안내">
+    <strong>{approved ? '기획안 품질검토를 통과했습니다' : '검토용 초안입니다 · 담당자 확인이 필요합니다'}</strong>
+    {!approved && <p className="strategy-quality-summary">{score ? `자동 품질검토 ${score}점 · 실행 조건과 성과 측정 방법을 확인해 주세요.` : '자동 품질검토가 완료되지 않았습니다.'}</p>}
+    {!approved && findingMessages.length > 0 && <details className="strategy-review-findings"><summary>보완 권고 {findingMessages.length}개 보기</summary><ul>{findingMessages.map((message) => <li key={message}>{message}</li>)}</ul></details>}
+    <strong className="strategy-quality-edit-heading">챗봇으로 기획안을 조정하세요</strong>
     <ul><li>목표 KPI 증가율과 예상 견적</li><li>사업 소개 문장과 홍보 방식</li><li>현재 사업의 참여 범위와 실행 단계</li></ul>
     <p>관측값·ML 예측값·공식 사례 수치는 유지됩니다. 목표와 견적은 계획 가정입니다.</p>
     {candidates.length > 0 && <details><summary>근거가 연결된 아이디어 {candidates.length}개</summary><div className="strategy-candidate-list">{candidates.map((candidate) => <article key={candidate.candidate_id}><b>{candidate.candidate_id === decision.selected_candidate_id ? '현재 제안 · ' : '다른 아이디어 · '}{candidate.title}</b><p>{candidate.mechanism}</p></article>)}</div></details>}

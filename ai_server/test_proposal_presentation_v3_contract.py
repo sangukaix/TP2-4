@@ -178,7 +178,7 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
             proposal_presentation.create_strategy_proposal_presentation,
             proposal_presentation_v4.create_strategy_proposal_presentation,
         )
-        self.assertEqual(proposal_presentation_v4.PRESENTATION_RENDER_VERSION, 'pptx-v47-selected-case')
+        self.assertEqual(proposal_presentation_v4.PRESENTATION_RENDER_VERSION, 'pptx-v63-learned-all-forecast')
         template_path = Path(proposal_presentation_v4.PRESENTATION_TEMPLATE_PATH)
         self.assertEqual(template_path.name, 'tourism_strategy_12_slide_template_v6.pptx')
         self.assertTrue(template_path.is_file(), f'승인된 PPT 레이아웃 원본을 찾을 수 없습니다: {template_path}')
@@ -201,27 +201,27 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
         required_by_slide = {
             1: ('강남 이브닝 스테이 패스', '서울특별시'),
             2: ('목차',),
-            3: ('강남구 관광 발전 기획안', '월별 관광 흐름'),
-            4: ('1.1 지역별 참고 사례',),
-            5: ('1.2 참고 사례 실적',),
-            6: ('2.1 사업 목표', '사업내용', '사업기간', '목표 KPI'),
-            7: ('2.2 목표 KPI 산출근거', '계획 가정'),
-            8: ('2.3 운영 규모와 산출 근거', '참여 목표'),
-            9: ('2.4 기대 변화의 시나리오', '통계적 신뢰구간이 아닙니다'),
-            10: ('3.1 사례 선정과 지역 적용',),
-            11: ('3.2 4단계 실행 가이드', '01'),
-            12: ('3.3 머신러닝 예측값과 목표 KPI',),
-            13: ('4.1 견적 예시안', '예상 사업비'),
-            14: ('5.1 기획서 생성 파이프라인',),
-            15: ('6.1 근거·데이터', '관측 데이터'),
+            3: ('1.1 지역 관광 전망', '월별 관광 흐름'),
+            4: ('1.2 제안 사업 소개', '사업개요'),
+            5: ('2.1 지역별 참고 사례',),
+            6: ('2.2 참고 사례 운영 방식',),
+            7: ('3.1 사업 목표', '사업내용', '사업기간', '목표 KPI'),
+            8: ('3.2 목표 KPI 산출근거', '계획 가정'),
+            9: ('3.3 운영 규모와 산출 근거', '참여 목표'),
+            10: ('3.4 월별 방문·소비 증가 목표', '추가 목표 합계'),
+            11: ('4.1 4단계 실행 가이드 예시안', '01'),
+            12: ('4.2 머신러닝 예측값과 목표 KPI',),
+            13: ('5.1 견적 예시안', '예상 사업비'),
+            14: ('6.1 기획서 생성 파이프라인',),
+            15: ('7.1 근거·데이터·출처', '관측 데이터'),
             16: ('감사합니다', '서울특별시 강남구'),
         }
         for slide_number, labels in required_by_slide.items():
             for label in labels:
                 self.assertIn(label, texts_by_slide[slide_number - 1], f'{slide_number}장 필수 문구 누락: {label}')
         self.assertNotRegex(texts_by_slide[5], r'\bC\d+\b', '사업 목표에 내부 후보 ID가 노출됐습니다.')
-        self.assertIn('사례의 사업 효과를 예측한 값이 아니며',texts_by_slide[6])
-        self.assertIn('사용자 지정 목표',texts_by_slide[7])
+        self.assertIn('사례의 사업 효과를 예측한 값이 아니며',texts_by_slide[7])
+        self.assertIn('사용자 지정 목표',texts_by_slide[8])
 
         native_text_shapes = [
             shape
@@ -240,10 +240,10 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
         ]
         self.assertGreaterEqual(len(native_text_shapes), 90, '편집 가능한 텍스트 개체가 지나치게 적습니다.')
         self.assertEqual(len(native_charts), 6, '개요·목표·운영 시나리오의 차트가 편집 가능해야 합니다.')
-        self.assertEqual(sum(shape.has_table for slide in deck.slides for shape in slide.shapes),4)
+        self.assertEqual(sum(shape.has_table for slide in deck.slides for shape in slide.shapes),3)
         self.assertGreaterEqual(len(pictures), 1, '템플릿의 지역 사진 프레임이 유지되어야 합니다.')
         self.assertIn('감사합니다', texts_by_slide[-1])
-        self.assertIn('머신러닝 예측치', '\n'.join(texts_by_slide[9:]))
+        self.assertIn('머신러닝 예측치', '\n'.join(texts_by_slide[10:]))
         self.assertNotRegex('\n'.join(texts_by_slide), r'…|\.{3}|자연추세')
         for slide_number, slide_text in enumerate(texts_by_slide, start=1):
             self.assertTrue(slide_text.strip(), f'{slide_number}장이 통이미지 또는 빈 슬라이드입니다.')
@@ -261,7 +261,7 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
         deck = Presentation(output)
         self.assertEqual(len(deck.slides), 14)
         self.assertTrue(all(_slide_text(slide).strip() for slide in deck.slides))
-        self.assertIn('예측치 미제공', _slide_text(slide_with_title(deck,'2.1 사업 목표')))
+        self.assertIn('예측치 미제공', _slide_text(slide_with_title(deck,'3.1 사업 목표')))
         self.assertFalse(any(s.has_chart for slide in deck.slides for s in slide.shapes))
 
     def test_approved_template_positions_and_final_decision_copy_are_preserved(self) -> None:
@@ -302,24 +302,24 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
                                       'adaptation': '문화시설 이용을 확인한 참여자에게 지역 상점 후속 혜택을 제공합니다.'}],
         }
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        result_slide=slide_with_title(output,'1.2 참고 사례 실적')
-        selection_slide=slide_with_title(output,'3.1 사례 선정과 지역 적용')
-        self.assertIn('선정된 공식 문화 프로그램 사례',_slide_text(selection_slide))
-        self.assertIn('문화시설 이용을 확인한',_slide_text(result_slide))
-        self.assertIn('case:selected',selection_slide.notes_slide.notes_text_frame.text)
-        self.assertNotIn('다른 사례',_slide_text(selection_slide))
+        case_slide=slide_with_title(output,'2.1 지역별 참고 사례')
+        result_slide=slide_with_title(output,'2.2 참고 사례 운영 방식')
+        self.assertIn('선정된 공식 문화 프로그램 사례',_slide_text(case_slide))
+        self.assertIn('문화시설 예약 프로그램',_slide_text(result_slide))
+        self.assertIn('case:selected',result_slide.notes_slide.notes_text_frame.text)
+        self.assertNotIn('다른 사례',_slide_text(case_slide))
         self.assertNotIn('peer-visitors-yoy-index', [shape.name for shape in result_slide.shapes])
         report['observed_findings'].append({'metric': '전년동월 외지인 방문자 증감률', 'value': '-8.3%'})
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        self.assertFalse(any(shape.has_chart for shape in slide_with_title(output,'1.2 참고 사례 실적').shapes))
+        self.assertFalse(any(shape.has_chart for shape in slide_with_title(output,'2.2 참고 사례 운영 방식').shapes))
 
     def test_estimate_and_provenance_do_not_invent_missing_facts(self) -> None:
         """참고 견적을 확정 견적과 구분하고 요청대로 AI 검수 블록을 제외합니다."""
         report = _sample_report()
         report['agent_trace'] = [{'provider': 'qwen', 'status': 'completed'}]
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        estimate_text = _slide_text(slide_with_title(output,'4.1 견적 예시안'))
-        provenance_text = _slide_text(slide_with_title(output,'5.1 기획서 생성 파이프라인'))
+        estimate_text = _slide_text(slide_with_title(output,'5.1 견적 예시안'))
+        provenance_text = _slide_text(slide_with_title(output,'6.1 기획서 생성 파이프라인'))
         self.assertIn('실제 액수와 다를 수 있습니다', estimate_text)
         self.assertNotIn('2.40억 원', estimate_text)
         self.assertNotIn('AI 기획·검수', provenance_text)

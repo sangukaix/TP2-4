@@ -566,7 +566,7 @@ def apply_theme(prs, report):
                 step=get(slide,f'flow-node-{n}')
                 rounded(step,RED,50000);fit_text(step,step.text,29,WHITE,True);center(step)
         if i==11:
-            for x in (642,864,1086):panel(slide,f'pipeline-agent-card-{x}',x,282,200,353)
+            for x in (652,874,1096):panel(slide,f'pipeline-agent-card-{x}',x,282,180,353)
         if i in (6,7,8,9,11):balanced_colors(slide,i)
         if i==3:reference_case_typography(slide)
         if i==4:tighter_case_result(slide)

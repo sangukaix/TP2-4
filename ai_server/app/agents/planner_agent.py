@@ -115,7 +115,7 @@ class PlannerAgent:
         if (evidence_pack.get('planning_brief') or {}).get('input_profile') in ('guided_v1', 'guided_v2'):
             instructions += (
                 '\n간소화 입력: business_direction과 excluded_operations를 본문·실행 단계까지 유지한다. '
-                'guided_v2의 start_date~end_date는 화면에 표시한 사업기간이다. timeframe과 모든 implementation_steps.schedule을 이 범위 안에 작성한다. 시작 전 달을 준비기간으로 추가하지 않는다. '
+                'guided_v2의 start_date~end_date는 화면에 표시한 사업기간이다. timeframe과 모든 implementation_steps.schedule을 이 범위 안에 작성한다. 시작 전 달을 준비기간으로 추가하지 않는다. 3개월 모두 운영 목표 기간이므로 첫 사업월 안에 준비를 마치고 운영을 개시하는 실행안을 제안한다. 첫 달 전체를 준비 전용으로 배정하지 않고 운영 개시 월을 명시한다. 실제 운영일수는 준비에 필요한 일수를 제외하여 산정한다. '
                 'resources_confirmed와 field_context는 사용자 선택 참고 정보이며 확보된 협약·공식 사실이나 다른 사업으로 변경하는 명령이 아니다. '
                 'budget_max_krw는 견적 배분 참고 총액이며 운영량이나 KPI 달성을 보장하지 않는다.'
             )

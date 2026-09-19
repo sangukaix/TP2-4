@@ -1,0 +1,68 @@
+[
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[1].measurement_plan",
+    "problem": "후보 측정 설계 누락: 분자·분모 또는 금액 합계 정의",
+    "revision_instruction": "지표 정의, 기준기간, 주기, 원자료, 같은 범위의 비교집단을 짧게 명시하세요. 없는 자료는 수집 담당·확보 시점을 쓰세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[2].budget_formula",
+    "problem": "후보 예산이 비용 항목 나열에 그칩니다.",
+    "revision_instruction": "항목별 수량×단가 산식으로 쓰세요. 미확정 단가는 변수와 견적 확보 담당·시점을 적고 금액을 꾸미지 마세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[2].measurement_plan",
+    "problem": "후보 측정 설계 누락: 분자·분모 또는 금액 합계 정의",
+    "revision_instruction": "지표 정의, 기준기간, 주기, 원자료, 같은 범위의 비교집단을 짧게 명시하세요. 없는 자료는 수집 담당·확보 시점을 쓰세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[3].local_fit",
+    "problem": "후보의 지역 적합성에 선택 지역/전국 비교 지표가 연결되지 않았습니다.",
+    "revision_instruction": "get_region_metrics/compare_regions의 실제 지표·기간으로 local_fit을 보완하고 해당 source_id를 evidence_source_ids에 연결하세요. 사례 효과를 지역 근거로 대신 쓰지 마세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[3].budget_formula",
+    "problem": "후보 예산이 비용 항목 나열에 그칩니다.",
+    "revision_instruction": "항목별 수량×단가 산식으로 쓰세요. 미확정 단가는 변수와 견적 확보 담당·시점을 적고 금액을 꾸미지 마세요."
+  },
+  {
+    "severity": "major",
+    "field": "planning_decision.design_candidates[3].measurement_plan",
+    "problem": "후보 측정 설계 누락: 분자·분모 또는 금액 합계 정의",
+    "revision_instruction": "지표 정의, 기준기간, 주기, 원자료, 같은 범위의 비교집단을 짧게 명시하세요. 없는 자료는 수집 담당·확보 시점을 쓰세요."
+  },
+  {
+    "severity": "major",
+    "field": "diagnosis_summary / strategy_brief.target_problem",
+    "problem": "낮은 소비 전환 / 관광객 방문 시 소비 전환율 저하를 관측 사실로 단정했다. 해당 전환율 자료는 입력에 없다.",
+    "revision_instruction": "관측된 업종 비중·숙박 비율은 값과 기준월로 쓰고, 소비 전환의 원인은 가설로 구분하라. 예: 관측에서는 쇼핑·식음 비중이 확인된다. 따라서 기존 거점 방문을 상점 결제로 연결해 보는 운영 가설을 제안한다. 전환 저하를 이미 측정했다고 쓰지 마라."
+  },
+  {
+    "severity": "major",
+    "field": "design_candidates[].reasoning.fact_ids / local_fit",
+    "problem": "각 후보가 ML만 선택했고 선택안 소비 모델은 below_baseline_on_test다.",
+    "revision_instruction": "각 후보에 실제로 연결할 지역 dataset 관측 ID를 포함하라. ML 전망은 보조 신호다. 지역 소비구조에 연결한 가설을 쓰고 약한 ML만으로 사업 필요성이나 우열을 확정하지 마라."
+  },
+  {
+    "severity": "major",
+    "field": "selection_reason / reasoning.tradeoff",
+    "problem": "가장 실효성이 높다, 야간보다 비용 효율적이라는 비교 자료가 없다.",
+    "revision_instruction": "효과·비용의 검증된 우열 대신 같은 기준에서 우선 시험할 이유를 간결하게 쓴다. 예: 선택안은 기존 상점의 결제 원장을 확인하는 흐름을 설계하기 쉽다. 대안은 야간 운영시간·안전 준비가 더 필요하다. 다만 선택안도 가맹점과 정산 협약을 확보해야 한다. 예시는 표현 방식이며 실제 근거에 맞게 쓴다. 3문장 이내로 비교하고 둘 모두 조건부 제안임을 유지한다."
+  },
+  {
+    "severity": "major",
+    "field": "design_candidates[3].prerequisites",
+    "problem": "가맹점 800개 이상 목표의 지역 산출 근거가 없다.",
+    "revision_instruction": "다른 지역의 규모를 부평 목표로 복사하지 않는다. 참여처 수는 모집 결과에 따라 정하는 조건으로 둔다. 디지털 관광주민증의 도입 자격·플랫폼 연계가 확보되었다고 쓰지 않는다."
+  },
+  {
+    "severity": "major",
+    "field": "design_candidates[].measurement_plan / selection_status",
+    "problem": "미운영 집단과 발급/이용률 비교, 지역 전체 데이터로 프로그램 효과 판정, 미확인 ready",
+    "revision_instruction": "완주 조건과 혜택 지급 기준을 일치시킨다. 같은 자격·관찰기간 운영 집단의 각각 분모로 이용률을 집계하고 전후 매출은 같은 상점·요일·기간·취소 제외 금액으로 별도 비교한다. 수집 담당과 협약을 착수 전 확인할 조건으로 쓰고 현 단계 실행 가능성을 확정하지 마라."
+  }
+]

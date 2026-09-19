@@ -66,3 +66,11 @@ test('새 선택형 초안은 구형 자유 입력 초안을 덮어쓰지 않는
   assert.deepEqual(simplifiedDraft('11680').resource_options,['merchants'])
   delete globalThis.window
 })
+
+
+test('15일/16일 한국 시간 경계에서 목표 시작월을 한 달 미룬다', () => {
+  assert.equal(nextThreeMonthSchedule(new Date('2026-09-15T14:59:59Z')).start_date,'2026-10-01')
+  assert.deepEqual(nextThreeMonthSchedule(new Date('2026-09-15T15:00:00Z')), {schedule_status:'fixed',start_date:'2026-11-01',end_date:'2027-01-31'})
+  assert.deepEqual(nextThreeMonthSchedule(new Date('2026-12-16T00:00:00+09:00')), {schedule_status:'fixed',start_date:'2027-02-01',end_date:'2027-04-30'})
+  assert.equal(nextThreeMonthSchedule(new Date('2027-10-16T00:00:00+09:00')).end_date,'2028-02-29')
+})

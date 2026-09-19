@@ -1,0 +1,5 @@
+INFO:     127.0.0.1:10464 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:10466 - "GET /ai/v1/strategy-reports/14d7385fe7004f26898f89dbd9bc840c/documents/pptx HTTP/1.1" 200 OK
+INFO:     127.0.0.1:10487 - "GET /ai/v1/strategy-reports/14d7385fe7004f26898f89dbd9bc840c/documents/docx HTTP/1.1" 200 OK
+INFO:     127.0.0.1:10517 - "GET /ai/v1/strategy-reports/14d7385fe7004f26898f89dbd9bc840c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:10732 - "GET /ai/v1/llm/trace HTTP/1.1" 200 OK

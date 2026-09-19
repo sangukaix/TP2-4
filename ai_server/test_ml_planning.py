@@ -53,6 +53,20 @@ class MlValidationTest(unittest.TestCase):
         self.assertEqual(result['validation']['candidate']['sample_count'], VALIDATION_MONTHS)
         self.assertEqual(result['selected_model_metrics']['sample_count'], TEST_MONTHS)
 
+    def test_forecast_can_require_learned_model_with_baseline_disclosure(self) -> None:
+        """모든 전망은 학습모델을 쓰되 기준선 열세를 숨기지 않습니다."""
+        x = np.arange(20, dtype=float).reshape(-1, 1)
+        y = np.tile([100.0, 200.0], 10)
+        baseline = y.copy()
+        model, result = select_and_evaluate(
+            x, y, baseline, LinearRegression, prefer_learned_model=True,
+        )
+        self.assertIsNotNone(model)
+        self.assertEqual(result['selected_model'], 'LinearRegression')
+        self.assertEqual(result['selection_basis'], 'learned_model_required_with_baseline_disclosure')
+        self.assertFalse(result['candidate_beats_baseline_on_validation'])
+        self.assertFalse(result['beats_baseline_on_test'])
+
     def test_unsupported_region_never_uses_gangnam_model(self) -> None:
         """등록하지 않은 지역에는 강남 예측을 복사하지 않습니다."""
         result = build_planning_ml_evidence('99999', '테스트시 테스트구')

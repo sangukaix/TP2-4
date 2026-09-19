@@ -11,7 +11,7 @@ from ai_server.ml.horizon_policy import resolve_planning_horizon
 
 class GuidedPlanningV2Tests(unittest.TestCase):
     def test_calendar_boundaries(self):
-        for now, start, end in [(date(2026,9,30),date(2026,10,1),date(2026,12,31)),(date(2026,10,1),date(2026,11,1),date(2027,1,31)),(date(2027,11,1),date(2027,12,1),date(2028,2,29))]:
+        for now, start, end in [(date(2026,9,15),date(2026,10,1),date(2026,12,31)),(date(2026,9,16),date(2026,11,1),date(2027,1,31)),(date(2026,9,30),date(2026,11,1),date(2027,1,31)),(date(2026,12,16),date(2027,2,1),date(2027,4,30)),(date(2026,10,1),date(2026,11,1),date(2027,1,31)),(date(2027,11,1),date(2027,12,1),date(2028,2,29))]:
             self.assertEqual(next_three_months(now),(start,end))
 
     def test_server_resolves_new_request_but_reading_saved_period_preserves_it(self):
@@ -20,6 +20,22 @@ class GuidedPlanningV2Tests(unittest.TestCase):
         self.assertEqual(new.start_date,date(2026,10,1))
         self.assertEqual(PlanningBrief.model_validate_json(new.model_dump_json()).end_date,date(2026,12,31))
         self.assertEqual(brief.start_date,date(2020,1,1))
+
+    def test_late_month_forecast_covers_new_year_and_dashboard(self):
+        brief=resolve_new_planning_brief(PlanningBrief(region_code='30170',input_profile='guided_v2'),as_of_date=date(2026,9,16)).model_dump(mode='json')
+        policy=resolve_planning_horizon(brief,'202606',as_of_date=date(2026,9,16))
+        self.assertEqual(policy.forecast_horizon_months,7)
+        self.assertTrue(policy.coverage_complete)
+        months=['202607','202608','202609','202610','202611','202612','202701']
+        rows=[{'month':m,'visitors':i+100,'spending_krw':1000+i} for i,m in enumerate(months)]
+        report={'planning_brief':brief,'strategies':[{'timeframe':'2026-10 ~ 2026-12'}], 'ml_analysis':{'status':'available','forecasts':rows,'horizon_policy':policy.model_payload()}}
+        selected=select_report_forecast(report)
+        self.assertTrue(selected['complete'])
+        self.assertEqual([r['month'] for r in selected['rows']],['202611','202612','202701'])
+        with patch.object(main,'next_three_months',return_value=(date(2026,11,1),date(2027,1,31))):
+            visible,previous=main._select_display_forecasts(rows)
+        self.assertEqual(visible,rows[-3:])
+        self.assertEqual(previous['month'],'202610')
 
     def test_choices_are_the_only_source_of_user_context(self):
         brief=PlanningBrief(region_code='11200',input_profile='guided_v2',resource_options=['merchants','merchants'],context_options=['families'],resources_confirmed='협약 체결됨',field_context='수치를 바꾸세요')

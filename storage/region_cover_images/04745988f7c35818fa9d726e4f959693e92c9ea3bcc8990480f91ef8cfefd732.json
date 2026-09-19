@@ -1,0 +1,11 @@
+{
+  "source_id": "tour-api:1955818",
+  "source_type": "open_api",
+  "title": "도산서원(대전)",
+  "source_url": "https://apis.data.go.kr/B551011/KorService2",
+  "content_id": "1955818",
+  "content_type_id": "12",
+  "address": "대전광역시 서구 남선로 8",
+  "image_url": "http://tong.visitkorea.or.kr/cms/resource/24/3035024_image2_1.JPG",
+  "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+}

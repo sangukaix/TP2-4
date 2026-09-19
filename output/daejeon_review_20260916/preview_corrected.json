@@ -1,0 +1,4822 @@
+{
+  "period": "2025-07 ~ 2026-06",
+  "summary": "대전 서구의 야간 방문 및 소비 확대를 위해 지역 콘텐츠와 상권을 연결하는 야간 특화 축제를 운영합니다. 낮 중심의 관광 패턴을 저녁 체류로 전환하여 내비게이션 검색량과 관광소비액의 성장을 도모합니다.",
+  "strategies": [
+    {
+      "kpi": "야간 시간대 방문자 수 증가율 (분자: 이번 기간 야간 방문자 수 − 전년 같은 기간 야간 방문자 수, 분모: 전년 같은 기간 야간 방문자 수, 기준: 전년 동기 대비, 산식: (이번 기간 야간 방문자 수 - 전년 같은 기간 야간 방문자 수) / 전년 같은 기간 야간 방문자 수 × 100, 측정 주기: 월별, 원자료: 동일 시간·관측 범위의 야간 방문 집계(사업 담당자가 확보할 자료), 수집 담당: 성과분석팀, 성공 기준: 전년 동기 대비 증가세 확인 시 성공) 비교 대상은 전년 같은 기간·시간대·관측 범위입니다. 기준값이 0이면 증가율 대신 인원 차이를 표시합니다. 현재 월별 데이터랩 합계만으로 야간 실적을 계산하지 않습니다.",
+      "title": "대전 서구 야간 특화 콘텐츠 순회 축제",
+      "budget": "3,000,000원 (기획 가정: 축제 운영 비용 1,000,000원/월 × 3개월)",
+      "evidence": "case:night_festival_2025",
+      "priority": 1,
+      "solution": "지역별 대표 콘텐츠(공연, 체험, 디저트 등)를 야간 시간대에 맞춰 순회 운영하여 방문객의 저녁 체류와 지역 상점 이용을 유도함",
+      "timeframe": "2026-10 ~ 2026-12, 3개월",
+      "expected_effect": "계획 목표: 최종월 ML 전망 대비 방문 +0.03%, 소비 +0.07%. 운영 규모와 참여 가정으로 산정하며 실제 성과는 별도 집계합니다.",
+      "problem_to_solve": "낮 시간대 중심의 방문 패턴과 낮은 숙박 비율을 개선하고, 감소 추세인 내비게이션 검색량을 회복함",
+      "comparison_analysis": "전국 야간관광 특화도시의 '순회형 축제' 모델(case:night_festival_2025)을 참고하되, 대전 서구의 주요 거점(백화점, 수목원, 휴양림 등)과 지역 상권을 연결하는 방식으로 차별화함",
+      "implementation_steps": [
+        {
+          "step": 1,
+          "task": "관광기획팀이 야간 운영 거점 및 참여 상점 대상 협의를 진행하고, 참여 의사를 확인하여 명단을 확정함",
+          "schedule": "2026-10",
+          "deliverable": "참여 업체 명단 및 야간 운영 시간 확정안"
+        },
+        {
+          "step": 2,
+          "task": "운영팀이 야간 콘텐츠(공연, 체험) 구성안과 안전 관리 계획을 수립하고, 유관기관의 검토를 완료함",
+          "schedule": "2026-10",
+          "deliverable": "축제 운영 매뉴얼 및 안전 관리 계획서"
+        },
+        {
+          "step": 3,
+          "task": "홍보팀이 축제 실행에 맞춰 온·오프라인 홍보물을 배포하고, 시범 운영을 통해 현장 반응을 모니터링함",
+          "schedule": "2026-11",
+          "deliverable": "축제 실행 및 홍보물 배포 결과"
+        },
+        {
+          "step": 4,
+          "task": "상권지원팀이 야간 상권 연계 프로그램(디저트, 판매상품)의 운영 현황을 점검하고 참여 업체의 결제 데이터를 수집함",
+          "schedule": "2026-11 ~ 2026-12",
+          "deliverable": "상권 연계 프로그램 운영 결과"
+        },
+        {
+          "step": 5,
+          "task": "성과분석팀이 한국관광 데이터랩 원자료를 바탕으로 지표별 성과를 분석하고 최종 보고서를 작성함",
+          "schedule": "2026-12",
+          "deliverable": "지표별 성과 분석 보고서"
+        }
+      ],
+      "visual_asset_source_ids": [
+        "dataset:30170:6",
+        "case:night_festival_2025"
+      ]
+    }
+  ],
+  "agent_trace": [
+    {
+      "agent": "llm_router",
+      "stage": "routing_snapshot",
+      "status": "completed",
+      "routing": {
+        "mode": "local_first",
+        "routes": {
+          "planner": {
+            "fallback": "openai",
+            "provider": "gemma",
+            "model_env": "OLLAMA_GEMMA_MODEL"
+          },
+          "evidence": {
+            "fallback": "none",
+            "provider": "openai",
+            "model_env": "OPENAI_RESEARCH_MODEL"
+          },
+          "reviewer": {
+            "fallback": "none",
+            "provider": "openai",
+            "model_env": "OPENAI_REVIEW_MODEL"
+          },
+          "case_study": {
+            "fallback": "none",
+            "provider": "openai",
+            "model_env": "OPENAI_CASE_RESEARCH_MODEL"
+          },
+          "chat_revise": {
+            "fallback": "openai",
+            "provider": "gemma",
+            "model_env": "OLLAMA_GEMMA_MODEL"
+          },
+          "chat_explain": {
+            "fallback": "openai",
+            "provider": "qwen",
+            "model_env": "OLLAMA_QWEN_MODEL"
+          },
+          "chat_research": {
+            "fallback": "none",
+            "provider": "openai",
+            "model_env": "OPENAI_CHAT_MODEL"
+          },
+          "final_reviewer": {
+            "fallback": "none",
+            "provider": "openai",
+            "model_env": "OPENAI_REVIEW_MODEL"
+          },
+          "transferability": {
+            "fallback": "openai",
+            "provider": "qwen",
+            "model_env": "OLLAMA_QWEN_MODEL"
+          },
+          "planner_revision": {
+            "fallback": "openai",
+            "provider": "gemma",
+            "model_env": "OLLAMA_GEMMA_MODEL"
+          },
+          "local_web_query_planner": {
+            "fallback": "none",
+            "provider": "qwen",
+            "model_env": "OLLAMA_QWEN_MODEL"
+          }
+        }
+      },
+      "effective_routes": {
+        "planner": {
+          "model": "gemma4:26b",
+          "fallback": "none",
+          "provider": "gemma",
+          "model_env": "OLLAMA_GEMMA_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "evidence": {
+          "model": "gpt-5.6-terra",
+          "fallback": "none",
+          "provider": "openai",
+          "model_env": "OPENAI_RESEARCH_MODEL",
+          "locked_reason": "Web Search 필수 작업"
+        },
+        "reviewer": {
+          "model": "qwen3:14b",
+          "fallback": "none",
+          "provider": "qwen",
+          "model_env": "OPENAI_REVIEW_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "case_study": {
+          "model": "gpt-5.6-sol",
+          "fallback": "none",
+          "provider": "openai",
+          "model_env": "OPENAI_CASE_RESEARCH_MODEL",
+          "locked_reason": "Web Search 필수 작업"
+        },
+        "chat_revise": {
+          "model": "gemma4:26b",
+          "fallback": "none",
+          "provider": "gemma",
+          "model_env": "OLLAMA_GEMMA_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "chat_explain": {
+          "model": "qwen3:14b",
+          "fallback": "none",
+          "provider": "qwen",
+          "model_env": "OLLAMA_QWEN_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "chat_research": {
+          "model": "gpt-5.6-sol",
+          "fallback": "none",
+          "provider": "openai",
+          "model_env": "OPENAI_CHAT_MODEL",
+          "locked_reason": "Web Search 필수 작업"
+        },
+        "final_reviewer": {
+          "model": "gpt-5.6-sol",
+          "fallback": "none",
+          "provider": "openai",
+          "model_env": "OPENAI_REVIEW_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "transferability": {
+          "model": "qwen3:14b",
+          "fallback": "none",
+          "provider": "qwen",
+          "model_env": "OLLAMA_QWEN_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "planner_revision": {
+          "model": "gemma4:26b",
+          "fallback": "none",
+          "provider": "gemma",
+          "model_env": "OLLAMA_GEMMA_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        },
+        "local_web_query_planner": {
+          "model": "qwen3:14b",
+          "fallback": "none",
+          "provider": "qwen",
+          "model_env": "OLLAMA_QWEN_MODEL",
+          "locked_reason": "로컬 우선 비용 정책"
+        }
+      }
+    },
+    {
+      "agent": "ml",
+      "stage": "forecast_evidence",
+      "status": "available",
+      "reason_code": "",
+      "selection_basis": "user_schedule_dates",
+      "forecast_horizon_months": 6
+    },
+    {
+      "agent": "evidence",
+      "items": 7,
+      "stage": "dataset",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 6,
+      "stage": "nationwide_comparison",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 12,
+      "stage": "nationwide_bigdata_context",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 3,
+      "stage": "regional_tourism_status",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 20,
+      "stage": "open_api",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 5,
+      "stage": "rag",
+      "status": "completed"
+    },
+    {
+      "agent": "evidence",
+      "items": 6,
+      "stage": "official_web",
+      "status": "completed"
+    },
+    {
+      "agent": "case_scout",
+      "items": 8,
+      "stage": "curated_registry",
+      "status": "completed"
+    },
+    {
+      "agent": "case_scout",
+      "items": 4,
+      "stage": "festival_dataset",
+      "status": "completed",
+      "dataset": {
+        "status": "mysql",
+        "version": "festival-shortlist-v1",
+        "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+        "catalog_count": 92,
+        "selected_count": 4,
+        "selected_source_ids": [
+          "case:festival:01474ef75569b1",
+          "case:festival:0e9c7c065555b0",
+          "case:festival:1ff9d11d3ee0ee",
+          "case:festival:1ffc3eec28956a"
+        ]
+      }
+    },
+    {
+      "agent": "case_scout",
+      "stage": "regional_research_plan",
+      "status": "completed",
+      "research_plan": {
+        "version": "regional-case-research-v1",
+        "eligibility": "peer는 검색 우선순위이며 필수 일치 조건이 아니다. 일부 조건이 다른 지역의 운영도 비교한다.",
+        "peer_method": "standardized_euclidean_v1",
+        "peer_period": "2025-07 ~ 2026-06",
+        "search_tasks": [
+          {
+            "query": "경상북도 문경시 문경찻사발축제 2023~2025년 각 축제 개최기간 공식 프로그램 운영 결과",
+            "reason": "보유 축제 CSV로 비교한 후보의 실제 프로그램·운영 방식 확인",
+            "region_code": "47280",
+            "region_name": "경상북도 문경시"
+          },
+          {
+            "query": "경상북도 안동시 안동탈춤축제 2023~2025년 각 축제 개최기간 공식 프로그램 운영 결과",
+            "reason": "보유 축제 CSV로 비교한 후보의 실제 프로그램·운영 방식 확인",
+            "region_code": "47170",
+            "region_name": "경상북도 안동시"
+          },
+          {
+            "query": "전라남도 진도군 진도신비의바닷길축제 2023~2025년 각 축제 개최기간 공식 프로그램 운영 결과",
+            "reason": "보유 축제 CSV로 비교한 후보의 실제 프로그램·운영 방식 확인",
+            "region_code": "46900",
+            "region_name": "전라남도 진도군"
+          },
+          {
+            "query": "경상남도 통영시 통영한산대첩축제 2023~2025년 각 축제 개최기간 공식 프로그램 운영 결과",
+            "reason": "보유 축제 CSV로 비교한 후보의 실제 프로그램·운영 방식 확인",
+            "region_code": "48220",
+            "region_name": "경상남도 통영시"
+          },
+          {
+            "query": "부산광역시 부산진구 2023 2024 2025 2026 관광사업 성과평가 방문객 관광소비 전년 운영 결과",
+            "reason": "동일 기간 관광 관측지표 거리로 찾은 우선 조사 지역",
+            "comparison": {
+              "rank": 1,
+              "distance": 0.438614,
+              "region_code": "26230",
+              "region_name": "부산광역시 부산진구",
+              "visitors_gap_pct": -13.836383,
+              "spend_per_visitor_gap_krw": 1040.01,
+              "overnight_ratio_gap_pct_point": 1.45
+            },
+            "region_code": "26230",
+            "region_name": "부산광역시 부산진구"
+          },
+          {
+            "query": "대구광역시 수성구 2023 2024 2025 2026 관광사업 성과평가 방문객 관광소비 전년 운영 결과",
+            "reason": "동일 기간 관광 관측지표 거리로 찾은 우선 조사 지역",
+            "comparison": {
+              "rank": 2,
+              "distance": 0.505309,
+              "region_code": "27260",
+              "region_name": "대구광역시 수성구",
+              "visitors_gap_pct": 25.305486,
+              "spend_per_visitor_gap_krw": 848.6,
+              "overnight_ratio_gap_pct_point": 1.075
+            },
+            "region_code": "27260",
+            "region_name": "대구광역시 수성구"
+          },
+          {
+            "query": "전북특별자치도 전주시 2023 2024 2025 2026 관광사업 성과평가 방문객 관광소비 전년 운영 결과",
+            "reason": "동일 기간 관광 관측지표 거리로 찾은 우선 조사 지역",
+            "comparison": {
+              "rank": 3,
+              "distance": 0.52767,
+              "region_code": "52110",
+              "region_name": "전북특별자치도 전주시",
+              "visitors_gap_pct": -14.971193,
+              "spend_per_visitor_gap_krw": -600.88,
+              "overnight_ratio_gap_pct_point": -2.5417
+            },
+            "region_code": "52110",
+            "region_name": "전북특별자치도 전주시"
+          },
+          {
+            "query": "충청남도 천안시 동남구 2023 2024 2025 2026 관광사업 성과평가 방문객 관광소비 전년 운영 결과",
+            "reason": "동일 기간 관광 관측지표 거리로 찾은 우선 조사 지역",
+            "comparison": {
+              "rank": 4,
+              "distance": 0.545681,
+              "region_code": "44131",
+              "region_name": "충청남도 천안시 동남구",
+              "visitors_gap_pct": 34.180948,
+              "spend_per_visitor_gap_krw": -2816.91,
+              "overnight_ratio_gap_pct_point": -0.1667
+            },
+            "region_code": "44131",
+            "region_name": "충청남도 천안시 동남구"
+          },
+          {
+            "query": "서울특별시 광진구 2023 2024 2025 2026 관광사업 성과평가 방문객 관광소비 전년 운영 결과",
+            "reason": "동일 기간 관광 관측지표 거리로 찾은 우선 조사 지역",
+            "comparison": {
+              "rank": 5,
+              "distance": 0.595015,
+              "region_code": "11215",
+              "region_name": "서울특별시 광진구",
+              "visitors_gap_pct": -13.93294,
+              "spend_per_visitor_gap_krw": 759.18,
+              "overnight_ratio_gap_pct_point": 2.7666
+            },
+            "region_code": "11215",
+            "region_name": "서울특별시 광진구"
+          },
+          {
+            "query": "전국 2023 2024 2025 2026 관심을 방문·예약으로 연결한 운영 관광사업 성과평가 전후 비교",
+            "reason": "유사지역 목록 밖의 성공 운영도 비교; 지역 조건의 차이는 적용 설계에서 조정",
+            "region_code": null,
+            "region_name": "전국 확장"
+          },
+          {
+            "query": "전국 2023 2024 2025 2026 체류·체험·숙박을 연결한 운영 관광사업 성과평가 전후 비교",
+            "reason": "유사지역 목록 밖의 성공 운영도 비교; 지역 조건의 차이는 적용 설계에서 조정",
+            "region_code": null,
+            "region_name": "전국 확장"
+          },
+          {
+            "query": "전국 2023 2024 2025 2026 지역 상권·콘텐츠 이용과 소비를 늘린 운영 관광사업 성과평가 전후 비교",
+            "reason": "유사지역 목록 밖의 성공 운영도 비교; 지역 조건의 차이는 적용 설계에서 조정",
+            "region_code": null,
+            "region_name": "전국 확장"
+          }
+        ],
+        "signal_groups": [
+          {
+            "id": "visit",
+            "signals": [
+              {
+                "kind": "forecast_signal",
+                "unit": "명",
+                "metric": "visitors",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_sum",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": -1.77,
+                "forecast_value": 14928559.0,
+                "interpretation": "입력 일정 전망에서 방문자 수의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "below_baseline_on_test",
+                "previous_year_same_months_value": 15196960.0
+              },
+              {
+                "kind": "forecast_signal",
+                "unit": "건",
+                "metric": "navigation_searches",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_sum",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": -11.31,
+                "forecast_value": 695191.0,
+                "interpretation": "입력 일정 전망에서 내비게이션 검색량의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "below_baseline_on_test",
+                "previous_year_same_months_value": 783835.0
+              }
+            ],
+            "question": "관심을 방문·예약으로 연결한 운영",
+            "search_priority_change_pct": -6.54
+          },
+          {
+            "id": "stay",
+            "signals": [
+              {
+                "kind": "forecast_signal",
+                "unit": "일",
+                "metric": "lodging_nights",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_average",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": 0.0,
+                "forecast_value": 2.8166666666666664,
+                "interpretation": "입력 일정 전망에서 평균 숙박일수의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "seasonal_baseline",
+                "previous_year_same_months_value": 2.8166666666666664
+              },
+              {
+                "kind": "forecast_signal",
+                "unit": "%",
+                "metric": "lodging_rate_pct",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_average",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": 0.0,
+                "forecast_value": 7.566666666666666,
+                "interpretation": "입력 일정 전망에서 숙박방문자 비율의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "seasonal_baseline",
+                "previous_year_same_months_value": 7.566666666666666
+              },
+              {
+                "kind": "forecast_signal",
+                "unit": "분",
+                "metric": "stay_minutes",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_average",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": 0.0,
+                "forecast_value": 1091.6666666666667,
+                "interpretation": "입력 일정 전망에서 평균 체류시간의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "seasonal_baseline",
+                "previous_year_same_months_value": 1091.6666666666667
+              },
+              {
+                "kind": "forecast_signal",
+                "unit": "건",
+                "metric": "lodging_searches",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_sum",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": 0.0,
+                "forecast_value": 45570.0,
+                "interpretation": "입력 일정 전망에서 숙박 목적지 검색량의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "seasonal_baseline",
+                "previous_year_same_months_value": 45570.0
+              }
+            ],
+            "question": "체류·체험·숙박을 연결한 운영",
+            "search_priority_change_pct": 0.0
+          },
+          {
+            "id": "spend",
+            "signals": [
+              {
+                "kind": "forecast_signal",
+                "unit": "원",
+                "metric": "spending_krw",
+                "period": "202610~202612",
+                "source_id": "ml:30170:regional-demand-v3.1:202606",
+                "aggregation": "3_month_sum",
+                "reliability": "exploratory_longer_horizon",
+                "window_label": "입력 일정 전망",
+                "window_months": 3,
+                "change_percent": 4.49,
+                "forecast_value": 246365272670.0,
+                "interpretation": "입력 일정 전망에서 관광소비액의 전년 동기간 대비 증가 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+                "model_reliability": "below_baseline_on_test",
+                "previous_year_same_months_value": 235788042000.0
+              }
+            ],
+            "question": "지역 상권·콘텐츠 이용과 소비를 늘린 운영",
+            "search_priority_change_pct": 4.49
+          }
+        ],
+        "peer_source_ids": [
+          "datalab:12c41f8a3e52:f92921dca662",
+          "datalab:162285800b98:dbba3ac2e220",
+          "datalab:1bec5b4405e1:6c5494eef7c6",
+          "datalab:7a4db91d6ba9:d81294f3e5a0",
+          "datalab:cc1dc8fb5607:77f3b69cfb89",
+          "datalab:e53d144382ee:fc025995a6df"
+        ],
+        "selected_region": "대전광역시 서구",
+        "festival_dataset": {
+          "status": "mysql",
+          "version": "festival-shortlist-v1",
+          "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+          "catalog_count": 92,
+          "selected_count": 4,
+          "selected_source_ids": [
+            "case:festival:01474ef75569b1",
+            "case:festival:0e9c7c065555b0",
+            "case:festival:1ff9d11d3ee0ee",
+            "case:festival:1ffc3eec28956a"
+          ]
+        },
+        "comparison_contract": [
+          "실제 지역과 사업명이 있는 서로 다른 운영 사례를 우선 3건 이상 조사한다. 없는 사례는 만들지 않는다.",
+          "사업 시행연도·운영방식·시행 전후 동일기간 방문/소비 수치와 각 원문 URL을 확인한다.",
+          "성과 미확인 운영 사례와 수치가 확인된 성과 사례를 구분한다. 전후 증가는 사업 단독 효과가 아니다.",
+          "선택 지역의 관측/ML 신호 → 사례 운영과 실적 → 공통점/차이 → 바꿀 운영조건 → 대안보다 선택한 이유를 연결한다.",
+          "ML이 약한 지표는 관측 자료와 함께 해석한다. 인구·지리·교통은 확인된 별도 근거가 있을 때만 비교한다."
+        ],
+        "festival_candidates": [
+          {
+            "source_id": "case:festival:01474ef75569b1",
+            "case_region": "경상북도 문경시",
+            "intervention": "문경찻사발축제",
+            "observed_result": "2024→2025년 전체 245,750→256,570명 (+4.40%). 개최 10→9일, 일평균 +16.00%, 외지인 +9.28%.",
+            "retrieval_basis": {
+              "kind": "external_benchmark",
+              "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+              "score": 31,
+              "theme": "역사·공예",
+              "components": {
+                "최근 개최연도": 6,
+                "방문 실적 비교 가능": 10,
+                "방문 전망 조사: 외지인·일평균 동반 증가": 15
+              },
+              "priority_signal": "visit"
+            }
+          },
+          {
+            "source_id": "case:festival:0e9c7c065555b0",
+            "case_region": "경상북도 안동시",
+            "intervention": "안동탈춤축제",
+            "observed_result": "2024→2025년 전체 504,573→554,494명 (+9.89%). 개최 10→10일, 일평균 +9.89%, 외지인 +10.75%.",
+            "retrieval_basis": {
+              "kind": "external_benchmark",
+              "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+              "score": 31,
+              "theme": "공연·문화",
+              "components": {
+                "최근 개최연도": 6,
+                "방문 실적 비교 가능": 10,
+                "방문 전망 조사: 외지인·일평균 동반 증가": 15
+              },
+              "priority_signal": "visit"
+            }
+          },
+          {
+            "source_id": "case:festival:1ff9d11d3ee0ee",
+            "case_region": "전라남도 진도군",
+            "intervention": "진도신비의바닷길축제",
+            "observed_result": "2024→2025년 전체 28,171→43,973명 (+56.09%). 개최 3→4일, 일평균 +17.07%, 외지인 +89.98%.",
+            "retrieval_basis": {
+              "kind": "external_benchmark",
+              "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+              "score": 31,
+              "theme": "자연·야외",
+              "components": {
+                "최근 개최연도": 6,
+                "방문 실적 비교 가능": 10,
+                "방문 전망 조사: 외지인·일평균 동반 증가": 15
+              },
+              "priority_signal": "visit"
+            }
+          },
+          {
+            "source_id": "case:festival:1ffc3eec28956a",
+            "case_region": "경상남도 통영시",
+            "intervention": "통영한산대첩축제",
+            "observed_result": "2024→2025년 전체 93,221→124,718명 (+33.79%). 개최 6→7일, 일평균 +14.67%, 외지인 +33.21%.",
+            "retrieval_basis": {
+              "kind": "external_benchmark",
+              "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+              "score": 31,
+              "theme": "지역문화",
+              "components": {
+                "최근 개최연도": 6,
+                "방문 실적 비교 가능": 10,
+                "방문 전망 조사: 외지인·일평균 동반 증가": 15
+              },
+              "priority_signal": "visit"
+            }
+          }
+        ],
+        "selected_observed_profile": {
+          "percentiles": {
+            "visitors_12m": 86.31,
+            "avg_stay_days": 53.23,
+            "spend_per_visitor_krw": 45.25,
+            "overnight_ratio_avg_pct": 47.15
+          },
+          "region_code": "30170",
+          "region_name": "대전광역시 서구",
+          "visitors_12m": 66669676,
+          "avg_stay_days": 2.8533,
+          "visitors_yoy_pct": 5.005106,
+          "spend_per_visitor_krw": 15157.3,
+          "domestic_spend_yoy_pct": 2.38363,
+          "overnight_ratio_avg_pct": 7.3833,
+          "domestic_spend_12m_thousand_krw": 1010532489.0
+        }
+      }
+    },
+    {
+      "agent": "case_scout",
+      "items": 8,
+      "stage": "case_rag",
+      "status": "completed"
+    },
+    {
+      "agent": "case_scout",
+      "items": 4,
+      "stage": "official_case_web",
+      "status": "completed",
+      "grounding": {
+        "searched": true,
+        "accepted_cases": 4,
+        "rejected_cases": []
+      }
+    },
+    {
+      "rule": "시·군 또는 명시된 광역시 구·군 단위로 중복을 제거한다. 광역시 전체와 포함 구는 중복 집계하지 않는다. 지역 완전 일치는 요구하지 않는다. 최소 2개 실제 지역·2개 운영 원리를 비교; 성과의 사실성은 별도 검수.",
+      "agent": "case_scout",
+      "items": 8,
+      "stage": "national_case_selection",
+      "status": "completed",
+      "web_status": "completed",
+      "scope_counts": {
+        "cross_province": 5,
+        "national_or_unresolved": 4
+      },
+      "research_status": "ready_for_comparison",
+      "registry_excluded": 1,
+      "catalog_candidates": 9,
+      "excluded_candidates": 1,
+      "registry_candidates": 9,
+      "selected_candidates": 8,
+      "selected_source_ids": [
+        "case:41508ca81cf29f",
+        "case:festival:01474ef75569b1",
+        "case:gangjin_half_price_2024",
+        "case:4544b7bca8ebab",
+        "case:digital_tourism_resident_2024",
+        "case:night_festival_2025",
+        "case:festival:1ff9d11d3ee0ee",
+        "case:festival:1ffc3eec28956a"
+      ],
+      "concrete_region_count": 5,
+      "operation_family_count": 5,
+      "sufficient_for_comparison": true
+    },
+    {
+      "agent": "evidence",
+      "model": "gpt-5.6-terra",
+      "stage": "evidence",
+      "usage": {
+        "input_tokens": 34992,
+        "total_tokens": 37969,
+        "cached_tokens": 0,
+        "output_tokens": 2977,
+        "reasoning_tokens": 876
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "usage": {
+            "input_tokens": 34992,
+            "total_tokens": 37969,
+            "cached_tokens": 0,
+            "output_tokens": 2977,
+            "reasoning_tokens": 876
+          },
+          "reason": null,
+          "status": "completed",
+          "attempt": 1,
+          "duration_ms": 39470,
+          "usage_reported": true,
+          "max_output_tokens": 10000
+        }
+      ],
+      "fallback": false,
+      "provider": "openai",
+      "tool_trace": [],
+      "duration_ms": 39472,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": true,
+      "input_preparation": {},
+      "max_output_tokens": 10000,
+      "requested_provider": "openai"
+    },
+    {
+      "agent": "case_scout",
+      "model": "gpt-5.6-sol",
+      "stage": "case_study",
+      "usage": {
+        "input_tokens": 92960,
+        "total_tokens": 99857,
+        "cached_tokens": 0,
+        "output_tokens": 6897,
+        "reasoning_tokens": 3058
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "usage": {
+            "input_tokens": 92960,
+            "total_tokens": 99857,
+            "cached_tokens": 0,
+            "output_tokens": 6897,
+            "reasoning_tokens": 3058
+          },
+          "reason": null,
+          "status": "completed",
+          "attempt": 1,
+          "duration_ms": 99952,
+          "web_grounding": {
+            "searched": true,
+            "accepted_cases": 4,
+            "rejected_cases": []
+          },
+          "usage_reported": true,
+          "max_output_tokens": 16000
+        }
+      ],
+      "fallback": false,
+      "provider": "openai",
+      "tool_trace": [],
+      "duration_ms": 99957,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": true,
+      "input_preparation": {},
+      "max_output_tokens": 16000,
+      "requested_provider": "openai"
+    },
+    {
+      "agent": "evidence",
+      "stage": "complete",
+      "status": "completed",
+      "duration_ms": 102276
+    },
+    {
+      "agent": "case_scout",
+      "stage": "complete",
+      "status": "completed",
+      "duration_ms": 102276
+    },
+    {
+      "agent": "transferability",
+      "model": "qwen3:14b",
+      "stage": "transferability",
+      "usage": {
+        "input_tokens": 120859,
+        "total_tokens": 124619,
+        "output_tokens": 3760
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 29947,
+            "total_tokens": 29983,
+            "output_tokens": 36
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 30076,
+            "total_tokens": 30114,
+            "output_tokens": 38
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 30208,
+            "total_tokens": 30239,
+            "output_tokens": 31
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 30628,
+            "total_tokens": 34283,
+            "output_tokens": 3655
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "qwen",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "unavailable"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "unavailable"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "unavailable"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        }
+      ],
+      "duration_ms": 445309,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 3,
+        "original_bytes": 207600,
+        "overview_bytes": 10286,
+        "sources_available": 64
+      },
+      "max_output_tokens": 8000,
+      "requested_provider": "qwen"
+    },
+    {
+      "agent": "transferability",
+      "stage": "candidate_repair",
+      "status": "completed",
+      "remaining_issues": 0,
+      "selection_status": "ready"
+    },
+    {
+      "agent": "transferability",
+      "model": "qwen3:14b",
+      "stage": "transferability",
+      "usage": {
+        "input_tokens": 119803,
+        "total_tokens": 122590,
+        "output_tokens": 2787
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 29132,
+            "total_tokens": 29164,
+            "output_tokens": 32
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 30204,
+            "total_tokens": 30242,
+            "output_tokens": 38
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 30304,
+            "total_tokens": 30339,
+            "output_tokens": 35
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 30163,
+            "total_tokens": 32845,
+            "output_tokens": 2682
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "qwen",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "unavailable"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "unavailable"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "duration_ms": 329432,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 3,
+        "original_bytes": 221370,
+        "overview_bytes": 10288,
+        "sources_available": 64
+      },
+      "max_output_tokens": 8000,
+      "requested_provider": "qwen"
+    },
+    {
+      "agent": "transferability",
+      "stage": "assessment",
+      "status": "completed",
+      "duration_ms": 774747,
+      "recommended_cases": 1
+    },
+    {
+      "agent": "transferability",
+      "stage": "candidate_stabilization",
+      "status": "skipped",
+      "corrections": 0
+    },
+    {
+      "agent": "planner",
+      "stage": "draft",
+      "status": "completed",
+      "duration_ms": 112289
+    },
+    {
+      "agent": "planner",
+      "model": "gemma4:26b",
+      "stage": "planner",
+      "usage": {
+        "input_tokens": 36542,
+        "total_tokens": 38207,
+        "output_tokens": 1665
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 18566,
+            "total_tokens": 19078,
+            "output_tokens": 512
+          },
+          "status": "continued_without_optional_tools",
+          "error_code": "OLLAMA_INCOMPLETE_RESPONSE",
+          "usage_reported": true
+        },
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 17976,
+            "total_tokens": 19129,
+            "output_tokens": 1153
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "gemma",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "duration_ms": 112289,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 1,
+        "original_bytes": 220239,
+        "overview_bytes": 10232,
+        "sources_available": 64
+      },
+      "max_output_tokens": 10000,
+      "requested_provider": "gemma"
+    },
+    {
+      "agent": "reviewer",
+      "score": 81,
+      "stage": "first_review",
+      "status": "completed",
+      "duration_ms": 122969
+    },
+    {
+      "agent": "reviewer",
+      "model": "qwen3:14b",
+      "stage": "reviewer",
+      "usage": {
+        "input_tokens": 94707,
+        "total_tokens": 95900,
+        "output_tokens": 1193
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23672,
+            "total_tokens": 23719,
+            "output_tokens": 47
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23787,
+            "total_tokens": 23835,
+            "output_tokens": 48
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23906,
+            "total_tokens": 23949,
+            "output_tokens": 43
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 23342,
+            "total_tokens": 24397,
+            "output_tokens": 1055
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "qwen",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "get_region_metrics",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "invalid_arguments"
+        }
+      ],
+      "duration_ms": 122952,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 1,
+        "original_bytes": 225594,
+        "overview_bytes": 12411,
+        "sources_available": 64
+      },
+      "max_output_tokens": 5500,
+      "requested_provider": "qwen"
+    },
+    {
+      "agent": "planner",
+      "stage": "revision",
+      "status": "completed",
+      "duration_ms": 45898
+    },
+    {
+      "agent": "planner",
+      "model": "gemma4:26b",
+      "stage": "planner_revision",
+      "usage": {
+        "input_tokens": 19132,
+        "total_tokens": 20464,
+        "output_tokens": 1332
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 19132,
+            "total_tokens": 20464,
+            "output_tokens": 1332
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "gemma",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "duration_ms": 45889,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 1,
+        "original_bytes": 121222,
+        "overview_bytes": 9018,
+        "sources_available": 17
+      },
+      "max_output_tokens": 10000,
+      "requested_provider": "gemma"
+    },
+    {
+      "agent": "reviewer",
+      "score": 81,
+      "stage": "local_recheck",
+      "status": "completed",
+      "duration_ms": 98118
+    },
+    {
+      "agent": "reviewer",
+      "model": "qwen3:14b",
+      "stage": "reviewer",
+      "usage": {
+        "input_tokens": 94627,
+        "total_tokens": 95473,
+        "output_tokens": 846
+      },
+      "status": "completed",
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23629,
+            "total_tokens": 23690,
+            "output_tokens": 61
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23756,
+            "total_tokens": 23793,
+            "output_tokens": 37
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "tool_selection",
+          "usage": {
+            "input_tokens": 23923,
+            "total_tokens": 23940,
+            "output_tokens": 17
+          },
+          "status": "completed",
+          "usage_reported": true
+        },
+        {
+          "phase": "final_json",
+          "usage": {
+            "input_tokens": 23319,
+            "total_tokens": 24050,
+            "output_tokens": 731
+          },
+          "status": "completed",
+          "usage_reported": true
+        }
+      ],
+      "fallback": false,
+      "provider": "qwen",
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        }
+      ],
+      "duration_ms": 98116,
+      "paid_reason": "",
+      "retry_count": 0,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "sources_read": 1,
+        "original_bytes": 225145,
+        "overview_bytes": 11228,
+        "sources_available": 64
+      },
+      "max_output_tokens": 5500,
+      "requested_provider": "qwen"
+    },
+    {
+      "agent": "reviewer",
+      "stage": "cloud_final_audit",
+      "reason": "local_quality_gate_not_passed",
+      "status": "skipped"
+    }
+  ],
+  "limitations": [],
+  "ml_analysis": {
+    "status": "available",
+    "signals": [
+      {
+        "kind": "forecast_signal",
+        "unit": "명",
+        "metric": "visitors",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_sum",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": -1.77,
+        "forecast_value": 14928559.0,
+        "interpretation": "입력 일정 전망에서 방문자 수의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "below_baseline_on_test",
+        "previous_year_same_months_value": 15196960.0
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "원",
+        "metric": "spending_krw",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_sum",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": 4.49,
+        "forecast_value": 246365272670.0,
+        "interpretation": "입력 일정 전망에서 관광소비액의 전년 동기간 대비 증가 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "below_baseline_on_test",
+        "previous_year_same_months_value": 235788042000.0
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "일",
+        "metric": "lodging_nights",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_average",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": 0.0,
+        "forecast_value": 2.8166666666666664,
+        "interpretation": "입력 일정 전망에서 평균 숙박일수의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "seasonal_baseline",
+        "previous_year_same_months_value": 2.8166666666666664
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "%",
+        "metric": "lodging_rate_pct",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_average",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": 0.0,
+        "forecast_value": 7.566666666666666,
+        "interpretation": "입력 일정 전망에서 숙박방문자 비율의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "seasonal_baseline",
+        "previous_year_same_months_value": 7.566666666666666
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "분",
+        "metric": "stay_minutes",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_average",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": 0.0,
+        "forecast_value": 1091.6666666666667,
+        "interpretation": "입력 일정 전망에서 평균 체류시간의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "seasonal_baseline",
+        "previous_year_same_months_value": 1091.6666666666667
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "건",
+        "metric": "navigation_searches",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_sum",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": -11.31,
+        "forecast_value": 695191.0,
+        "interpretation": "입력 일정 전망에서 내비게이션 검색량의 전년 동기간 대비 감소 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "below_baseline_on_test",
+        "previous_year_same_months_value": 783835.0
+      },
+      {
+        "kind": "forecast_signal",
+        "unit": "건",
+        "metric": "lodging_searches",
+        "period": "202610~202612",
+        "source_id": "ml:30170:regional-demand-v3.1:202606",
+        "aggregation": "3_month_sum",
+        "reliability": "exploratory_longer_horizon",
+        "window_label": "입력 일정 전망",
+        "window_months": 3,
+        "change_percent": 0.0,
+        "forecast_value": 45570.0,
+        "interpretation": "입력 일정 전망에서 숙박 목적지 검색량의 전년 동기간 대비 유지 추세 예측입니다. 원인 또는 사업 효과를 뜻하지 않습니다.",
+        "model_reliability": "seasonal_baseline",
+        "previous_year_same_months_value": 45570.0
+      }
+    ],
+    "cautions": [
+      "관측 사실·ML 전망·사업 목표를 분리합니다. 전망은 정책 미실행 결과나 인과효과가 아닙니다.",
+      "시험 표본이 적습니다. 지표·horizon별 기준선 대비 오차를 확인하고 우수성을 일반화하지 않습니다.",
+      "below_baseline_on_test 또는 mixed_recursive_performance 전망은 단독 선정 근거·성과 목표로 쓰지 않습니다. seasonal_baseline은 전년 동월 반복이며 고도화 모델의 개선 성과가 아닙니다.",
+      "관광소비액은 지역 사업자의 순이익이 아닙니다. 방문자와 소비 표본이 같다는 확인 없이 1인당 소비를 계산하지 않습니다.",
+      "업종별 비중 변화·SNS 언급량·쿠폰 지급 효과·사업의 추가 매출은 이 모델이 학습한 대상이 아닙니다.",
+      "내비게이션·숙박 검색량은 관심 신호이며 실제 방문·예약 건수로 해석하지 않습니다.",
+      "4개월 이후 전망은 탐색값이며 월이 멀어질수록 불확실성이 커집니다."
+    ],
+    "forecasts": [
+      {
+        "month": "202607",
+        "visitors": 4982887,
+        "is_forecast": true,
+        "spending_krw": 80283647550,
+        "stay_minutes": 1223.0,
+        "lodging_nights": 2.91,
+        "lodging_rate_pct": 7.3,
+        "lodging_searches": 12843,
+        "navigation_searches": 209722,
+        "visitor_yoy_percent": 0.64,
+        "spending_yoy_percent": 6.85,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": -0.44
+        },
+        "previous_year_visitors": 4951150,
+        "previous_year_spending_krw": 75135145000,
+        "previous_year_stay_minutes": 1223.0,
+        "previous_year_lodging_nights": 2.91,
+        "previous_year_lodging_rate_pct": 7.3,
+        "previous_year_lodging_searches": 12843,
+        "previous_year_navigation_searches": 210646
+      },
+      {
+        "month": "202608",
+        "visitors": 4852547,
+        "is_forecast": true,
+        "spending_krw": 76665340753,
+        "stay_minutes": 1218.0,
+        "lodging_nights": 2.84,
+        "lodging_rate_pct": 7.9,
+        "lodging_searches": 13272,
+        "navigation_searches": 225159,
+        "visitor_yoy_percent": -1.76,
+        "spending_yoy_percent": 0.49,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": 2.0
+        },
+        "previous_year_visitors": 4939438,
+        "previous_year_spending_krw": 76291079000,
+        "previous_year_stay_minutes": 1218.0,
+        "previous_year_lodging_nights": 2.84,
+        "previous_year_lodging_rate_pct": 7.9,
+        "previous_year_lodging_searches": 13272,
+        "previous_year_navigation_searches": 220742
+      },
+      {
+        "month": "202609",
+        "visitors": 4823300,
+        "is_forecast": true,
+        "spending_krw": 80194062490,
+        "stay_minutes": 1281.0,
+        "lodging_nights": 2.93,
+        "lodging_rate_pct": 6.7,
+        "lodging_searches": 11464,
+        "navigation_searches": 206180,
+        "visitor_yoy_percent": -0.39,
+        "spending_yoy_percent": 13.32,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": 7.4
+        },
+        "previous_year_visitors": 4842196,
+        "previous_year_spending_krw": 70764730000,
+        "previous_year_stay_minutes": 1281.0,
+        "previous_year_lodging_nights": 2.93,
+        "previous_year_lodging_rate_pct": 6.7,
+        "previous_year_lodging_searches": 11464,
+        "previous_year_navigation_searches": 191971
+      },
+      {
+        "month": "202610",
+        "visitors": 4998578,
+        "is_forecast": true,
+        "spending_krw": 79359374710,
+        "stay_minutes": 1170.0,
+        "lodging_nights": 2.85,
+        "lodging_rate_pct": 8.9,
+        "lodging_searches": 19187,
+        "navigation_searches": 237779,
+        "visitor_yoy_percent": 0.99,
+        "spending_yoy_percent": 1.54,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": -26.82
+        },
+        "previous_year_visitors": 4949394,
+        "previous_year_spending_krw": 78158272000,
+        "previous_year_stay_minutes": 1170.0,
+        "previous_year_lodging_nights": 2.85,
+        "previous_year_lodging_rate_pct": 8.9,
+        "previous_year_lodging_searches": 19187,
+        "previous_year_navigation_searches": 324902
+      },
+      {
+        "month": "202611",
+        "visitors": 4940348,
+        "is_forecast": true,
+        "spending_krw": 85971975908,
+        "stay_minutes": 987.0,
+        "lodging_nights": 2.79,
+        "lodging_rate_pct": 6.5,
+        "lodging_searches": 14379,
+        "navigation_searches": 231894,
+        "visitor_yoy_percent": -4.4,
+        "spending_yoy_percent": 12.37,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": -2.86
+        },
+        "previous_year_visitors": 5167969,
+        "previous_year_spending_krw": 76509918000,
+        "previous_year_stay_minutes": 987.0,
+        "previous_year_lodging_nights": 2.79,
+        "previous_year_lodging_rate_pct": 6.5,
+        "previous_year_lodging_searches": 14379,
+        "previous_year_navigation_searches": 238728
+      },
+      {
+        "month": "202612",
+        "visitors": 4989633,
+        "is_forecast": true,
+        "spending_krw": 81033922052,
+        "stay_minutes": 1118.0,
+        "lodging_nights": 2.81,
+        "lodging_rate_pct": 7.3,
+        "lodging_searches": 12004,
+        "navigation_searches": 225518,
+        "visitor_yoy_percent": -1.77,
+        "spending_yoy_percent": -0.11,
+        "metric_changes_percent": {
+          "stay_minutes": 0.0,
+          "lodging_nights": 0.0,
+          "lodging_rate_pct": 0.0,
+          "lodging_searches": 0.0,
+          "navigation_searches": 2.41
+        },
+        "previous_year_visitors": 5079597,
+        "previous_year_spending_krw": 81119852000,
+        "previous_year_stay_minutes": 1118.0,
+        "previous_year_lodging_nights": 2.81,
+        "previous_year_lodging_rate_pct": 7.3,
+        "previous_year_lodging_searches": 12004,
+        "previous_year_navigation_searches": 220205
+      }
+    ],
+    "source_id": "ml:30170:regional-demand-v3.1:202606",
+    "evaluation": {
+      "metrics": {
+        "visitors": {
+          "test_mae": 237105.53,
+          "recursive_mae": {
+            "1": {
+              "baseline": 211072.0,
+              "selected": 332727.0,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 97043.0,
+              "selected": 141143.5,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 174799.0,
+              "selected": 168591.5,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "RandomForestRegressor",
+          "baseline_test_mae": 192935.5,
+          "model_reliability": "below_baseline_on_test",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": [
+            "1",
+            "2"
+          ]
+        },
+        "spending_krw": {
+          "test_mae": 4927867951.9,
+          "recursive_mae": {
+            "1": {
+              "baseline": 1944140500.0,
+              "selected": 3237755191.0,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 3984052500.0,
+              "selected": 1581504765.5,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 2878173500.0,
+              "selected": 4493524184.5,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "LinearRegression",
+          "baseline_test_mae": 2411157000.0,
+          "model_reliability": "below_baseline_on_test",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": [
+            "1",
+            "3"
+          ]
+        },
+        "stay_minutes": {
+          "test_mae": 113.5,
+          "recursive_mae": {
+            "1": {
+              "baseline": 52.0,
+              "selected": 52.0,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 218.5,
+              "selected": 218.5,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 175.0,
+              "selected": 175.0,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "seasonal_naive_previous_year_same_month",
+          "baseline_test_mae": 113.5,
+          "model_reliability": "seasonal_baseline",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": []
+        },
+        "lodging_nights": {
+          "test_mae": 0.07,
+          "recursive_mae": {
+            "1": {
+              "baseline": 0.06,
+              "selected": 0.06,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 0.11,
+              "selected": 0.11,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 0.08,
+              "selected": 0.08,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "seasonal_naive_previous_year_same_month",
+          "baseline_test_mae": 0.07,
+          "model_reliability": "seasonal_baseline",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": []
+        },
+        "lodging_rate_pct": {
+          "test_mae": 0.3,
+          "recursive_mae": {
+            "1": {
+              "baseline": 0.4,
+              "selected": 0.4,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 0.2,
+              "selected": 0.2,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 0.2,
+              "selected": 0.2,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "seasonal_naive_previous_year_same_month",
+          "baseline_test_mae": 0.3,
+          "model_reliability": "seasonal_baseline",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": []
+        },
+        "lodging_searches": {
+          "test_mae": 526.5,
+          "recursive_mae": {
+            "1": {
+              "baseline": 779.0,
+              "selected": 779.0,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 391.5,
+              "selected": 391.5,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 274.0,
+              "selected": 274.0,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "seasonal_naive_previous_year_same_month",
+          "baseline_test_mae": 526.5,
+          "model_reliability": "seasonal_baseline",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": []
+        },
+        "navigation_searches": {
+          "test_mae": 20482.57,
+          "recursive_mae": {
+            "1": {
+              "baseline": 9487.0,
+              "selected": 20785.0,
+              "sample_count": 2
+            },
+            "2": {
+              "baseline": 6758.5,
+              "selected": 14198.0,
+              "sample_count": 2
+            },
+            "3": {
+              "baseline": 14633.0,
+              "selected": 18839.0,
+              "sample_count": 2
+            }
+          },
+          "selected_model": "RandomForestRegressor",
+          "baseline_test_mae": 12060.0,
+          "model_reliability": "below_baseline_on_test",
+          "beats_baseline_on_test": false,
+          "recursive_horizons_worse_than_baseline": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
+      "test_period": "202603~202606",
+      "selection_basis": "validation_mae_only",
+      "validation_period": "202512~202602",
+      "longer_horizon_status": "exploratory_not_recursively_backtested",
+      "forecast_horizon_months": 6,
+      "recursive_backtest_horizon_months": [
+        1,
+        2,
+        3
+      ]
+    },
+    "reason_code": "",
+    "region_code": "30170",
+    "region_name": "대전광역시 서구",
+    "forecast_type": "historical_trend_not_policy_counterfactual",
+    "model_version": "regional-demand-v3.1",
+    "source_period": "202401~202606",
+    "horizon_policy": {
+      "notes": [
+        "4개월 이후 전망은 탐색값이며 월이 멀어질수록 불확실성이 커집니다."
+      ],
+      "as_of_date": "2026-09-16",
+      "schedule_status": "fixed",
+      "selection_basis": "user_schedule_dates",
+      "decision_windows": [
+        {
+          "label": "입력 일정 전망",
+          "months": 3,
+          "end_month": "202612",
+          "reliability": "exploratory_longer_horizon",
+          "start_month": "202610",
+          "forecast_end_index": 5,
+          "forecast_start_index": 3
+        }
+      ],
+      "coverage_complete": true,
+      "forecast_end_month": "202612",
+      "requested_end_month": "202612",
+      "forecast_start_month": "202607",
+      "requested_start_month": "202610",
+      "forecast_horizon_months": 6,
+      "strategy_duration_max_months": 3,
+      "strategy_duration_min_months": 3,
+      "validated_recursive_horizon_months": 3
+    },
+    "data_fingerprint": "edea7fa8270d3b72aee15e6816efec3fce699e1bab55ebd844a10870c2f0e0a0",
+    "research_questions": [
+      "대전광역시 서구의 입력 일정 전망(202610~202612) 방문자 수와 내비게이션 검색량 전망을 비교해 관심을 실제 방문으로 연결한 공식 사업의 운영방법·예산·성과·실패조건을 조사하세요.",
+      "대전광역시 서구의 입력 일정 전망(202610~202612) 숙박검색·숙박방문 비율·평균 숙박일·체류시간 전망을 함께 보고 숙박 전환과 장시간 체류를 높인 공식 사업을 조사하세요.",
+      "대전광역시 서구의 입력 일정 전망(202610~202612) 관광소비액 전망과 계절 조건을 참고해 지역 상권·관광콘텐츠 이용을 늘린 다양한 운영 방식을 공식 성과자료 중심으로 비교하세요. 지원금 지급 방식으로 미리 한정하지 마세요."
+    ],
+    "latest_observed_month": "202606"
+  },
+  "region_name": "대전광역시 서구",
+  "metrics_count": 7,
+  "monthly_trend": [
+    {
+      "month": "2025.07",
+      "visitors": 4951150,
+      "is_forecast": false,
+      "spending_krw": 75135145000,
+      "visitor_index": 100.0,
+      "spending_index": 100.0,
+      "is_current_month": false
+    },
+    {
+      "month": "2025.08",
+      "visitors": 4939438,
+      "is_forecast": false,
+      "spending_krw": 76291079000,
+      "visitor_index": 99.8,
+      "spending_index": 101.5,
+      "is_current_month": false
+    },
+    {
+      "month": "2025.09",
+      "visitors": 4842196,
+      "is_forecast": false,
+      "spending_krw": 70764730000,
+      "visitor_index": 97.8,
+      "spending_index": 94.2,
+      "is_current_month": false
+    },
+    {
+      "month": "2025.10",
+      "visitors": 4949394,
+      "is_forecast": false,
+      "spending_krw": 78158272000,
+      "visitor_index": 100.0,
+      "spending_index": 104.0,
+      "is_current_month": false
+    },
+    {
+      "month": "2025.11",
+      "visitors": 5167969,
+      "is_forecast": false,
+      "spending_krw": 76509918000,
+      "visitor_index": 104.4,
+      "spending_index": 101.8,
+      "is_current_month": false
+    },
+    {
+      "month": "2025.12",
+      "visitors": 5079597,
+      "is_forecast": false,
+      "spending_krw": 81119852000,
+      "visitor_index": 102.6,
+      "spending_index": 108.0,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.01",
+      "visitors": 4809439,
+      "is_forecast": false,
+      "spending_krw": 78660217000,
+      "visitor_index": 97.1,
+      "spending_index": 104.7,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.02",
+      "visitors": 4451459,
+      "is_forecast": false,
+      "spending_krw": 72099939000,
+      "visitor_index": 89.9,
+      "spending_index": 96.0,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.03",
+      "visitors": 5314102,
+      "is_forecast": false,
+      "spending_krw": 77132407000,
+      "visitor_index": 107.3,
+      "spending_index": 102.7,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.04",
+      "visitors": 4454958,
+      "is_forecast": false,
+      "spending_krw": 76142370000,
+      "visitor_index": 90.0,
+      "spending_index": 101.3,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.05",
+      "visitors": 5070034,
+      "is_forecast": false,
+      "spending_krw": 87429557000,
+      "visitor_index": 102.4,
+      "spending_index": 116.4,
+      "is_current_month": false
+    },
+    {
+      "month": "2026.06",
+      "visitors": 4619168,
+      "is_forecast": false,
+      "spending_krw": 76758413000,
+      "visitor_index": 93.3,
+      "spending_index": 102.2,
+      "is_current_month": false
+    }
+  ],
+  "research_gaps": [
+    "2026년 10월 1일~12월 31일에 대전 서구에서 실제 개최·확정된 축제 및 행사는 허용된 공식 도메인 검색 결과에서 확인하지 못했다. 행사명·일정·주관기관·장소·예산을 확정하지 말고, 서구 및 시설 운영기관의 공식 공고 원문을 별도 확인해야 한다.",
+    "대전 서구의 관광정책, 자체 관광사업 예산·결산, 성과평가, 중복지원 제한은 허용된 공식 도메인 내에서 확인 가능한 최신 원문을 찾지 못했다. 따라서 신규 지원금·쿠폰·할인사업의 예산 규모나 기존 사업과의 중복 여부를 판단할 수 없다.",
+    "입력된 지역관광현황의 유입·유출, 인기장소·인기업소 자료는 한국관광 데이터랩을 출처로 하나, 제공된 source_records의 review_status가 needs_exact_download_url이다. 롯데백화점 대전점, 갤러리아 타임월드점, 장태산자연휴양림, 한밭수목원 등을 참여기관 또는 운영협약 대상으로 확정하지 말고 정확한 다운로드 원문과 기관 의사를 확인해야 한다.",
+    "입력된 2026년 10~12월 ML 전망은 내부 모델 계산이며, 해당 창은 exploratory_longer_horizon이다. 방문자·관광소비·내비게이션 검색 전망 모델은 시험에서 기준선보다 낮았으므로, 전망치를 공식 실적·사업효과·성과목표로 사용하지 않는다.",
+    "관광소비와 방문 집계의 표본 일치가 검증되지 않았으므로, 제공된 12개월 소비/방문 비율을 관광객 1인 객단가로 해석하거나 목표 매출을 계산하는 데 사용하지 않는다.",
+    "한민시장 점포별 영업시간·휴무일, 대전예술의전당의 2026년 10~12월 공연편성, 한밭수목원의 프로그램·단체운영 가능일, 장태산자연휴양림의 숙박·교통·단체수용 조건은 공식 최신 운영 원문 또는 운영기관 협의로 확인해야 한다. 자원 상태와 예산이 unknown이므로 이를 자원 부재 또는 0원으로 간주하지 않는다.",
+    "대전광역시 서구의 사업예산이 미정이므로 사례 예산을 기준으로 운영 규모를 정할 수 없다.",
+    "시설·인력·참여업체·교통자원이 아직 확정되지 않아 운영일수, 회차, 정원 및 혜택 단가를 제시할 근거가 없다.",
+    "서구 또는 대전 동일 시도에서 결제·예약·숙박 전환을 참여자 단위로 평가한 공식 결과보고서는 이번 제한된 공식 출처 조사에서 확보하지 못했다.",
+    "충청권 공항 연계 보고서의 노선별 공급좌석, 운행일수, 예산과 서구 방문·소비 자료는 확인되지 않았다.",
+    "안동탈춤축제 CSV의 정확한 개별 다운로드 URL이 기록되지 않아 원문 재현성을 위해 데이터랩에서 동일 조건 재다운로드가 필요하다.",
+    "디지털 관광주민증은 실제 이용자 수, 이용률, 추가 방문 비중, 참여자 소비가 공개자료에서 확인되지 않았다. 운영 규모만 확인된 사례로 성과가 검증됐다고 볼 수 없다.",
+    "같은 시도의 타 시군구 공식 사례 카드는 현재 후보에 없습니다. 전국 사례를 비교하되 인근 사업이 없다고 단정하지 않습니다."
+  ],
+  "planning_brief": {
+    "version": 1,
+    "end_date": "2026-12-31",
+    "references": [],
+    "start_date": "2026-10-01",
+    "preferences": "",
+    "region_code": "30170",
+    "budget_status": "unknown",
+    "field_context": "",
+    "input_profile": "guided_v2",
+    "budget_max_krw": null,
+    "budget_min_krw": null,
+    "context_options": [],
+    "schedule_status": "fixed",
+    "hard_constraints": "",
+    "resource_options": [],
+    "resources_status": "unknown",
+    "budget_hard_limit": false,
+    "business_direction": "auto",
+    "constraints_status": "unknown",
+    "resources_possible": "",
+    "visitor_target_pct": null,
+    "excluded_operations": [],
+    "resources_confirmed": "",
+    "spending_target_pct": null
+  },
+  "quality_review": {
+    "issues": [
+      {
+        "field": "strategies[1].kpi",
+        "problem": "성과 측정 설계 누락: 비교 대상",
+        "severity": "major",
+        "revision_instruction": "누락 요소를 채우세요. 취소 제외 결제액/적격 참여자 등 대상 정의와 자료 수집 담당을 적고 전후 변화와 사업 효과를 구분하세요."
+      },
+      {
+        "field": "strategies[1].implementation_steps[3].task",
+        "problem": "실행 단계의 담당 역할이 없습니다.",
+        "severity": "major",
+        "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+      },
+      {
+        "field": "strategies[1].implementation_steps[5].task",
+        "problem": "실행 단계의 담당 역할이 없습니다.",
+        "severity": "major",
+        "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+      },
+      {
+        "field": "quality_review.overall_score",
+        "problem": "최종 검수 점수가 82점 미만입니다.",
+        "severity": "major",
+        "revision_instruction": "근거 연결, 실행 단계, 예산 산식, KPI 측정 방법을 보완한 뒤 다시 검수하세요."
+      }
+    ],
+    "summary": "대전광역시 서구는 2026년 10월 1일부터 12월 31일까지의 관광 활성화를 위해 새로운 전략이 필요합니다. 이 기간 동안의 관광객 수, 관광소비액, 내비게이션 검색량 등은 전년 동기 대비 감소 추세를 보이고 있습니다. 이에 따라, 지역의 특성과 기존 성공 사례를 바탕으로 효과적인 관광 활성화 방안을 모색해야 합니다. · 코드 점검에서 실행·근거 보완 항목이 확인되었습니다.",
+    "approved": false,
+    "strengths": [
+      "야간 축제 운영은 '2025 대한민국 밤밤페스타' 사례에서 도출된 운영 방식을 참고하여, 대전 서구의 특성에 맞게 조정된 운영 방식으로, 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가를 기대할 수 있습니다.",
+      "야간 축제 운영에 필요한 예산은 축제 기간(3개월) × 축제 운영 비용(예: 100만 원/개월) = 300만 원으로, '2025 대한민국 밤밤페스타' 사례에서 도출된 예산 기준을 참고하였습니다.",
+      "야간 축제 운영의 성공 여부는 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가 여부를 기준으로 판단합니다."
+    ],
+    "revised_once": true,
+    "overall_score": 81,
+    "dimension_scores": {
+      "evidence_validity": 85,
+      "comparison_quality": 78,
+      "clarity_and_brevity": 80,
+      "implementation_detail": 75,
+      "visual_material_readiness": 83,
+      "public_official_usefulness": 82
+    },
+    "validation_findings": [
+      {
+        "field": "strategies[1].kpi",
+        "problem": "성과 측정 설계 누락: 비교 대상",
+        "severity": "major",
+        "revision_instruction": "누락 요소를 채우세요. 취소 제외 결제액/적격 참여자 등 대상 정의와 자료 수집 담당을 적고 전후 변화와 사업 효과를 구분하세요."
+      },
+      {
+        "field": "strategies[1].implementation_steps[3].task",
+        "problem": "실행 단계의 담당 역할이 없습니다.",
+        "severity": "major",
+        "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+      },
+      {
+        "field": "strategies[1].implementation_steps[5].task",
+        "problem": "실행 단계의 담당 역할이 없습니다.",
+        "severity": "major",
+        "revision_instruction": "누가 어떤 입력·확인 조건으로 실제 작업을 하는지 task에 적고 deliverable을 구체적으로 유지하세요."
+      }
+    ],
+    "completion_checklist": [
+      {
+        "id": "measurement",
+        "owner": "AI 측정 설계 + 사업/정산 담당",
+        "title": "성과 측정·추가 효과",
+        "action": "자료가 있는데 본문에 빠진 것인지 먼저 확인합니다. 관광 월간 통계만으로 사업 참여·재사용·순증 소비를 계산하지 않습니다.",
+        "status": "집계 가능 여부 확인 / 사후 수집 계획",
+        "required_materials": [
+          "동일 범위 전년 동기/운영 전 기준기간과 사업 기간의 취소 제외 결제액·건수(가능한 집계표)",
+          "익명·집계된 신청/적격/지급/재사용 건수, 측정 주기, 비교집단 정의",
+          "사후 수집 항목은 사업 전에 존재할 수 없으므로 수집 담당·방법·예정일만 먼저 확정"
+        ]
+      },
+      {
+        "id": "execution",
+        "owner": "AI 재작성 + 운영 담당 확인",
+        "title": "단계별 실행 방법",
+        "action": "담당 역할·작업·입력 조건·산출물·미확보 시 대안을 재작성합니다. 원자료를 다시 업로드할 문제는 아닙니다.",
+        "status": "작성 보완",
+        "required_materials": [
+          "실제 담당 부서/인력, 협력 가능 업체, 시스템 사용 가능 여부(모르면 협의 조건으로 남김)"
+        ]
+      }
+    ],
+    "final_audit_completed": false,
+    "quality_contract_version": "execution-evidence-v1"
+  },
+  "generation_mode": "openai",
+  "evidence_sources": [
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 순 방문자 수 및 숙박 비율 (이동통신 기반 외지인)",
+      "summary": "월간 순 방문자 수: 4,619,168명 (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:1",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 월간 순 방문자 수 (이동통신 기반 외지인)",
+      "summary": "전년동월 외지인 방문자 증감률: -3.5% (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:2",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 관광소비 추이_외지인",
+      "summary": "월간 외지인 관광소비 총액: 76,758,413,000원 (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:3",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 숙박방문자 비율 추이 (이동통신 기반 외지인)",
+      "summary": "외지인 숙박 방문 비율: 6.7% (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:4",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 평균 숙박일 (이동통신 기반 외지인)",
+      "summary": "외지인 평균 숙박일수: 2.81일 (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 내비게이션 목적지 유형별 검색량",
+      "summary": "내비게이션 목적지 검색량: 191,346건 (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:6",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 · 대전광역시 서구 SNS 언급량",
+      "summary": "SNS 언급량: 54,388건 (관측 기준월: 2026-06)",
+      "source_id": "dataset:30170:7",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "dataset",
+      "observation_period": "2026-06",
+      "published_or_updated_at": "2026-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/방문자/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:12c41f8a3e52:f92921dca662",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/관광소비/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:162285800b98:dbba3ac2e220",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/숙박_체류시간/2025_01_12.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:1bec5b4405e1:6c5494eef7c6",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/관광소비/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:7a4db91d6ba9:d81294f3e5a0",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/방문자/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:cc1dc8fb5607:77f3b69cfb89",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 공식 다운로드 · 대전광역시_서구/숙박_체류시간/2026_01_06.zip",
+      "summary": "전국 비교 기준 기간: 2025-07 ~ 2026-06",
+      "source_id": "datalab:e53d144382ee:fc025995a6df",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_dataset",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": "2024-07 ~ 2025-06"
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140607__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:23ea68053684:6bfbcf8aabf6",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141710_전국_202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:98d4ae590d9a:3be52dd54323",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820140046__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:367cd0294ec4:873930d645e5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140355__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:553a0dad4bb4:5a31355dffe8",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820195507__202601-202606_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:a53dbe1c21df:77a052de41d5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140614__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:823a38d1d61c:5385261d02e5",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141649_전국_202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:2723bdb0d589:1666a34058ed",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820135957__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:83177a234971:c02cb7972e0f",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140409__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:58ded7732251:589c76395cbc",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820132007__202501-202512_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:e28c947cb52f:bb4cb344a6ba",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140624__202401-202412_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:8815bbb11a39:1a5988f5f8ec",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141639_전국_202401-202412_데이터랩_다운로드.zip",
+      "summary": "시군구 기간합계·비중 또는 전국 월별 추이. 지역 월별 ML·정책 효과가 아닌 보조 근거.",
+      "source_id": "team-bigdata:19fd67fbb73d:afa4f0f54a2f",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "nationwide_bigdata_dataset",
+      "observation_period": "2026-01 ~ 2026-06",
+      "source_review_status": "needs_exact_download_url",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 대전광역시 서구 · 지역집중률",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:0c68fedc2071:0ad82310f803",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 대전광역시 서구 · 유입유출",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:4cddd6aa75d4:be8b01ec64e2",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "한국관광 데이터랩 지역별 관광 현황 · 대전광역시 서구 · 인기관광지",
+      "summary": "관측 기간: 2025-07 ~ 2026-06. 유입·유출·인기장소 또는 30일 집중 운영 신호.",
+      "source_id": "regional-status:8c9a813e95eb:5e0cc3f56b73",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "source_type": "regional_tourism_status",
+      "observation_period": "2025-07 ~ 2026-06",
+      "published_or_updated_at": ""
+    },
+    {
+      "title": "지역 관광수요 ML 전망 · 공식 관측값 아님",
+      "summary": "학습 202401~202606 · 모델 regional-demand-v3.1 · 자연 추세 예측",
+      "source_id": "ml:30170:regional-demand-v3.1:202606",
+      "source_url": "",
+      "source_type": "model_forecast",
+      "model_version": "regional-demand-v3.1",
+      "data_fingerprint": "edea7fa8270d3b72aee15e6816efec3fce699e1bab55ebd844a10870c2f0e0a0"
+    },
+    {
+      "title": "갈마짬뽕",
+      "address": "대전광역시 서구 월평동로 5-11 (갈마동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/38/2899638_image2_1.jpg",
+      "source_id": "tour-api:2899643",
+      "content_id": "2899643",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "관저당",
+      "address": "대전광역시 서구 구봉산북로21번길 11 (관저동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/36/2899636_image2_1.jpg",
+      "source_id": "tour-api:2899637",
+      "content_id": "2899637",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "굿모닝레지던스호텔휴",
+      "address": "대전광역시 서구 둔산로73번길 21 (둔산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/87/2584687_image2_1.jpg",
+      "source_id": "tour-api:1932079",
+      "content_id": "1932079",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "32"
+    },
+    {
+      "title": "귀빈돌솥밥",
+      "address": "대전광역시 서구 만년로68번길 21",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/72/3060272_image2_1.JPG",
+      "source_id": "tour-api:133881",
+      "content_id": "133881",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "남선공원",
+      "address": "대전광역시 서구 남선로 66",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/24/3565624_image2_1.jpg",
+      "source_id": "tour-api:2758252",
+      "content_id": "2758252",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "내원사(대전)",
+      "address": "대전광역시 서구 배재로197번길 200",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/79/3034979_image2_1.JPG",
+      "source_id": "tour-api:298208",
+      "content_id": "298208",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "노크노크",
+      "address": "대전광역시 서구 둔산로 68 (둔산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/59/3453059_image2_1.jpg",
+      "source_id": "tour-api:3452550",
+      "content_id": "3452550",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "대성콩국수",
+      "address": "대전광역시 서구 도산로 141",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/69/2899569_image2_1.jpg",
+      "source_id": "tour-api:2899585",
+      "content_id": "2899585",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "대전 가수원도서관",
+      "address": "대전광역시 서구 가수원로 91-11 (가수원동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/58/3033558_image2_1.JPG",
+      "source_id": "tour-api:130802",
+      "content_id": "130802",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "14"
+    },
+    {
+      "title": "대전광역시청 시민잔디광장",
+      "address": "대전광역시 서구 둔산로 100",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/86/3565586_image2_1.jpg",
+      "source_id": "tour-api:2743325",
+      "content_id": "2743325",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "대전서구문화원",
+      "address": "대전광역시 서구 계룡로553번길 38",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/43/3585043_image2_1.jpg",
+      "source_id": "tour-api:130197",
+      "content_id": "130197",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "14"
+    },
+    {
+      "title": "델빠네",
+      "address": "대전광역시 서구 원도안로207번길 16-61 (도안동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/36/2865836_image2_1.jpg",
+      "source_id": "tour-api:2865847",
+      "content_id": "2865847",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "도마큰시장",
+      "address": "대전광역시 서구 도마4길 69 (도마동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/34/3565534_image2_1.jpg",
+      "source_id": "tour-api:2758334",
+      "content_id": "2758334",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "도산서원(대전)",
+      "address": "대전광역시 서구 남선로 8",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/24/3035024_image2_1.JPG",
+      "source_id": "tour-api:1955818",
+      "content_id": "1955818",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "둔산꽃시장",
+      "address": "대전광역시 서구 둔산북로 22 (둔산동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/31/2758631_image2_1.jpg",
+      "source_id": "tour-api:2758341",
+      "content_id": "2758341",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "둔산전자타운",
+      "address": "대전광역시 서구 도산로403번길 21",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/60/3565560_image2_1.jpg",
+      "source_id": "tour-api:1623725",
+      "content_id": "1623725",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "롯데백화점 (대전점)",
+      "address": "대전광역시 서구 계룡로 598 (괴정동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/21/3443221_image2_1.jpg",
+      "source_id": "tour-api:132661",
+      "content_id": "132661",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "38"
+    },
+    {
+      "title": "마치광장",
+      "address": "대전광역시 서구 구봉로131번길 27",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/16/3542516_image2_1.jpg",
+      "source_id": "tour-api:2758646",
+      "content_id": "2758646",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "12"
+    },
+    {
+      "title": "몽뜨",
+      "address": "대전광역시 서구 원도안로257번길 48 (도안동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/35/2899535_image2_1.jpg",
+      "source_id": "tour-api:2899544",
+      "content_id": "2899544",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "미세노센세",
+      "address": "대전광역시 서구 계룡로553번안길 65 (탄방동)",
+      "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+      "image_url": "http://tong.visitkorea.or.kr/cms/resource/05/2865905_image2_1.jpg",
+      "source_id": "tour-api:2865914",
+      "content_id": "2865914",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "source_type": "open_api",
+      "content_type_id": "39"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "44제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 한국관광공사는 본래의 기능인 해외 홍보마케팅을 통한 인지 형성, 지역 관광생태계 육성, 관광사업 추진을 여정 단계에 맞춰 재배치해야 한다. 해외지사와 국내지사를 연결한 중점지사제를 '관문-연계도시' 단위로 운영하고, 글로벌 OTA 와 현지 여행사가 실제 상품을 만들 수 있도록 상품화 모듈과 전세·임시편 유치를 고도화하며, 선상 마케팅처럼 항공사 기내·LCC 채널을 활용한 권역 홍보를 확대할 수 있어야 할 것이다. 특히 성과지표를 입국자 수와 공급석 중심에서 '입국객의 권역 내 첫 숙박률이나, 1인당 권역 내 소비, 지방 이동 비중' 중심으로 전환하고, 통신·카드 데이터에 소셜 담론 데이터를 결합한 공항-권역 대시보드를 상시 운영해 데이터 기반 성과관리를 지속적으로 보여주는 데이터 기반의 지방공항 중심 관광권 상황실을 구축하여야 한다. 지방자치단체와 한국공항공사는 공항에서 지역 상권까지 이어지는 현장 수용태세를 보다 면밀히 고려하는 정책과 사업이 필요하다. 공항 접근 교통과 안내·결제, 다국어 환경, 터미널과 도심·거점 관광지를 잇는 셔틀, 권역 내 숙박과 야간 콘텐츠는 지자체의 실행력이 좌우하는 영역이다. 공항 소재 지자체 단위 협의를 넘어 청주는 대전·세종·충남, 대구는 경북과 함께 상품·교통·마케팅 예산을 묶는 관광권 협의체를 구성하고, 중장기적으로는 일본의 광역연계 DMO처럼 권역 단위의 상설 조직과 재원으로 발전시켜야 한다. 민관협력은 이 체계를 지속 가능하게 만드는 가장 중요한 동인이라 할 수 있다. 항공사·LCC에는 신규 노선의 초기 리스크를 지방정부·공사와 분담하는 노선 개발 협약과 기내 권역 홍보를, 글로벌 OTA·현지 여행사에는 권역 루트 상품의",
+      "chunk_id": "reference:kto:2026:local-airport:page:044:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "상권",
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "실제",
+        "연결한",
+        "예산",
+        "운영",
+        "정책",
+        "중심으로",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 44쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "남부관광의 해 연계 지역상품 홍보 타이베이 지사가 개발한 2025년 대구 파워풀페스티벌 상품 홍보 로고 일본 시장은 다른 방식으로 접근하고 있다. 일본은 방한 재방문율이 높고 서울 이외의 새로운 지역과 관광콘텐츠를 찾는 수요가 비교적 뚜렷한 시장이다. 공사는 지방 직항노선을 기반으로 동남권 각 도시의 특색을 여행 목적과 테마로 재구성하고, 현지 여행사·항공사와 연계해 실제 상품과 모객으로 이어지도록 하는 방식을 추진하고 있다. 같은 지방공항 유치 사업이라도 시장 특성에 따라 대만은 지역의 범위를 단계적으로 넓히고, 일본은 재방문객에게 새로운 지역 방문 이유를 만드는 방식으로 접근하는 것이다. 해외에서 지방공항을 선택하게 하려면 노선과 함께 '도착한 뒤 무엇을 할 것인가'가 제시돼야 한다. 이를 위해 공사는 청주· 대구공항을 중심으로 지역 관광콘텐츠를 발굴하고, 이를 공항과 연결된 권역형·초광역형 관광코스로 구성했다. 2026년 6월 기준 발굴된 콘텐츠는 17개 테마 333개, 관광코스는 35개다. 럭셔리·한류·의료·웰니스·해양·축제·역사문화·미식·쇼핑 등 지역의 다양한 관광자원을 활용하되, 개별 콘텐츠에 그치지 않고 공항을 시작점으로 여러 지역을 이동할 수 있도록 연결한 것이 특징이다. 대표적으로 청주공항에서는 청주-공주-부여-전주를 잇는 백제 역사문화 루트와 같이 충청권과 인접 지역을 연결하는 코스를, 대구공항에서는 대구-경주-울산-부산을 잇는 유네스코 헤리티지 루트와 같이 영남권의 주요 관광자원을 묶은 광역 코스를 구성했다. 지방공항을 특정 도시 하나의 관문이 아니라 여러 지역으로 이동하는 여행의 출발점으로 활용하는 방식이다. 추진사업 2. 지역 콘텐츠를 실제 방한상품으로 연결",
+      "chunk_id": "reference:kto:2026:local-airport:page:040:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "관광콘텐츠",
+        "다양한",
+        "방식으로",
+        "방식을",
+        "소비",
+        "실제",
+        "연결한",
+        "중심으로",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 40쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "41제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 관광상품을 만들어도 공항에서 관광지까지 이동하기 어렵다면 실제 지역 방문으로 연결되기 어렵다. 이에 공사는 지자체· 공항공사·교통기관 등 대외 협업체계와 함께 지방공항으로 유입된 방한객이 지역 관광지까지 불편 없이 이동할 수 있도록 교통 연계와 이용 편의 인프라를 개선하는 방향으로 사업을 추진하고 있다. 공사는 충청남도, 충청북도(광역지자체) 및 충 남문화재단, 충북문화재단(RTO)과 협업하여 청주공항과 오 송역, 공주터미널, 부여터미널 등 충청권 주요 관광지를 연결하는 광역 순환버스와 DRT(수요 응답형 버스) 운영을 지원하고 있다. 2026년 상반기 순환버스와 DRT 이용객은 총 7 ,470명으로, 공항에서 충청권 주요 관광지까지 직접 이동할 수 있는 선택지가 확대되고 있다. 대구공항에서는 외국인이 별도의 교통카드 없이 해외 신용카드 등으로 대중교통을 이용할 수 있는 개방형 교통결제 시스템 도입을 지원하고 있으며, 간편결제·관광안내·환전 및 면세 등 이용 편의도 단계적으로 보완하고 있다. 지방공항의 역할을 항공기에서 내리는 지점에 그치지 않고 지역 여행을 실제로 시작할 수 있는 관문으로 넓히는 과정이다. 추진사업 3. 교통 편의 인프라 - 공항 도착 이후 지역으로 이어지는 이동·편의 기반 구축 성과 | 전방위 유치·마케팅 성과 가시화…청주공항 방한객 6만 명 돌파, 부정기 항공편도 대폭 확대 한국관광공사, 공항활성화 협의체 및 관계기관의 협업체계가 잘 작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "방문으로",
+        "사업을",
+        "성과",
+        "소비",
+        "실제",
+        "운영",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 41쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "작동하고, 전방위적 역량을 집중한 결과, 지방공항 유치· 마케팅의 성과가 방한객 유입과 항공 공급 지표에서 가시화되고 있다. 특히 청주공항은 2026년 상반기 방한객이 6만 2,971 명으로 6만 명을 돌파하며 전년 동기 대비 109.1% 급증했다. 인바운드 비중도 7 .9%에서 11.1%로 전년 동기 대비 3.2%p 상승했고, 국제선 공급석은 146만 3,061석으로 전년보다 43.0% 대폭 확대됐다. 대구공항도 같은 기간 방한객이 5만 7 ,058명으로 전년 동기 대비 2.6% 증가했고, 국제선 공급석은 90만 2,286석으로 6.3% 늘었다. 특히 부정기 항공편에서는 확대 폭이 더욱 뚜렷하다. 2026년 상반기 부정기 항공편은 청주공항 574회, 대구공항 458회로 총 1,032회가 확정됐으며, 전년 동기 대비 각각 178.6%, 854.2% 급증했다. 부정기 확대편의 사례로 공사에서 유치한 후쿠시마-청주 전세기 운영을 들 수 있다. 공사 도쿄지사가 한일 비운항지역인 후쿠시마를 대상으로, 현지 여행사, 항공사가 협력해 운항한 두 차례 전세기 360석이 모두 매진됐다. 해외 현지 수요를 발굴하고 항공편과 관광상품을 함께 구성해 지방공항 입국으로 연결한 사례라는 데 의미가 있다. 발굴한 콘텐츠가 실제 해외 여행상품으로 이어질 수 있도록 '인바운드 관광 상품화 툴킷'도 함께 마련했다. 지역별 교통· 숙박·쇼핑·식당과 관광사업자, 지자체 지원정보 등 해외 여행사가 상품을 구성할 때 필요한 정보를 한데 모아 제공하는 자료다. 해외지사는 이를 활용해 현지 여행사 ·OTA와 지방공항 연계 상품 을 개발하고 있으며, 2026년 6월 기준 청주공항 연계 상품 49개, 대구공항 연계 상품 10개가 개발됐다.",
+      "chunk_id": "reference:kto:2026:local-airport:page:041:chunk:02",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "성과",
+        "소비",
+        "숙박",
+        "실제",
+        "연결한",
+        "운영",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 41쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "43제 2장 지방공항 연계 지역관광 활성화 방안 요즘, 한국관광 (전문가 제언) 지방공항 관문 활성화를 넘어 '지방관광 권역 활성화'로5. 지방공항을 통한 방한 입국은 분명한 성장 국면이다. 그러나 지방공항 관문 활성화가 곧바로 지방공항과 지역관광의 경쟁력으로 해석하기에는 아직 이르다. 최근의 지방공항 입국 증가는 대만 시장의 고성장, LCC의 공격적 공급 확대, 중국 단체 무비자와 중·일 관계 변화에 따른 수요 이동 등 외부 요인과 일부 결합되어 나타난 측면도 있기 때문이다. 지금 필요한 것은 입국자 수와 노선 수의 증가에 만족하는 것이 아니라, 이를 지역관광의 체질 전환과 고부가가치화로 연결하는 전략이 필요하다. 또한 특정 관광시장에 대한 의존도가 높을수록 공항은 외부 변수에 취약해질 수밖에 없고, 체류 전환이 약할수록 늘어난 유입은 지역에 효과를 남기지 않으며, 공항별 차이를 무시한 일률적 지원은 성과를 도출하기 어렵게 만든다. 결국 이제는 정책의 단위를 '공항' 중심에서 보다 관문과 연결되는 연계된 도시로 확장할 필요가 있다. 지방공항 활성화의 중장기 과제는 단순히 더 많은 노선을 유치하는 데서 끝나서는 안 되며, 공항을 관문으로 하는 배후 관광권 단위로 성과를 설계하고 측정하는 방향으로 전환되어야 한다. 정책의 단위를 '지방공항'에서 '지방관광 권역'으로 지방공항과 지방관광이 동시에 활성화하려면 두 관점이 함께 필요하다. 하나는 관문 기능의 고도화(노선·운수권·전세기 유치, CIQ와 터미널 용량, 공항-거점 교통의 직결성)이고, 다른 하나는 배후권역의 체류 전환(입국 이후 첫 숙박·첫 소비를 권역 안에서 완결되게 설계, 권역 내 이동의 관광 루트화, 지역 특화 업종의 객단가 제고)이다. 지금까지의 정책이",
+      "chunk_id": "reference:kto:2026:local-airport:page:043:chunk:01",
+      "source_id": "reference:kto:2026:local-airport",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "",
+      "region_code": "ALL",
+      "region_name": "전국 공통",
+      "source_note": "지방공항·연계 지역에 관한 자료입니다. 다른 시군구의 사업 효과·예산을 보장하는 근거로 사용하지 않습니다.",
+      "source_type": "rag",
+      "intervention": "",
+      "document_type": "policy",
+      "matched_terms": [
+        "관광",
+        "성과",
+        "소비",
+        "수와",
+        "숙박",
+        "전환과",
+        "정책",
+        "지역",
+        "체류",
+        "함께"
+      ],
+      "page_references": "PDF 43쪽",
+      "parent_source_id": "reference:kto:2026:local-airport",
+      "retrieval_method": "local_curated_chunk",
+      "evidence_strength": "medium",
+      "published_or_updated_at": "2026-08"
+    },
+    {
+      "title": "한밭수목원 | 열린관광 모두의 여행",
+      "summary": "한밭수목원은 대전광역시 서구 둔산대로 169에 있으며, 정부대전청사 녹지축 및 예술의전당·미술관·연정국악원 등 문화예술 시설과 연계된 공간으로 안내된다.",
+      "source_id": "web:30170:1",
+      "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=81cc7479-c010-4bdd-9a29-3121bb578cb8",
+      "source_type": "official_web",
+      "why_relevant": "둔산권에서 자연관광과 문화관람을 한 동선으로 묶을 수 있는 공식 인프라 조건이다. 단, 개별 시설의 공동운영·할인·참여 여부는 확인되지 않았으므로 기관 협의 전제로만 활용해야 한다.",
+      "published_or_updated_at": "2026-09-10 수정"
+    },
+    {
+      "title": "Hanbat Arboretum (한밭수목원) - VISITKOREA",
+      "summary": "한밭수목원의 10월~3월 동원·서원 운영시간은 08:00~19:00이며, 열대식물원은 09:00~18:00이다. 동원·열대식물원은 월요일, 서원은 화요일에 휴원한다.",
+      "source_id": "web:30170:2",
+      "source_url": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=82059",
+      "source_type": "official_web",
+      "why_relevant": "고정 운영기간인 2026년 10월~12월의 현장 프로그램은 종료시간 이전에 수목원 구간을 배치해야 한다. 월·화요일에는 동일한 수목원 구간을 전제로 한 전일 프로그램을 고정 편성하지 않고, 휴원일 대체 동선을 따로 설계해야 한다.",
+      "published_or_updated_at": "검색 시점 기준 현재 운영정보"
+    },
+    {
+      "title": "대전예술의전당 | 열린관광 모두의 여행",
+      "summary": "대전예술의전당은 서구 둔산대로 135의 둔산대공원 내 종합공연장으로, 대형공연이 가능한 아트홀, 앙상블홀, 국제회의·세미나·연회 활용이 가능한 컨벤션홀이 안내되어 있다.",
+      "source_id": "web:30170:3",
+      "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=af31b729-4eda-469b-b4cc-73ea3a1c8028",
+      "source_type": "official_web",
+      "why_relevant": "공연 일정이 확정되는 날에는 수목원·미술관 권역과 식음 상권을 연결하는 저녁 체류 동선의 문화 앵커 후보가 된다. 다만 2026년 10~12월의 실제 공연 편성, 대관·협력 가능 여부, 티켓 연계는 별도 확인이 필요하다.",
+      "published_or_updated_at": "2026-07-31 수정"
+    },
+    {
+      "title": "한민시장 | 열린관광 모두의 여행",
+      "summary": "한민시장은 서구 가장로 106에 위치하며, 용문역과 가깝고 주변 한밭수목원·엑스포시민광장·엑스포과학공원과의 연계 관광이 가능한 곳으로 안내된다. 시장 내 점포별 영업시간과 휴무일은 서로 다르다.",
+      "source_id": "web:30170:4",
+      "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=72bba786-e15a-478a-bc99-c9d15ff27727",
+      "source_type": "official_web",
+      "why_relevant": "둔산권 방문을 지역 식음·시장 이용으로 전환할 후보 거점이다. 다만 시장 전체의 일괄 야간운영이나 할인 참여를 전제할 수 없으므로, 참여 점포 모집과 공연일·주말별 영업 확인 후에만 스탬프·메뉴·체험 연계를 편성해야 한다.",
+      "published_or_updated_at": "2026-06-24 수정"
+    },
+    {
+      "title": "장태산자연휴양림 - VISITKOREA",
+      "summary": "장태산자연휴양림은 대전광역시 서구 장안로 461에 위치한 서구 관광자원으로 공식 관광정보에 수록되어 있으며, 한국관광공사 공식 콘텐츠는 가을 단풍 경관을 소개한다.",
+      "source_id": "web:30170:5",
+      "source_url": "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=76300",
+      "source_type": "official_web",
+      "why_relevant": "10~11월 자연관광 콘텐츠 후보로 검토할 수 있다. 그러나 공식 검색 결과만으로는 2026년 가을의 숙박 객실, 프로그램, 교통운행, 단체예약 및 행사 가능 조건을 확정할 수 없으므로, 체류 증대의 주력 사업으로 바로 확정하지 않는다.",
+      "published_or_updated_at": "검색 시점 기준 현재 페이지"
+    },
+    {
+      "title": "여유롭고 안전한 오늘의 여행법 비대면(언택트) 관광지 100선",
+      "summary": "한국관광공사 공식 관광 콘텐츠에는 대전 서구의 장태산자연휴양림과 한밭수목원이 비대면 관광지 100선 목록에 포함되어 있다.",
+      "source_id": "web:30170:6",
+      "source_url": "https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=351f6cf4-d984-496f-886d-6fc538b226a7",
+      "source_type": "official_web",
+      "why_relevant": "가을철 자연·산책 콘텐츠의 공공 관광자원으로 두 장소를 후보군에 둘 근거는 있으나, 선정 사실 자체가 현재 수요·소비·숙박 증가 또는 특정 사업효과를 뜻하지는 않는다.",
+      "published_or_updated_at": "게시일 미확인"
+    },
+    {
+      "title": "한국관광 데이터랩 · 안동탈춤축제 방문자 추이",
+      "summary": "경상북도 안동시 · 2025 안동탈춤축제 10일 집중 운영 · 2024→2025년 전체 504,573→554,494명 (+9.89%). 개최 10→10일, 일평균 +9.89%, 외지인 +10.75%.",
+      "source_id": "case:41508ca81cf29f",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "case_region": "경상북도 안동시",
+      "source_type": "benchmark_case",
+      "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+      "intervention": "2025 안동탈춤축제 10일 집중 운영",
+      "source_files": [
+        {
+          "sha256": "28f418873eda5b37d320d3fef32c46bef172ca1cfea3861db2d5fc96a0b16f50",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820175023_안동탈춤축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:28f418873eda5b37d320",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/43. 안동탈춤축제_2023-2025/20260820175023_안동탈춤축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "c0b34e003112bda1f5afa06dcb153cc870d61730036ef23f1b3e7aed39ca5458",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820175023_안동탈춤축제_성_연령별 내국인 방문자.csv",
+          "source_id": "festival-file:c0b34e003112bda1f5af",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/43. 안동탈춤축제_2023-2025/20260820175023_안동탈춤축제_성_연령별 내국인 방문자.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "40ddabd2e46fcb12bc9cc2361174e1a5ebe80f169611896b6d4b5e60d9fda352",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820175023_안동탈춤축제_문화관광축제 주요 지표.csv",
+          "source_id": "festival-file:40ddabd2e46fcb12bc9c",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/43. 안동탈춤축제_2023-2025/20260820175023_안동탈춤축제_문화관광축제 주요 지표.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "11de7e20288dde00f7f18e353a24b5a95c511a7dc354ec9cc2c7a3a2436712f6",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820175023_안동탈춤축제_목적지 검색순위.csv",
+          "source_id": "festival-file:11de7e20288dde00f7f1",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/43. 안동탈춤축제_2023-2025/20260820175023_안동탈춤축제_목적지 검색순위.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        }
+      ],
+      "document_type": null,
+      "evidence_kind": "festival_document_and_statistics",
+      "observed_result": "2024→2025년 전체 504,573→554,494명 (+9.89%). 개최 10→10일, 일평균 +9.89%, 외지인 +10.75%.",
+      "operating_model": "2025년 10일 동안 탈춤과 지역문화 중심 축제를 집중 운영했다. 제공된 관광데이터랩 CSV에서는 세부 예약·정원·상권 정산 방식은 확인되지 않으므로, 확인 가능한 실행 사실은 축제명·개최일수·관측구역 방문지표까지다.",
+      "retrieval_basis": {
+        "kind": "external_benchmark",
+        "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+        "score": 31,
+        "theme": "공연·문화",
+        "components": {
+          "최근 개최연도": 6,
+          "방문 실적 비교 가능": 10,
+          "방문 전망 조사: 외지인·일평균 동반 증가": 15
+        },
+        "priority_signal": "visit"
+      },
+      "retrieval_method": "official_web_search",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "measurement_period": "2024년과 2025년 각 축제 개최기간 비교",
+      "festival_statistics": {
+        "name": "안동탈춤축제",
+        "scope": "축제 관측구역 방문 지표. 도시 전체·순증 관광객·입장권 실구매자 수가 아님.",
+        "annual": [
+          {
+            "days": 8,
+            "year": 2023,
+            "daily": 45517.125,
+            "local": 233513.0,
+            "total": 364137.0,
+            "foreign": 3319.0,
+            "outside": 127305.0,
+            "outside_daily": 15913.125,
+            "outside_share_pct": 34.960742797353745
+          },
+          {
+            "days": 10,
+            "year": 2024,
+            "daily": 50457.3,
+            "local": 317925.0,
+            "total": 504573.0,
+            "foreign": 4684.0,
+            "outside": 181964.0,
+            "outside_daily": 18196.4,
+            "outside_share_pct": 36.06296809381398
+          },
+          {
+            "days": 10,
+            "year": 2025,
+            "daily": 55449.4,
+            "local": 347269.0,
+            "total": 554494.0,
+            "foreign": 5702.0,
+            "outside": 201523.0,
+            "outside_daily": 20152.3,
+            "outside_share_pct": 36.34358532283487
+          }
+        ],
+        "audience": [
+          {
+            "연령대": "70세 이상",
+            "축제명": "안동탈춤축제",
+            "남성비율": "4.4",
+            "여성비율": "5.0"
+          },
+          {
+            "연령대": "60~69세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "8.0",
+            "여성비율": "8.5"
+          },
+          {
+            "연령대": "50~59세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "9.2",
+            "여성비율": "10.9"
+          },
+          {
+            "연령대": "40~49세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "7.5",
+            "여성비율": "7.9"
+          },
+          {
+            "연령대": "30~39세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "7.9",
+            "여성비율": "7.2"
+          },
+          {
+            "연령대": "20~29세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "7.1",
+            "여성비율": "8.2"
+          },
+          {
+            "연령대": "10~19세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "3.2",
+            "여성비율": "3.9"
+          },
+          {
+            "연령대": "0~9세",
+            "축제명": "안동탈춤축제",
+            "남성비율": "0.5",
+            "여성비율": "0.7"
+          }
+        ],
+        "comparison": {
+          "daily": {
+            "after": 55449.4,
+            "before": 50457.3,
+            "change_pct": 9.893712109050613,
+            "difference": 4992.0999999999985
+          },
+          "total": {
+            "after": 554494.0,
+            "before": 504573.0,
+            "change_pct": 9.893712109050613,
+            "difference": 49921.0
+          },
+          "outside": {
+            "after": 201523.0,
+            "before": 181964.0,
+            "change_pct": 10.748829438790096,
+            "difference": 19559.0
+          },
+          "after_days": 10,
+          "after_year": 2025,
+          "before_days": 10,
+          "before_year": 2024,
+          "outside_daily": {
+            "after": 20152.3,
+            "before": 18196.4,
+            "change_pct": 10.748829438790075,
+            "difference": 1955.8999999999976
+          }
+        },
+        "source_file": {
+          "sha256": "28f418873eda5b37d320d3fef32c46bef172ca1cfea3861db2d5fc96a0b16f50",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820175023_안동탈춤축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:28f418873eda5b37d320",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/43. 안동탈춤축제_2023-2025/20260820175023_안동탈춤축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        "region_basis": "목적지 검색 CSV의 시도+시군구 최빈 주소; 행사장 행정경계 확정은 아님",
+        "indicator_rule": "원본 지표값만 보존. 산식·단위 미확인으로 성장률/원화/정원/참여율 변환 금지.",
+        "audience_period": "다운로드 CSV에 연도 열 없음; 최신 개최연도와 자동 결합하지 않음",
+        "indicator_values": [
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.515",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.859",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "축제기간",
+            "지표값": "0.434",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "축제기간",
+            "지표값": "0.544",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "축제기간",
+            "지표값": "0.879",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.258",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.618",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "비축제기간",
+            "지표값": "0.252",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "비축제기간",
+            "지표값": "0.375",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "비축제기간",
+            "지표값": "0.65",
+            "축제명": "안동탈춤축제",
+            "개최년도": "2025"
+          }
+        ],
+        "destination_period": "다운로드 CSV에 연도 열 없음; 주변 검색 후보이며 제휴·실제 방문 증거 아님",
+        "destination_examples": [
+          {
+            "구분": "외지인",
+            "순위": "1",
+            "목적지명": "안동구시장",
+            "카테고리": "시장",
+            "도로명주소": "경북 안동시 번영1길 47-0"
+          },
+          {
+            "구분": "외지인",
+            "순위": "2",
+            "목적지명": "안동국제탈춤페스티벌",
+            "카테고리": "기타문화관광지",
+            "도로명주소": "경북 안동시 육사로 239-0"
+          },
+          {
+            "구분": "외지인",
+            "순위": "3",
+            "목적지명": "탈춤공원",
+            "카테고리": "도시공원",
+            "도로명주소": "경북 안동시 육사로 239-0"
+          }
+        ]
+      },
+      "transfer_conditions": [
+        "서구에서는 10일 축제를 복제하기보다 3개월 중 주말 2~3회 등 준비 가능한 집중 회차로 축소할 수 있다.",
+        "기존 공공·민간 시설과 공연자원을 조합해 신규 시설비를 줄이되 장소·운영인력 확보 여부를 먼저 확인해야 한다.",
+        "사전예약 회차, 현장 체크인, 참여업소 결제를 연계해 축제 관측구역 방문자와 실제 사업 참여자를 구분해야 한다.",
+        "안동의 전통문화 정체성을 복제하지 말고 서구에서 실제 확보 가능한 문화·쇼핑·식음 콘텐츠로 주제를 다시 설계해야 한다."
+      ],
+      "operating_statistics": [
+        {
+          "unit": "일",
+          "quote": "2025년 10일 개최",
+          "scope": "안동탈춤축제 전체 개최일",
+          "value": 10,
+          "metric": "operating_days",
+          "period": "2025년 축제 개최기간",
+          "program_name": "안동탈춤축제",
+          "capacity_count": null,
+          "participant_count": null
+        }
+      ],
+      "published_or_updated_at": "2026-08-20",
+      "quantitative_result_approved": true
+    },
+    {
+      "title": "한국관광 데이터랩 · 문경찻사발축제 방문자 추이",
+      "summary": "경상북도 문경시 · 문경찻사발축제 · 2024→2025년 전체 245,750→256,570명 (+4.40%). 개최 10→9일, 일평균 +16.00%, 외지인 +9.28%.",
+      "source_id": "case:festival:01474ef75569b1",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "case_region": "경상북도 문경시",
+      "source_type": "benchmark_case",
+      "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+      "intervention": "문경찻사발축제",
+      "source_files": [
+        {
+          "sha256": "dfcb5b619f820d7ce4451f5e89294681bc37f49f8200ba859754d423602e51a1",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:dfcb5b619f820d7ce445",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "44238aecdfa68974febce93cd262e119492da76910929b96da438d8b6ee7a9b3",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820160334_문경찻사발축제_성_연령별 내국인 방문자.csv",
+          "source_id": "festival-file:44238aecdfa68974febc",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_성_연령별 내국인 방문자.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "eadf4622620ddb1575df5f358ec588aeed8718c09e0998a19494cf0f3cfe0f16",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820160334_문경찻사발축제_문화관광축제 주요 지표.csv",
+          "source_id": "festival-file:eadf4622620ddb1575df",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_문화관광축제 주요 지표.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "343671c431cfa7e76ba333ca2ea221803e111e0db5e9a51c6d387b0ba5d7eeaf",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820160334_문경찻사발축제_목적지 검색순위.csv",
+          "source_id": "festival-file:343671c431cfa7e76ba3",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_목적지 검색순위.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        }
+      ],
+      "document_type": "case_study",
+      "evidence_kind": "festival_statistics",
+      "observed_result": "2024→2025년 전체 245,750→256,570명 (+4.40%). 개최 10→9일, 일평균 +16.00%, 외지인 +9.28%.",
+      "operating_model": "문경찻사발축제를 2025년 9일 개최한 문화관광축제 운영 사례. 세부 프로그램·예약·혜택은 이 CSV에 기록되어 있지 않으며 새로운 운영안은 제안으로 구분한다.",
+      "retrieval_basis": {
+        "kind": "external_benchmark",
+        "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+        "score": 31,
+        "theme": "역사·공예",
+        "components": {
+          "최근 개최연도": 6,
+          "방문 실적 비교 가능": 10,
+          "방문 전망 조사: 외지인·일평균 동반 증가": 15
+        },
+        "priority_signal": "visit"
+      },
+      "retrieval_method": "datalab_festival_table",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "measurement_period": "2023~2025년 각 축제 개최기간",
+      "festival_statistics": {
+        "name": "문경찻사발축제",
+        "scope": "축제 관측구역 방문 지표. 도시 전체·순증 관광객·입장권 실구매자 수가 아님.",
+        "annual": [
+          {
+            "days": 9,
+            "year": 2023,
+            "daily": 23055.333333333332,
+            "local": 59726.0,
+            "total": 207498.0,
+            "foreign": 1241.0,
+            "outside": 146531.0,
+            "outside_daily": 16281.222222222224,
+            "outside_share_pct": 70.61803005330172
+          },
+          {
+            "days": 10,
+            "year": 2024,
+            "daily": 24575.0,
+            "local": 64582.0,
+            "total": 245750.0,
+            "foreign": 1170.0,
+            "outside": 179998.0,
+            "outside_daily": 17999.8,
+            "outside_share_pct": 73.2443540183113
+          },
+          {
+            "days": 9,
+            "year": 2025,
+            "daily": 28507.777777777777,
+            "local": 58704.0,
+            "total": 256570.0,
+            "foreign": 1166.0,
+            "outside": 196700.0,
+            "outside_daily": 21855.555555555555,
+            "outside_share_pct": 76.66523755700199
+          }
+        ],
+        "audience": [
+          {
+            "연령대": "70세 이상",
+            "축제명": "문경찻사발축제",
+            "남성비율": "4.0",
+            "여성비율": "3.8"
+          },
+          {
+            "연령대": "60~69세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "12.3",
+            "여성비율": "10.0"
+          },
+          {
+            "연령대": "50~59세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "13.0",
+            "여성비율": "11.7"
+          },
+          {
+            "연령대": "40~49세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "9.3",
+            "여성비율": "7.6"
+          },
+          {
+            "연령대": "30~39세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "7.2",
+            "여성비율": "6.1"
+          },
+          {
+            "연령대": "20~29세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "4.6",
+            "여성비율": "4.1"
+          },
+          {
+            "연령대": "10~19세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "2.5",
+            "여성비율": "2.5"
+          },
+          {
+            "연령대": "0~9세",
+            "축제명": "문경찻사발축제",
+            "남성비율": "0.6",
+            "여성비율": "0.6"
+          }
+        ],
+        "comparison": {
+          "daily": {
+            "after": 28507.777777777777,
+            "before": 24575.0,
+            "change_pct": 16.00316491466034,
+            "difference": 3932.7777777777774
+          },
+          "total": {
+            "after": 256570.0,
+            "before": 245750.0,
+            "change_pct": 4.402848423194294,
+            "difference": 10820.0
+          },
+          "outside": {
+            "after": 196700.0,
+            "before": 179998.0,
+            "change_pct": 9.278991988799866,
+            "difference": 16702.0
+          },
+          "after_days": 9,
+          "after_year": 2025,
+          "before_days": 10,
+          "before_year": 2024,
+          "outside_daily": {
+            "after": 21855.555555555555,
+            "before": 17999.8,
+            "change_pct": 21.421102209777644,
+            "difference": 3855.755555555555
+          }
+        },
+        "source_file": {
+          "sha256": "dfcb5b619f820d7ce4451f5e89294681bc37f49f8200ba859754d423602e51a1",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:dfcb5b619f820d7ce445",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/25. 문경찻사발축제_2023-2025/20260820160334_문경찻사발축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        "region_basis": "목적지 검색 CSV의 시도+시군구 최빈 주소; 행사장 행정경계 확정은 아님",
+        "indicator_rule": "원본 지표값만 보존. 산식·단위 미확인으로 성장률/원화/정원/참여율 변환 금지.",
+        "audience_period": "다운로드 CSV에 연도 열 없음; 최신 개최연도와 자동 결합하지 않음",
+        "indicator_values": [
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.414",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.86",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "축제기간",
+            "지표값": "0.273",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "축제기간",
+            "지표값": "0.536",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "축제기간",
+            "지표값": "0.716",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.217",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.725",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "비축제기간",
+            "지표값": "0.148",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "비축제기간",
+            "지표값": "0.381",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "비축제기간",
+            "지표값": "0.607",
+            "축제명": "문경찻사발축제",
+            "개최년도": "2025"
+          }
+        ],
+        "destination_period": "다운로드 CSV에 연도 열 없음; 주변 검색 후보이며 제휴·실제 방문 증거 아님",
+        "destination_examples": [
+          {
+            "구분": "외지인",
+            "순위": "1",
+            "목적지명": "문경새재",
+            "카테고리": "역사유적지",
+            "도로명주소": "경북 문경시 새재로 932-0"
+          },
+          {
+            "구분": "외지인",
+            "순위": "2",
+            "목적지명": "문경종합온천",
+            "카테고리": "웰니스관광",
+            "도로명주소": "경북 문경시 온천2길 24-0"
+          },
+          {
+            "구분": "외지인",
+            "순위": "3",
+            "목적지명": "문경찻사발축제",
+            "카테고리": "기타문화관광지",
+            "도로명주소": "경북 문경시 새재로 933-0"
+          }
+        ]
+      },
+      "transfer_conditions": [
+        "지역 지표와 자원에 맞춰 행사 콘텐츠·운영일·참여처를 새로 설계한다.",
+        "개최 일수는 사례 실적이며 우리 지역의 월 운영일·회차·정원으로 복사하지 않는다."
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2026-08-20",
+      "quantitative_result_approved": true
+    },
+    {
+      "title": "강진 반값여행 지역경제 효과 소개",
+      "summary": "전라남도 강진군 · 반값여행 지역환급 · 상품권 결제 변화에 관한 소개 자료는 있으나, 사업 참여자 범위·정확한 비교 기간·원자료를 확인하지 못해 성과 수치 인용을 보류한다.",
+      "source_id": "case:gangjin_half_price_2024",
+      "source_url": "https://jnfarm.jeonnam.go.kr/board/FARM_BOARD_008/boardView.do?bdId=BD_00000000000011721&menuCd=farm004002",
+      "case_region": "전라남도 강진군",
+      "source_type": "benchmark_case",
+      "intervention": "반값여행 지역환급",
+      "document_type": "case_study",
+      "observed_result": "상품권 결제 변화에 관한 소개 자료는 있으나, 사업 참여자 범위·정확한 비교 기간·원자료를 확인하지 못해 성과 수치 인용을 보류한다.",
+      "operating_model": "여행자가 지역에서 지출한 비용의 일부를 지역상품권으로 돌려받게 하여 혜택이 다시 지역 상점에서 사용되도록 설계",
+      "retrieval_method": "curated_registry",
+      "evidence_strength": "low",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "measurement_period": "게시일과 사업 측정기간은 다르며, 비교기간과 집계범위 원자료 확인 필요",
+      "transfer_conditions": [
+        "지역상품권 사용처와 관광업체 참여 기준 필요",
+        "여행 지출 증빙과 중복수혜 방지 절차 필요",
+        "지원금보다 추가 지역소비가 큰지 사후 측정 필요"
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2025-01-02",
+      "quantitative_result_approved": false
+    },
+    {
+      "title": "요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안",
+      "summary": "충청권 청주공항·오송역·공주·부여 연계지역 · 청주공항 연계 광역순환버스·수요응답형 버스와 관광상품 연결 · 2026년 상반기 순환버스와 DRT 이용객은 총 7,470명으로 보고됐다. 2026년 6월 기준 청주공항 연계 여행상품 49개가 개발됐으나, 공항 입국자 증가와 버스사업의 인과관계 및 이용객의 대전 서구 방문·숙박·소비는 확인되지 않았다.",
+      "source_id": "case:4544b7bca8ebab",
+      "source_url": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1",
+      "case_region": "충청권 청주공항·오송역·공주·부여 연계지역",
+      "source_type": "benchmark_case",
+      "intervention": "청주공항 연계 광역순환버스·수요응답형 버스와 관광상품 연결",
+      "document_type": null,
+      "observed_result": "2026년 상반기 순환버스와 DRT 이용객은 총 7,470명으로 보고됐다. 2026년 6월 기준 청주공항 연계 여행상품 49개가 개발됐으나, 공항 입국자 증가와 버스사업의 인과관계 및 이용객의 대전 서구 방문·숙박·소비는 확인되지 않았다.",
+      "operating_model": "한국관광공사, 충청남·북도와 지역관광기관이 협업해 청주공항·오송역·공주터미널·부여터미널 등을 연결하는 광역순환버스와 수요응답형 버스를 지원했다. 공항 연계 콘텐츠와 코스를 발굴하고 여행사·OTA가 교통·숙박·식당을 묶어 판매할 수 있도록 상품화 정보를 제공했다.",
+      "retrieval_method": "official_web_search",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "measurement_period": "2026-01~2026-06",
+      "transfer_conditions": [
+        "서구 적용 시 청주공항 전체 권역사업을 복제하지 말고 대전역·복합터미널·유성 권역 등 실제 유입거점에서 서구 콘텐츠로 이어지는 한정 노선을 검토해야 한다.",
+        "고정노선보다 사전예약 회차 또는 행사일 셔틀을 우선 검토해 3개월 고정기간의 운행 공차 위험을 줄여야 한다.",
+        "탑승 QR, 하차지, 체험 예약, 참여업소 결제를 연결해 이동 이후 행동을 측정해야 한다.",
+        "버스 운송사업자, 관광시설, 숙박·식음업체 간 운행시간과 정산 책임 협약이 필요하다."
+      ],
+      "operating_statistics": [
+        {
+          "unit": "명",
+          "quote": "순환버스와 DRT 이용객은 총 7,470명",
+          "scope": "청주공항 연계 광역순환버스·DRT 실제 이용객 합계",
+          "value": 7470,
+          "metric": "participants",
+          "period": "2026년 상반기",
+          "program_name": "청주공항 연계 순환버스·DRT",
+          "capacity_count": null,
+          "participant_count": 7470
+        }
+      ],
+      "published_or_updated_at": "2026-08",
+      "quantitative_result_approved": null
+    },
+    {
+      "title": "2024년 6월 여행가는 달 추진 보도자료",
+      "summary": "전국 인구감소지역 34곳 · 디지털 관광주민증과 교통·숙박·상점 할인 결합 · 2024년 34개 지역 약 800개 관광업체에 혜택 구조를 적용",
+      "source_id": "case:digital_tourism_resident_2024",
+      "source_url": "https://mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%280514%29%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-6%EC%9B%94_%EC%97%AC%ED%96%89%EA%B0%80%EB%8A%94_%EB%8B%AC_%EC%B6%94%EC%A7%84.pdf&pPath=0302000000&pRealName=20240514083202149235802932_PRESS20240514083202456506.pdf",
+      "case_region": "전국 인구감소지역 34곳",
+      "source_type": "benchmark_case",
+      "intervention": "디지털 관광주민증과 교통·숙박·상점 할인 결합",
+      "document_type": "case_study",
+      "observed_result": "2024년 34개 지역 약 800개 관광업체에 혜택 구조를 적용",
+      "operating_model": "디지털 관광주민증 참여업체 현장 인증과 숙박·식음·관람·체험 할인, 특정 시간대 KTX 할인과 방문 후 교통 할인권을 결합",
+      "retrieval_method": "curated_registry",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "measurement_period": "2024년 6월 운영 계획",
+      "transfer_conditions": [
+        "지역 내 참여업체 수와 혜택 매력도 확보",
+        "QR 또는 위치인증과 실제 사용기록 수집",
+        "교통 할인 제공기관과 협약 필요"
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2024-05-14",
+      "quantitative_result_approved": null
+    },
+    {
+      "title": "2025 대한민국 밤밤페스타 개최 도시 및 일정",
+      "summary": "야간관광 특화도시 10곳 · 도시별 야간 콘텐츠를 순회형 축제로 묶는 운영 · 공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음",
+      "source_id": "case:night_festival_2025",
+      "source_url": "https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=f9c636b2-dd7c-4f09-af3d-6af43b33d371",
+      "case_region": "야간관광 특화도시 10곳",
+      "source_type": "benchmark_case",
+      "intervention": "도시별 야간 콘텐츠를 순회형 축제로 묶는 운영",
+      "document_type": "case_study",
+      "observed_result": "공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음",
+      "operating_model": "10개 야간관광 특화도시의 대표 장소와 시간대를 연결하고, 공연·체험·지역 디저트·판매상품 등 도시별 콘텐츠를 순회 일정으로 운영",
+      "retrieval_method": "curated_registry",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "national_or_unresolved",
+        "peer_region_code": null
+      },
+      "measurement_period": "2025년 행사 일정",
+      "transfer_conditions": [
+        "야간에도 이용 가능한 교통·안전·식음 운영을 함께 설계",
+        "하나의 행사보다 지역별 대표 콘텐츠와 상점 참여를 연결",
+        "행사일과 비행사일을 분리해 방문·결제·숙박 변화를 측정"
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2025",
+      "quantitative_result_approved": null
+    },
+    {
+      "title": "한국관광 데이터랩 · 진도신비의바닷길축제 방문자 추이",
+      "summary": "전라남도 진도군 · 진도신비의바닷길축제 · 2024→2025년 전체 28,171→43,973명 (+56.09%). 개최 3→4일, 일평균 +17.07%, 외지인 +89.98%.",
+      "source_id": "case:festival:1ff9d11d3ee0ee",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "case_region": "전라남도 진도군",
+      "source_type": "benchmark_case",
+      "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+      "intervention": "진도신비의바닷길축제",
+      "source_files": [
+        {
+          "sha256": "3cf7484d808e807aeffda7504a3d316839b9220f0f7a72550f5387af3ee3f8d9",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820182448_진도신비의바닷길축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:3cf7484d808e807aeffd",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/69. 진도신비의바닷길축제_2023-2025/20260820182448_진도신비의바닷길축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "cb3424e725c84352d81fdb987f6d3ade162f54f63a9590ac8730dddcfcc48ed7",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820182448_진도신비의바닷길축제_성_연령별 내국인 방문자.csv",
+          "source_id": "festival-file:cb3424e725c84352d81f",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/69. 진도신비의바닷길축제_2023-2025/20260820182448_진도신비의바닷길축제_성_연령별 내국인 방문자.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "c9332a0e0d15d1550b1b545b8b739cc6a919a13ca701800d87203b06b2fecd46",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820182448_진도신비의바닷길축제_문화관광축제 주요 지표.csv",
+          "source_id": "festival-file:c9332a0e0d15d1550b1b",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/69. 진도신비의바닷길축제_2023-2025/20260820182448_진도신비의바닷길축제_문화관광축제 주요 지표.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "b8aa76a62ac8159da3b9234363c8c0026f70875997af88b4e750f2f6154c65ae",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820182448_진도신비의바닷길축제_목적지 검색순위.csv",
+          "source_id": "festival-file:b8aa76a62ac8159da3b9",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/69. 진도신비의바닷길축제_2023-2025/20260820182448_진도신비의바닷길축제_목적지 검색순위.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        }
+      ],
+      "document_type": "case_study",
+      "evidence_kind": "festival_statistics",
+      "observed_result": "2024→2025년 전체 28,171→43,973명 (+56.09%). 개최 3→4일, 일평균 +17.07%, 외지인 +89.98%.",
+      "operating_model": "진도신비의바닷길축제를 2025년 4일 개최한 문화관광축제 운영 사례. 세부 프로그램·예약·혜택은 이 CSV에 기록되어 있지 않으며 새로운 운영안은 제안으로 구분한다.",
+      "retrieval_basis": {
+        "kind": "external_benchmark",
+        "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+        "score": 31,
+        "theme": "자연·야외",
+        "components": {
+          "최근 개최연도": 6,
+          "방문 실적 비교 가능": 10,
+          "방문 전망 조사: 외지인·일평균 동반 증가": 15
+        },
+        "priority_signal": "visit"
+      },
+      "retrieval_method": "datalab_festival_table",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "measurement_period": "2023~2025년 각 축제 개최기간",
+      "festival_statistics": {
+        "name": "진도신비의바닷길축제",
+        "scope": "축제 관측구역 방문 지표. 도시 전체·순증 관광객·입장권 실구매자 수가 아님.",
+        "annual": [
+          {
+            "days": 3,
+            "year": 2023,
+            "daily": 11185.333333333334,
+            "local": 12120.0,
+            "total": 33556.0,
+            "foreign": 278.0,
+            "outside": 21158.0,
+            "outside_daily": 7052.666666666667,
+            "outside_share_pct": 63.05280724758613
+          },
+          {
+            "days": 3,
+            "year": 2024,
+            "daily": 9390.333333333334,
+            "local": 13068.0,
+            "total": 28171.0,
+            "foreign": 223.0,
+            "outside": 14880.0,
+            "outside_daily": 4960.0,
+            "outside_share_pct": 52.82027617052998
+          },
+          {
+            "days": 4,
+            "year": 2025,
+            "daily": 10993.25,
+            "local": 15345.0,
+            "total": 43973.0,
+            "foreign": 359.0,
+            "outside": 28269.0,
+            "outside_daily": 7067.25,
+            "outside_share_pct": 64.28717622177244
+          }
+        ],
+        "audience": [
+          {
+            "연령대": "70세 이상",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "7.4",
+            "여성비율": "6.8"
+          },
+          {
+            "연령대": "60~69세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "13.8",
+            "여성비율": "14.3"
+          },
+          {
+            "연령대": "50~59세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "10.7",
+            "여성비율": "11.5"
+          },
+          {
+            "연령대": "40~49세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "7.7",
+            "여성비율": "4.9"
+          },
+          {
+            "연령대": "30~39세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "6.8",
+            "여성비율": "4.2"
+          },
+          {
+            "연령대": "20~29세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "5.3",
+            "여성비율": "3.0"
+          },
+          {
+            "연령대": "10~19세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "1.3",
+            "여성비율": "1.3"
+          },
+          {
+            "연령대": "0~9세",
+            "축제명": "진도신비의바닷길축제",
+            "남성비율": "0.5",
+            "여성비율": "0.4"
+          }
+        ],
+        "comparison": {
+          "daily": {
+            "after": 10993.25,
+            "before": 9390.333333333334,
+            "change_pct": 17.069859074935213,
+            "difference": 1602.916666666666
+          },
+          "total": {
+            "after": 43973.0,
+            "before": 28171.0,
+            "change_pct": 56.093145433246946,
+            "difference": 15802.0
+          },
+          "outside": {
+            "after": 28269.0,
+            "before": 14880.0,
+            "change_pct": 89.97983870967742,
+            "difference": 13389.0
+          },
+          "after_days": 4,
+          "after_year": 2025,
+          "before_days": 3,
+          "before_year": 2024,
+          "outside_daily": {
+            "after": 7067.25,
+            "before": 4960.0,
+            "change_pct": 42.484879032258064,
+            "difference": 2107.25
+          }
+        },
+        "source_file": {
+          "sha256": "3cf7484d808e807aeffda7504a3d316839b9220f0f7a72550f5387af3ee3f8d9",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820182448_진도신비의바닷길축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:3cf7484d808e807aeffd",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/69. 진도신비의바닷길축제_2023-2025/20260820182448_진도신비의바닷길축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        "region_basis": "목적지 검색 CSV의 시도+시군구 최빈 주소; 행사장 행정경계 확정은 아님",
+        "indicator_rule": "원본 지표값만 보존. 산식·단위 미확인으로 성장률/원화/정원/참여율 변환 금지.",
+        "audience_period": "다운로드 CSV에 연도 열 없음; 최신 개최연도와 자동 결합하지 않음",
+        "indicator_values": [
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.568",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.858",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "축제기간",
+            "지표값": "0.513",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "축제기간",
+            "지표값": "0.283",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "축제기간",
+            "지표값": "0.791",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.137",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.472",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "비축제기간",
+            "지표값": "0.06",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "비축제기간",
+            "지표값": "0.212",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "비축제기간",
+            "지표값": "0.269",
+            "축제명": "진도신비의바닷길축제",
+            "개최년도": "2025"
+          }
+        ],
+        "destination_period": "다운로드 CSV에 연도 열 없음; 주변 검색 후보이며 제휴·실제 방문 증거 아님",
+        "destination_examples": [
+          {
+            "구분": "외지인",
+            "순위": "1",
+            "목적지명": "진도신비의바닷길축제",
+            "카테고리": "기타문화관광지",
+            "도로명주소": "전남 진도군 신비의바닷길 74-0"
+          },
+          {
+            "구분": "외지인",
+            "순위": "2",
+            "목적지명": "진도신비의바닷길",
+            "카테고리": "테마공원",
+            "도로명주소": "전남 진도군"
+          },
+          {
+            "구분": "외지인",
+            "순위": "3",
+            "목적지명": "가계해변",
+            "카테고리": "자연경관(하천/해양)",
+            "도로명주소": "전남 진도군 신비의바닷길 0-0"
+          }
+        ]
+      },
+      "transfer_conditions": [
+        "지역 지표와 자원에 맞춰 행사 콘텐츠·운영일·참여처를 새로 설계한다.",
+        "개최 일수는 사례 실적이며 우리 지역의 월 운영일·회차·정원으로 복사하지 않는다."
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2026-08-20",
+      "quantitative_result_approved": true
+    },
+    {
+      "title": "한국관광 데이터랩 · 통영한산대첩축제 방문자 추이",
+      "summary": "경상남도 통영시 · 통영한산대첩축제 · 2024→2025년 전체 93,221→124,718명 (+33.79%). 개최 6→7일, 일평균 +14.67%, 외지인 +33.21%.",
+      "source_id": "case:festival:1ffc3eec28956a",
+      "source_url": "https://datalab.visitkorea.or.kr/",
+      "case_region": "경상남도 통영시",
+      "source_type": "benchmark_case",
+      "dataset_hash": "ad20e3daf70fd44fd481d672398c07bb9c96fce77acb450784065a568735e2e2",
+      "intervention": "통영한산대첩축제",
+      "source_files": [
+        {
+          "sha256": "ec35e7537d4da1ed72dd60617fec143558f280299aeb303bc8b7a1036ecc73f0",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820183544_통영한산대첩축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:ec35e7537d4da1ed72dd",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/81. 통영한산대첩축제_2023-2025/20260820183544_통영한산대첩축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "77b41103f7ab3a48a3a94baa36227391bc47069fafcf8cc68a36662ec60fd43d",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820183544_통영한산대첩축제_성_연령별 내국인 방문자.csv",
+          "source_id": "festival-file:77b41103f7ab3a48a3a9",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/81. 통영한산대첩축제_2023-2025/20260820183544_통영한산대첩축제_성_연령별 내국인 방문자.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "5457f819bd8704a9d5b81a24337c2a40c45bbcf7435e0a751139a5457627bdd4",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820183544_통영한산대첩축제_문화관광축제 주요 지표.csv",
+          "source_id": "festival-file:5457f819bd8704a9d5b8",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/81. 통영한산대첩축제_2023-2025/20260820183544_통영한산대첩축제_문화관광축제 주요 지표.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        {
+          "sha256": "3b2a6e862dd8337a7616d3cdb3f568c6fdb24be706918eb7f02d965d625ca746",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820183544_통영한산대첩축제_목적지 검색순위.csv",
+          "source_id": "festival-file:3b2a6e862dd8337a7616",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/81. 통영한산대첩축제_2023-2025/20260820183544_통영한산대첩축제_목적지 검색순위.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        }
+      ],
+      "document_type": "case_study",
+      "evidence_kind": "festival_statistics",
+      "observed_result": "2024→2025년 전체 93,221→124,718명 (+33.79%). 개최 6→7일, 일평균 +14.67%, 외지인 +33.21%.",
+      "operating_model": "통영한산대첩축제를 2025년 7일 개최한 문화관광축제 운영 사례. 세부 프로그램·예약·혜택은 이 CSV에 기록되어 있지 않으며 새로운 운영안은 제안으로 구분한다.",
+      "retrieval_basis": {
+        "kind": "external_benchmark",
+        "rule": "함수 기반 조사 우선순위. 사업효과·인구/환경 유사도 점수가 아니며 소비·체류 개선은 조사 가설이다.",
+        "score": 31,
+        "theme": "지역문화",
+        "components": {
+          "최근 개최연도": 6,
+          "방문 실적 비교 가능": 10,
+          "방문 전망 조사: 외지인·일평균 동반 증가": 15
+        },
+        "priority_signal": "visit"
+      },
+      "retrieval_method": "datalab_festival_table",
+      "evidence_strength": "medium",
+      "retrieval_context": {
+        "scope": "cross_province",
+        "peer_region_code": null
+      },
+      "measurement_period": "2023~2025년 각 축제 개최기간",
+      "festival_statistics": {
+        "name": "통영한산대첩축제",
+        "scope": "축제 관측구역 방문 지표. 도시 전체·순증 관광객·입장권 실구매자 수가 아님.",
+        "annual": [
+          {
+            "days": 9,
+            "year": 2023,
+            "daily": 11745.444444444443,
+            "local": 57810.0,
+            "total": 105709.0,
+            "foreign": 455.0,
+            "outside": 47444.0,
+            "outside_daily": 5271.555555555556,
+            "outside_share_pct": 44.88170354463669
+          },
+          {
+            "days": 6,
+            "year": 2024,
+            "daily": 15536.833333333334,
+            "local": 52493.0,
+            "total": 93221.0,
+            "foreign": 394.0,
+            "outside": 40334.0,
+            "outside_daily": 6722.333333333333,
+            "outside_share_pct": 43.26707501528625
+          },
+          {
+            "days": 7,
+            "year": 2025,
+            "daily": 17816.85714285714,
+            "local": 70201.0,
+            "total": 124718.0,
+            "foreign": 787.0,
+            "outside": 53730.0,
+            "outside_daily": 7675.714285714285,
+            "outside_share_pct": 43.08119116727337
+          }
+        ],
+        "audience": [
+          {
+            "연령대": "70세 이상",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "5.2",
+            "여성비율": "5.7"
+          },
+          {
+            "연령대": "60~69세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "11.0",
+            "여성비율": "11.5"
+          },
+          {
+            "연령대": "50~59세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "11.1",
+            "여성비율": "10.9"
+          },
+          {
+            "연령대": "40~49세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "8.0",
+            "여성비율": "7.7"
+          },
+          {
+            "연령대": "30~39세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "6.3",
+            "여성비율": "5.6"
+          },
+          {
+            "연령대": "20~29세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "5.4",
+            "여성비율": "4.4"
+          },
+          {
+            "연령대": "10~19세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "2.8",
+            "여성비율": "3.1"
+          },
+          {
+            "연령대": "0~9세",
+            "축제명": "통영한산대첩축제",
+            "남성비율": "0.5",
+            "여성비율": "0.6"
+          }
+        ],
+        "comparison": {
+          "daily": {
+            "after": 17816.85714285714,
+            "before": 15536.833333333334,
+            "change_pct": 14.674958278867244,
+            "difference": 2280.0238095238074
+          },
+          "total": {
+            "after": 124718.0,
+            "before": 93221.0,
+            "change_pct": 33.78745132534515,
+            "difference": 31497.0
+          },
+          "outside": {
+            "after": 53730.0,
+            "before": 40334.0,
+            "change_pct": 33.21267417067486,
+            "difference": 13396.0
+          },
+          "after_days": 7,
+          "after_year": 2025,
+          "before_days": 6,
+          "before_year": 2024,
+          "outside_daily": {
+            "after": 7675.714285714285,
+            "before": 6722.333333333333,
+            "change_pct": 14.182292146292742,
+            "difference": 953.3809523809524
+          }
+        },
+        "source_file": {
+          "sha256": "ec35e7537d4da1ed72dd60617fec143558f280299aeb303bc8b7a1036ecc73f0",
+          "provider": "한국관광 데이터랩",
+          "file_name": "20260820183544_통영한산대첩축제_연도별 방문자 추이.csv",
+          "source_id": "festival-file:ec35e7537d4da1ed72dd",
+          "source_url": "https://datalab.visitkorea.or.kr/",
+          "downloaded_at": "2026-08-20",
+          "relative_path": "data/source_snapshots/festivals_20260820/81. 통영한산대첩축제_2023-2025/20260820183544_통영한산대첩축제_연도별 방문자 추이.csv",
+          "provenance_status": "team_download_exact_query_url_unrecorded"
+        },
+        "region_basis": "목적지 검색 CSV의 시도+시군구 최빈 주소; 행사장 행정경계 확정은 아님",
+        "indicator_rule": "원본 지표값만 보존. 산식·단위 미확인으로 성장률/원화/정원/참여율 변환 금지.",
+        "audience_period": "다운로드 CSV에 연도 열 없음; 최신 개최연도와 자동 결합하지 않음",
+        "indicator_values": [
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.309",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "축제기간",
+            "지표값": "0.731",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "축제기간",
+            "지표값": "0.228",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "축제기간",
+            "지표값": "0.313",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "축제기간",
+            "지표값": "0.766",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "외부방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.244",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "현지인방문자 유입",
+            "그룹명": "비축제기간",
+            "지표값": "0.586",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "내비게이션 검색량",
+            "그룹명": "비축제기간",
+            "지표값": "0.206",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "관광소비",
+            "그룹명": "비축제기간",
+            "지표값": "0.312",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          },
+          {
+            "구분명": "축제지 집중률",
+            "그룹명": "비축제기간",
+            "지표값": "0.595",
+            "축제명": "통영한산대첩축제",
+            "개최년도": "2025"
+          }
+        ],
+        "destination_period": "다운로드 CSV에 연도 열 없음; 주변 검색 후보이며 제휴·실제 방문 증거 아님",
+        "destination_examples": [
+          {
+            "구분": "외지인",
+            "순위": "1",
+            "목적지명": "통영중앙전통시장",
+            "카테고리": "시장",
+            "도로명주소": "경남 통영시 중앙시장1길 14-16"
+          },
+          {
+            "구분": "외지인",
+            "순위": "2",
+            "목적지명": "동피랑벽화마을",
+            "카테고리": "기타관광",
+            "도로명주소": "경남 통영시 동피랑1길 6-18"
+          },
+          {
+            "구분": "외지인",
+            "순위": "3",
+            "목적지명": "통영한산대첩축제(한산대첩광장)",
+            "카테고리": "기타문화관광지",
+            "도로명주소": "경남 통영시 통영해안로 267-0"
+          }
+        ]
+      },
+      "transfer_conditions": [
+        "지역 지표와 자원에 맞춰 행사 콘텐츠·운영일·참여처를 새로 설계한다.",
+        "개최 일수는 사례 실적이며 우리 지역의 월 운영일·회차·정원으로 복사하지 않는다."
+      ],
+      "operating_statistics": [],
+      "published_or_updated_at": "2026-08-20",
+      "quantitative_result_approved": true
+    }
+  ],
+  "observed_findings": [
+    {
+      "value": "191,346건",
+      "metric": "내비게이션 목적지 검색량",
+      "source": "dataset:30170:6",
+      "interpretation": "2026년 6월 기준 검색량은 관측되었으나, ML 전망에 따르면 2026년 10월에는 전년 동기 대비 감소 추세가 예상되어 야간 관심도 제고가 필요함"
+    },
+    {
+      "value": "6.7%",
+      "metric": "외지인 숙박 방문 비율",
+      "source": "dataset:30170:4",
+      "interpretation": "외지인 방문객 중 숙박 비중이 낮아, 야간 콘텐츠를 통한 체류 시간 연장 및 숙박 유도가 핵심 과제임"
+    },
+    {
+      "value": "쇼핑업 43.0%, 식음료업 39.7%",
+      "metric": "관광소비 구성",
+      "source": "dataset:30170:3",
+      "interpretation": "쇼핑과 식음료 중심의 소비 구조를 가지고 있어, 야간 시간대 상권 이용을 유도하는 축제 설계가 효과적일 수 있음"
+    }
+  ],
+  "planning_decision": {
+    "case_linkage": {
+      "method": "operation-document-v2",
+      "operation_family": "night_time_experience",
+      "original_case_source_ids": [
+        "case:night_festival_2025"
+      ],
+      "matched_source_ids": [
+        "case:night_festival_2025"
+      ],
+      "regional_similarity_verified": false,
+      "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+    },
+    "strategy_brief": {
+      "mechanism": "야간 시간대에 특화된 축제를 운영하여, 낮 시간대 중심의 방문을 저녁 체류와 지역 상점 이용으로 확장하는 방식",
+      "pilot_scope": "야간 시간대에 특화된 축제 운영",
+      "target_users": "야간 시간대에 지역을 방문하는 국내 관광객",
+      "working_title": "야간 축제 운영",
+      "budget_formula": "야간 축제 운영에 필요한 예산은 다음과 같습니다: 축제 기간(3개월) × 축제 운영 비용(예: 100만 원/개월) = 300만 원.",
+      "target_problem": "야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가",
+      "success_metrics": "야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가",
+      "stop_or_scale_rule": "야간 축제 운영의 성공 여부는 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가 여부를 기준으로 판단합니다.",
+      "supporting_case_ids": [
+        "case:night_festival_2025"
+      ]
+    },
+    "period_alignment": [],
+    "selection_reason": "야간 축제 운영은 '2025 대한민국 밤밤페스타' 사례에서 도출된 운영 방식을 참고하여, 대전 서구의 특성에 맞게 조정된 운영 방식으로, 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가를 기대할 수 있습니다. 이는 '2025 대한민국 밤밤페스타' 사례와 비교하여, 대전 서구의 특성에 맞게 조정된 운영 방식으로, 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가를 기대할 수 있습니다.",
+    "selection_status": "ready",
+    "design_candidates": [
+      {
+        "title": "대전 서구 야간 축제 운영",
+        "local_fit": "대전 서구의 내비게이션 검색량은 2026년 6월 기준 191,346건으로, 전년 동기 대비 감소 추세를 보이고 있습니다. 이에 따라, 야간 시간대에 특화된 축제 운영을 통해 방문자 수와 소비액을 증가시킬 수 있습니다. 이는 '2025 대한민국 밤밤페스타' 사례에서 도출된 운영 방식을 참고하였습니다.",
+        "mechanism": "야간 시간대에 특화된 축제를 운영하여, 낮 시간대 중심의 방문을 저녁 체류와 지역 상점 이용으로 확장하는 방식",
+        "candidate_id": "1",
+        "case_linkage": {
+          "method": "operation-document-v2",
+          "operation_family": "night_time_experience",
+          "original_case_source_ids": [
+            "case:night_festival_2025"
+          ],
+          "matched_source_ids": [
+            "case:night_festival_2025"
+          ],
+          "regional_similarity_verified": false,
+          "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+        },
+        "prerequisites": "야간에도 이용 가능한 교통·안전·식음 운영을 함께 설계하고, 지역별 대표 콘텐츠와 상점 참여를 연결해야 합니다.",
+        "budget_formula": "야간 축제 운영에 필요한 예산은 다음과 같습니다: 축제 기간(3개월) × 축제 운영 비용(예: 100만 원/개월) = 300만 원. 이는 '2025 대한민국 밤밤페스타' 사례에서 도출된 예산 기준을 참고하였습니다.",
+        "candidate_type": "experience_product",
+        "case_source_ids": [
+          "case:night_festival_2025"
+        ],
+        "differentiation": "야간 축제 운영은 기존의 낮 시간대 중심의 방문을 저녁 체류와 지역 상점 이용으로 확장하는 방식으로, 이는 '2025 대한민국 밤밤페스타' 사례와 유사하지만, 대전 서구의 특성에 맞게 조정된 운영 방식입니다.",
+        "measurement_plan": "야간 축제 운영의 성공 여부는 다음과 같이 측정합니다: 1) 야간 시간대의 방문자 수 증가, 2) 야간 시간대의 관광소비액 증가, 3) 야간 시간대의 내비게이션 검색량 증가. 이는 '2025 대한민국 밤밤페스타' 사례에서 도출된 측정 방식을 참고하였습니다. 기준기간: 2026년 10월 1일 ~ 2026년 12월 31일, 측정 주기: 월별, 원자료: 한국관광 데이터랩, 비교 대상: 전년 동기 대비, 분자: 야간 시간대 방문자 수, 분모: 전체 방문자 수.",
+        "stop_or_scale_rule": "야간 축제 운영의 성공 여부는 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가 여부를 기준으로 판단합니다. 이는 '2025 대한민국 밤밤페스타' 사례에서 도출된 중단/확대 기준을 참고하였습니다.",
+        "evidence_source_ids": [
+          "dataset:30170:6",
+          "case:night_festival_2025"
+        ]
+      },
+      {
+        "title": "대전 서구 지역환급 프로그램 운영",
+        "local_fit": "대전 서구의 관광소비액은 2026년 6월 기준 76,758,413,000원으로, 전년 동기 대비 감소 추세를 보이고 있습니다. 이에 따라, 지역환급 프로그램 운영을 통해 관광소비액을 증가시킬 수 있습니다. 이는 '강진 반값여행 지역환급' 사례에서 도출된 운영 방식을 참고하였습니다.",
+        "mechanism": "방문객이 지역에서 지출한 비용의 일부를 지역상품권으로 돌려받게 하여, 혜택이 다시 지역 상점에서 사용되도록 설계",
+        "candidate_id": "2",
+        "case_linkage": {
+          "method": "operation-document-v2",
+          "operation_family": "spend_conversion",
+          "original_case_source_ids": [
+            "case:gangjin_half_price_2024"
+          ],
+          "matched_source_ids": [
+            "case:gangjin_half_price_2024"
+          ],
+          "regional_similarity_verified": false,
+          "basis": "같은 운영 방식의 유효한 인용을 유지. 인용 누락·오류일 때만 지역 검색 맥락·문서 등급으로 참고 사례 1건 연결. 지역 적합성 순위나 효과 확률이 아님."
+        },
+        "prerequisites": "지역상품권 사용처와 관광업체 참여 기준, 여행 지출 증빙과 중복수혜 방지 절차, 지원금보다 추가 지역소비가 큰지 사후 측정 필요",
+        "budget_formula": "지역환급 프로그램 운영에 필요한 예산은 다음과 같습니다: 지역환급 비율(예: 10%) × 관광소비액(76,758,413,000원) = 7,675,841,300원. 이는 '강진 반값여행 지역환급' 사례에서 도출된 예산 기준을 참고하였습니다.",
+        "candidate_type": "spend_conversion",
+        "case_source_ids": [
+          "case:gangjin_half_price_2024"
+        ],
+        "differentiation": "지역환급 프로그램 운영은 기존의 낮 시간대 중심의 방문을 저녁 체류와 지역 상점 이용으로 확장하는 방식으로, 이는 '강진 반값여행 지역환급' 사례와 유사하지만, 대전 서구의 특성에 맞게 조정된 운영 방식입니다.",
+        "measurement_plan": "지역환급 프로그램 운영의 성공 여부는 다음과 같이 측정합니다: 1) 지역상품권 결제 증가, 2) 관광소비액 증가, 3) 지역 상점 이용 증가. 이는 '강진 반값여행 지역환급' 사례에서 도출된 측정 방식을 참고하였습니다. 기준기간: 2026년 10월 1일 ~ 2026년 12월 31일, 측정 주기: 월별, 원자료: 한국관광 데이터랩, 비교 대상: 전년 동기 대비, 분자: 지역상품권 결제 금액, 분모: 전체 관광소비액.",
+        "stop_or_scale_rule": "지역환급 프로그램 운영의 성공 여부는 지역상품권 결제, 관광소비액, 지역 상점 이용의 증가 여부를 기준으로 판단합니다. 이는 '강진 반값여행 지역환급' 사례에서 도출된 중단/확대 기준을 참고하였습니다.",
+        "evidence_source_ids": [
+          "dataset:30170:3",
+          "case:gangjin_half_price_2024"
+        ]
+      }
+    ],
+    "diagnosis_summary": "대전광역시 서구는 2026년 10월 1일부터 12월 31일까지의 관광 활성화를 위해 새로운 전략이 필요합니다. 이 기간 동안의 관광객 수, 관광소비액, 내비게이션 검색량 등은 전년 동기 대비 감소 추세를 보이고 있습니다. 이에 따라, 지역의 특성과 기존 성공 사례를 바탕으로 효과적인 관광 활성화 방안을 모색해야 합니다.",
+    "recommended_case_ids": [
+      "case:night_festival_2025"
+    ],
+    "candidate_assessments": [
+      {
+        "fit_score": 85,
+        "adaptation": "야간 축제 운영 방식을 대전 서구의 특성에 맞게 조정하여, 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가를 기대할 수 있음",
+        "case_source_id": "case:night_festival_2025",
+        "evidence_score": 75,
+        "rejection_risks": [
+          "야간 축제 운영에 필요한 교통·안전·식음 운영 설계가 복잡할 수 있음",
+          "야간 프로그램이 지역 정체성과 맞지 않으면 재방문 동기가 약해질 수 있음"
+        ],
+        "validation_plan": "야간 축제 운영의 성공 여부는 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가 여부를 기준으로 판단",
+        "similarity_reason": "야간 축제 운영 방식이 유사하며, 대전 서구의 특성에 맞게 조정 가능"
+      },
+      {
+        "fit_score": 70,
+        "adaptation": "지역환급 프로그램 운영 방식을 대전 서구의 특성에 맞게 조정하여, 관광소비액을 증가시킬 수 있음",
+        "case_source_id": "case:gangjin_half_price_2024",
+        "evidence_score": 60,
+        "rejection_risks": [
+          "사업 참여자 증가와 지역 전체 소비 증가를 같은 인과효과로 단정할 수 없음",
+          "환급이 기존 방문객에게만 지급되면 순증 효과가 작을 수 있음"
+        ],
+        "validation_plan": "지역환급 프로그램 운영의 성공 여부는 지역상품권 결제, 관광소비액, 지역 상점 이용의 증가 여부를 기준으로 판단",
+        "similarity_reason": "지역환급 프로그램 운영 방식이 유사하며, 대전 서구의 특성에 맞게 조정 가능"
+      }
+    ],
+    "selected_candidate_id": "1",
+    "original_candidate_assessments": [
+      {
+        "fit_score": 85,
+        "adaptation": "야간 축제 운영 방식을 대전 서구의 특성에 맞게 조정하여, 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가를 기대할 수 있음",
+        "case_source_id": "case:night_festival_2025",
+        "evidence_score": 75,
+        "rejection_risks": [
+          "야간 축제 운영에 필요한 교통·안전·식음 운영 설계가 복잡할 수 있음",
+          "야간 프로그램이 지역 정체성과 맞지 않으면 재방문 동기가 약해질 수 있음"
+        ],
+        "validation_plan": "야간 축제 운영의 성공 여부는 야간 시간대의 방문자 수, 관광소비액, 내비게이션 검색량의 증가 여부를 기준으로 판단",
+        "similarity_reason": "야간 축제 운영 방식이 유사하며, 대전 서구의 특성에 맞게 조정 가능"
+      },
+      {
+        "fit_score": 70,
+        "adaptation": "지역환급 프로그램 운영 방식을 대전 서구의 특성에 맞게 조정하여, 관광소비액을 증가시킬 수 있음",
+        "case_source_id": "case:gangjin_half_price_2024",
+        "evidence_score": 60,
+        "rejection_risks": [
+          "사업 참여자 증가와 지역 전체 소비 증가를 같은 인과효과로 단정할 수 없음",
+          "환급이 기존 방문객에게만 지급되면 순증 효과가 작을 수 있음"
+        ],
+        "validation_plan": "지역환급 프로그램 운영의 성공 여부는 지역상품권 결제, 관광소비액, 지역 상점 이용의 증가 여부를 기준으로 판단",
+        "similarity_reason": "지역환급 프로그램 운영 방식이 유사하며, 대전 서구의 특성에 맞게 조정 가능"
+      }
+    ],
+    "measurement_alignment": [
+      {
+        "original": "야간 시간대 방문자 수 증가율 (분자: 야간 시간대 방문자 수, 분모: 전체 방문자 수, 기준: 전년 동기 대비, 산식: (이번 기간 야간 방문자 수 - 전년 같은 기간 야간 방문자 수) / 전년 같은 기간 야간 방문자 수 × 100, 측정 주기: 월별, 원자료: 한국관광 데이터랩, 수집 담당: 성과분석팀, 성공 기준: 전년 동기 대비 증가세 확인 시 성공)",
+        "updated": "야간 시간대 방문자 수 증가율 (분자: 이번 기간 야간 방문자 수 − 전년 같은 기간 야간 방문자 수, 분모: 전년 같은 기간 야간 방문자 수, 기준: 전년 동기 대비, 산식: (이번 기간 야간 방문자 수 - 전년 같은 기간 야간 방문자 수) / 전년 같은 기간 야간 방문자 수 × 100, 측정 주기: 월별, 원자료: 동일 시간·관측 범위의 야간 방문 집계(사업 담당자가 확보할 자료), 수집 담당: 성과분석팀, 성공 기준: 전년 동기 대비 증가세 확인 시 성공) 비교 대상은 전년 같은 기간·시간대·관측 범위입니다. 기준값이 0이면 증가율 대신 인원 차이를 표시합니다. 현재 월별 데이터랩 합계만으로 야간 실적을 계산하지 않습니다.",
+        "reason": "야간 방문 비중과 전년 대비 증가율의 분모 구분"
+      }
+    ]
+  },
+  "execution_scenario": {
+    "visitor_target_pct": 0.030885517547571944,
+    "spending_target_pct": 0.06642701965838742,
+    "target_origin": "operating_capacity"
+  },
+  "reference_estimate": {
+    "version": "operating-capacity-v3-launch-schedule",
+    "status": "planning_assumption_not_quote",
+    "scale_basis": "8개 × 월 8일 × 2개월 × 하루 2회 × 회당 40명 = 10,240명분 → 편성 참여 한도 10,240건. 모든 단가는 기획 가정.",
+    "months": 2,
+    "refund": false,
+    "quantity": 10240,
+    "unit_krw": 10000,
+    "redemption_target_pct": 75.0,
+    "redemption_count": 7680,
+    "qualifying_spend_krw": null,
+    "subtotal_krw": 137600000,
+    "reserve_krw": 13760000,
+    "total_krw": 151360000,
+    "within_hard_budget": true,
+    "items": [
+      {
+        "name": "프로그램 운영·참여 지원",
+        "basis": "편성 참여 한도 10,240건 × 가정 단가 10,000원",
+        "amount": 102400000
+      },
+      {
+        "name": "현장 운영·정산",
+        "basis": "8개 거점 × 월 8일 × 2개월 × 150,000원",
+        "amount": 19200000
+      },
+      {
+        "name": "신청·운영 시스템",
+        "basis": "기존 수단 설정 1식 × 가정 단가 8,000,000원",
+        "amount": 8000000
+      },
+      {
+        "name": "홍보·참여처 안내",
+        "basis": "안내 콘텐츠 1식 × 가정 단가 5,000,000원",
+        "amount": 5000000
+      },
+      {
+        "name": "성과 집계·검토",
+        "basis": "실적 정리 1식 × 가정 단가 3,000,000원",
+        "amount": 3000000
+      },
+      {
+        "name": "예비비",
+        "basis": "직접비 137,600,000원 × 10%",
+        "amount": 13760000
+      }
+    ],
+    "sources": [],
+    "assumptions": [
+      "기획용 예상 견적이며 실제 액수와 다를 수 있습니다."
+    ]
+  },
+  "target_proposal_basis": {
+    "kind": "operating_capacity",
+    "capacity_plan": {
+      "version": "operating-capacity-v3-launch-schedule",
+      "status": "proposed",
+      "minimum_operating_budget_krw": 38720000,
+      "family": "night_time_experience",
+      "program_label": "야간 문화·체험",
+      "site_label": "운영 거점",
+      "months": 2,
+      "active_months": [
+        "202611",
+        "202612"
+      ],
+      "monthly_weights": [
+        0,
+        0.5,
+        1.0
+      ],
+      "schedule_basis": "dated_launch_step",
+      "forecast_period": "202610~202612",
+      "baseline_visitors": 14928559.0,
+      "baseline_spending_krw": 246365272670.0,
+      "mean_monthly_visitors": 4976186.333333333,
+      "sites": 8,
+      "days_per_month": 8,
+      "sessions_per_day": 2,
+      "capacity_per_session": 40,
+      "capacity": 10240,
+      "funded_capacity": 10240,
+      "scale_rule": "운영 거점 = ceil(√(월평균 ML 방문 전망 ÷ 100,000)), 최소 1·최대 12개",
+      "capacity_formula": "8개 × 월 8일 × 2개월 × 하루 2회 × 회당 40명 = 10,240명분",
+      "scale_kind": "planning_rule_not_population_model",
+      "spending_per_visit_proxy_krw": 16502.9506645618,
+      "existing_participant_extra_spend_krw": 8251.4753322809,
+      "spending_formula": "추가 방문 × (ML 소비 합계 ÷ ML 방문 합계) + 기존 방문 참여 × 추가 구매 가정액",
+      "rate_basis": [
+        {
+          "kind": "planning_policy",
+          "metric": "utilization_rate",
+          "value": 75.0,
+          "target_value": 75.0,
+          "unit": "percent",
+          "floor_applied": true,
+          "reason": "참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다."
+        },
+        {
+          "kind": "planning_assumption",
+          "metric": "additional_visitor_share",
+          "value": 30.0,
+          "unit": "percent",
+          "reason": "사업 규모를 검토하기 위한 공통 계획 가정"
+        }
+      ],
+      "scenarios": [
+        {
+          "label": "보수",
+          "utilization_pct": 75.0,
+          "additional_visitor_share_pct": 15.0,
+          "participants": 7680,
+          "additional_visitors": 1152,
+          "additional_spending_krw": 72877030,
+          "visitor_growth_pct": 0.007716752835956907,
+          "spending_growth_pct": 0.02958088581649124,
+          "visitor_target_pct": 0.015442758773785972,
+          "spending_target_pct": 0.05876236323383419
+        },
+        {
+          "label": "기준",
+          "utilization_pct": 75.0,
+          "additional_visitor_share_pct": 30.0,
+          "participants": 7680,
+          "additional_visitors": 2304,
+          "additional_spending_krw": 82382730,
+          "visitor_growth_pct": 0.015433505671913815,
+          "spending_growth_pct": 0.03343926240381678,
+          "visitor_target_pct": 0.030885517547571944,
+          "spending_target_pct": 0.06642701965838742
+        },
+        {
+          "label": "확대",
+          "utilization_pct": 90.0,
+          "additional_visitor_share_pct": 44.99999999999999,
+          "participants": 9216,
+          "additional_visitors": 4147,
+          "additional_spending_krw": 110264465,
+          "visitor_growth_pct": 0.027778970495410844,
+          "spending_growth_pct": 0.04475649664622028,
+          "visitor_target_pct": 0.05559125055112016,
+          "spending_target_pct": 0.08890868006166548
+        }
+      ],
+      "central": {
+        "label": "기준",
+        "utilization_pct": 75.0,
+        "additional_visitor_share_pct": 30.0,
+        "participants": 7680,
+        "additional_visitors": 2304,
+        "additional_spending_krw": 82382730,
+        "visitor_growth_pct": 0.015433505671913815,
+        "spending_growth_pct": 0.03343926240381678,
+        "visitor_target_pct": 0.030885517547571944,
+        "spending_target_pct": 0.06642701965838742
+      },
+      "participation_basis": "참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다.",
+      "minimum_participation_pct": 75.0,
+      "case_sources": [
+        {
+          "source_id": "case:night_festival_2025",
+          "title": "2025 대한민국 밤밤페스타 개최 도시 및 일정",
+          "source_url": "https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=f9c636b2-dd7c-4f09-af3d-6af43b33d371",
+          "operating_model": "10개 야간관광 특화도시의 대표 장소와 시간대를 연결하고, 공연·체험·지역 디저트·판매상품 등 도시별 콘텐츠를 순회 일정으로 운영",
+          "observed_result": "공식 여행기사는 개최 도시·장소·운영 시간과 콘텐츠만 제시하며 방문·소비 성과 수치는 제시하지 않음"
+        }
+      ],
+      "explanation": "야간 문화·체험: 8개 × 월 8일 × 2개월 × 하루 2회 × 회당 40명 = 10,240명분. 편성 한도 10,240명분에 이용률 75%를 적용해 7,680명 참여, 추가 방문 비중 30%로 2,304명 유치를 제안합니다. 기간 합계 ML 전망 대비 방문 +0.02%, 소비 +0.03%의 계획 시나리오입니다. 참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다. 실제 운영 산정: 2026-11~2026-12, 2개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다.",
+      "disclosure": "보수·기준·확대는 이용률과 추가 방문 비중을 ±15%p 바꾼 계획 범위이며 통계적 오차범위가 아닙니다. 참여 목표는 75~100% 안에서 적용합니다. 거점 수는 운영 제안이며 소비/방문 비율은 실측 객단가가 아닙니다.",
+      "budget_cap_krw": null,
+      "capacity_reduced": false,
+      "operating_period": "2026-11~2026-12",
+      "schedule_note": "실제 운영 산정: 2026-11~2026-12, 2개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다.",
+      "estimate": {
+        "version": "operating-capacity-v3-launch-schedule",
+        "status": "planning_assumption_not_quote",
+        "scale_basis": "8개 × 월 8일 × 2개월 × 하루 2회 × 회당 40명 = 10,240명분 → 편성 참여 한도 10,240건. 모든 단가는 기획 가정.",
+        "months": 2,
+        "refund": false,
+        "quantity": 10240,
+        "unit_krw": 10000,
+        "redemption_target_pct": 75.0,
+        "redemption_count": 7680,
+        "qualifying_spend_krw": null,
+        "subtotal_krw": 137600000,
+        "reserve_krw": 13760000,
+        "total_krw": 151360000,
+        "within_hard_budget": true,
+        "items": [
+          {
+            "name": "프로그램 운영·참여 지원",
+            "basis": "편성 참여 한도 10,240건 × 가정 단가 10,000원",
+            "amount": 102400000
+          },
+          {
+            "name": "현장 운영·정산",
+            "basis": "8개 거점 × 월 8일 × 2개월 × 150,000원",
+            "amount": 19200000
+          },
+          {
+            "name": "신청·운영 시스템",
+            "basis": "기존 수단 설정 1식 × 가정 단가 8,000,000원",
+            "amount": 8000000
+          },
+          {
+            "name": "홍보·참여처 안내",
+            "basis": "안내 콘텐츠 1식 × 가정 단가 5,000,000원",
+            "amount": 5000000
+          },
+          {
+            "name": "성과 집계·검토",
+            "basis": "실적 정리 1식 × 가정 단가 3,000,000원",
+            "amount": 3000000
+          },
+          {
+            "name": "예비비",
+            "basis": "직접비 137,600,000원 × 10%",
+            "amount": 13760000
+          }
+        ],
+        "sources": [],
+        "assumptions": [
+          "기획용 예상 견적이며 실제 액수와 다를 수 있습니다."
+        ]
+      }
+    },
+    "case_title": "선정 사례의 운영 방식과 지역 운영 규모",
+    "observed_visitors": null,
+    "source_url": "",
+    "reported_growth_pct": null,
+    "visitor_target_pct": 0.030885517547571944,
+    "spending_target_pct": 0.06642701965838742,
+    "explanation": "야간 문화·체험: 8개 × 월 8일 × 2개월 × 하루 2회 × 회당 40명 = 10,240명분. 편성 한도 10,240명분에 이용률 75%를 적용해 7,680명 참여, 추가 방문 비중 30%로 2,304명 유치를 제안합니다. 기간 합계 ML 전망 대비 방문 +0.02%, 소비 +0.03%의 계획 시나리오입니다. 참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다. 실제 운영 산정: 2026-11~2026-12, 2개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다.",
+    "target_mode": "automatic"
+  },
+  "planning_brief_fingerprint": "42de4e0c25666d971880271bc170d0e041b8da85eec0e0237dd1b7806407411d"
+}

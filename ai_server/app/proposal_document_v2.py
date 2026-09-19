@@ -282,7 +282,8 @@ def case_card(doc, report, source, index, primary, *, add_gap=True):
 
 
 def pipeline_page(doc, report, b):
-    heading(doc, '07  기획서 생성 과정', True)
+    # 앞 견적 설명이 한두 줄 넘어가더라도 빈 페이지를 만들지 않고 이어서 배치합니다.
+    heading(doc, '07  기획서 생성 과정', False)
     paragraph(doc, '지역 데이터와 공식 사례를 연결하고, 5개 에이전트가 조사·비교·작성·검수를 나누어 수행합니다.', size=11)
     trace = report.get('agent_trace') or []
     def provider(agent, default):
@@ -372,7 +373,8 @@ def create_strategy_proposal_document(report):
     else:
         paragraph(doc, '해당 사업기간에 저장된 전망 수치가 없습니다. 관측값을 예측 그래프로 대체하지 않습니다.')
 
-    heading(doc, '03  지역별 참고 사례', True)
+    # KPI 근거의 마지막 안내 문장이 별도 페이지에 고립되지 않도록 자연스럽게 이어집니다.
+    heading(doc, '03  지역별 참고 사례', False)
     paragraph(doc, '공식 문서에서 사업의 실제 운영 방식이 연결되는 사례를 참고합니다. 아래 구분은 선정 사업의 근거와 추가 참고 사례의 역할을 나타냅니다.', size=9, color=GRAY)
     cases, primary = report_cases(report)
     for i, source in enumerate(cases):
@@ -392,9 +394,10 @@ def create_strategy_proposal_document(report):
     paragraph(doc, b['estimate'].get('scale_basis') or '입력 예산 총액 안에서 참여량과 운영 인력을 배분합니다.')
     subheading(doc, '사례에서 우리 지역의 제안으로')
     paragraph(doc, prose(strategy.get('solution')))
-    if strategy.get('comparison_analysis'):
-        subheading(doc, '선정 판단')
-        paragraph(doc, prose(strategy['comparison_analysis']), size=9)
+    selection_reason = (report.get('planning_decision') or {}).get('selection_reason') or strategy.get('comparison_analysis')
+    if selection_reason:
+        subheading(doc, '후보 비교와 선정 판단')
+        paragraph(doc, prose(selection_reason), size=9)
     paragraph(doc, '연결 근거  '+str(source.get('title') or ''), size=8, color=GRAY)
 
     heading(doc, '05  4단계 실행 가이드 예시안', True)

@@ -1,0 +1,223 @@
+diff --git a/frontend/src/App.jsx b/frontend/src/App.jsx
+index 4a9b5eb..89f5a69 100644
+--- a/frontend/src/App.jsx
++++ b/frontend/src/App.jsx
+@@ -1,5 +1,6 @@
+-import { Component, lazy, Suspense } from 'react'
++import { Component, lazy, Suspense, useEffect } from 'react'
+ import { resolveAppRoute } from './routes'
++import { initializeTheme } from './theme'
+ 
+ // 첫 화면에서 Leaflet·Recharts·보고서 코드를 모두 내려받지 않도록 페이지 단위로 분리합니다.
+ const TourismHomePage = lazy(() => import('./pages/TourismHomePage'))
+@@ -59,6 +60,10 @@ function NotFoundPage() {
+ 
+ /** 현재 페이지 수가 적어 별도 Router 의존성 없이 경로별 화면만 지연 로딩합니다. */
+ export default function App() {
++  useEffect(() => {
++    initializeTheme()
++  }, [])
++
+   const route = resolveAppRoute(window.location.pathname)
+   const pages = {
+     home: TourismHomePage,
+diff --git a/frontend/src/components/HeaderActions.jsx b/frontend/src/components/HeaderActions.jsx
+new file mode 100644
+index 0000000..889ee54
+--- /dev/null
++++ b/frontend/src/components/HeaderActions.jsx
+@@ -0,0 +1,27 @@
++import { Moon, Sun } from 'lucide-react'
++import { useEffect, useState } from 'react'
++import { applyTheme, getStoredTheme, THEME_CHANGE_EVENT } from '../theme'
++
++export default function HeaderActions() {
++  const [theme, setTheme] = useState(getStoredTheme)
++
++  useEffect(() => {
++    const syncTheme = (event) => setTheme(event.detail || getStoredTheme())
++    window.addEventListener(THEME_CHANGE_EVENT, syncTheme)
++    return () => window.removeEventListener(THEME_CHANGE_EVENT, syncTheme)
++  }, [])
++
++  const isNight = theme === 'night'
++  const toggleTheme = () => {
++    setTheme(applyTheme(isNight ? 'day' : 'night'))
++  }
++
++  return (
++    <div className="global-header-actions">
++      <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label={isNight ? '주간 화면으로 전환' : '야간 화면으로 전환'}>
++        {isNight ? <Sun size={16} /> : <Moon size={16} />}
++        <span>{isNight ? 'Day Mode' : 'Night Mode'}</span>
++      </button>
++    </div>
++  )
++}
+diff --git a/frontend/src/components/WorkspaceShell.jsx b/frontend/src/components/WorkspaceShell.jsx
+index 61a7940..b447e84 100644
+--- a/frontend/src/components/WorkspaceShell.jsx
++++ b/frontend/src/components/WorkspaceShell.jsx
+@@ -4,7 +4,9 @@ import {
+   ClipboardList,
+ } from 'lucide-react'
+-import logo from '../assets/logo.png'
++import nightLogo from '../assets/logo-night.png'
++import dayLogo from '../assets/logo-day.png'
+ import { resolveAppRoute } from '../routes'
++import HeaderActions from './HeaderActions'
+ 
+ const menuItems = [
+   { href: '/dashboard', label: '지역선택', icon: LayoutDashboard },
+@@ -14,5 +16,6 @@ const menuItems = [
+ ]
+ const savedPlansMenuItem = { href: '/saved-plans', label: '저장된 기획서', icon: FileBarChart }
++const themedWorkspacePaths = new Set(['/dashboard', '/planning', '/strategy', '/saved-plans'])
+ 
+ /**
+  * bid3의 224px 사이드바·64px 상단바 비율을 React + Vite에 맞춰 옮긴 공통 화면 틀입니다.
+@@ -22,5 +25,8 @@ const savedPlansMenuItem = { href: '/saved-plans', label: '저장된 기획서', icon: FileBarChart }
+ export default function WorkspaceShell({ children }) {
+   const currentPath = resolveAppRoute(window.location.pathname).canonicalPath
++  const pageClassName = themedWorkspacePaths.has(currentPath)
++    ? 'workspace-shell oligo-seoul-page'
++    : 'workspace-shell'
+   const topbarLabel = currentPath === '/dashboard'
+     ? '1. 희망 지역을 선택해주세요'
+     : currentPath === '/planning'
+@@ -41,12 +47,16 @@ export default function WorkspaceShell({ children }) {
+           : '지역관광 전략 업무공간'
+ 
+   return (
+-    <div className="workspace-shell">
++    <div className={pageClassName}>
+       <header className="home-header workspace-global-header">
+         <div>
+           <div className="home-brand-wrap">
+-            <a className="home-brand" href="/" aria-label="OLIGO 홈"><img className="home-brand-logo" src={logo} alt="OLIGO (가제)" /></a>
++            <a className="home-brand" href="/" aria-label="OLIGO 홈">
++              <img className="home-brand-logo theme-logo theme-logo--night" src={nightLogo} alt="OLIGO-K" />
++              <img className="home-brand-logo theme-logo theme-logo--day" src={dayLogo} alt="OLIGO-K" />
++            </a>
+             <a className="ml-learning-dot" href="/ml-test" aria-label="머신러닝 학습 결과 보기" title="머신러닝 학습 결과" />
++            <HeaderActions />
+           </div>
+         </div>
+       </header>
+diff --git a/frontend/src/theme.js b/frontend/src/theme.js
+new file mode 100644
+index 0000000..64ae690
+--- /dev/null
++++ b/frontend/src/theme.js
+@@ -0,0 +1,33 @@
++export const THEME_STORAGE_KEY = 'oligo-theme'
++export const DEFAULT_THEME = 'night'
++export const THEME_CHANGE_EVENT = 'oligo-theme-change'
++
++function normalizeTheme(theme) {
++  return theme === 'day' ? 'day' : DEFAULT_THEME
++}
++
++export function getStoredTheme() {
++  try {
++    return normalizeTheme(window.localStorage.getItem(THEME_STORAGE_KEY))
++  } catch {
++    return DEFAULT_THEME
++  }
++}
++
++export function applyTheme(theme) {
++  const nextTheme = normalizeTheme(theme)
++  document.documentElement.dataset.theme = nextTheme
++
++  try {
++    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme)
++  } catch {
++    // 저장 공간을 사용할 수 없어도 현재 화면의 테마 전환은 계속 동작합니다.
++  }
++
++  window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, { detail: nextTheme }))
++  return nextTheme
++}
++
++export function initializeTheme() {
++  return applyTheme(getStoredTheme())
++}
+diff --git a/frontend/src/App.css b/frontend/src/App.css
+index 4f3cc0c..0bcab84 100644
+--- a/frontend/src/App.css
++++ b/frontend/src/App.css
+@@ -536,3 +536,73 @@ html{scroll-padding-top:118px}
+ @media (min-width:721px) and (max-width:1250px) {
+   .tourism-diagnosis-body { grid-template-columns:minmax(0,1fr); }
+ }
++
++/* --------------------------------------------------------------------------
++   TP2-4 UI curation: 팀원 시각 디자인만 안전하게 이식한 공통 업무 셸
++   데이터·AI·기획서 상태 처리와 라우팅 규칙은 기존 TP2-4 구현을 유지합니다.
++---------------------------------------------------------------------------- */
++.workspace-shell.oligo-seoul-page{min-height:100vh;color:#0f172a;background:#061c32}
++.workspace-shell.oligo-seoul-page .workspace-main{min-height:100vh;background:linear-gradient(rgb(3 24 43 / 86%),rgb(8 48 76 / 82%)),url('./assets/Seoul.png') center / cover fixed no-repeat}
++.workspace-shell>.workspace-global-header{position:fixed;z-index:2000;top:0;right:0;left:0;border-bottom-color:#2d5e79;background:#0c3450;box-shadow:0 2px 16px rgb(2 24 43 / 24%)}
++.workspace-global-header>div{width:100%;height:64px;margin:0;padding:0 24px}
++.workspace-global-header .home-brand-wrap{display:flex;width:100%;align-items:center}
++.workspace-global-header .home-brand-logo{width:auto;height:58px;max-width:min(430px,calc(100vw - 180px));object-fit:contain}
++.theme-logo--day{display:none!important}
++.global-header-actions{position:absolute;top:50%;right:24px;display:flex;align-items:center;transform:translateY(-50%)}
++.global-header-actions .theme-toggle{display:inline-flex;height:38px;align-items:center;gap:7px;padding:0 14px;border:1px solid rgb(104 189 220 / 58%);border-radius:10px;color:#f8fbff;background:linear-gradient(180deg,rgb(25 67 96 / 92%),rgb(10 47 75 / 94%));box-shadow:0 4px 12px rgb(0 10 30 / 28%),inset 0 1px 0 rgb(255 255 255 / 10%);font-size:12px;font-weight:700;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
++.global-header-actions .theme-toggle:hover{border-color:rgb(122 216 239 / 78%);color:#fff;transform:translateY(-1px);box-shadow:0 7px 18px rgb(0 11 32 / 34%),0 0 18px rgb(54 177 216 / 12%)}
++.global-header-actions .theme-toggle:focus-visible{outline:3px solid rgb(66 205 230 / 28%);outline-offset:3px}
++.workspace-shell.oligo-seoul-page .workspace-sidebar{border-right-color:#42677d;background:linear-gradient(180deg,#08233b,#0b3451 56%,#10284d);box-shadow:inset -1px 0 0 rgb(255 255 255 / 20%),12px 0 34px #020e1d38}
++.workspace-shell.oligo-seoul-page .workspace-nav p{color:#8eb9cb}
++.workspace-shell.oligo-seoul-page .workspace-nav a{color:#c8deea}
++.workspace-shell.oligo-seoul-page .workspace-nav a:hover{color:#fff;background:#ffffff12}
++.workspace-shell.oligo-seoul-page .workspace-nav a.is-active{color:#fff;background:linear-gradient(105deg,#1a899b,#5166c2 67%,#a96d95);box-shadow:inset 3px 0 0 #8be8ef,0 8px 18px #05172e55}
++.workspace-shell.oligo-seoul-page .workspace-topbar{border-bottom-color:#6bb7c43b;color:#eafaff;background:rgb(8 35 59 / 94%);box-shadow:inset 0 -1px 0 rgb(255 255 255 / 20%)}
++.workspace-shell.oligo-seoul-page .workspace-topbar p{color:#eefbff}
++.workspace-shell.oligo-seoul-page .selected-region-heading h2,
++.workspace-shell.oligo-seoul-page .work-page-header h1{color:#f4fcff;text-shadow:0 2px 12px #03182f80}
++.workspace-shell.oligo-seoul-page .work-page-header{border-bottom-color:#8ddce05c}
++.workspace-shell.oligo-seoul-page .work-page-header span,
++.workspace-shell.oligo-seoul-page .work-region-picker{color:#c7e5ee}
++.workspace-shell.oligo-seoul-page .panel,
++.workspace-shell.oligo-seoul-page .planning-section,
++.workspace-shell.oligo-seoul-page .strategy-canvas,
++.workspace-shell.oligo-seoul-page .workspace-chat,
++.workspace-shell.oligo-seoul-page .strategy-board-table{border-color:#91dce24d;box-shadow:0 17px 35px #02172b57}
++.workspace-shell.oligo-seoul-page .trend-panel-heading,
++.workspace-shell.oligo-seoul-page .tourism-diagnosis-heading{color:#fff;background:linear-gradient(105deg,#2eb6c5,#526dd0 58%,#886bc7)}
++.workspace-shell.oligo-seoul-page .trend-panel-heading h3,
++.workspace-shell.oligo-seoul-page .tourism-diagnosis-heading h3{color:#fff}
++
++html[data-theme='day'],html[data-theme='day'] body{background:#f4f7fb}
++html[data-theme='day'] .theme-logo--night{display:none!important}
++html[data-theme='day'] .theme-logo--day{display:block!important}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page{background:linear-gradient(135deg,#edf2f5 0%,#f3f6f8 48%,#eaf0f4 100%)}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-main{background:linear-gradient(135deg,rgb(237 242 245 / 94%),rgb(243 246 248 / 92%)),url('./assets/Seoul.png') center / cover fixed no-repeat}
++html[data-theme='day'] .workspace-shell>.workspace-global-header{border-bottom-color:#e2e8f0;background:#fffffff2;box-shadow:0 1px 0 rgb(15 23 42 / 3%)}
++html[data-theme='day'] .global-header-actions .theme-toggle{border-color:rgb(154 181 204 / 60%);color:#173b57;background:linear-gradient(180deg,#fff,#f6fafc);box-shadow:0 4px 12px rgb(45 79 108 / 10%)}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-sidebar{border-right-color:#d9e2e8;background:#f9fbfc;box-shadow:none}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-nav p{color:#94a3b8}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-nav a{color:#64748b}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-nav a:hover{color:#0f172a;background:#f1f5f9}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-nav a.is-active{color:#fff;background:linear-gradient(105deg,#1a899b,#5166c2 67%,#a96d95);box-shadow:inset 3px 0 0 #8be8ef,0 8px 18px #05172e35}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-topbar{border-bottom-color:#d8e1e7;color:#0f172a;background:#f9fbfc;box-shadow:0 1px 0 rgb(15 23 42 / 3%)}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-topbar p{color:#0f172a}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .selected-region-heading h2,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .work-page-header h1{color:#163b61;text-shadow:none}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .work-page-header{border-bottom-color:#e2e8f0}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .work-page-header span,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .work-region-picker{color:#64748b}
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .panel,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .planning-section,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .strategy-canvas,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .workspace-chat,
++html[data-theme='day'] .workspace-shell.oligo-seoul-page .strategy-board-table{border-color:#e1e7ef;box-shadow:0 1px 2px rgb(15 23 42 / 4%)}
++
++@media(max-width:500px){
++  .workspace-global-header>div{justify-content:flex-start;padding:0 10px}
++  .workspace-global-header .home-brand-logo{height:48px;max-width:calc(100vw - 136px)}
++  .global-header-actions{right:10px}
++  .global-header-actions .theme-toggle{width:38px;justify-content:center;padding:0}
++  .global-header-actions .theme-toggle span{display:none}
++}

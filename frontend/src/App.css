@@ -1701,3 +1701,7 @@ html[data-theme='day'] .workspace-shell:has(.tp23-dashboard) .map-caption strong
 .workspace-shell.oligo-seoul-page .saved-board-page .strategy-board-bottom nav button,
 .workspace-shell.oligo-seoul-page .saved-board-page .strategy-board-bottom nav b { font-size: 15.6px; }
 .workspace-shell.oligo-seoul-page .saved-board-page .strategy-board-bottom nav small { font-size: 14.3px; }
+
+/* Preserve TP2-4 admin header spacing after the team UI merge. */
+.workspace-shell:not(.oligo-seoul-page) > .workspace-main{padding-top:64px}
+

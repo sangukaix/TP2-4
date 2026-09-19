@@ -14,7 +14,7 @@ from .case_recommendation import operation_family
 from .report_projection import select_report_forecast
 from .operating_schedule import operating_schedule
 
-VERSION = 'operating-capacity-v4-linked-cost'
+VERSION = 'operating-capacity-v6-lean-refund-pilot'
 MIN_PARTICIPATION_RATE = .75
 # days/month, sessions/day, people/session, allowance/slot, existing-visitor extra spend
 # These are disclosed planning settings, not official standards or trained parameters.
@@ -107,7 +107,7 @@ def refund_settings(report):
     formula = str(selected.get('budget_formula') or (decision.get('strategy_brief') or {}).get('budget_formula') or '')
     rates = re.findall(r'(?:환급률\s*[:：]?\s*|(?:인정\s*)?지출액\s*[×*]\s*)(\d+(?:\.\d+)?)\s*%', formula)
     caps = re.findall(r'건별\s*(?:환급\s*)?상한\s*[:：]?\s*(\d[\d,]*(?:\.\d+)?)\s*(만)?\s*원', formula)
-    rate = float(rates[0]) / 100 if len(set(rates)) == 1 and 0 < float(rates[0]) <= 100 else .10
+    rate = float(rates[0]) / 100 if len(set(rates)) == 1 and 0 < float(rates[0]) <= 100 else .30
     cap = round(float(caps[0][0].replace(',', '')) * (10000 if caps[0][1] else 1)) if len(set(caps)) == 1 else 50000
     if not 0 < cap <= 1000000: cap = 50000
     return rate, cap
@@ -163,13 +163,19 @@ def build_operating_target(report):
     def teams(count): return math.ceil(count / 4) if refund else count
     staff_teams = teams(sites)
     staff_days = staff_teams * days * months
-    fixed = staff_days * 150000 + 16000000
+    # 환급형 시범사업은 기존 지역화폐·웹 신청 수단을 설정해 쓰는 범위로 제안합니다.
+    # 신규 앱 구축을 전제로 한 1,600만원 고정비를 소규모 실증에 그대로 붙이지 않습니다.
+    system_cost = 3000000 if refund else 8000000
+    promotion_cost = 2000000 if refund else 5000000
+    evaluation_cost = 1000000 if refund else 3000000
+    overhead = system_cost + promotion_cost + evaluation_cost
+    fixed = staff_days * 150000 + overhead
     if budget is not None:
         while sites > 1 and (fixed + days * months * sessions * seats * payout) * 1.1 > budget:
             sites -= 1
             staff_teams = teams(sites)
             staff_days = staff_teams * days * months
-            fixed = staff_days * 150000 + 16000000
+            fixed = staff_days * 150000 + overhead
         capacity = sites * days * months * sessions * seats
     def cost(participants):
         direct = fixed + participants * payout
@@ -213,9 +219,15 @@ def build_operating_target(report):
          'amount': central['expected_support_krw']},
         {'name': '현장 운영·정산', 'basis': f'{staff_teams}개 운영팀 × 월 {days}일 × {months}개월 × 150,000원'
          + (f' (점포 묶음 {sites}개, 최대 4개당 공동 정산팀 1개)' if refund else ''), 'amount': staff_days * 150000},
-        {'name': '신청·운영 시스템', 'basis': '기존 수단 설정 1식 × 가정 단가 8,000,000원', 'amount': 8000000},
-        {'name': '홍보·참여처 안내', 'basis': '안내 콘텐츠 1식 × 가정 단가 5,000,000원', 'amount': 5000000},
-        {'name': '성과 집계·검토', 'basis': '실적 정리 1식 × 가정 단가 3,000,000원', 'amount': 3000000},
+        {'name': '신청·운영 시스템',
+         'basis': ('기존 지역화폐·웹 신청 수단 설정 1식 × 가정 단가 3,000,000원' if refund else '기존 수단 설정 1식 × 가정 단가 8,000,000원'),
+         'amount': system_cost},
+        {'name': '홍보·참여처 안내',
+         'basis': ('참여처 안내·온라인 홍보 1식 × 가정 단가 2,000,000원' if refund else '안내 콘텐츠 1식 × 가정 단가 5,000,000원'),
+         'amount': promotion_cost},
+        {'name': '성과 집계·검토',
+         'basis': ('정산 원장 집계 1식 × 가정 단가 1,000,000원' if refund else '실적 정리 1식 × 가정 단가 3,000,000원'),
+         'amount': evaluation_cost},
     ]
     subtotal = sum(i['amount'] for i in items)
     reserve = math.ceil(subtotal / 10)
@@ -234,7 +246,7 @@ def build_operating_target(report):
                    f'{central["additional_visitors"]:,}명 유치를 제안합니다. '
                    f'기간 합계 ML 전망 대비 방문 +{central["visitor_growth_pct"]:.2f}%, '
                    f'소비 +{central["spending_growth_pct"]:.2f}%의 계획 시나리오입니다. '
-                   + uptake_basis['reason'])
+                   + uptake_basis['reason'] + (f' 계획 결제 {purchase:,}원에 환급률 {refund_rate*100:g}%를 적용해 건당 {payout:,}원을 지원합니다. 환급 혜택과 추가 방문 비중은 별도의 운영 목표이며, 혜택을 높였다고 방문 목표를 자동 상향하지 않습니다.' if refund else ''))
     plan = {'version': VERSION, 'status': 'budget_below_operating_floor' if below_floor else 'proposed',
             'minimum_operating_budget_krw': minimum_budget,
             'family': family, 'program_label': label, 'site_label': site_label, 'months': months,
@@ -263,6 +275,8 @@ def build_operating_target(report):
     plan['operating_period'] = f'{active[0][:4]}-{active[0][4:]}~{active[-1][:4]}-{active[-1][4:]}'
     plan['schedule_note'] = f"실제 운영 산정: {plan['operating_period']}, {months}개월. 준비 기간에는 추가 방문·소비 목표를 배분하지 않습니다."
     plan['explanation'] += ' ' + plan['schedule_note']
+    value_ratio = (central['additional_spending_krw'] / (subtotal + reserve)
+                   if subtotal + reserve > 0 else None)
     plan['estimate'] = {'version': VERSION, 'status': 'budget_below_operating_floor' if below_floor else 'planning_assumption_not_quote',
                         'scale_basis': formula + f" → 참여 목표 {central['participants']:,}건의 예상 집행액. 모든 단가는 기획 가정.",
                         'months': months, 'refund': refund, 'quantity': central['participants'], 'unit_krw': payout,
@@ -278,10 +292,13 @@ def build_operating_target(report):
                         'full_participation_budget_krw': cost(funded) if not below_floor else 0,
                         'participant_purchases_krw': central['participant_purchases_krw'],
                         'additional_spending_krw': central['additional_spending_krw'],
+                        'additional_spend_to_budget_ratio': value_ratio,
                         'scenario_note': (f"참여자 결제 {central['participant_purchases_krw']:,}원 중 추가 소비 목표 {central['additional_spending_krw']:,}원. "
-                                          '견적은 같은 참여 목표의 사업비이며, 결제액 전체를 신규 소비나 사업 수익으로 계산하지 않습니다.'),
+                                          + (f"추가 소비 목표 ÷ 예상 사업비는 {value_ratio:.2f}배입니다. " if value_ratio is not None else '')
+                                          + '견적은 같은 참여 목표의 사업비이며, 결제액 전체를 신규 소비나 사업 수익으로 계산하지 않습니다.'),
                         'items': items, 'sources': [], 'assumptions': [
                             '기획용 예상 견적이며 실제 액수와 다를 수 있습니다.',
+                            '환급률 미지정 시 30%를 제안합니다. 이는 참여 혜택을 위한 계획 설정이며 공식 사례 실적이나 추정 효과가 아닙니다.' if refund else '지원단가는 사업 유형별 계획 설정입니다.',
                             '100% 참여 참고예산도 같은 계획 결제액을 사용한 참고값이며 최대 지급 책임액이 아닙니다.',
                             plan['purchase_basis'],
                             f'기존 방문 참여자의 추가 구매액은 유형별 기준 {extra_spend:,}원과 ML 소비/방문 비율의 50% 중 작은 값입니다.',

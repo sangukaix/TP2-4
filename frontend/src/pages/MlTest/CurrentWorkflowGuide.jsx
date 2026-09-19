@@ -7,13 +7,13 @@ const guides = {
   ],
   react: [
     ['지역 선택', '서버 카탈로그에서 지역 목록을 받습니다. 자료 점검과 현재 로컬 모델 연결을 함께 통과한 지역에 준비 상태를 표시합니다.', 'tourismWorkspace.js → /ai/v1/regions/catalog'],
-    ['조건 입력', '사업 방향·참고 예산·자원·현장 선호를 선택합니다. 서버가 한국 시간 기준 다음 달부터 3개월의 사업기간을 확정합니다.', 'TourismPlanningPage.jsx → planning_brief.py'],
+    ['조건 입력', '사업 방향·참고 예산·자원·현장 선호를 선택합니다. 서버가 한국 시간 기준 15일까지는 다음 달, 16일부터는 다다음 달 시작의 3개월 사업기간을 확정합니다.', 'TourismPlanningPage.jsx → planning_brief.py'],
     ['진행 상태', '생성 작업 ID를 받은 뒤 상태를 조회합니다. 분석·사례·작성·검수 진행은 서버가 보고한 단계로 표시합니다.', 'dashboardApi.js → strategy-report/jobs'],
     ['수정과 다운로드', '화면은 구조화된 응답을 표시합니다. 챗봇 수정과 저장을 거쳐 서버에서 Word·PPT를 생성하며 React에서 ML을 학습하지 않습니다.', 'TourismStrategyPage.jsx → strategy_store.py'],
   ],
   router: [
     ['모드와 작업', '같은 Agent라도 모드와 작업 종류에 따라 Provider가 달라집니다. 저장 설정과 실제 적용 경로를 아래 표에서 함께 확인합니다.', 'llm/router.py · effective_routes()'],
-    ['로컬 모델', 'Qwen은 비교·질문 설계·로컬 검수, Gemma는 본문 작성·개정을 맡습니다. 연결 확인과 실제 추론 완료는 다릅니다.', 'llm/ollama_provider.py'],
+    ['로컬 모델', '로컬우선(Gemma)은 비교·질문 설계·작성·로컬 검수를 Gemma로 통일합니다. 기존 로컬 우선은 Qwen·Gemma가 역할을 나눕니다. 연결 확인과 추론 완료는 다릅니다.', 'llm/ollama_provider.py'],
     ['유료 호출 경계', '학생 절약 모드는 저장 근거·선택적 무료 공식 검색을 우선합니다. 로컬 실패를 이유로 OpenAI에 자동 대체하지 않습니다.', 'llm/router.py · cost_policy'],
     ['실행 기록', '실제로 끝난 시도의 Provider·모델·오류·사용량을 확인합니다. 설정 저장은 모델 학습이나 기획서 생성을 실행하지 않습니다.', 'llm/trace_store.py'],
   ],

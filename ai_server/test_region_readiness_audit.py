@@ -66,7 +66,7 @@ class RuntimeReadinessTest(unittest.IsolatedAsyncioTestCase):
         from ai_server.app.llm.models import ProviderHealth
         q=AsyncMock(return_value=ProviderHealth('ollama','active','ok',['q']))
         g=AsyncMock(return_value=ProviderHealth('ollama','active','ok',['g']))
-        router=SimpleNamespace(providers={'qwen':SimpleNamespace(health=q),'gemma':SimpleNamespace(health=g)},
+        router=SimpleNamespace(required_local_providers=('qwen','gemma'),gemma_only_local=False,providers={'qwen':SimpleNamespace(health=q),'gemma':SimpleNamespace(health=g)},
             effective_routes=lambda:{'transferability':{'provider':'qwen','model':'q'},'planner':{'provider':'gemma','model':'g'}})
         audit={'checked_at':'now','status':'completed','regions':[
             {'region_code':'11620','region_name':'관악구','verified':False,'data_ready':True,'issues':[]},
@@ -78,6 +78,15 @@ class RuntimeReadinessTest(unittest.IsolatedAsyncioTestCase):
             result=await read_regions_readiness_audit()
             self.assertFalse(any(r['generation_ready'] for r in result['regions']))
             self.assertTrue(result['regions'][0]['data_ready'])
+            router.required_local_providers=('gemma',)
+            router.gemma_only_local=True
+            router.effective_routes=lambda:{'transferability':{'provider':'gemma','model':'g'},'planner':{'provider':'gemma','model':'g'}}
+            g.return_value=ProviderHealth('ollama','active','ok',['g'])
+            q.reset_mock()
+            q.side_effect=AssertionError('Qwen must not be required')
+            result=await read_regions_readiness_audit()
+            self.assertTrue(result['regions'][0]['generation_ready'])
+            q.assert_not_awaited()
             g.side_effect=ConnectionError('offline')
             result=await read_regions_readiness_audit()
             self.assertTrue(result['regions'][0]['data_ready'])

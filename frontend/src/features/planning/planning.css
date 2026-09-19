@@ -97,6 +97,11 @@
 /* 생성 결과의 승인 여부와 후보 비교를 본문 디자인과 분리해 빠르게 확인합니다. */
 .strategy-quality-notice { padding: 16px 18px; margin-bottom: 20px; border: 1px solid #e4c58f; border-radius: 12px; background: #fffaf0; color: #624a26; font-size: 14px; line-height: 1.65; }
 .strategy-quality-notice.is-approved { border-color: #b8ddd5; background: #f2faf7; color: #21564b; }
+.strategy-quality-notice.needs-review { border-color: #e4c58f; background: #fffaf0; color: #624a26; }
+.strategy-quality-summary { font-weight: 650; }
+.strategy-quality-edit-heading { display: block; margin-top: 14px; color: inherit; }
+.strategy-review-findings { margin: 8px 0 12px; }
+.strategy-review-findings ul { margin-top: 8px; }
 .strategy-quality-notice p { margin: 6px 0; }
 .strategy-quality-notice summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
 .strategy-quality-notice ul { margin: 10px 0 0; padding-left: 20px; }

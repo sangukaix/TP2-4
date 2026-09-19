@@ -1,0 +1,39 @@
+{
+  "title": "서울 중구 · 정동야행",
+  "scope": "선정한 서울 문화재야행 사업에 포함된 정동야행",
+  "action": "역사·문화시설을 밤에도 개방하고, 공연과 체험을 함께 운영",
+  "metric": "행사 방문객",
+  "before": 100000,
+  "after": 130000,
+  "before_label": "2023년 · 10월 13–14일",
+  "after_label": "2024년 · 5월 24–25일",
+  "before_note": "중구청 발표 · 약 10만 명",
+  "after_note": "중구청 발표 · 13만 명",
+  "interpretation": "두 해의 행사 방문객 비교입니다. 개최 계절이 달라 사업 단독 효과로 해석하지 않습니다.",
+  "references": [
+    [
+      "중구청 · 2023 정동야행 성공적 개최 (2023.10.15)",
+      "https://www.junggu.seoul.kr/content.do?cid=1235161279&cmsid=14390&mode=view"
+    ],
+    [
+      "중구청 · 2024 정동야행, 봄밤의 낭만 활짝 (2024.05.27)",
+      "https://www.junggu.seoul.kr/content.do?cid=1280957763&cmsid=14390&mode=view"
+    ],
+    [
+      "서울문화포털 · 2024 정동야행 행사 내용과 사진",
+      "https://culture.seoul.go.kr/culture/culture/cultureEvent/view.do?cultcode=146365&menuNo=200009"
+    ]
+  ],
+  "photo": {
+    "path": "C:\\Users\\Admin\\mbca\\TP2-3\\ai_server\\assets\\proposal_cases\\jeongdong_2024.jpg",
+    "caption": "서울 중구 정동 · 정동야행 행사 사진",
+    "credit": "서울문화포털 · 2024 정동야행",
+    "page_url": "https://culture.seoul.go.kr/culture/culture/cultureEvent/view.do?cultcode=146365&menuNo=200009",
+    "image_url": "https://culture.seoul.go.kr/resources/culture/img/editor/culture/editor_20240530140505_47975.jpg",
+    "match_kind": "documented_constituent_event",
+    "retrieved_at": "2026-09-15"
+  },
+  "parent_source": "https://culture.seoul.go.kr/culture/cmmn/file/fileDown.do?atchFileId=c4638ecc9ce84bba9e51ecc2e11293e2&bbsId=&fileSn=2&menuNo=200050",
+  "parent_page": 83,
+  "verified_at": "2026-09-15"
+}

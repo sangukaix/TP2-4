@@ -1,0 +1,2 @@
+INFO:     127.0.0.1:1896 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:6669 - "GET /ai/health HTTP/1.1" 200 OK

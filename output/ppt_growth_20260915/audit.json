@@ -1,0 +1,1566 @@
+{
+  "count": 249,
+  "months": [
+    "202610",
+    "202611",
+    "202612"
+  ],
+  "origin": "202606",
+  "signature": "2a35a8f6f8ef70b97e33e89bf2f4acd874752220ed520b852868587f35b8232f",
+  "region_code": "50110",
+  "metrics": {
+    "visitors": {
+      "forecast": [
+        3615062,
+        3594310,
+        3370793
+      ],
+      "previous": [
+        3904808.0,
+        3591286.0,
+        3410959.0
+      ],
+      "growth_pct": -2.9970332041111325,
+      "national_mean_pct": -0.394766937691683,
+      "gap_pp": -2.6022662664194494,
+      "rank": 208,
+      "target_growth_pct": 0.19907317463907503,
+      "target_rank": 87,
+      "target": [
+        3675313.033333333,
+        3714120.3333333335,
+        3539332.6500000004
+      ],
+      "additional": 348601.01666666754
+    },
+    "spending": {
+      "forecast": [
+        150467072839,
+        145085139974,
+        149366639508
+      ],
+      "previous": [
+        154337552000.0,
+        143894918000.0,
+        148223154000.0
+      ],
+      "growth_pct": -0.344215997377606,
+      "national_mean_pct": 6.640909128955906,
+      "gap_pp": -6.985125126333513,
+      "rank": 228,
+      "target_growth_pct": 2.9735354338785047,
+      "target_rank": 68,
+      "target": [
+        152974857386.31665,
+        149921311306.46667,
+        156834971483.40002
+      ],
+      "additional": 14812287855.18335
+    }
+  },
+  "population_adjusted": false,
+  "cohort": [
+    {
+      "region_code": "28245",
+      "region_name": "인천광역시 계양구",
+      "visitors_yoy_pct": -0.181730776849387,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11110",
+      "region_name": "서울특별시 종로구",
+      "visitors_yoy_pct": 0.22058697128235494,
+      "spending_yoy_pct": 4.580217217936977
+    },
+    {
+      "region_code": "11140",
+      "region_name": "서울특별시 중구",
+      "visitors_yoy_pct": -4.979614214123506,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11170",
+      "region_name": "서울특별시 용산구",
+      "visitors_yoy_pct": -0.3378475483719168,
+      "spending_yoy_pct": 17.74232531130686
+    },
+    {
+      "region_code": "11200",
+      "region_name": "서울특별시 성동구",
+      "visitors_yoy_pct": 2.5969573020728554,
+      "spending_yoy_pct": 5.2897098661769615
+    },
+    {
+      "region_code": "11215",
+      "region_name": "서울특별시 광진구",
+      "visitors_yoy_pct": 3.8434435752205065,
+      "spending_yoy_pct": 15.750677281894143
+    },
+    {
+      "region_code": "11230",
+      "region_name": "서울특별시 동대문구",
+      "visitors_yoy_pct": 3.9319477713267714,
+      "spending_yoy_pct": 4.008665139200995
+    },
+    {
+      "region_code": "11260",
+      "region_name": "서울특별시 중랑구",
+      "visitors_yoy_pct": 0.06390882102844664,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11290",
+      "region_name": "서울특별시 성북구",
+      "visitors_yoy_pct": 6.491412818941056,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11305",
+      "region_name": "서울특별시 강북구",
+      "visitors_yoy_pct": -0.31553169799538594,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11320",
+      "region_name": "서울특별시 도봉구",
+      "visitors_yoy_pct": 1.9885852169564178,
+      "spending_yoy_pct": -3.9398837471920745
+    },
+    {
+      "region_code": "11350",
+      "region_name": "서울특별시 노원구",
+      "visitors_yoy_pct": 2.6732126130347034,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11380",
+      "region_name": "서울특별시 은평구",
+      "visitors_yoy_pct": -1.5414900930146969,
+      "spending_yoy_pct": 9.742111155875799
+    },
+    {
+      "region_code": "11410",
+      "region_name": "서울특별시 서대문구",
+      "visitors_yoy_pct": 0.26100209122330575,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11440",
+      "region_name": "서울특별시 마포구",
+      "visitors_yoy_pct": -0.42315356265129056,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11470",
+      "region_name": "서울특별시 양천구",
+      "visitors_yoy_pct": 0.2040172459361056,
+      "spending_yoy_pct": 7.8308763097921785
+    },
+    {
+      "region_code": "11500",
+      "region_name": "서울특별시 강서구",
+      "visitors_yoy_pct": -2.5203770541048165,
+      "spending_yoy_pct": 1.0661216099866477
+    },
+    {
+      "region_code": "11530",
+      "region_name": "서울특별시 구로구",
+      "visitors_yoy_pct": -5.084948743139006,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11545",
+      "region_name": "서울특별시 금천구",
+      "visitors_yoy_pct": -0.004729088367683154,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11560",
+      "region_name": "서울특별시 영등포구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11590",
+      "region_name": "서울특별시 동작구",
+      "visitors_yoy_pct": -2.159738232477182,
+      "spending_yoy_pct": 6.658745677758771
+    },
+    {
+      "region_code": "11620",
+      "region_name": "서울특별시 관악구",
+      "visitors_yoy_pct": 3.416171684213065,
+      "spending_yoy_pct": 2.78161019702714
+    },
+    {
+      "region_code": "11650",
+      "region_name": "서울특별시 서초구",
+      "visitors_yoy_pct": -3.3407180053658725,
+      "spending_yoy_pct": 7.659458813227693
+    },
+    {
+      "region_code": "11710",
+      "region_name": "서울특별시 송파구",
+      "visitors_yoy_pct": 0.1917648649844672,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "11740",
+      "region_name": "서울특별시 강동구",
+      "visitors_yoy_pct": -0.13711943373028168,
+      "spending_yoy_pct": 4.933893018036728
+    },
+    {
+      "region_code": "51110",
+      "region_name": "강원특별자치도 춘천시",
+      "visitors_yoy_pct": -1.9664957516168258,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51130",
+      "region_name": "강원특별자치도 원주시",
+      "visitors_yoy_pct": -0.8330123914969678,
+      "spending_yoy_pct": 37.640108864536415
+    },
+    {
+      "region_code": "51150",
+      "region_name": "강원특별자치도 강릉시",
+      "visitors_yoy_pct": 7.745107525681205,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51170",
+      "region_name": "강원특별자치도 동해시",
+      "visitors_yoy_pct": 2.6814404526349644,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51190",
+      "region_name": "강원특별자치도 태백시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51210",
+      "region_name": "강원특별자치도 속초시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51230",
+      "region_name": "강원특별자치도 삼척시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51720",
+      "region_name": "강원특별자치도 홍천군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51730",
+      "region_name": "강원특별자치도 횡성군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51750",
+      "region_name": "강원특별자치도 영월군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51760",
+      "region_name": "강원특별자치도 평창군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51770",
+      "region_name": "강원특별자치도 정선군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51780",
+      "region_name": "강원특별자치도 철원군",
+      "visitors_yoy_pct": -11.738262349313622,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51790",
+      "region_name": "강원특별자치도 화천군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51800",
+      "region_name": "강원특별자치도 양구군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51810",
+      "region_name": "강원특별자치도 인제군",
+      "visitors_yoy_pct": 0.7982735908174332,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51820",
+      "region_name": "강원특별자치도 고성군",
+      "visitors_yoy_pct": 3.9292214795380698,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "51830",
+      "region_name": "강원특별자치도 양양군",
+      "visitors_yoy_pct": 1.016923718387308,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41111",
+      "region_name": "경기도 수원시 장안구",
+      "visitors_yoy_pct": 1.1475336925274693,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41113",
+      "region_name": "경기도 수원시 권선구",
+      "visitors_yoy_pct": 0.02309067516510499,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41115",
+      "region_name": "경기도 수원시 팔달구",
+      "visitors_yoy_pct": 1.1752424903732184,
+      "spending_yoy_pct": 5.784673016796771
+    },
+    {
+      "region_code": "41117",
+      "region_name": "경기도 수원시 영통구",
+      "visitors_yoy_pct": 0.6512867290074942,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41131",
+      "region_name": "경기도 성남시 수정구",
+      "visitors_yoy_pct": 2.5103800143091215,
+      "spending_yoy_pct": 9.520113178780786
+    },
+    {
+      "region_code": "41133",
+      "region_name": "경기도 성남시 중원구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 15.517585713868876
+    },
+    {
+      "region_code": "41135",
+      "region_name": "경기도 성남시 분당구",
+      "visitors_yoy_pct": -0.021831037261310637,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41150",
+      "region_name": "경기도 의정부시",
+      "visitors_yoy_pct": -1.8020937666352155,
+      "spending_yoy_pct": 4.387608388035358
+    },
+    {
+      "region_code": "41171",
+      "region_name": "경기도 안양시 만안구",
+      "visitors_yoy_pct": 2.161627087729401,
+      "spending_yoy_pct": 0.7681955241102489
+    },
+    {
+      "region_code": "41173",
+      "region_name": "경기도 안양시 동안구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41192",
+      "region_name": "경기도 부천시 원미구",
+      "visitors_yoy_pct": 1.4376074623922541,
+      "spending_yoy_pct": -0.5252023407957496
+    },
+    {
+      "region_code": "41194",
+      "region_name": "경기도 부천시 소사구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": -1.9824476603583885
+    },
+    {
+      "region_code": "41196",
+      "region_name": "경기도 부천시 오정구",
+      "visitors_yoy_pct": -1.094635619559492,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41210",
+      "region_name": "경기도 광명시",
+      "visitors_yoy_pct": -0.4157538524296678,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41220",
+      "region_name": "경기도 평택시",
+      "visitors_yoy_pct": -0.03909969108389921,
+      "spending_yoy_pct": 24.268928579775473
+    },
+    {
+      "region_code": "41250",
+      "region_name": "경기도 동두천시",
+      "visitors_yoy_pct": -2.7650328166700766,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41271",
+      "region_name": "경기도 안산시 상록구",
+      "visitors_yoy_pct": 3.17645200245269,
+      "spending_yoy_pct": 15.490271744531281
+    },
+    {
+      "region_code": "41273",
+      "region_name": "경기도 안산시 단원구",
+      "visitors_yoy_pct": 2.126429602344748,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41281",
+      "region_name": "경기도 고양시 덕양구",
+      "visitors_yoy_pct": 2.446276459112906,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41285",
+      "region_name": "경기도 고양시 일산동구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41287",
+      "region_name": "경기도 고양시 일산서구",
+      "visitors_yoy_pct": 2.5971124765787224,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41290",
+      "region_name": "경기도 과천시",
+      "visitors_yoy_pct": 4.5266599226026605,
+      "spending_yoy_pct": 27.301280740216516
+    },
+    {
+      "region_code": "41310",
+      "region_name": "경기도 구리시",
+      "visitors_yoy_pct": -0.12423394404349475,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41360",
+      "region_name": "경기도 남양주시",
+      "visitors_yoy_pct": 4.565492258559134,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41370",
+      "region_name": "경기도 오산시",
+      "visitors_yoy_pct": 1.0039353259585715,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41390",
+      "region_name": "경기도 시흥시",
+      "visitors_yoy_pct": 1.1493001597324914,
+      "spending_yoy_pct": 0.7152053675203662
+    },
+    {
+      "region_code": "41410",
+      "region_name": "경기도 군포시",
+      "visitors_yoy_pct": 0.8549389592575896,
+      "spending_yoy_pct": 54.515586744429825
+    },
+    {
+      "region_code": "41430",
+      "region_name": "경기도 의왕시",
+      "visitors_yoy_pct": 0.6696990720158169,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41450",
+      "region_name": "경기도 하남시",
+      "visitors_yoy_pct": -1.2265414627372073,
+      "spending_yoy_pct": 2.819393017454064
+    },
+    {
+      "region_code": "41461",
+      "region_name": "경기도 용인시 처인구",
+      "visitors_yoy_pct": 4.418720080278593,
+      "spending_yoy_pct": 80.10191905439277
+    },
+    {
+      "region_code": "41463",
+      "region_name": "경기도 용인시 기흥구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 8.438700210446726
+    },
+    {
+      "region_code": "41465",
+      "region_name": "경기도 용인시 수지구",
+      "visitors_yoy_pct": 2.3706895536131256,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41480",
+      "region_name": "경기도 파주시",
+      "visitors_yoy_pct": -2.196919183444135,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41500",
+      "region_name": "경기도 이천시",
+      "visitors_yoy_pct": -0.20943825484315282,
+      "spending_yoy_pct": 90.16980699536094
+    },
+    {
+      "region_code": "41550",
+      "region_name": "경기도 안성시",
+      "visitors_yoy_pct": 1.4931429611678482,
+      "spending_yoy_pct": 164.41633132776067
+    },
+    {
+      "region_code": "41570",
+      "region_name": "경기도 김포시",
+      "visitors_yoy_pct": 0.5725787983204667,
+      "spending_yoy_pct": 2.9201707509641794
+    },
+    {
+      "region_code": "41610",
+      "region_name": "경기도 광주시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41630",
+      "region_name": "경기도 양주시",
+      "visitors_yoy_pct": 1.9080906230178662,
+      "spending_yoy_pct": 93.29406351350364
+    },
+    {
+      "region_code": "41650",
+      "region_name": "경기도 포천시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 8.779900218563274
+    },
+    {
+      "region_code": "41670",
+      "region_name": "경기도 여주시",
+      "visitors_yoy_pct": -0.1543004095628131,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41800",
+      "region_name": "경기도 연천군",
+      "visitors_yoy_pct": -4.9845806071294625,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41820",
+      "region_name": "경기도 가평군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "41830",
+      "region_name": "경기도 양평군",
+      "visitors_yoy_pct": 0.4443307513116945,
+      "spending_yoy_pct": 11.522133499214316
+    },
+    {
+      "region_code": "48310",
+      "region_name": "경상남도 거제시",
+      "visitors_yoy_pct": -0.5533626758409849,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48820",
+      "region_name": "경상남도 고성군",
+      "visitors_yoy_pct": -5.682902364697629,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48880",
+      "region_name": "경상남도 거창군",
+      "visitors_yoy_pct": -6.197087223670394,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48250",
+      "region_name": "경상남도 김해시",
+      "visitors_yoy_pct": 1.532627270013709,
+      "spending_yoy_pct": 11.550184318092782
+    },
+    {
+      "region_code": "48840",
+      "region_name": "경상남도 남해군",
+      "visitors_yoy_pct": -0.19569437562877434,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48270",
+      "region_name": "경상남도 밀양시",
+      "visitors_yoy_pct": -0.9188809536138209,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48240",
+      "region_name": "경상남도 사천시",
+      "visitors_yoy_pct": -0.013909531225120286,
+      "spending_yoy_pct": 2.9088830140476807
+    },
+    {
+      "region_code": "48860",
+      "region_name": "경상남도 산청군",
+      "visitors_yoy_pct": -0.15207888510152534,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48330",
+      "region_name": "경상남도 양산시",
+      "visitors_yoy_pct": -1.3899560482204198,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48720",
+      "region_name": "경상남도 의령군",
+      "visitors_yoy_pct": -7.2910216851574505,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48170",
+      "region_name": "경상남도 진주시",
+      "visitors_yoy_pct": -5.515868609397323,
+      "spending_yoy_pct": -1.7817730383349328
+    },
+    {
+      "region_code": "48740",
+      "region_name": "경상남도 창녕군",
+      "visitors_yoy_pct": 2.1795297362594557,
+      "spending_yoy_pct": 28.383514181768852
+    },
+    {
+      "region_code": "48125",
+      "region_name": "경상남도 창원시 마산합포구",
+      "visitors_yoy_pct": -3.7906092926320967,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48127",
+      "region_name": "경상남도 창원시 마산회원구",
+      "visitors_yoy_pct": -0.12463356717037355,
+      "spending_yoy_pct": 15.444220129143616
+    },
+    {
+      "region_code": "48123",
+      "region_name": "경상남도 창원시 성산구",
+      "visitors_yoy_pct": -0.3368063498548568,
+      "spending_yoy_pct": 13.970563515910307
+    },
+    {
+      "region_code": "48121",
+      "region_name": "경상남도 창원시 의창구",
+      "visitors_yoy_pct": 1.010200811824924,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48129",
+      "region_name": "경상남도 창원시 진해구",
+      "visitors_yoy_pct": 5.772683047324012,
+      "spending_yoy_pct": 16.64700605789211
+    },
+    {
+      "region_code": "48220",
+      "region_name": "경상남도 통영시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48850",
+      "region_name": "경상남도 하동군",
+      "visitors_yoy_pct": 7.0968608639590425,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48730",
+      "region_name": "경상남도 함안군",
+      "visitors_yoy_pct": 8.91384142916214,
+      "spending_yoy_pct": 51.42963050638678
+    },
+    {
+      "region_code": "48870",
+      "region_name": "경상남도 함양군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "48890",
+      "region_name": "경상남도 합천군",
+      "visitors_yoy_pct": -4.5613101360050035,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47290",
+      "region_name": "경상북도 경산시",
+      "visitors_yoy_pct": 4.65529590507352,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47130",
+      "region_name": "경상북도 경주시",
+      "visitors_yoy_pct": 0.31874615966416275,
+      "spending_yoy_pct": 199.8299142834811
+    },
+    {
+      "region_code": "47830",
+      "region_name": "경상북도 고령군",
+      "visitors_yoy_pct": -3.899263505165773,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47190",
+      "region_name": "경상북도 구미시",
+      "visitors_yoy_pct": -1.8883975251061003,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47150",
+      "region_name": "경상북도 김천시",
+      "visitors_yoy_pct": 0.11812466942986433,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47280",
+      "region_name": "경상북도 문경시",
+      "visitors_yoy_pct": -4.449903676617362,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47920",
+      "region_name": "경상북도 봉화군",
+      "visitors_yoy_pct": -4.529772428896173,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47250",
+      "region_name": "경상북도 상주시",
+      "visitors_yoy_pct": -3.967948727511972,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47840",
+      "region_name": "경상북도 성주군",
+      "visitors_yoy_pct": -0.2007651826217982,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47170",
+      "region_name": "경상북도 안동시",
+      "visitors_yoy_pct": -3.204974055201437,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47770",
+      "region_name": "경상북도 영덕군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 21.98935102974735
+    },
+    {
+      "region_code": "47760",
+      "region_name": "경상북도 영양군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47210",
+      "region_name": "경상북도 영주시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": -23.845377664211888
+    },
+    {
+      "region_code": "47230",
+      "region_name": "경상북도 영천시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 77.2454788529685
+    },
+    {
+      "region_code": "47900",
+      "region_name": "경상북도 예천군",
+      "visitors_yoy_pct": -2.975129590969039,
+      "spending_yoy_pct": -1.629426609535689
+    },
+    {
+      "region_code": "47940",
+      "region_name": "경상북도 울릉군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47930",
+      "region_name": "경상북도 울진군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 13.71754848584239
+    },
+    {
+      "region_code": "47730",
+      "region_name": "경상북도 의성군",
+      "visitors_yoy_pct": 2.817683783685676,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47820",
+      "region_name": "경상북도 청도군",
+      "visitors_yoy_pct": 2.4821537544526873,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47750",
+      "region_name": "경상북도 청송군",
+      "visitors_yoy_pct": -8.388009807135566,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47850",
+      "region_name": "경상북도 칠곡군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47111",
+      "region_name": "경상북도 포항시 남구",
+      "visitors_yoy_pct": 1.1946114274143271,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "47113",
+      "region_name": "경상북도 포항시 북구",
+      "visitors_yoy_pct": -0.8521609077245751,
+      "spending_yoy_pct": 11.610152246182537
+    },
+    {
+      "region_code": "29200",
+      "region_name": "광주광역시 광산구",
+      "visitors_yoy_pct": -0.7214500007304392,
+      "spending_yoy_pct": 7.591638703469283
+    },
+    {
+      "region_code": "29155",
+      "region_name": "광주광역시 남구",
+      "visitors_yoy_pct": -0.9553189898898751,
+      "spending_yoy_pct": -1.8532051877563682
+    },
+    {
+      "region_code": "29110",
+      "region_name": "광주광역시 동구",
+      "visitors_yoy_pct": 4.555014466689378,
+      "spending_yoy_pct": 12.98517569147155
+    },
+    {
+      "region_code": "29170",
+      "region_name": "광주광역시 북구",
+      "visitors_yoy_pct": 2.6888462104591726,
+      "spending_yoy_pct": 1.7726236280316332
+    },
+    {
+      "region_code": "29140",
+      "region_name": "광주광역시 서구",
+      "visitors_yoy_pct": -0.9873473880396388,
+      "spending_yoy_pct": 4.430062438540672
+    },
+    {
+      "region_code": "27720",
+      "region_name": "대구광역시 군위군",
+      "visitors_yoy_pct": -5.749236240423238,
+      "spending_yoy_pct": -3.869100627733313
+    },
+    {
+      "region_code": "27200",
+      "region_name": "대구광역시 남구",
+      "visitors_yoy_pct": 1.3969318106962447,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "27290",
+      "region_name": "대구광역시 달서구",
+      "visitors_yoy_pct": -0.22657328637972762,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "27710",
+      "region_name": "대구광역시 달성군",
+      "visitors_yoy_pct": 1.5620618810417541,
+      "spending_yoy_pct": 18.180566393295393
+    },
+    {
+      "region_code": "27140",
+      "region_name": "대구광역시 동구",
+      "visitors_yoy_pct": -2.906227538650663,
+      "spending_yoy_pct": 4.35084627396245
+    },
+    {
+      "region_code": "27230",
+      "region_name": "대구광역시 북구",
+      "visitors_yoy_pct": 0.7014064474913484,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "27170",
+      "region_name": "대구광역시 서구",
+      "visitors_yoy_pct": -3.2244991634435616,
+      "spending_yoy_pct": 9.438557404688797
+    },
+    {
+      "region_code": "27260",
+      "region_name": "대구광역시 수성구",
+      "visitors_yoy_pct": 0.652448528912597,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "27110",
+      "region_name": "대구광역시 중구",
+      "visitors_yoy_pct": 4.100821235547691,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "30230",
+      "region_name": "대전광역시 대덕구",
+      "visitors_yoy_pct": 0.403969457144826,
+      "spending_yoy_pct": 8.655919147978096
+    },
+    {
+      "region_code": "30110",
+      "region_name": "대전광역시 동구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "30170",
+      "region_name": "대전광역시 서구",
+      "visitors_yoy_pct": -1.766149282488072,
+      "spending_yoy_pct": 4.485906316657062
+    },
+    {
+      "region_code": "30200",
+      "region_name": "대전광역시 유성구",
+      "visitors_yoy_pct": 0.9780077525350483,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "30140",
+      "region_name": "대전광역시 중구",
+      "visitors_yoy_pct": 4.733581858819513,
+      "spending_yoy_pct": 11.04932382073196
+    },
+    {
+      "region_code": "26440",
+      "region_name": "부산광역시 강서구",
+      "visitors_yoy_pct": -0.9787440386389679,
+      "spending_yoy_pct": 33.77418347740544
+    },
+    {
+      "region_code": "26410",
+      "region_name": "부산광역시 금정구",
+      "visitors_yoy_pct": 4.408676083206853,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26710",
+      "region_name": "부산광역시 기장군",
+      "visitors_yoy_pct": -3.5195344542938822,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26290",
+      "region_name": "부산광역시 남구",
+      "visitors_yoy_pct": 3.68077924608996,
+      "spending_yoy_pct": 24.203541185743948
+    },
+    {
+      "region_code": "26170",
+      "region_name": "부산광역시 동구",
+      "visitors_yoy_pct": 2.091306262979553,
+      "spending_yoy_pct": 19.094327547078937
+    },
+    {
+      "region_code": "26260",
+      "region_name": "부산광역시 동래구",
+      "visitors_yoy_pct": -0.5303591349263614,
+      "spending_yoy_pct": 2.817126268224812
+    },
+    {
+      "region_code": "26230",
+      "region_name": "부산광역시 부산진구",
+      "visitors_yoy_pct": -0.7135985449665094,
+      "spending_yoy_pct": 12.440013216896407
+    },
+    {
+      "region_code": "26320",
+      "region_name": "부산광역시 북구",
+      "visitors_yoy_pct": -0.826923040419314,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26530",
+      "region_name": "부산광역시 사상구",
+      "visitors_yoy_pct": 3.2552629691459556,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26380",
+      "region_name": "부산광역시 사하구",
+      "visitors_yoy_pct": 1.544310172085006,
+      "spending_yoy_pct": 13.269352912248976
+    },
+    {
+      "region_code": "26140",
+      "region_name": "부산광역시 서구",
+      "visitors_yoy_pct": -0.5690410799997103,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26500",
+      "region_name": "부산광역시 수영구",
+      "visitors_yoy_pct": 2.036957530408534,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26470",
+      "region_name": "부산광역시 연제구",
+      "visitors_yoy_pct": -1.8008178398181807,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26200",
+      "region_name": "부산광역시 영도구",
+      "visitors_yoy_pct": -1.424513143058459,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26110",
+      "region_name": "부산광역시 중구",
+      "visitors_yoy_pct": -0.5564090965809787,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "26350",
+      "region_name": "부산광역시 해운대구",
+      "visitors_yoy_pct": 2.294602584905081,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "31140",
+      "region_name": "울산광역시 남구",
+      "visitors_yoy_pct": -4.281167592593893,
+      "spending_yoy_pct": 7.363366661362503
+    },
+    {
+      "region_code": "31170",
+      "region_name": "울산광역시 동구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "31200",
+      "region_name": "울산광역시 북구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.9016050829677491
+    },
+    {
+      "region_code": "31710",
+      "region_name": "울산광역시 울주군",
+      "visitors_yoy_pct": 2.6030321555469804,
+      "spending_yoy_pct": 62.52152140018454
+    },
+    {
+      "region_code": "31110",
+      "region_name": "울산광역시 중구",
+      "visitors_yoy_pct": -1.869977091489472,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "28710",
+      "region_name": "인천광역시 강화군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "28200",
+      "region_name": "인천광역시 남동구",
+      "visitors_yoy_pct": -0.30452048491245165,
+      "spending_yoy_pct": 9.128785699086993
+    },
+    {
+      "region_code": "28140",
+      "region_name": "인천광역시 동구",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "28177",
+      "region_name": "인천광역시 미추홀구",
+      "visitors_yoy_pct": 4.253574353563128,
+      "spending_yoy_pct": -0.39307051850207
+    },
+    {
+      "region_code": "28237",
+      "region_name": "인천광역시 부평구",
+      "visitors_yoy_pct": -2.147594135319486,
+      "spending_yoy_pct": -3.236192328869203
+    },
+    {
+      "region_code": "28260",
+      "region_name": "인천광역시 서구",
+      "visitors_yoy_pct": 0.9935772294742629,
+      "spending_yoy_pct": 10.485707821897062
+    },
+    {
+      "region_code": "28185",
+      "region_name": "인천광역시 연수구",
+      "visitors_yoy_pct": 1.487521488159138,
+      "spending_yoy_pct": 1.2888193298384865
+    },
+    {
+      "region_code": "28720",
+      "region_name": "인천광역시 옹진군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "28110",
+      "region_name": "인천광역시 중구",
+      "visitors_yoy_pct": -1.40416628182366,
+      "spending_yoy_pct": -2.588345108767043
+    },
+    {
+      "region_code": "46810",
+      "region_name": "전라남도 강진군",
+      "visitors_yoy_pct": -2.5168617337829824,
+      "spending_yoy_pct": -4.482092207211219
+    },
+    {
+      "region_code": "46770",
+      "region_name": "전라남도 고흥군",
+      "visitors_yoy_pct": -11.306522531093933,
+      "spending_yoy_pct": -11.57250799849544
+    },
+    {
+      "region_code": "46720",
+      "region_name": "전라남도 곡성군",
+      "visitors_yoy_pct": 5.339277215525051,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46230",
+      "region_name": "전라남도 광양시",
+      "visitors_yoy_pct": 3.917907343849847,
+      "spending_yoy_pct": 37.63030093728903
+    },
+    {
+      "region_code": "46730",
+      "region_name": "전라남도 구례군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46170",
+      "region_name": "전라남도 나주시",
+      "visitors_yoy_pct": -1.8552327862504048,
+      "spending_yoy_pct": 17.91727578060309
+    },
+    {
+      "region_code": "46710",
+      "region_name": "전라남도 담양군",
+      "visitors_yoy_pct": -2.5922628029858785,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46110",
+      "region_name": "전라남도 목포시",
+      "visitors_yoy_pct": -3.8050913694334665,
+      "spending_yoy_pct": -2.829737192897619
+    },
+    {
+      "region_code": "46840",
+      "region_name": "전라남도 무안군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46780",
+      "region_name": "전라남도 보성군",
+      "visitors_yoy_pct": -4.470951871747653,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46150",
+      "region_name": "전라남도 순천시",
+      "visitors_yoy_pct": -4.022517360300859,
+      "spending_yoy_pct": -1.9999763950737104
+    },
+    {
+      "region_code": "46910",
+      "region_name": "전라남도 신안군",
+      "visitors_yoy_pct": -3.942188474476893,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46130",
+      "region_name": "전라남도 여수시",
+      "visitors_yoy_pct": -2.7943796052375403,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46870",
+      "region_name": "전라남도 영광군",
+      "visitors_yoy_pct": -3.3897637721457707,
+      "spending_yoy_pct": 0.633656482224243
+    },
+    {
+      "region_code": "46830",
+      "region_name": "전라남도 영암군",
+      "visitors_yoy_pct": -0.04349507838015132,
+      "spending_yoy_pct": 27.22182967008513
+    },
+    {
+      "region_code": "46890",
+      "region_name": "전라남도 완도군",
+      "visitors_yoy_pct": -5.909742520692795,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46880",
+      "region_name": "전라남도 장성군",
+      "visitors_yoy_pct": -7.053620032661945,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46800",
+      "region_name": "전라남도 장흥군",
+      "visitors_yoy_pct": -6.648802559754008,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46900",
+      "region_name": "전라남도 진도군",
+      "visitors_yoy_pct": -4.343147418429072,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46860",
+      "region_name": "전라남도 함평군",
+      "visitors_yoy_pct": -3.47720564034385,
+      "spending_yoy_pct": -19.459853142577387
+    },
+    {
+      "region_code": "46820",
+      "region_name": "전라남도 해남군",
+      "visitors_yoy_pct": -7.594166067586816,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "46790",
+      "region_name": "전라남도 화순군",
+      "visitors_yoy_pct": -0.4638258656956218,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52790",
+      "region_name": "전북특별자치도 고창군",
+      "visitors_yoy_pct": -6.627616864286345,
+      "spending_yoy_pct": 1.7686019122850727
+    },
+    {
+      "region_code": "52130",
+      "region_name": "전북특별자치도 군산시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52210",
+      "region_name": "전북특별자치도 김제시",
+      "visitors_yoy_pct": -0.6758954076027224,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52190",
+      "region_name": "전북특별자치도 남원시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52730",
+      "region_name": "전북특별자치도 무주군",
+      "visitors_yoy_pct": 4.597012440752213,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52800",
+      "region_name": "전북특별자치도 부안군",
+      "visitors_yoy_pct": 0.2262425995711581,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52770",
+      "region_name": "전북특별자치도 순창군",
+      "visitors_yoy_pct": -9.68958471728848,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52710",
+      "region_name": "전북특별자치도 완주군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52140",
+      "region_name": "전북특별자치도 익산시",
+      "visitors_yoy_pct": -2.186202233151302,
+      "spending_yoy_pct": -1.7467930855516123
+    },
+    {
+      "region_code": "52750",
+      "region_name": "전북특별자치도 임실군",
+      "visitors_yoy_pct": -6.611276395036647,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52740",
+      "region_name": "전북특별자치도 장수군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": -16.028109986249916
+    },
+    {
+      "region_code": "52113",
+      "region_name": "전북특별자치도 전주시 덕진구",
+      "visitors_yoy_pct": 4.291963563452361,
+      "spending_yoy_pct": 3.429187439863446
+    },
+    {
+      "region_code": "52111",
+      "region_name": "전북특별자치도 전주시 완산구",
+      "visitors_yoy_pct": -0.77126243208957,
+      "spending_yoy_pct": -1.6686228105042833
+    },
+    {
+      "region_code": "52180",
+      "region_name": "전북특별자치도 정읍시",
+      "visitors_yoy_pct": -8.113949274469512,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "52720",
+      "region_name": "전북특별자치도 진안군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "50130",
+      "region_name": "제주특별자치도 서귀포시",
+      "visitors_yoy_pct": -1.9404077647184215,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "50110",
+      "region_name": "제주특별자치도 제주시",
+      "visitors_yoy_pct": -2.9970332041111325,
+      "spending_yoy_pct": -0.344215997377606
+    },
+    {
+      "region_code": "44250",
+      "region_name": "충청남도 계룡시",
+      "visitors_yoy_pct": -3.253411379185267,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44150",
+      "region_name": "충청남도 공주시",
+      "visitors_yoy_pct": 0.9396432003732524,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44710",
+      "region_name": "충청남도 금산군",
+      "visitors_yoy_pct": 0.2564369450511528,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44230",
+      "region_name": "충청남도 논산시",
+      "visitors_yoy_pct": -0.20290858416329716,
+      "spending_yoy_pct": 107.12602440650927
+    },
+    {
+      "region_code": "44270",
+      "region_name": "충청남도 당진시",
+      "visitors_yoy_pct": -4.419836099319118,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44180",
+      "region_name": "충청남도 보령시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44760",
+      "region_name": "충청남도 부여군",
+      "visitors_yoy_pct": -1.5360538235401844,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44210",
+      "region_name": "충청남도 서산시",
+      "visitors_yoy_pct": 0.24478534850893574,
+      "spending_yoy_pct": -3.5472930631496813
+    },
+    {
+      "region_code": "44770",
+      "region_name": "충청남도 서천군",
+      "visitors_yoy_pct": -6.101401347839364,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44200",
+      "region_name": "충청남도 아산시",
+      "visitors_yoy_pct": 1.6381359427136033,
+      "spending_yoy_pct": 21.67555151294014
+    },
+    {
+      "region_code": "44810",
+      "region_name": "충청남도 예산군",
+      "visitors_yoy_pct": -2.7921566891576433,
+      "spending_yoy_pct": 3.2182000713773418
+    },
+    {
+      "region_code": "44131",
+      "region_name": "충청남도 천안시 동남구",
+      "visitors_yoy_pct": 1.9721057822461585,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44133",
+      "region_name": "충청남도 천안시 서북구",
+      "visitors_yoy_pct": 0.2612705243280944,
+      "spending_yoy_pct": 7.768108787176065
+    },
+    {
+      "region_code": "44790",
+      "region_name": "충청남도 청양군",
+      "visitors_yoy_pct": -2.2014068292360522,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44825",
+      "region_name": "충청남도 태안군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "44800",
+      "region_name": "충청남도 홍성군",
+      "visitors_yoy_pct": -1.926036252205876,
+      "spending_yoy_pct": 17.440281108802136
+    },
+    {
+      "region_code": "43760",
+      "region_name": "충청북도 괴산군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43800",
+      "region_name": "충청북도 단양군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43720",
+      "region_name": "충청북도 보은군",
+      "visitors_yoy_pct": -7.112510215020695,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43740",
+      "region_name": "충청북도 영동군",
+      "visitors_yoy_pct": 1.8046777943435899,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43730",
+      "region_name": "충청북도 옥천군",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43770",
+      "region_name": "충청북도 음성군",
+      "visitors_yoy_pct": 1.3354637153798476,
+      "spending_yoy_pct": 4.336507996980998
+    },
+    {
+      "region_code": "43150",
+      "region_name": "충청북도 제천시",
+      "visitors_yoy_pct": 0.0,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43745",
+      "region_name": "충청북도 증평군",
+      "visitors_yoy_pct": 3.43009996565109,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43750",
+      "region_name": "충청북도 진천군",
+      "visitors_yoy_pct": 0.8598805391942577,
+      "spending_yoy_pct": 6.441991433916305
+    },
+    {
+      "region_code": "43111",
+      "region_name": "충청북도 청주시 상당구",
+      "visitors_yoy_pct": 0.21217211529411806,
+      "spending_yoy_pct": -3.405545347488803
+    },
+    {
+      "region_code": "43112",
+      "region_name": "충청북도 청주시 서원구",
+      "visitors_yoy_pct": 2.511238291733453,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43114",
+      "region_name": "충청북도 청주시 청원구",
+      "visitors_yoy_pct": 0.18077100821116687,
+      "spending_yoy_pct": 0.0
+    },
+    {
+      "region_code": "43113",
+      "region_name": "충청북도 청주시 흥덕구",
+      "visitors_yoy_pct": 0.18973668636870222,
+      "spending_yoy_pct": 18.335822536892167
+    },
+    {
+      "region_code": "43130",
+      "region_name": "충청북도 충주시",
+      "visitors_yoy_pct": -1.9728604465589328,
+      "spending_yoy_pct": 0.0
+    }
+  ],
+  "validation": {
+    "regional_growth_rows_recalculated": 249,
+    "chart_values_preserved": true,
+    "kpi_budget_tables_preserved": true,
+    "conditional_rank_and_ties_checked": true,
+    "llm_calls": 0,
+    "model_training_calls": 0
+  }
+}

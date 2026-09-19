@@ -65,7 +65,7 @@ METRIC_GUIDES = {
 MODEL_EXPLANATIONS = {
     'RandomForestRegressor': '여러 결정트리의 예측을 평균내 비선형적인 관광수요 변화를 학습하는 회귀 모델입니다.',
     'LinearRegression': '입력 변수와 목표값 사이의 선형 관계를 학습하는 회귀 모델입니다.',
-    'seasonal_naive_previous_year_same_month': '검증 구간에서 후보 모델보다 안정적이어서 작년 같은 달 값을 사용하는 계절 기준모델입니다.',
+    'seasonal_naive_previous_year_same_month': '학습모델의 성능을 비교하는 전년 동월 기준선이며 최종 전망값으로 사용하지 않습니다.',
 }
 
 

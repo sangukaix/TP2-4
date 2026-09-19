@@ -1,0 +1,17 @@
+{
+  "central": {
+    "label": "기준",
+    "utilization_pct": 75.0,
+    "additional_visitor_share_pct": 30.0,
+    "participants": 8640,
+    "additional_visitors": 2592,
+    "additional_spending_krw": 181575214,
+    "visitor_growth_pct": 0.024498672752268042,
+    "spending_growth_pct": 0.04081086091380033,
+    "visitor_target_pct": 0.03717717212624308,
+    "spending_target_pct": 0.06129208930288933
+  },
+  "basis": "참여 목표 75%는 공통 최소 운영 목표입니다. 사례 참여율을 인용한 값이 아닙니다.",
+  "source_and_ml_unchanged": true,
+  "tests": 23
+}

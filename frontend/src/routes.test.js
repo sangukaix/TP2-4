@@ -1,7 +1,26 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { resolveAppRoute, resolveProjectTreeUrl } from './routes.js'
+import { APP_ROUTES, ROUTE_ALIASES, resolveAppRoute, resolveProjectTreeUrl } from './routes.js'
+
+test('현재 구현된 모든 페이지가 공개 경로에 연결되어 있다', () => {
+  assert.deepEqual(APP_ROUTES, {
+    '/': 'home',
+    '/dashboard': 'dashboard',
+    '/planning': 'planning',
+    '/strategy': 'strategy',
+    '/saved-plans': 'savedPlans',
+    '/ml-test': 'mlTest',
+    '/openai-test': 'openAiLearning',
+    '/react-test': 'reactLearning',
+    '/llm-control': 'llmControl',
+    '/project-tree': 'projectTree',
+  })
+  assert.deepEqual(ROUTE_ALIASES, {
+    '/diagnosis': '/dashboard',
+    '/proposal': '/strategy',
+  })
+})
 
 test('공개 화면 경로와 trailing slash를 명시적으로 해석한다', () => {
   assert.deepEqual(resolveAppRoute('/dashboard/'), {

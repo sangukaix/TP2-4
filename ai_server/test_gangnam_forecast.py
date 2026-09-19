@@ -6,7 +6,7 @@ import numpy as np
 from ai_server.ml.gangnam_data import load_gangnam_monthly_demand
 from ai_server.ml.gangnam_forecast import (
     FEATURE_NAMES, LODGING_FEATURE_NAMES, make_lodging_supervised_frame,
-    make_supervised_frame, make_univariate_supervised_frame,
+    make_supervised_frame, make_univariate_supervised_frame, _recursive_forecasts,
 )
 
 
@@ -61,3 +61,9 @@ class GangnamForecastTest(unittest.TestCase):
         after = make_univariate_supervised_frame(changed, 'lodging_nights')
         np.testing.assert_array_equal(before[0][:9], after[0][:9])
         np.testing.assert_array_equal(before[1][:9], after[1][:9])
+
+    def test_missing_learned_model_never_falls_back_to_previous_year_value(self) -> None:
+        """구형 산출물에 모델이 없으면 전년 동월 값을 복사하지 않고 재학습을 요구합니다."""
+        frame = load_gangnam_monthly_demand()
+        with self.assertRaisesRegex(ValueError, 'ML_LEARNED_MODEL_MISSING'):
+            _recursive_forecasts({'models': {}}, frame, 3)

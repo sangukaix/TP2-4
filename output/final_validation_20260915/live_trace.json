@@ -1,0 +1,235 @@
+{
+  "events": [
+    {
+      "recorded_at": "2026-09-15T09:36:55.011076+09:00",
+      "agent": "transferability",
+      "stage": "transferability",
+      "status": "completed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 544341,
+      "usage": {
+        "input_tokens": 110250,
+        "output_tokens": 5122,
+        "total_tokens": 115372
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27608,
+            "output_tokens": 22,
+            "total_tokens": 27630
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27686,
+            "output_tokens": 21,
+            "total_tokens": 27707
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27764,
+            "output_tokens": 21,
+            "total_tokens": 27785
+          }
+        },
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27192,
+            "output_tokens": 5058,
+            "total_tokens": 32250
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 133773,
+        "overview_bytes": 7974,
+        "sources_available": 56,
+        "sources_read": 3
+      },
+      "max_output_tokens": 8000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:27:50.665806+09:00",
+      "agent": "case_scout",
+      "stage": "case_study",
+      "status": "completed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-sol",
+      "duration_ms": 128076,
+      "usage": {
+        "input_tokens": 76035,
+        "output_tokens": 7257,
+        "total_tokens": 83292,
+        "cached_tokens": 0,
+        "reasoning_tokens": 3512
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": true,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 16000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 76035,
+            "output_tokens": 7257,
+            "total_tokens": 83292,
+            "cached_tokens": 0,
+            "reasoning_tokens": 3512
+          },
+          "usage_reported": true,
+          "duration_ms": 128073,
+          "web_grounding": {
+            "searched": true,
+            "accepted_cases": 5,
+            "rejected_cases": []
+          }
+        }
+      ],
+      "tool_trace": [],
+      "input_preparation": {},
+      "max_output_tokens": 16000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:26:19.960409+09:00",
+      "agent": "evidence",
+      "stage": "evidence",
+      "status": "failed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-terra",
+      "duration_ms": 36610,
+      "usage": {
+        "input_tokens": 35273,
+        "output_tokens": 2929,
+        "total_tokens": 38202,
+        "cached_tokens": 0,
+        "reasoning_tokens": 966
+      },
+      "fallback": false,
+      "fallback_reason": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "error_code": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 10000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 35273,
+            "output_tokens": 2929,
+            "total_tokens": 38202,
+            "cached_tokens": 0,
+            "reasoning_tokens": 966
+          },
+          "usage_reported": true,
+          "duration_ms": 36609
+        }
+      ],
+      "tool_trace": [],
+      "max_output_tokens": 10000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    }
+  ],
+  "usage": {
+    "tracked_calls": 3,
+    "total_tokens": 236866,
+    "usage_unknown_attempts": 0,
+    "note": "현재 프로세스에서 API가 보고한 성공·실패·재시도 토큰 합계입니다. 사용량 미확인 호출은 포함되지 않아 실제 청구량과 다를 수 있습니다."
+  }
+}

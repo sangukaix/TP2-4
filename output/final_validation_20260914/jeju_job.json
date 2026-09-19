@@ -1,0 +1,10 @@
+{
+  "job_id": "ab2b5c00f8e0491683ab0611d9931ab9",
+  "region_code": "50110",
+  "region_name": "제주특별자치도 제주시",
+  "status": "failed",
+  "message": "기획서 생성을 완료하지 못했습니다.",
+  "report": null,
+  "error": "지역 적용 가능성 검토 단계에서 처리하지 못했습니다: 선정한 사업이 입력 조건과 맞지 않습니다. 사업 방향이나 제외 조건을 조정해 다시 생성해 주세요.",
+  "progress_step": 2
+}

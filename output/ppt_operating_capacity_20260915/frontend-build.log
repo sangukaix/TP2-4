@@ -1,0 +1,46 @@
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 2453 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                          0.65 kB │ gzip:   0.51 kB
+dist/assets/korea-tourism-hero-BwRMR1jf.png          1,442.42 kB
+dist/assets/logo-BM4k7Gbv.png                        1,676.50 kB
+dist/assets/LlmControlPage-DKwYSOqD.css                  0.22 kB │ gzip:   0.15 kB
+dist/assets/ProjectTreePage-CHq2Q9bv.css                 0.77 kB │ gzip:   0.38 kB
+dist/assets/planning-BXLnyBI5.css                       17.81 kB │ gzip:   4.39 kB
+dist/assets/mlTest-qhcczqe7.css                         51.07 kB │ gzip:   9.86 kB
+dist/assets/logo-N-h8d7na.css                          225.35 kB │ gzip:  46.92 kB
+dist/assets/logo-CRKy83pF.js                             0.04 kB │ gzip:   0.06 kB
+dist/assets/loader-circle-RCepmw4W.js                    0.14 kB │ gzip:   0.15 kB
+dist/assets/arrow-right-B3tWe6_g.js                      0.16 kB │ gzip:   0.16 kB
+dist/assets/circle-check-CKPd1Ml6.js                     0.17 kB │ gzip:   0.16 kB
+dist/assets/download-C0159vEJ.js                         0.23 kB │ gzip:   0.19 kB
+dist/assets/presentation-BjqluOFW.js                     0.23 kB │ gzip:   0.19 kB
+dist/assets/chart-column-D8zDR43e.js                     0.25 kB │ gzip:   0.19 kB
+dist/assets/x-Da8tf7Tk.js                                0.27 kB │ gzip:   0.21 kB
+dist/assets/send-gEeje2kQ.js                             0.29 kB │ gzip:   0.23 kB
+dist/assets/regionReadinessLabel-YneyQoWW.js             0.30 kB │ gzip:   0.28 kB
+dist/assets/save-Dwh0ezqS.js                             0.32 kB │ gzip:   0.22 kB
+dist/assets/bot-Co64aSAk.js                              0.32 kB │ gzip:   0.22 kB
+dist/assets/file-text-Cc1NEp0m.js                        0.38 kB │ gzip:   0.25 kB
+dist/assets/earth-Rxh5WnOD.js                            0.39 kB │ gzip:   0.26 kB
+dist/assets/layers-Cbe6O21J.js                           0.42 kB │ gzip:   0.24 kB
+dist/assets/ProjectTreePage-Bt5EsGhH.js                  0.77 kB │ gzip:   0.49 kB
+dist/assets/createLucideIcon-BWhzdiqy.js                 1.37 kB │ gzip:   0.77 kB
+dist/assets/WorkspaceShell-BqPm2_-5.js                   3.95 kB │ gzip:   1.57 kB
+dist/assets/mlTest-DlvePfag.js                           4.13 kB │ gzip:   1.89 kB
+dist/assets/planning-BRJDjm9A.js                         5.10 kB │ gzip:   2.25 kB
+dist/assets/SavedStrategyPlansBoardPage-BPYr60jf.js      7.31 kB │ gzip:   2.55 kB
+dist/assets/tourismWorkspace-CtTH8bhf.js                 7.66 kB │ gzip:   2.59 kB
+dist/assets/TourismHomePage-Cp6nsKvl.js                 11.56 kB │ gzip:   3.80 kB
+dist/assets/LlmControlPage-BiAhYS0T.js                  12.77 kB │ gzip:   5.13 kB
+dist/assets/TourismPlanningPage-DnYmyjUA.js             12.81 kB │ gzip:   4.98 kB
+dist/assets/TourismStrategyPage-zSgOyysM.js             16.76 kB │ gzip:   6.11 kB
+dist/assets/MlTestPage-CyUO85Z3.js                      20.22 kB │ gzip:   7.04 kB
+dist/assets/LearningArchitecturePage-C8PxTZ-P.js        27.66 kB │ gzip:   9.27 kB
+dist/assets/index-D14RlkIt.js                          196.99 kB │ gzip:  62.93 kB
+dist/assets/TourismDashboardPage-CjqqGdYq.js           238.23 kB │ gzip:  69.77 kB
+dist/assets/CartesianChart-O8mk-DHL.js                 369.23 kB │ gzip: 106.74 kB
+
+✓ built in 1.56s
