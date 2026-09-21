@@ -20,3 +20,9 @@ node_modules/
 dist/
 backend/.cache/
 artifacts.zip
+
+# Derived browser previews and disposable chart work directories
+storage/presentation_previews/
+.chart-data-*/
+artifacts/strategy-preview-example/
+artifacts/preview-test.*

@@ -90,7 +90,7 @@ class ExecutionDetailTest(unittest.TestCase):
         self.assertEqual(period(groups[2]), '2026-11 ~ 2026-12')
         self.assertEqual(period(groups[3]), '2026-12')
         deck = Presentation(create_strategy_proposal_presentation(r))
-        periods = {s.name:s.text for s in slide_with_title(deck,'3.2 4단계 실행 가이드 예시안').shapes if s.name.startswith('execution-period-')}
+        periods = {s.name:s.text for s in slide_with_title(deck,'4.1 4단계 실행 가이드 예시안').shapes if s.name.startswith('execution-period-')}
         self.assertIn('2026-11 ~ 2026-12', periods['execution-period-2'])
         self.assertTrue(periods['execution-period-3'].startswith('2026-12'))
         doc = Document(create_strategy_proposal_document(r))
@@ -116,15 +116,16 @@ class ExecutionDetailTest(unittest.TestCase):
         basis=case_selection_basis(r)
         self.assertEqual(basis['source']['source_id'],'case:chosen')
         deck=Presentation(create_strategy_proposal_presentation(r))
-        slide=slide_with_title(deck,'3.1 사례 선정과 지역 적용')
-        matrix=next(s for s in slide.shapes if s.name=='selection-matrix')
-        self.assertEqual(len(matrix.table.rows),4)
-        self.assertNotIn('지리·교통·관광자원', ' '.join(c.text for row in matrix.table.rows for c in row.cells))
+        slide=slide_with_title(deck,'2.2 적용 사례 운영 방식')
+        cards=[s for s in slide.shapes if s.name.startswith('case-adaptation-body-')]
+        self.assertEqual(len(cards),3)
+        self.assertNotIn('지리·교통·관광자원', ' '.join(s.text for s in cards))
         self.assertIn('https://example.go.kr/case',slide.notes_slide.notes_text_frame.text)
-        self.assertNotIn('다른 지역',_slide_text(slide))
+        self.assertNotIn('다른 지역', ' '.join(s.text for s in cards))
     def test_page_order_and_overview_headers(self):
         p=Presentation(create_strategy_proposal_presentation(_sample_report()))
-        self.assertIn('사례 선정과 지역 적용',_slide_text(p.slides[9]))
+        self.assertIn('월별 방문·소비 증가 목표',_slide_text(p.slides[9]))
+        self.assertFalse(any(s.has_text_frame and s.text == '3.1 사례 선정과 지역 적용' for slide in p.slides for s in slide.shapes))
         self.assertIn('4단계 실행 가이드 예시안',_slide_text(p.slides[10]))
         self.assertIn('머신러닝 예측값',_slide_text(p.slides[11]))
         self.assertEqual(len([s for s in p.slides[10].shapes if s.name.startswith('flow-node-')]),4)

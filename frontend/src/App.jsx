@@ -1,6 +1,7 @@
 import { Component, lazy, Suspense, useEffect } from 'react'
 import { resolveAppRoute } from './routes'
 import { initializeTheme } from './theme'
+import { isAdminSessionAuthenticated } from './features/admin/adminSession'
 
 // 첫 화면에서 Leaflet·Recharts·보고서 코드를 모두 내려받지 않도록 페이지 단위로 분리합니다.
 const TourismHomePage = lazy(() => import('./pages/TourismHomePage'))
@@ -12,6 +13,8 @@ const MlTestPage = lazy(() => import('./pages/MlTest/MlTestPage'))
 const LearningArchitecturePage = lazy(() => import('./pages/MlTest/LearningArchitecturePage'))
 const LlmControlPage = lazy(() => import('./pages/MlTest/LlmControlPage'))
 const ProjectTreePage = lazy(() => import('./pages/ProjectTreePage'))
+const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'))
+const ADMIN_PAGE_IDS = new Set(['mlTest', 'openAiLearning', 'reactLearning', 'llmControl', 'projectTree'])
 
 // 학습 주제별 wrapper를 App 바깥에 두어 화면이 다시 그려져도 챗봇 상태가 초기화되지 않게 합니다.
 function OpenAiLearningPage() {
@@ -73,6 +76,10 @@ export default function App() {
     reactLearning: ReactLearningPage,
     llmControl: LlmControlPage,
     projectTree: ProjectTreePage,
+    adminLogin: AdminLoginPage,
+  }
+  if (ADMIN_PAGE_IDS.has(route.pageId) && !isAdminSessionAuthenticated()) {
+    return <PageErrorBoundary><Suspense fallback={<PageLoading />}><AdminLoginPage returnTo={route.canonicalPath} /></Suspense></PageErrorBoundary>
   }
   const Page = pages[route.pageId] || NotFoundPage
 

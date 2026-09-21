@@ -1,0 +1,11 @@
+{
+  "source_id": "tour-api:130539",
+  "source_type": "open_api",
+  "title": "고판화박물관",
+  "source_url": "https://apis.data.go.kr/B551011/KorService2",
+  "content_id": "130539",
+  "content_type_id": "14",
+  "address": "강원특별자치도 원주시 신림면 물안길 62",
+  "image_url": "http://tong.visitkorea.or.kr/cms/resource/36/3375236_image2_1.JPG",
+  "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+}

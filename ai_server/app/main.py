@@ -270,6 +270,7 @@ class StrategyReportJobResponse(BaseModel):
     report: ReportResponse | None = None
     error: str = ''
     progress_step: int | None = None
+    persistence_status: Literal['unknown', 'saved', 'failed'] = 'unknown'
 
 
 # 브라우저 요청과 별개로 실행되는 개발용 작업 저장소입니다.
@@ -1358,6 +1359,7 @@ def _strategy_job_response(job_id: str) -> StrategyReportJobResponse:
         report=job.get('report'),
         error=job.get('error', ''),
         progress_step=job.get('progress_step'),
+        persistence_status=job.get('persistence_status', 'unknown'),
     )
 
 
@@ -1421,10 +1423,12 @@ async def _run_strategy_report_job(
         job.update(status='running', progress_step=4, message='품질검토를 마쳤습니다. 기획안 본문을 저장하고 Word·PowerPoint를 준비하고 있습니다.')
         try:
             warnings = await asyncio.to_thread(_persist_completed_strategy_report, job_id, region_code, job['report'], snapshot=snapshot)
+            job['persistence_status'] = 'saved'
             completion_message += ' ' + ' '.join(warnings or [])
         except Exception as exc:
             # 저장 실패는 생성 결과를 없애지 않고, 서버 로그에서 DB 연결을 점검할 수 있게 남깁니다.
             LOGGER.exception('Strategy report persistence failed: job_id=%s error=%s', job_id, type(exc).__name__)
+            job['persistence_status'] = 'failed'
             completion_message = '기획안은 생성됐지만 MySQL 저장에 실패했습니다. 서버 DB 설정을 확인해 주세요.'
         job.update(status='completed', message=completion_message.strip())
     _persist_job_state_best_effort(job_id, job)
@@ -1505,7 +1509,7 @@ async def read_saved_strategy_report(report_id: str) -> dict[str, Any]:
 
 @app.put('/ai/v1/strategy-reports/{report_id}')
 async def update_saved_strategy_report(report_id: str, region_code: str, report: ReportResponse) -> dict[str, str]:
-    """챗봇 수정 후 사용자가 저장한 기획안을 같은 MySQL 기록에 반영합니다."""
+    """챗봇 수정 내용을 같은 MySQL 기록에 자동 반영합니다."""
     try:
         save_strategy_report(report_id, region_code, report.model_dump(mode='json'))
     except Exception as exc:
@@ -1558,17 +1562,17 @@ async def chat_with_ml_learning_assistant(
     request: MlLearningChatRequest,
 ) -> MlLearningChatResponse:
     """등록 모델·평가·함수 정보만 근거로 ML 학습 질문에 답합니다."""
+    if not (ENV_VALUES.get('OPENAI_API_KEY') or '').strip():
+        raise HTTPException(
+            status_code=503,
+            detail={'code': 'OPENAI_KEY_MISSING', 'message': 'ML 챗봇을 사용하려면 AI 서버의 OpenAI API 키가 필요합니다.'},
+        )
     catalog = await asyncio.to_thread(build_ml_learning_catalog)
     region = next((item for item in catalog.regions if item.region_code == region_code), None)
     if region is None or region.status != 'available':
         raise HTTPException(
             status_code=404,
             detail={'code': 'ML_LEARNING_REGION_UNAVAILABLE', 'message': '선택 지역의 머신러닝 학습 정보를 찾지 못했습니다.'},
-        )
-    if not (ENV_VALUES.get('OPENAI_API_KEY') or '').strip():
-        raise HTTPException(
-            status_code=503,
-            detail={'code': 'OPENAI_KEY_MISSING', 'message': 'ML 챗봇을 사용하려면 AI 서버의 OpenAI API 키가 필요합니다.'},
         )
     try:
         result = await MlLearningAssistantAgent(env_values=ENV_VALUES).answer(
@@ -1622,6 +1626,12 @@ def _require_llm_admin_token(x_llm_admin_token: str | None) -> None:
 async def read_llm_status() -> dict[str, Any]:
     """OpenAI·Qwen·Gemma 연결, 모델 목록, 능력 잠금을 비밀값 없이 반환합니다."""
     return await _llm_router().status()
+
+
+@app.get('/ai/v1/llm/overview')
+async def read_llm_overview() -> dict[str, Any]:
+    """설정만 조회합니다. Ollama·OpenAI 연결이나 추론을 호출하지 않습니다."""
+    return _llm_router().runtime_summary()
 
 
 @app.get('/ai/v1/llm/config')
@@ -1951,6 +1961,7 @@ async def read_region_strategy_report_job(region_code: str, job_id: str) -> Stra
                 'region_code': stored_job['region_code'], 'region_name': stored_job['region_name'],
                 'status': restored_status, 'message': restored_message,
                 'error': restored_error, 'report': report,
+                'persistence_status': 'saved' if report is not None else 'unknown',
             }
             STRATEGY_REPORT_JOBS[job_id] = job
             if restored_status != stored_job['status']:
@@ -2075,4 +2086,40 @@ async def download_region_strategy_presentation(region_code: str, report: Report
         presentation,
         media_type='application/vnd.openxmlformats-officedocument.presentationml.presentation',
         headers={'Content-Disposition': 'attachment; filename="tourism-strategy-proposal.pptx"'},
+    )
+
+
+@app.post('/ai/v1/demo/{region_code}/strategy-proposal.preview.pdf')
+async def preview_region_strategy_presentation(region_code: str, report: ReportResponse, report_id: str = '') -> Response:
+    """현재 화면과 일치하는 저장 PPTX를 우선 재사용해 PDF 미리보기를 반환합니다."""
+    try:
+        payload = report.model_dump(mode='json')
+        def build_presentation() -> bytes:
+            if report_id:
+                try:
+                    stored_report = read_strategy_report(report_id)
+                    # Only reuse a document when the full supplied report matches the saved report.
+                    if stored_report and ReportResponse(**stored_report).model_dump(mode='json') == payload:
+                        saved = read_document(report_id, 'pptx', render_version=DOCUMENT_RENDER_VERSIONS['pptx'])
+                        if saved is not None:
+                            return saved
+                except Exception as exc:
+                    LOGGER.warning('Preview cache unavailable: %s', type(exc).__name__)
+            return _render_strategy_document(payload, 'pptx')
+
+        from .proposal_preview import render_report_preview
+        preview, slide_count = await asyncio.to_thread(
+            render_report_preview, payload, DOCUMENT_RENDER_VERSIONS['pptx'], build_presentation,
+        )
+    except (KeyError, TypeError, ValueError, OSError) as exc:
+        LOGGER.exception('PowerPoint preview failed: %s', type(exc).__name__)
+        raise HTTPException(
+            status_code=503,
+            detail={'code': 'PROPOSAL_PREVIEW_ERROR', 'message': str(exc) or '기획서 미리보기를 준비하지 못했습니다.'},
+        ) from exc
+    return Response(
+        preview,
+        media_type='application/pdf',
+        headers={'Content-Disposition': 'inline; filename="tourism-strategy-preview.pdf"',
+                 'X-Slide-Count': str(slide_count), 'Cache-Control': 'no-store'},
     )

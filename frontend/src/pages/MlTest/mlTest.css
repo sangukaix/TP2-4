@@ -209,3 +209,5 @@
 .admin-study-page .ml-test-hero>button { flex-shrink:0; white-space:nowrap; min-width:96px; }
 .admin-study-page .ml-test-hero>div { min-width:0; }
 .admin-study-page .learning-architecture-hero h1,.admin-study-page .ml-test-hero h1 { font-size:26px; line-height:1.4; }
+
+.assistant-status.is-unchecked{color:#e6edf6!important}.assistant-status.is-unchecked b{background:#b5c4d3!important;box-shadow:none!important;animation:none!important}

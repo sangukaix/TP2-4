@@ -19,7 +19,7 @@ class LayoutV8Test(unittest.TestCase):
 
     def test_labels_totals_and_removed_sections(self):
         deck=Presentation(create_strategy_proposal_presentation(_sample_report()))
-        slide=slide_with_title(deck,'2.1 사업 목표')
+        slide=slide_with_title(deck,'3.1 사업 목표')
         chart=next(s.chart for s in slide.shapes if s.has_chart)
         self.assertEqual(chart.series[0].name,'ML 기준 전망')
         self.assertGreater(chart.value_axis.minimum_scale,0)
@@ -33,7 +33,7 @@ class LayoutV8Test(unittest.TestCase):
         bodies=[s for s in slide.shapes if s.name.startswith('block-body-')]
         self.assertEqual(len(bodies),3)
         self.assertEqual(len({r.font.size for s in bodies for p in s.text_frame.paragraphs for r in p.runs}),1)
-        kpi=slide_with_title(deck,'3.3 머신러닝 예측값과 목표 KPI')
+        kpi=slide_with_title(deck,'4.2 머신러닝 예측값과 목표 KPI')
         tables=[s.table for s in kpi.shapes if s.has_table]
         self.assertEqual(len(tables),2)
         self.assertTrue(all(t.cell(4,0).text=='3개월 월별 합계' for t in tables))

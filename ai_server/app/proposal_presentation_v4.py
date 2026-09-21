@@ -29,7 +29,7 @@ from .report_review_status import review_label
 PRESENTATION_TEMPLATE_PATH = (
     Path(__file__).resolve().parent / "templates" / "tourism_strategy_12_slide_template_v6.pptx"
 )
-PRESENTATION_RENDER_VERSION = "pptx-v63-learned-all-forecast"
+PRESENTATION_RENDER_VERSION = "pptx-v73-matched-selected-case-photo"
 FINAL_SLIDE_COUNT = 12
 
 BLUE = RGBColor(0x00, 0x4E, 0xA2)
@@ -883,6 +883,27 @@ def create_strategy_proposal_presentation(report: dict[str, Any]) -> BytesIO:
     insert_business_overview(prs, report)
     from .proposal_final_polish import final_polish
     final_polish(prs)
+    from hashlib import sha256
+    photo_hashes: dict[bytes, list[str]] = {}
+    for slide_index, slide in enumerate(prs.slides, start=1):
+        for shape in slide.shapes:
+            if not hasattr(shape, "image"):
+                continue
+            name = str(shape.name or "").lower()
+            if "photo" not in name and "image" not in name:
+                continue
+            digest = sha256(shape.image.blob).digest()
+            photo_hashes.setdefault(digest, []).append(f"{slide_index}:{shape.name}")
+    def _allowed_selected_case_pair(locations: list[str]) -> bool:
+        names = sorted(location.split(':', 1)[1] for location in locations)
+        return names == ['case-photo-0', 'result-photo']
+
+    duplicates = [
+        locations for locations in photo_hashes.values()
+        if len(locations) > 1 and not _allowed_selected_case_pair(locations)
+    ]
+    if duplicates:
+        raise ValueError(f"같은 PPTX 안에서 사진이 중복되었습니다: {duplicates}")
     output = BytesIO()
     prs.save(output)
     output.seek(0)

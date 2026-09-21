@@ -65,7 +65,7 @@ export default function TourismHomePage() {
               <img className="home-brand-logo theme-logo theme-logo--night" src={nightLogo} alt="OLIGO-K" />
               <img className="home-brand-logo theme-logo theme-logo--day" src={dayLogo} alt="OLIGO-K" />
             </a>
-            <a className="ml-learning-dot" href="/ml-test" aria-label="머신러닝 학습 결과 보기" title="머신러닝 학습 결과" />
+            <a className="ml-learning-dot" href="/admin-login" aria-label="관리자 페이지 로그인" title="관리자 페이지" />
             <HeaderActions />
           </div>
         </div>

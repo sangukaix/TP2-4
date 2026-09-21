@@ -20,7 +20,7 @@ class ProposalEvidenceTest(unittest.TestCase):
         original=deepcopy(report)
         deck=Presentation(create_strategy_proposal_presentation(report))
         rows=select_report_forecast(report)['rows']
-        charts=[s.chart for s in slide_with_title(deck,'2.1 사업 목표').shapes if getattr(s,'has_chart',False)]
+        charts=[s.chart for s in slide_with_title(deck,'3.1 사업 목표').shapes if getattr(s,'has_chart',False)]
         self.assertEqual(len(charts),2)
         for chart,key,unit in zip(charts,['visitors','spending_krw'],[1e4,1e8]):
             self.assertEqual(len(chart.plots[0].categories),len(rows))
@@ -32,7 +32,7 @@ class ProposalEvidenceTest(unittest.TestCase):
     def test_target_uses_final_month_not_first_month(self):
         report=_sample_report();deck=Presentation(create_strategy_proposal_presentation(report))
         rows=select_report_forecast(report)['rows']; last=rows[-1]
-        data=table_text(slide_with_title(deck,'3.3 머신러닝 예측값과 목표 KPI'))
+        data=table_text(slide_with_title(deck,'4.2 머신러닝 예측값과 목표 KPI'))
         self.assertIn(f"{last['visitors']*1.01:,.0f}명",data)
         self.assertIn(f"{last['spending_krw']*1.02/1e8:,.2f}억 원",data)
 
@@ -40,7 +40,7 @@ class ProposalEvidenceTest(unittest.TestCase):
         report=_sample_report();report['execution_scenario']=None
         report['strategies'][0]['title']='지역 반값 여행 환급'
         deck=Presentation(create_strategy_proposal_presentation(report))
-        slide=slide_with_title(deck,'3.3 머신러닝 예측값과 목표 KPI');text=_slide_text(slide)+table_text(slide)
+        slide=slide_with_title(deck,'4.2 머신러닝 예측값과 목표 KPI');text=_slide_text(slide)+table_text(slide)
         self.assertIn('목표 KPI',text);self.assertNotIn('목표율 미입력',text)
         self.assertNotIn('산출 보류',text)
         self.assertNotIn('운영 후 실제 확인',text)

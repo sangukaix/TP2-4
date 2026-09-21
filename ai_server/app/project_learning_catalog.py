@@ -226,7 +226,7 @@ def _react_routes(app_source: str, routes_source: str) -> list[dict[str, str]]:
 
 def _development_ports() -> dict[str, str]:
     """start-dev.ps1에서 현재 로컬 실행 포트를 읽어 구조도와 실제 실행값을 맞춥니다."""
-    defaults = {'frontend': '5176', 'backend': '8100', 'ai': '8112', 'mysql': '3306'}
+    defaults = {'frontend': '5177', 'backend': '8200', 'ai': '8212', 'mysql': '3306'}
     script_path = PROJECT_ROOT / 'start-dev.ps1'
     if not script_path.exists():
         return defaults
@@ -352,7 +352,7 @@ def _build_react_catalog() -> ProjectLearningCatalog:
                     {'id': 'mysql', 'title': 'MySQL', 'tech': f":{ports['mysql']}", 'owner': 'backend', 'role': '정확한 지표·기획서 저장'},
                     {'id': 'joblib', 'title': 'ML Model', 'tech': 'Joblib', 'owner': 'ai', 'role': '학습 완료 모델 추론'},
                     {'id': 'chroma', 'title': '공식 문서 근거', 'tech': '검수 JSONL · RAG', 'owner': 'ai', 'role': '현재 절약 경로는 키워드 조회. 의미 검색은 색인·설정에 따라 별도 확인'},
-                    {'id': 'openai', 'title': 'LLM Router', 'tech': 'Ollama · OpenAI', 'owner': 'ai', 'role': 'Qwen 비교·Gemma 작성·모드별 OpenAI 검수. 실제 연결은 Router 상태에서 확인'},
+                    {'id': 'openai', 'title': 'LLM Router', 'tech': 'Ollama · OpenAI', 'owner': 'ai', 'role': '선택 모드에 따른 로컬 비교·작성과 OpenAI 조사·검수. 실제 연결은 Router 상태에서 확인'},
                 ],
             },
             'deployment': {

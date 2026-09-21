@@ -49,6 +49,7 @@ PowerPoint 출력은 승인 디자인의 v6 원본 위에 v9 출력 레이아웃
 사업 설명과 3개월 ML예측치·목표 KPI 비교 차트, 4개 사례, 4단계 실행표를 제공합니다.
 중복 예측·지속 운영 장을 제거하여 출처는 10장부터 1~2장, 감사 장을 포함해 총 11~12장입니다. 방문·소비 표는 분리하고, 목표 증가율과 월별 합계를 표시합니다. 사례는 선정 자료를 유지한 채 서로 다른 운영방식을 우선 배치합니다. 저장된 기획서의
 PowerPoint를 다시 다운로드하면 재생성하며, 이 과정에 OpenAI·Ollama 생성 호출은 없습니다.
+AI 전략기획 결과 화면은 장문 설명 대신 최종 PowerPoint와 같은 입력으로 만든 PDF 미리보기를 표시합니다. 왼쪽 페이지 번호로 이동하고 전체보기에서 문서와 AI 챗봇을 함께 사용할 수 있습니다. 개발 PC에는 PDF 변환을 위한 Microsoft PowerPoint 또는 LibreOffice가 필요하며, 변환 결과는 PPTX 내용 해시로 재사용합니다.
 수치 예측과 사업 효과·가정 목표의 경계는 `docs/DECISIONS.md`의 D-089를 참고합니다.
 
 현재 로컬 우선 기획의 구현 범위·비용 제한·남은 GPU/PPT 검증은
@@ -115,7 +116,7 @@ Codex 또는 팀원은 먼저 루트의 `AGENTS.md`와 아래 문서를 순서�
 - 지역 선택의 `지역 정보 상세보기`는 OpenAI를 호출하지 않고, 서버가 한국관광공사 국문 관광정보 Open API에서 읽은 관광자원 정보를 월간 원자료 요약과 분리해 보여 줍니다.
 - AI 전략기획 생성은 서버 백그라운드 작업으로 실행합니다. 화면을 다른 업무 페이지나 탭으로 바꿔도 작업 ID를 통해 상태를 이어서 확인하며, MySQL의 작업 상태와 완료된 기획안·Word/PPT를 다시 조회합니다.
 - 기존 `test-gangnam-dashboard/`는 별도의 Streamlit 프로토타입으로 유지합니다.
-- React 공개 경로는 `frontend/src/routes.js`에서 관리합니다. 주요 업무는 `/dashboard`, `/planning`, `/strategy`, `/saved-plans`이며 `/diagnosis`는 `/dashboard`, `/proposal`은 `/strategy`의 과거 주소 별칭입니다. 알 수 없는 경로는 404 안내를 표시합니다.
+- React 공개 경로는 `frontend/src/routes.js`에서 관리합니다. 주요 업무는 `/dashboard`, `/planning`, `/strategy`, `/saved-plans`이며 `/admin-login`에서 교육용 관리자 화면 잠금을 해제합니다. `/diagnosis`는 `/dashboard`, `/proposal`은 `/strategy`의 과거 주소 별칭입니다. 알 수 없는 경로는 404 안내를 표시합니다.
 
 ## 팀원 최초 설치
 
@@ -416,3 +417,13 @@ D-175: 자동 초기 목표를 고정 5%/20%에서 사업 유형·지역 전망�
 ### 사업기간 자동 선택 규칙 (2026-09-17)
 
 한국 시간 기준 생성일이 1~15일이면 다음 달부터, 16일~말일이면 다다음 달부터 연속 3개월로 정한다. 예: 2026-09-15 → 2026-10~12, 2026-09-16 → 2026-11~2027-01. 웹 입력·대시보드와 신규 보고서 API는 같은 규칙을 사용하고, 서버가 생성 요청 시 날짜를 확정한다. ML은 종료월까지 실제 월별 전망을 계산하고 PPT·Word·웹 목표는 저장된 같은 기간을 사용한다. 기존 저장본·진행 중 작업을 현재 날짜로 이동하지 않는다. 신규 본문은 첫 사업월 운영 개시를 명시하며 실제 준비일에는 운영량을 배분하지 않는다.
+
+
+### 최종 오프라인 점검 (2026-09-20)
+
+현재 작업 루트는 `C:\Users\Admin\mbca\TP2-4`입니다. 관리자 `/llm-control`에서 현재 모드의 Agent 파이프라인·프롬프트·설정·명령·실행 기록을 확인할 수 있습니다. 이 화면의 설정 자동 조회는 모델을 호출하지 않습니다.
+
+프론트 검증: `cd frontend` 후 `npm run lint`, `npm test`, `npm run build`.
+서버 오프라인 검증: 프로젝트 루트에서 `backend\.venv\Scripts\python.exe -m ai_server.run_offline_tests`. 이 실행기는 외부 소켓 연결을 막으며 MySQL/LLM/API 실연동 검사를 대신하지 않습니다.
+
+미리보기는 서버의 PowerPoint(Windows) 또는 LibreOffice가 필요합니다. 로컬 서버에서 사용하려면 AI 서버를 재시작하여 새 overview/preview 코드를 적용하세요. 실행 중인 `start-dev.ps1`은 중복 시작을 생략하므로 재시작 버튼 역할이 아닙니다. Netlify Drop에는 `frontend/dist`를 다시 올리며, API 프록시/공개 로컬 서버 연결도 유지해야 합니다. [결과와 남은 확인](docs/FINAL_OFFLINE_REVIEW_20260920.md).

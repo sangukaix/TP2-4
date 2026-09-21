@@ -66,7 +66,7 @@ planning_brief에 선택 필드 visitor_target_pct(0~20), spending_target_pct(0~
 
 `POST /ai/v1/demo/{region_code}/assistant-chat`: 응답 `generation_mode`는 `openai | local | offline_sample`, `execution`은 실제 `provider/model/usage/web_search_used/fallback`을 반환합니다. 대화는 `role/content` 형태로 최근 8개, 각 3,000자까지 받습니다.
 
-웹 검색 허용은 모든 질문에 검색을 실행하라는 의미가 아닙니다. 수정·설명은 해당 라우트를 사용하고 명시적인 검색 요청만 검색 작업으로 보냅니다. 학생 절약 모드의 유료 검색 차단은 유지합니다. 수정안은 사용자 적용·저장 전에는 영구 반영하지 않으며 기존 검수 상태를 무효화합니다. 긴 기존 본문 수정의 근거 범위와 제약은 [점검 기록](QUALITY_INTEGRATION_AUDIT_20260907.md)을 참조합니다.
+기획안 챗봇의 웹 검색 OFF는 관리자 Router의 설명·수정 경로를 사용합니다. 웹 검색 ON은 지역명과 현재 질문만 `chat_research`에 보내며, 저장 보고서 원문·사업 여건·과거 대화는 보내지 않고 자동 수정안도 만들지 않습니다. 학생 절약 모드의 유료 검색 차단은 유지합니다. 수정안은 검색을 끈 로컬 수정 경로에서 만들고 사용자 적용 전에는 영구 반영하지 않으며 기존 검수 상태를 무효화합니다. 긴 기존 본문 수정의 근거 범위와 제약은 [점검 기록](QUALITY_INTEGRATION_AUDIT_20260907.md)을 참조합니다.
 
 ## 지역 검증 상태
 
@@ -104,6 +104,7 @@ Qwen 후보 보완은 로컬 우선 경로에서 최대 1회이며 `agent_trace`
 ## 2026-09-05 PPT 예측·KPI·견적·전체 출처 보완
 
 - `GET /ai/v1/strategy-reports/{report_id}/documents/pptx`의 경로·요청 계약은 그대로입니다.
+- `POST /ai/v1/demo/{region_code}/strategy-proposal.preview.pdf`는 현재 화면의 기획안 JSON을 같은 PPTX 생성기로 만든 뒤 브라우저 미리보기용 PDF로 반환합니다. 응답 헤더 `X-Slide-Count`에 페이지 수를 포함하며, OpenAI/LLM을 다시 호출하지 않습니다.
 - 렌더 버전 `pptx-user35-v6-exact-ml-kpi-full-sources-r2`와 `tourism_strategy_12_slide_template_v6.pptx`로 이전 PPT 캐시를 갱신합니다.
 - 월별 방문자·소비액은 `select_report_forecast`가 선택한 사업 기간의 저장 예측입니다. 관측월을 예측 차트에 섞거나 반올림 값을 재계산 입력으로 쓰지 않습니다.
 - 입력된 `execution_scenario`가 있으면 최종 월 목표를 표시합니다. 없으면 지역 전체 증가율을 만들지 않고, 명시적 견적 가정에 따른 별도의 참여·환급 목표를 표시합니다. 이 값은 보고서 JSON·ML·검수 상태를 변경하지 않습니다.
@@ -395,7 +396,7 @@ PPT 공통 출력 버전은 `pptx-idea-case-basis-v11`입니다. 기존 다운�
 PPT 출력 버전 `pptx-visitor-spending-formula-v12`는 동일 방문·소비 목표율에 대해 월별 소비/방문 비율과 추가 방문 기반 소비 산식을 표시합니다. 기존 목표값과 동치이며 API 입력·저장 ML은 변경하지 않습니다. 서로 다른 명시 목표율은 각각 적용하며 방문 0인 월의 비율은 추정하지 않습니다.
 # 기획서 사례 연결 메타데이터 (2026-09-10)
 
-최신 PPT 렌더 버전: `pptx-similar-case-images-v16`. 사진 메타데이터의 `match_kind`는 `exact_case` / `similar_operation` / `general_tourism_reference`이며 발표자 노트에 출처와 함께 기록합니다.
+최신 PPT 사진 정책은 해당 사례의 확인된 사진(`exact_case`)을 먼저 사용하고, 없으면 같은 운영 방식의 타지역 참고 사진(`similar_operation`), 둘 다 없으면 실제 사례 사진이 아님을 밝힌 생성 이미지(`generated_operating_example`)를 사용합니다. 2.1 적용 사례와 2.2 적용 사례 운영 방식은 같은 사례를 설명하므로 동일한 사진과 출처를 사용하며, 그 외 사진 중복은 허용하지 않습니다. 최신 PPT 렌더 버전은 `pptx-v73-matched-selected-case-photo`입니다.
 
 이미지 변경 후 최신 PPT 렌더 버전은 `pptx-official-case-images-v15`입니다. 사례 ID에 연결된 공식 웹 이미지를 사용하며 요청 스키마는 동일합니다.
 
@@ -591,3 +592,12 @@ D-175: PPT `pptx-v36-operating-capacity`, Word `strategy-docx-v13-operating-capa
 ### 사업기간 자동 선택 규칙 (2026-09-17)
 
 한국 시간 기준 생성일이 1~15일이면 다음 달부터, 16일~말일이면 다다음 달부터 연속 3개월로 정한다. 예: 2026-09-15 → 2026-10~12, 2026-09-16 → 2026-11~2027-01. 웹 입력·대시보드와 신규 보고서 API는 같은 규칙을 사용하고, 서버가 생성 요청 시 날짜를 확정한다. ML은 종료월까지 실제 월별 전망을 계산하고 PPT·Word·웹 목표는 저장된 같은 기간을 사용한다. 기존 저장본·진행 중 작업을 현재 날짜로 이동하지 않는다. 신규 본문은 첫 사업월 운영 개시를 명시하며 실제 준비일에는 운영량을 배분하지 않는다.
+- 저장 ID와 전체 보고서 본문이 모두 일치하면 `POST /ai/v1/demo/{region_code}/strategy-proposal.preview.pdf`는 생성 완료 때 저장한 같은 버전 PPTX를 재사용한다. ID만으로 저장 문서를 노출하지 않으며 LLM을 호출하지 않는다.
+
+
+## 2026-09-20 관리자 조회·저장 상태·미리보기
+
+- GET /ai/v1/llm/overview: mode, effective_routes, capability_locks, cost_policy. provider health/추론/외부 API 호출 없이 설정만 반환한다. GET /ai/v1/llm/status는 별도 연결 확인에 유지한다.
+- 생성 작업 응답의 persistence_status: unknown(이전 작업 등), saved(본문 MySQL 저장 완료), failed(본문 저장 실패). 생성 완료와 저장 성공을 구분한다. 문서 변환 경고는 본문 저장 성공을 무효화하지 않는다.
+- PDF 미리보기는 보고서 전체 JSON과 PPT 렌더 버전 지문을 캐시 키로 사용한다. 동일 보고서 요청은 재변환하지 않으며 보고서/양식 변경 시 별도 결과다. Word/PPT 다운로드 계약은 유지한다. 변환 슬롯 대기 15초, Office 하위 프로세스 제한 180초이며 전체 문서 작성 시간 상한을 뜻하지 않는다.
+- ML 학습 챗봇은 OpenAI 키 부재를 전체 모델 카탈로그 계산 전에 반환한다.

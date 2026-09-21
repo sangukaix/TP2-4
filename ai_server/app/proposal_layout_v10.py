@@ -16,8 +16,11 @@ def case_narrative(value):
 def case_card_summary(source):
     """Display observed festival figures, retaining the event/period scope."""
     if source.get('festival_statistics'):
-        return str(source.get('observed_result') or '') + ' 축제 개최기간의 방문 실적을 참고합니다.'
-    return case_narrative(source.get('operating_model'))
+        value = str(source.get('observed_result') or '') + ' 축제 개최기간의 방문 실적을 참고합니다.'
+    else:
+        value = case_narrative(source.get('operating_model'))
+    value = re.sub(r'\s+', ' ', value).strip()
+    return value if len(value) <= 92 else value[:89].rstrip(' ,.;') + '…'
 
 
 def safe_text(slide,name,value,x,y,w,h,size=22,color=SLATE,bold=False):
@@ -33,12 +36,14 @@ def link(shape, url):
 
 
 def case_cards(slide, report):
+    from hashlib import sha256
     from .case_images import case_image
     from .proposal_case_outcomes import source_outcome
     from PIL import Image
     header(slide, '지역별 참고 사례')
     rows, primary = report_cases(report)
     image_sources=[]
+    used_image_hashes=set()
     text(slide,'case-intro','운영 방식이 맞는 공식 사례를 연결합니다. 지역 자체의 유사도 순위와는 구분합니다.',106,188,1388,47,22,SLATE)
     for i, source in enumerate(rows):
         x=106+i*472
@@ -59,6 +64,13 @@ def case_cards(slide, report):
         image_info=(outcome or {}).get('photo') or case_image(source)
         if image_info:
             asset=image_info['path']
+            digest=sha256(Path(asset).read_bytes()).digest()
+            if digest in used_image_hashes:
+                image_info=None
+            else:
+                used_image_hashes.add(digest)
+        if image_info:
+            asset=image_info['path']
             with Image.open(asset) as raw:
                 scale=min(396/raw.width,180/raw.height)
                 w,h=raw.width*scale,raw.height*scale
@@ -72,7 +84,7 @@ def case_cards(slide, report):
         shape=text(slide,f'case-source-{i}','사업 원문 보기 ↗',x+24,868,396,24,16,BLUE)
         link(shape,source.get('source_url'))
     slide.notes_slide.notes_text_frame.text=json.dumps({'method':VERSION,'sources':rows,
-        'images':image_sources,'image_policy':'Official web assets; exact case or clearly labelled similar operation / general tourism reference. No generated fallback.'},ensure_ascii=False,indent=2)
+        'images':image_sources,'image_policy':'Exact case image first; otherwise a clearly labelled same-mechanism regional reference; otherwise a clearly labelled generated operating example. The selected case image is intentionally reused on the next operating-method slide.'},ensure_ascii=False,indent=2)
 
 
 def selection(slide, report):
@@ -161,7 +173,9 @@ def polish(prs,report):
                '이 사업을 참고한 이유와 지역 적용 방법','4단계 실행 가이드 예시안',
                '머신러닝 예측값과 목표 KPI','견적 예시안','기획서 생성 파이프라인']
     for index,title in enumerate(requested,3):
-        page=next(s for s in prs.slides if any(sh.name=='title' and (sh.text==title or (title=='사례 실적' and sh.text=='참고 사례 운영 방식')) for sh in s.shapes if sh.has_text_frame))
+        page=next(s for s in prs.slides if any(sh.name=='title' and (
+            sh.text==title or (title=='사례 실적' and sh.text in ('참고 사례 운영 방식','적용 사례 운영 방식'))
+        ) for sh in s.shapes if sh.has_text_frame))
         sid=next(sid for sid in prs.slides._sldIdLst if sid.id==page.slide_id)
         prs.slides._sldIdLst.remove(sid);prs.slides._sldIdLst.insert(index,sid)
     from .proposal_growth_slide import growth_page, section_labels

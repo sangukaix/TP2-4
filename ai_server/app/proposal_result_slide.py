@@ -9,7 +9,7 @@ def case_performance(slide, report):
     from .case_recommendation import report_cases
     from .case_images import case_image
     from .proposal_layout_v10 import case_narrative
-    header(slide, '사례 실적' if report_outcome(report) else '참고 사례 운영 방식')
+    header(slide, '적용 사례 운영 방식')
     _, primary = report_cases(report)
     source = primary[0] if primary else {}
     result = report_outcome(report)
@@ -23,8 +23,9 @@ def case_performance(slide, report):
             scale=min(586/im.width,354/im.height);w,h=im.width*scale,im.height*scale
         sh=slide.shapes.add_picture(str(photo['path']),int((106+(586-w)/2)*EMU),int((350+(354-h)/2)*EMU),int(w*EMU),int(h*EMU));sh.name='result-photo'
         cap=text(slide,'result-photo-source',photo['caption']+'\n출처: '+photo['credit'],106,715,586,63,19,SLATE)
-        for p in cap.text_frame.paragraphs:
-            for r in p.runs:r.hyperlink.address=photo['page_url']
+        if str(photo.get('page_url') or '').startswith(('https://', 'http://')):
+            for p in cap.text_frame.paragraphs:
+                for r in p.runs:r.hyperlink.address=photo['page_url']
     if result:
         before,after=result['before'],result['after'];delta=after-before;pct=delta/before*100
         text(slide,'result-metric',result['metric'],753,340,741,38,24,BLUE,True)

@@ -10,6 +10,7 @@ test('현재 구현된 모든 페이지가 공개 경로에 연결되어 있다'
     '/planning': 'planning',
     '/strategy': 'strategy',
     '/saved-plans': 'savedPlans',
+    '/admin-login': 'adminLogin',
     '/ml-test': 'mlTest',
     '/openai-test': 'openAiLearning',
     '/react-test': 'reactLearning',

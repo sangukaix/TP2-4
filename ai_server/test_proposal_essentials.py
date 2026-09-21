@@ -16,7 +16,8 @@ class ProposalEssentialsTest(unittest.TestCase):
         before = copy.deepcopy(data)
         plan = build_operating_target(data)
         self.assertEqual(plan['family'], 'spend_conversion')
-        self.assertEqual(plan['estimate']['unit_krw'], 3000)
+        # D-194: default refund is 30% of the fixture's 30,000 won eligible payment.
+        self.assertEqual(plan['estimate']['unit_krw'], 9000)
         self.assertEqual(data, before)
 
     def test_preparation_month_excluded_for_both_launch_wordings(self):

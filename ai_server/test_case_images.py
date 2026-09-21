@@ -12,7 +12,10 @@ class CaseImageTest(unittest.TestCase):
         self.assertIn('여수',result['caption'])
         self.assertNotIn('전주',result['caption'])
         self.assertTrue(result['path'].is_file())
-        self.assertEqual(case_image({'source_id':'case:unknown'})['match_kind'],'general_tourism_reference')
+        fallback=case_image({'source_id':'case:unknown'})
+        self.assertEqual(fallback['match_kind'],'generated_operating_example')
+        self.assertIn('AI 생성 이미지',fallback['credit'])
+        self.assertTrue(fallback['path'].is_file())
         self.assertTrue(all(case_image({'source_id':key}) for key in IMAGES))
 
     def test_card_uses_official_asset_and_credit_without_generated_fallback(self):

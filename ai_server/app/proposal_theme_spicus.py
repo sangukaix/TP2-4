@@ -129,24 +129,31 @@ def cover(slide, photo, ending=False, region_name='', photo_source=None):
     text(slide,'cover-meta',details,80,814,790,60,16,WHITE)
     if not ending:
         # User reference: date, province ribbon, left-aligned project, period.
-        parts=region_name.split(maxsplit=1)
-        province=parts[0] if parts else copy.get('org-title','')
+        region_label=region_name.strip() or copy.get('org-title','')
         delete(slide,{'cover-category','cover-title-line2','cover-meta'})
         pos(get(slide,'cover-top-rule'),80,82,170,4)
         import re
         date_match=re.search(r'\d{4}-\d{2}-\d{2}',details)
         if date_match:
             text(slide,'cover-issued-date',date_match.group().replace('-','.'),84,137,750,46,28,WHITE,True)
-        rect(slide,'cover-province-ribbon',0,196,940,72,WHITE)
-        def ribbon(name,points,color):
+        def set_alpha(shape,alpha):
+            color=shape._element.find('.//{http://schemas.openxmlformats.org/drawingml/2006/main}srgbClr')
+            if color is not None:
+                opacity=OxmlElement('a:alpha');opacity.set('val',str(alpha));color.append(opacity)
+        def ribbon(name,points,color,alpha=100000):
             builder=slide.shapes.build_freeform(points[0][0]*EMU,points[0][1]*EMU)
             builder.add_line_segments([(x*EMU,y*EMU) for x,y in points[1:]],close=True)
             shape=builder.convert_to_shape();shape.name=name
             shape.fill.solid();shape.fill.fore_color.rgb=RGBColor.from_string(color)
-            shape.line.fill.background()
-        ribbon('cover-ribbon-light',[(485,268),(598,196),(940,196),(940,268)],'FA9AB5')
-        ribbon('cover-ribbon-pink',[(560,268),(668,196),(940,196),(940,268)],'F67EA2')
-        org=get(slide,'org-title');pos(org,64,201,510,60);fit_text(org,province,40,DARK,True)
+            set_alpha(shape,alpha);shape.line.fill.background()
+            return shape
+        ribbon_panel=rect(slide,'cover-ribbon-panel',398,196,542,72,WHITE)
+        set_alpha(ribbon_panel,50000)
+        ribbon('cover-ribbon-main',[(0,196),(834,196),(678,268),(0,268)],WHITE)
+        ribbon('cover-ribbon-soft',[(0,196),(931,196),(772,268),(0,268)],WHITE,23000)
+        org=get(slide,'org-title');pos(org,64,196,510,72);fit_text(org,region_label,40,'000000',True)
+        org.text_frame.vertical_anchor=MSO_ANCHOR.MIDDLE
+        org.text_frame.margin_top=org.text_frame.margin_bottom=0
         # Keep the region label above the ribbon shapes in drawing order.
         org._element.getparent().remove(org._element);slide.shapes._spTree.append(org._element)
         project=' '.join((first,second)).strip()
@@ -175,37 +182,24 @@ def cover(slide, photo, ending=False, region_name='', photo_source=None):
 
 
 def soften_cover_background(slide):
-    """Blend the existing regional photo into a calm, readable cover only."""
+    """Keep the approved navy cover and place the regional photo in the right column."""
     slide.background.fill.solid()
     slide.background.fill.fore_color.rgb=RGBColor.from_string('203B4B')
     photo=get(slide,'cover-regional-photo')
     if photo is not None:
-        pos(photo,0,0,1600,900)
+        pos(photo,940,0,660,900)
         photo.crop_left=photo.crop_right=photo.crop_top=photo.crop_bottom=0
-        iw,ih=photo.image.size; ratio=iw/ih; box=1600/900
+        iw,ih=photo.image.size; ratio=iw/ih; box=660/900
         if ratio>box:photo.crop_left=photo.crop_right=(1-box/ratio)/2
         else:photo.crop_top=photo.crop_bottom=(1-ratio/box)/2
 
-    def gradient(shape, color, stops):
-        shape.fill.gradient();shape.fill.gradient_angle=0
-        gs=shape._element.find('.//{http://schemas.openxmlformats.org/drawingml/2006/main}gsLst')
-        for item in list(gs):gs.remove(item)
-        for position,alpha in stops:
-            item=OxmlElement('a:gs');item.set('pos',str(position))
-            rgb=OxmlElement('a:srgbClr');rgb.set('val',color)
-            opacity=OxmlElement('a:alpha');opacity.set('val',str(alpha))
-            rgb.append(opacity);item.append(rgb);gs.append(item)
-        shape.line.fill.background()
-
-    overlay=rect(slide,'cover-photo-blend',0,0,1600,900,'203B4B')
-    gradient(overlay,'203B4B',[(0,100000),(40000,98000),(64000,75000),(82000,24000),(100000,0)])
-    tree=slide.shapes._spTree;tree.remove(overlay._element)
-    tree.insert(tree.index(photo._element)+1 if photo is not None else 2,overlay._element)
-    delete(slide,{'cover-ribbon-light','cover-ribbon-pink'})
-    ribbon=get(slide,'cover-province-ribbon')
-    if ribbon is not None:gradient(ribbon,'DBE8EC',[(0,13000),(60000,8000),(100000,0)])
+    delete(slide,{'cover-photo-blend','cover-province-ribbon','cover-ribbon-light','cover-ribbon-pink'})
     org=get(slide,'org-title')
-    if org is not None:fit_text(org,org.text,40,WHITE,True)
+    if org is not None:
+        pos(org,64,196,510,72)
+        fit_text(org,org.text,40,'000000',True)
+        org.text_frame.vertical_anchor=MSO_ANCHOR.MIDDLE
+        org.text_frame.margin_top=org.text_frame.margin_bottom=0
     for name in ('cover-top-rule','cover-title-rule'):
         rule=get(slide,name)
         if rule is not None:rule.fill.fore_color.rgb=RGBColor.from_string('A9D7D1')
@@ -367,7 +361,7 @@ def reference_case_typography(slide):
                 east.set('typeface','맑은 고딕')
 
 
-def application_photos(slide,report):
+def application_photos(slide,report,excluded_blobs=()):
     """Illustrative local facilities, never presented as confirmed program partners."""
     import json
     from .proposal_cover_photo import choose_cover_photo
@@ -386,7 +380,7 @@ def application_photos(slide,report):
                 (('공연','문화시설'),('공연장','문화회관','아트센터')))
     pool=[s for s in sources if isinstance(s,dict) and any(any(w in body.text for w in intent) and
           any(w in str(s.get('title','')) for w in names) for intent,names in categories)]
-    assets=[];excluded=[]
+    assets=[];excluded=list(excluded_blobs)
     for _ in range(2):
         asset=choose_cover_photo({'region_name':report.get('region_name'),'evidence_sources':pool},
                                 excluded_title=' | '.join(a[0]['title'] for a in assets),excluded_blobs=excluded)
@@ -516,6 +510,8 @@ def apply_theme(prs, report):
     palette={'004EA2':RED,'0054AA':RED,'00B7C9':TEAL,'FF6B00':RED,'008795':RED,
              'E6F4F7':PALE,'F4F7FA':GRAY,'1D2227':DARK,'59636E':MUTED,'D4DFE8':'E4E4E4',
              'DCE5EF':'E4E4E4','0D3158':RED,'003968':RED}
+    reserved_photo_blobs=[shape.image.blob for page in prs.slides for shape in page.shapes
+                          if hasattr(shape,'image') and ('photo' in shape.name.lower() or 'image' in shape.name.lower())]
     for i,slide in enumerate(prs.slides):
         if i in (0,len(prs.slides)-1):continue
         slide.background.fill.solid();slide.background.fill.fore_color.rgb=RGBColor.from_string(GRAY)
@@ -572,15 +568,17 @@ def apply_theme(prs, report):
         if i==4:tighter_case_result(slide)
         if i==5:business_goal_intro(slide,report)
         if i==6:tighter_kpi(slide)
-        if i==7:application_photos(slide,report)
+        if i==7:application_photos(slide,report,reserved_photo_blobs)
         if i==11 and get(slide,'pipeline-intro') is not None:gray_intro(get(slide,'pipeline-intro'),190)
     contents(prs.slides[1]);growth(prs.slides[2])
     from .proposal_cover_photo import choose_cover_photo
-    cover_asset=choose_cover_photo(report,photo,photo_credit)
+    document_photo_blobs=[shape.image.blob for page in list(prs.slides)[1:-1] for shape in page.shapes
+                          if hasattr(shape,'image') and ('photo' in shape.name.lower() or 'image' in shape.name.lower())]
+    cover_asset=choose_cover_photo(report,photo,photo_credit,excluded_blobs=document_photo_blobs)
     cover(prs.slides[0],cover_asset[1] if cover_asset else None,
           region_name=str(report.get('region_name') or ''),photo_source=cover_asset[0] if cover_asset else None)
     ending_asset=choose_cover_photo(
         report, photo, photo_credit+' | '+(cover_asset[0]['title'] if cover_asset else ''),
-        excluded_blobs=(cover_asset[1],) if cover_asset else ())
+        excluded_blobs=tuple(document_photo_blobs)+((cover_asset[1],) if cover_asset else ()))
     cover(prs.slides[-1],ending_asset[1] if ending_asset else None,True,
           region_name=str(report.get('region_name') or ''),photo_source=ending_asset[0] if ending_asset else None)

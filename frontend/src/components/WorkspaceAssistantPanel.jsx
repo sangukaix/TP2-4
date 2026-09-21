@@ -1,5 +1,5 @@
 import { Bot, Globe2, LoaderCircle, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useWorkspaceConversation } from './workspaceConversationContext'
 import { chatWithTourismAssistant } from '../api/dashboardApi'
 import { chatHistory } from '../features/planning/chatHistory'
 
@@ -12,21 +12,15 @@ const QUICK_QUESTIONS = [
 ]
 
 /** bid3 제안서 화면의 우측 AI 비서 역할을 관광 전략용으로 이식한 패널입니다. */
-export default function WorkspaceAssistantPanel({ region, report, onApplyPatch, planningBrief }) {
-  // 대화 기록은 이 패널을 열어 둔 동안만 React state에 보관합니다.
-  // 보고서 본문·사업 여건은 부모 화면에서 전달받아 AI의 참고 자료로만 사용합니다.
-  const [messages, setMessages] = useState([])
-  const [question, setQuestion] = useState('')
-  const [useWebSearch, setUseWebSearch] = useState(false)
-  const [appliedPatch, setAppliedPatch] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+export default function WorkspaceAssistantPanel({ region, report, onApplyPatch, planningBrief, applying = false }) {
+  const { messages, setMessages, question, setQuestion, useWebSearch, setUseWebSearch,
+    appliedPatch, setAppliedPatch, loading, setLoading, error, setError, beginRequest, endRequest } = useWorkspaceConversation()
 
   // 질문을 API에 보내고, 최근 8개 대화만 함께 전달합니다.
   // 기록 길이를 제한하면 토큰 비용과 응답 지연을 일정하게 유지할 수 있습니다.
   const ask = async (preset) => {
     const content = String(preset || question).trim()
-    if (!content || loading) return
+    if (!content || !beginRequest()) return
     const history = [...messages, { role: 'user', content }]
     setMessages(history)
     setQuestion('')
@@ -39,12 +33,13 @@ export default function WorkspaceAssistantPanel({ region, report, onApplyPatch, 
         history: chatHistory(history),
         current_report: report,
         planning_brief: planningBrief || null,
-        enable_web_search: report ? false : useWebSearch,
+        enable_web_search: useWebSearch,
       })
       setMessages((items) => [...items, { role: 'assistant', ...answer }])
     } catch (requestError) {
       setError(requestError.message)
     } finally {
+      endRequest()
       setLoading(false)
     }
   }
@@ -63,7 +58,7 @@ export default function WorkspaceAssistantPanel({ region, report, onApplyPatch, 
           <b>{message.role === 'assistant' ? 'AI' : '나'}</b>
           <div>
             <p>{message.content || message.answer}</p>
-            {message.role === 'assistant' && <small>{message.generation_mode === 'offline_sample' ? '오프라인 예시 · 모델 응답 아님' : `${message.execution?.model || message.generation_mode || '모델 정보 없음'} · ${message.execution?.web_search_used ? '웹 검색 사용' : '새 웹 검색 미사용'}`}</small>}
+            {message.role === 'assistant' && <small className="workspace-chat-execution">{message.generation_mode === 'offline_sample' ? '오프라인 예시 · 모델 응답 아님' : `${message.execution?.model || message.generation_mode || '모델 정보 없음'} · ${message.execution?.web_search_used ? 'OpenAI 웹 검색 사용' : '새 웹 검색 미사용'}`}</small>}
             {message.key_points?.length > 0 && <ul>{message.key_points.map((point) => <li key={point}>{point}</li>)}</ul>}
             {message.sources?.length > 0 && (
               <details>
@@ -77,7 +72,7 @@ export default function WorkspaceAssistantPanel({ region, report, onApplyPatch, 
       {loading && <p className="workspace-chat-thinking"><LoaderCircle size={15} />근거와 지역 데이터를 확인하고 있습니다…</p>}
       {error && <p className="workspace-chat-error">{error}</p>}
     </div>
-    {report && latestPatch && onApplyPatch && <button className="workspace-chat-apply" type="button" disabled={loading || appliedPatch === latestPatch} onClick={() => { onApplyPatch(latestPatch); setAppliedPatch(latestPatch) }}>{appliedPatch === latestPatch ? '반영됨 · 기획안 저장 필요' : '이 수정안을 기획안에 반영'}</button>}
-    <footer className="workspace-chat-composer">{!report && <label><input type="checkbox" checked={useWebSearch} onChange={(event) => setUseWebSearch(event.target.checked)} /><Globe2 size={13} />웹 검색</label>}<div><textarea rows="2" value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); ask() } }} placeholder="분석 결과나 기획안에 대해 질문하세요!" /><button type="button" onClick={() => ask()} disabled={!question.trim() || loading} aria-label="질문 전송"><Send size={15} /></button></div></footer>
+    {report && latestPatch && onApplyPatch && <button className="workspace-chat-apply" type="button" disabled={loading || applying || appliedPatch === latestPatch} onClick={() => { onApplyPatch(latestPatch); setAppliedPatch(latestPatch) }}>{applying ? <><LoaderCircle size={14} />기획서 수정 중…</> : appliedPatch === latestPatch ? '반영됨 · 자동 저장 상태 확인' : '이 수정안을 기획안에 반영'}</button>}
+    <footer className="workspace-chat-composer"><label title={useWebSearch ? '지역명과 이번 질문만 OpenAI 웹 검색에 사용합니다. 수정 반영은 검색을 끄고 요청하세요.' : '현재 보고서 수정은 관리자 Router에 설정된 로컬 모델을 사용합니다.'}><input type="checkbox" checked={useWebSearch} onChange={(event) => setUseWebSearch(event.target.checked)} /><Globe2 size={13} />웹 검색 {useWebSearch ? 'ON' : 'OFF'}</label><div><textarea rows="2" value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); ask() } }} placeholder={useWebSearch ? '공식 자료를 웹에서 찾아 질문하세요.' : '기획안 수정 내용을 입력하세요.'} /><button type="button" onClick={() => ask()} disabled={!question.trim() || loading} aria-label="질문 전송"><Send size={15} /></button></div></footer>
   </aside>
 }

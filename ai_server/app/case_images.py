@@ -1,4 +1,4 @@
-"""Web images: exact case first, visibly attributed similar operation second."""
+"""Proposal case images: exact case, same-mechanism reference, generated fallback."""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / 'assets' / 'proposal_cases'
@@ -43,6 +43,15 @@ SIMILAR_IMAGES = {
     },
 }
 
+GENERATED_IMAGE = {
+    'filename': 'selected_case_operation_example.png',
+    'caption': '관광 프로그램 이용 흐름 예시 이미지',
+    'credit': 'AI 생성 이미지 · 실제 사례 현장 사진 아님',
+    'page_url': '',
+    'image_url': '',
+}
+GENERATED_IMAGE_PATH = ROOT / GENERATED_IMAGE['filename']
+
 
 def case_image(source):
     from .case_mechanism import case_mechanism_family
@@ -52,12 +61,16 @@ def case_image(source):
         family=case_mechanism_family(source)
         metadata=SIMILAR_IMAGES.get(family)
         kind='similar_operation'
-    if not metadata:
-        # General tourism reference is explicit, never portrayed as this case.
-        metadata=SIMILAR_IMAGES['stay_conversion']
-        kind='general_tourism_reference'
-    path = ROOT / metadata['filename']
-    prefix={'exact_case':'','similar_operation':'다른 지역 참고 사진 · ',
-            'general_tourism_reference':'관광 참고 이미지 · '}[kind]
-    return {**metadata, 'caption':prefix+metadata['caption'], 'match_kind':kind,
-            'path': path, 'retrieved_at': '2026-09-10'} if path.is_file() else None
+    if metadata and (ROOT / metadata['filename']).is_file():
+        path = ROOT / metadata['filename']
+        prefix = {'exact_case': '', 'similar_operation': '다른 지역 참고 사진 · '}[kind]
+        return {**metadata, 'caption': prefix + metadata['caption'], 'match_kind': kind,
+                'path': path, 'retrieved_at': '2026-09-10'}
+
+    # An unrelated tourism photo can misrepresent the selected case. When the
+    # exact case and a verified same-mechanism reference are both unavailable,
+    # use the clearly labelled generated operating example instead.
+    if GENERATED_IMAGE_PATH.is_file():
+        return {**GENERATED_IMAGE, 'match_kind': 'generated_operating_example',
+                'path': GENERATED_IMAGE_PATH, 'retrieved_at': '2026-09-20'}
+    return None

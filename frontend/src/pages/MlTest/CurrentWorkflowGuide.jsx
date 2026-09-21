@@ -1,7 +1,7 @@
 const guides = {
   openai: [
     ['근거 준비', 'MySQL 관측·전국 비교 + 로컬 원본의 소비 구성·관광 현황을 조회합니다. 저장 모델의 7개 전망과 출처를 별도 필드로 전달합니다.', 'app/main.py → ml/planning_evidence.py'],
-    ['사례와 후보 비교', 'Evidence·CaseStudy가 근거를 준비하고 Qwen이 운영 조건과 후보 차이를 비교합니다. 지역 비교는 코드 계산이며 사업 성공을 학습한 추천 모델은 아닙니다.', 'agents/report_orchestrator.py → case_scope.py'],
+    ['사례와 후보 비교', 'Evidence·CaseStudy가 근거를 준비하고 선택된 비교 모델(Gemma 또는 Qwen)이 운영 조건과 후보 차이를 비교합니다. 지역 비교는 코드 계산이며 사업 성공을 학습한 추천 모델은 아닙니다.', 'agents/report_orchestrator.py → case_scope.py'],
     ['작성과 검수', 'Gemma가 본문을 작성하고 코드·로컬 검수를 거칩니다. 학생 절약 모드는 로컬 검수 통과본에만 OpenAI 독립 최종 검수 1회를 허용합니다.', 'llm/local_prompts.py → llm/router.py'],
     ['저장과 출력', '기획 JSON을 MySQL에 저장하고 같은 전망·목표를 Word와 PPT에 사용합니다. 목표 KPI는 사업 효과 예측과 구분한 계획값입니다.', 'strategy_store.py → report_projection.py'],
   ],
@@ -9,7 +9,7 @@ const guides = {
     ['지역 선택', '서버 카탈로그에서 지역 목록을 받습니다. 자료 점검과 현재 로컬 모델 연결을 함께 통과한 지역에 준비 상태를 표시합니다.', 'tourismWorkspace.js → /ai/v1/regions/catalog'],
     ['조건 입력', '사업 방향·참고 예산·자원·현장 선호를 선택합니다. 서버가 한국 시간 기준 15일까지는 다음 달, 16일부터는 다다음 달 시작의 3개월 사업기간을 확정합니다.', 'TourismPlanningPage.jsx → planning_brief.py'],
     ['진행 상태', '생성 작업 ID를 받은 뒤 상태를 조회합니다. 분석·사례·작성·검수 진행은 서버가 보고한 단계로 표시합니다.', 'dashboardApi.js → strategy-report/jobs'],
-    ['수정과 다운로드', '화면은 구조화된 응답을 표시합니다. 챗봇 수정과 저장을 거쳐 서버에서 Word·PPT를 생성하며 React에서 ML을 학습하지 않습니다.', 'TourismStrategyPage.jsx → strategy_store.py'],
+    ['수정과 다운로드', '화면은 구조화된 응답을 표시합니다. 생성·수정안을 자동 저장하고 서버에서 Word·PPT와 PDF 미리보기를 생성하며 React에서 ML을 학습하지 않습니다.', 'TourismStrategyPage.jsx → strategy_store.py'],
   ],
   router: [
     ['모드와 작업', '같은 Agent라도 모드와 작업 종류에 따라 Provider가 달라집니다. 저장 설정과 실제 적용 경로를 아래 표에서 함께 확인합니다.', 'llm/router.py · effective_routes()'],

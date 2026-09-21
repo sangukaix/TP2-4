@@ -1,0 +1,11 @@
+{
+  "title": "경기여고 경운박물관(서울)",
+  "address": "서울특별시 강남구 삼성로 29",
+  "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원",
+  "image_url": "http://tong.visitkorea.or.kr/cms/resource/99/3393799_image2_1.JPG",
+  "source_id": "tour-api:2552251",
+  "content_id": "2552251",
+  "source_url": "https://apis.data.go.kr/B551011/KorService2",
+  "source_type": "open_api",
+  "content_type_id": "14"
+}

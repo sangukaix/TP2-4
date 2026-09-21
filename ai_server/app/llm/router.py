@@ -346,6 +346,10 @@ class LLMRouter:
                 # 실행 권한이 아니라 제한된 질문 설계 역할임을 관리자에게 구분해 보여 줍니다.
                 row['capabilities'] = [*row['capabilities'], 'constrained_official_web_query_planning']
             provider_rows.append(row)
+        return {**self.runtime_summary(), 'providers': provider_rows}
+
+    def runtime_summary(self) -> dict[str, Any]:
+        """Read effective settings without contacting any model or external API."""
         domains = [item.strip().lower() for item in re.split(r'[,;\s]+', str(
             self.env_values.get('TOURISM_ALLOWED_RESEARCH_DOMAINS') or ''
         )) if item.strip()]
@@ -354,7 +358,7 @@ class LLMRouter:
             allowed_domains=domains or ['go.kr', 'visitkorea.or.kr', 'data.go.kr'],
         ).provider_status()
         return {
-            'mode': self.config['mode'], 'providers': provider_rows,
+            'mode': self.config['mode'],
             'cost_policy': {
                 'local_first': self.local_first,
                 'student_budget': self.student_budget,
@@ -365,7 +369,7 @@ class LLMRouter:
                     self.providers['gemma' if self.gemma_only_local else 'qwen'], 'timeout_seconds',
                     float(self.env_values.get('LOCAL_LLM_TIMEOUT_SECONDS') or 1800),
                 )),
-                'automatic_paid_fallback': not self.local_first and self.config['mode'] != 'local_only',
+                'automatic_paid_fallback': any(route.get('fallback') == 'openai' and route.get('provider') in {'qwen', 'gemma'} for route in self.effective_routes().values()),
                 'automatic_web_research': not self.student_budget and self.config['mode'] != 'local_only',
                 'free_official_web_search': local_web_search,
             },

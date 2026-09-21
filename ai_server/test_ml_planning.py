@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 from datetime import date
 import numpy as np
 import pandas as pd
@@ -117,7 +118,12 @@ class MlValidationTest(unittest.TestCase):
 
     def test_learning_catalog_comes_from_registered_model_targets(self) -> None:
         """현재 모델 Target 7개가 학습 페이지 카드 7개로 자동 변환되는지 확인합니다."""
-        catalog = build_ml_learning_catalog()
+        # This contract checks one region, not a nationwide batch forecast.
+        from ai_server.ml.learning_catalog import list_region_pipelines
+        selected = [item for item in list_region_pipelines() if item.region_code == '11680']
+        self.assertEqual(len(selected), 1)
+        with patch('ai_server.ml.learning_catalog.list_region_pipelines', return_value=selected):
+            catalog = build_ml_learning_catalog()
         gangnam = next(region for region in catalog.regions if region.region_code == '11680')
         self.assertEqual(gangnam.status, 'available')
         self.assertEqual(

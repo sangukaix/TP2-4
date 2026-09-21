@@ -34,7 +34,7 @@ function PipelineDiagram({ nodes, label }) {
   </div>)}</section>
 }
 
-/** 선생님 구조도를 TP2-3의 실제 로컬 포트와 AWS 예정 상태로 나눠 그립니다. */
+/** 선생님 구조도를 TP2-4의 실제 로컬 포트와 AWS 예정 상태로 나눠 그립니다. */
 function ReactSystemArchitecture({ architecture }) {
   const current = architecture?.current
   const deployment = architecture?.deployment
@@ -42,7 +42,7 @@ function ReactSystemArchitecture({ architecture }) {
   const serviceIcons = { frontend: Monitor, backend: Server, ai: BrainCircuit }
   const resourceIcons = { mysql: Database, joblib: HardDrive, chroma: Box, openai: Sparkles }
   return <section className="learning-block system-architecture-block">
-    <header><Network size={18} /><div><h2>TP2-3 시스템 구조 설계</h2><p>실선은 HTTP 요청, 점선은 데이터·모델 연결입니다.</p></div></header>
+    <header><Network size={18} /><div><h2>TP2-4 시스템 구조 설계</h2><p>실선은 HTTP 요청, 점선은 데이터·모델 연결입니다.</p></div></header>
     <div className="system-map" role="img" aria-label="사용자 브라우저에서 React, Backend, AI Server와 데이터 자원으로 이어지는 현재 로컬 시스템 구조">
       <article className="system-user-node"><UserRound size={18} /><div><b>사용자</b><span>Web Browser</span></div></article>
       <div className="system-main-arrow"><ArrowDown size={18} /><span>HTTP 요청</span></div>
@@ -52,7 +52,7 @@ function ReactSystemArchitecture({ architecture }) {
           const Icon = serviceIcons[service.id] || Server
           return <article className={`system-service is-${service.id}`} key={service.id}><div><Icon size={19} /><span>{service.path}</span></div><h3>{service.title}</h3><b>{service.tech}</b><code>localhost:{service.port}</code><p>{service.role}</p></article>
         })}</div>
-        <div className="system-proxy-label"><GitBranch size={15} /><span>Vite Proxy</span><code>/api/* → 8100</code><code>/ai/* → 8112</code></div>
+        <div className="system-proxy-label"><GitBranch size={15} /><span>Vite Proxy</span><code>/api/* → {current.services.find((item) => item.id === 'backend')?.port || '—'}</code><code>/ai/* → {current.services.find((item) => item.id === 'ai')?.port || '—'}</code></div>
         <div className="system-resource-grid">{current.resources.map((resource) => {
           const Icon = resourceIcons[resource.id] || Box
           return <article className={`system-resource owner-${resource.owner}`} key={resource.id}><Icon size={18} /><div><h3>{resource.title}</h3><b>{resource.tech}</b><p>{resource.role}</p></div><small>{resource.owner === 'backend' ? 'Backend 연결' : 'AI Server 연결'}</small></article>
@@ -76,13 +76,13 @@ function OpenAiAgentArchitecture({ agents }) {
   const coreAgents = Object.entries(CORE_AGENT_LABELS).filter(([name]) => detected.has(name))
   const laterAgents = coreAgents.slice(2)
   return <section className="learning-block openai-agent-map"><header><Workflow size={18} /><div><h2>5개 업무 역할, 하나의 기획안</h2><p>Agent는 역할·입력·도구·출력 규칙을 묶은 서버 코드입니다. 로컬 우선 모드의 실행 흐름을 보여 줍니다.</p></div></header>
-    <div className="agent-boundary"><b>OpenAI API ≠ 5개 Agent 전체</b><p>OpenAI는 허용된 공식 웹 조사와 독립 최종 검수를 담당합니다. Qwen은 후보 비교·로컬 검수, Gemma는 본문 작성·개정을 맡습니다. 실제 모델과 호출 여부는 AI Router 설정·캐시·agent_trace에 따라 달라집니다.</p></div>
+    <div className="agent-boundary"><b>OpenAI API ≠ 5개 Agent 전체</b><p>OpenAI는 허용된 공식 웹 조사와 독립 최종 검수를 담당합니다. 로컬우선(Gemma)은 비교·작성·로컬 검수를 Gemma가 맡고, 기존 로컬 우선은 Qwen·Gemma가 역할을 나눕니다. 실제 모델과 호출 여부는 AI Router 설정·캐시·agent_trace에 따라 달라집니다.</p></div>
     <div className="agent-input-row"><span><Database size={15} />공식 관측값</span><span><BrainCircuit size={15} />ML 전망</span><span><Box size={15} />RAG·공식 웹</span><span><Braces size={15} />사용자 조건</span></div>
     <ArrowDown className="agent-down" size={18} />
     <div className="agent-parallel"><p>병렬 조사</p>{coreAgents.slice(0, 2).map(([name, [number, title, role]]) => <article key={name}><i>{number}</i><div><h3>{title}</h3><b>{name}</b><p>{role}</p></div></article>)}</div>
     <ArrowDown className="agent-down" size={18} />
     <div className="agent-sequence">{laterAgents.map(([name, [number, title, role]], index) => <div key={name}><article><i>{number}</i><div><h3>{title}</h3><b>{name}</b><p>{role}</p></div></article>{index < laterAgents.length - 1 && <ArrowRight size={17} />}</div>)}</div>
-    <div className="agent-boundary"><b>검수 뒤의 분기</b><p>코드 검사 + Qwen 검수 → 지적이 있으면 Gemma 개정·재검수 → 로컬 통과본은 OpenAI 독립 최종 검수. 검수 미달을 통과로 바꾸지 않으며, 표시 가능한 제안과 내부 승인 상태는 구분합니다.</p></div>
+    <div className="agent-boundary"><b>검수 뒤의 분기</b><p>코드 검사 + 선택된 로컬 모델 검수 → 지적이 있으면 작성 모델의 개정·재검수 → 로컬 통과본은 OpenAI 독립 최종 검수. 검수 미달을 통과로 바꾸지 않으며, 표시 가능한 제안과 내부 승인 상태는 구분합니다.</p></div>
     <div className="agent-output"><PackageCheck size={18} /><div><b>구조화 기획안 JSON</b><span>화면 미리보기 → MySQL 저장 → Word/PPT 출력</span></div></div>
     <div className="agent-contracts">{coreAgents.map(([name, [number, title]]) => {
       const agent = agents.find((item) => item.name === name)
@@ -122,14 +122,14 @@ function TechnicalIndex({ topic, catalog }) {
 }
 
 /** OpenAI·React 페이지가 공유하는 오른쪽 학습 챗봇입니다. */
-export function ProjectTutor({ topic }) {
+export function ProjectTutor({ topic, checkConnection = true }) {
   const [messages, setMessages] = useState([])
   const [question, setQuestion] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const endRef = useRef(null)
-  const { assistantStatus, markActive, markInactive } = useLearningAssistantStatus()
-  const statusLabel = assistantStatus.status === 'active' ? 'Active' : assistantStatus.status === 'inactive' ? 'Inactive' : 'Checking'
+  const { assistantStatus, markActive, markInactive } = useLearningAssistantStatus(checkConnection)
+  const statusLabel = assistantStatus.status === 'active' ? 'Active' : assistantStatus.status === 'inactive' ? 'Inactive' : assistantStatus.status === 'unchecked' ? '미확인' : 'Checking'
   useEffect(() => { endRef.current?.scrollIntoView({ block: 'nearest' }) }, [messages, busy])
   const send = async (text) => {
     const value = String(text || '').trim()
