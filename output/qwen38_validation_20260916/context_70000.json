@@ -1,0 +1,31 @@
+{
+  "model": "qwen3.8:27b",
+  "requested_context": 70000,
+  "elapsed_seconds": 16.6,
+  "prompt_tokens": 15,
+  "output_tokens": 3,
+  "loaded": {
+    "models": [
+      {
+        "name": "qwen3.8:27b",
+        "model": "qwen3.8:27b",
+        "size": 20405918101,
+        "digest": "22130167c4c20e20c7b71454612966ca8e8171e9b3cc8ab6ce8aa6cbfec79643",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "27.3B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-09-16T19:04:41.5408672+09:00",
+        "size_vram": 10012023847,
+        "context_length": 70000
+      }
+    ]
+  },
+  "paid_calls": 0
+}

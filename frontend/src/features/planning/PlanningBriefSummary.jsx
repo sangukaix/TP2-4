@@ -13,7 +13,7 @@ export default function PlanningBriefSummary({ brief, regionName, compact = fals
     <dl>
       {guided && <div><dt>사업 방향</dt><dd>{BUSINESS_DIRECTIONS.find(([key]) => key === brief.business_direction)?.[1]}</dd></div>}
       <div><dt>예산</dt><dd>{briefBudget(brief)}<small>{guided ? '견적 예시 · 실행 가능성 보장 아님' : brief.budget_status === 'indicative' ? '희망 예산' : 'AI가 사업 규모 제안'}</small></dd></div>
-      <div><dt>{choices ? '사업기간' : '일정'}</dt><dd>{briefPeriod(brief)}<small>{choices ? '한국 시간 · 다음 달부터 3개월' : brief.input_profile === 'guided_v1' ? '준비·운영·평가를 포함한 시범 기간' : brief.schedule_status === 'fixed' ? '반드시 지킬 일정' : brief.schedule_status === 'flexible' ? '조정 가능한 일정' : '지역 특성과 계절을 함께 검토'}</small></dd></div>
+      <div><dt>{choices ? '사업기간' : '일정'}</dt><dd>{briefPeriod(brief)}<small>{choices ? '한국 시간 · 15일까지 다음 달, 16일부터 다다음 달 시작 · 3개월' : brief.input_profile === 'guided_v1' ? '준비·운영·평가를 포함한 시범 기간' : brief.schedule_status === 'fixed' ? '반드시 지킬 일정' : brief.schedule_status === 'flexible' ? '조정 가능한 일정' : '지역 특성과 계절을 함께 검토'}</small></dd></div>
       <div><dt>시설 · 인력</dt><dd>{choices ? optionLabels(RESOURCE_OPTIONS, brief.resource_options) || '선택하지 않음' : brief.resources_status === 'unknown' ? '미정 · AI가 기반 제안' : brief.resources_confirmed || '입력하지 않음'}</dd></div>
       {!choices && <div><dt>제외 조건</dt><dd>{brief.input_profile === 'guided_v1' ? EXCLUDED_OPERATIONS.filter(([key]) => brief.excluded_operations?.includes(key)).map(([, label]) => label).join(' · ') || '없음' : brief.hard_constraints || '미정'}</dd></div>}
       {brief.preferences && <div><dt>참고 선호</dt><dd>{brief.preferences}</dd></div>}

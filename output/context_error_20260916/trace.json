@@ -1,0 +1,224 @@
+{
+  "events": [
+    {
+      "recorded_at": "2026-09-16T07:53:44.237788+00:00",
+      "agent": "transferability",
+      "stage": "transferability",
+      "status": "failed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 5525,
+      "usage": {},
+      "fallback": false,
+      "fallback_reason": "OLLAMA_CONTEXT_BUDGET_EXCEEDED",
+      "error_code": "OLLAMA_CONTEXT_BUDGET_EXCEEDED",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "failed",
+          "error_code": "OLLAMA_CONTEXT_BUDGET_EXCEEDED",
+          "usage_reported": false,
+          "usage": {}
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        }
+      ],
+      "max_output_tokens": 8000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-16T07:53:38.703310+00:00",
+      "agent": "case_scout",
+      "stage": "case_study",
+      "status": "completed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-sol",
+      "duration_ms": 130129,
+      "usage": {
+        "input_tokens": 97217,
+        "output_tokens": 7779,
+        "total_tokens": 104996,
+        "cached_tokens": 0,
+        "reasoning_tokens": 3151
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": true,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 16000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 97217,
+            "output_tokens": 7779,
+            "total_tokens": 104996,
+            "cached_tokens": 0,
+            "reasoning_tokens": 3151
+          },
+          "usage_reported": true,
+          "duration_ms": 130123,
+          "web_grounding": {
+            "searched": true,
+            "accepted_cases": 4,
+            "rejected_cases": []
+          }
+        }
+      ],
+      "tool_trace": [],
+      "input_preparation": {},
+      "max_output_tokens": 16000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-16T07:52:18.260531+00:00",
+      "agent": "evidence",
+      "stage": "evidence",
+      "status": "failed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-terra",
+      "duration_ms": 47748,
+      "usage": {
+        "input_tokens": 36182,
+        "output_tokens": 3634,
+        "total_tokens": 39816,
+        "cached_tokens": 0,
+        "reasoning_tokens": 676
+      },
+      "fallback": false,
+      "fallback_reason": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "error_code": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 10000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 36182,
+            "output_tokens": 3634,
+            "total_tokens": 39816,
+            "cached_tokens": 0,
+            "reasoning_tokens": 676
+          },
+          "usage_reported": true,
+          "duration_ms": 47746
+        }
+      ],
+      "tool_trace": [],
+      "max_output_tokens": 10000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    }
+  ],
+  "usage": {
+    "tracked_calls": 3,
+    "total_tokens": 144812,
+    "usage_unknown_attempts": 1,
+    "note": "현재 프로세스에서 API가 보고한 성공·실패·재시도 토큰 합계입니다. 사용량 미확인 호출은 포함되지 않아 실제 청구량과 다를 수 있습니다."
+  }
+}

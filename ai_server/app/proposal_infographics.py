@@ -113,7 +113,7 @@ def ml_to_plan(slide, report):
     def provider(agent,fallback):
         rows=[r for r in trace if r.get('agent')==agent and r.get('status')=='completed' and r.get('provider')]
         raw=rows[-1]['provider'] if rows else ''
-        return {'openai':'OpenAI','qwen':'Qwen','gemma':'Gemma','ollama':'로컬 LLM'}.get(raw,fallback)
+        return {'openai':'OpenAI','qwen':'AI','gemma':'AI','ollama':'로컬 LLM'}.get(raw,fallback)
     case_provider=provider('case_scout','저장 근거')
     # Lines are behind the icons and labels; orthogonal forks show parallel work.
     route(slide,'start-to-fork',[(258,454),(283,454)],head=False)
@@ -122,7 +122,7 @@ def ml_to_plan(slide, report):
     route(slide,'join-evidence',[(600,354),(622,354),(622,454)],head=False)
     route(slide,'join-case',[(600,554),(622,554),(622,454)],head=False)
     route(slide,'join-compare',[(622,454),(651,454)])
-    for i,(a,z) in enumerate([(830,874),(1052,1096),(1274,1340)]):route(slide,f'pipeline-next-{i}',[(a,454),(z,454)])
+    for i,(a,z) in enumerate([(832,874),(1054,1096),(1276,1340)]):route(slide,f'pipeline-next-{i}',[(a,454),(z,454)])
     rect(slide,'research-background',310,278,290,363,PALE)
     for i,(name,kind,title,subtitle) in enumerate([
         ('evidence','map-pinned','① 지역 근거 정리','SQL · 공식 관광자료'),
@@ -137,10 +137,10 @@ def ml_to_plan(slide, report):
             (874,'notebook-pen','④ 본문 작성',provider('planner','작성 모델'),'선정 근거로\n실행 계획 작성'),
             (1096,'shield-check','⑤ 품질 검수',provider('reviewer','검수 모델'),'수치·출처와\n본문 연결 확인')]
     for x,kind,title,model,body in stages:
-        centered_copy(slide,f'pipeline-model-{x}',model,x,308,178,48,27,BLUE,True)
+        centered_copy(slide,f'pipeline-model-{x}',model,x+10,308,158,48,27,BLUE,True)
         icon(slide,f'pipeline-icon-{x}',kind,x+49,389,80)
-        centered_copy(slide,f'pipeline-title-{x}',title,x-5,496,188,48,25,BLUE,True)
-        centered_copy(slide,f'pipeline-body-{x}',body,x-5,554,188,77,22,SLATE)
+        centered_copy(slide,f'pipeline-title-{x}',title,x+9,496,160,48,25,BLUE,True)
+        centered_copy(slide,f'pipeline-body-{x}',body,x+9,554,160,77,22,SLATE)
     icon(slide,'pipeline-output-icon','files',1372,389,76)
     centered_copy(slide,'pipeline-output-title','저장·출력',1340,496,154,48,25,BLUE,True)
     centered_copy(slide,'pipeline-output-body','웹\nPPT · Word',1340,554,154,77,22,SLATE)

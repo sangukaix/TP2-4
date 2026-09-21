@@ -1,0 +1,35 @@
+{
+  "changed_slides": [
+    4,
+    5,
+    7,
+    8,
+    15
+  ],
+  "charts_tables_unchanged": true,
+  "official_api_example_photos": [
+    {
+      "source_id": "tour-api:130461",
+      "source_type": "open_api",
+      "title": "국립제주박물관",
+      "content_id": "130461",
+      "content_type_id": "14",
+      "address": "제주특별자치도 제주시 일주동로 17 (건입동)",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "image_url": "https://tong.visitkorea.or.kr/cms/resource/63/3562163_image2_1.jpg"
+    },
+    {
+      "source_id": "tour-api:128641",
+      "source_type": "open_api",
+      "title": "제주목 관아",
+      "content_id": "128641",
+      "content_type_id": "12",
+      "address": "제주특별자치도 제주시 관덕로 25",
+      "source_url": "https://apis.data.go.kr/B551011/KorService2",
+      "image_url": "https://tong.visitkorea.or.kr/cms/resource/65/4074265_image2_1.jpg"
+    }
+  ],
+  "last_caption_matches_cover": true,
+  "photo_table_gap_checked": true,
+  "PowerPoint_render_review": true
+}

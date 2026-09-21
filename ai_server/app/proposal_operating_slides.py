@@ -37,33 +37,21 @@ def operating_page(slide, plan, report=None):
         x=106+i*355
         panel=rect(slide,f'capacity-stage-{i}',x,277,325,247,WHITE);rounded(panel)
         icon(slide,f'capacity-icon-{i}',symbol,x+22,295,46)
-        text(slide,f'capacity-label-{i}',label,x+81,305,228,39,24,DARK,True)
-        text(slide,f'capacity-value-{i}',value,x+20,369,289,62,33,color,True)
-        text(slide,f'capacity-detail-{i}',detail,x+20,446,289,61,20,MUTED)
+        text(slide,f'capacity-label-{i}',label,x+81,305,228,39,21,DARK,True)
+        text(slide,f'capacity-value-{i}',value,x+20,369,289,62,28,color,True)
+        text(slide,f'capacity-detail-{i}',detail,x+20,446,289,61,18,MUTED)
         if i<3:route(slide,f'capacity-arrow-{i}',[(x+329,393),(x+352,393)])
     panel=rect(slide,'capacity-formula-panel',106,550,1388,128,WHITE);rounded(panel)
     text(slide,'capacity-formula-label','운영량 계산',127,568,250,40,25,JADE,True)
-    text(slide,'capacity-formula',plan['capacity_formula'],385,567,1080,48,27,DARK,True)
-    text(slide,'capacity-limit',f"{plan.get('operating_period', plan['forecast_period'])} 운영 · 예상 견적 {amount(plan['estimate']['total_krw'])}",385,620,1080,38,23,MUTED)
+    text(slide,'capacity-formula',plan['capacity_formula'],385,567,1080,48,24,DARK,True)
+    text(slide,'capacity-limit',f"{plan.get('operating_period', plan['forecast_period'])} 운영 · 예상 견적 {amount(plan['estimate']['total_krw'])}",385,620,1080,38,21,MUTED)
     if plan.get('status')=='budget_below_operating_floor':
         get(slide,'capacity-limit').text=f"기본 운영비 가정 {amount(plan['minimum_operating_budget_krw'])} · 입력 예산 내 현재 운영안 미편성"
-    from .proposal_case_outcomes import report_outcome
-    case=next(iter(plan['case_sources']),{})
-    outcome=report_outcome(report) if report else None
-    comparison='공식 사례의 운영 방식을 참고하며, 발표 실적을 우리 지역 정원으로 환산하지 않습니다.'
-    source_url=case.get('source_url')
-    if outcome:
-        delta=outcome['after']-outcome['before']
-        comparison=(f"{outcome['title']}: {outcome['metric']} {outcome['before']:,} → "
-                    f"{outcome['after']:,}명, 차이 {delta:+,}명. 우리 지역 운영 정원과 집계 기준이 다릅니다.")
-        source_url=outcome['references'][1 if len(outcome['references'])>1 else 0][1]
-    text(slide,'capacity-case','사례와의 차이',106,700,230,36,23,JADE,True)
-    copy=text(slide,'capacity-case-name',comparison,350,700,1144,62,21,DARK)
-    if source_url:copy.click_action.hyperlink.address=source_url
     region=(report or {}).get('region_name') or '선택 지역'
-    rule=(f"{region}: 월평균 ML 방문 {plan['mean_monthly_visitors']/10000:,.1f}만 명을 규모 입력으로 사용.\n"
-          f"거점은 √(월평균 방문 ÷ 10만)을 올려 1~12개로 제안한 뒤 예산을 반영합니다. 인구 보정·학습 모델의 결과는 아닙니다.")
-    text(slide,'capacity-scale-rule',rule,106,767,1388,60,20,MUTED)
+    rule=(f"{region}의 월평균 방문 전망을 기준으로 {plan['sites']}개 운영 거점을 제안했습니다.\n"
+          f"위 식으로 계산한 {plan['funded_capacity']:,}명분 중 {c['utilization_pct']:g}%인 {c['participants']:,}명을 참여 목표로 잡았습니다.\n"
+          f"참여자 중 {c['additional_visitor_share_pct']:g}%가 사업 때문에 추가로 방문한다고 보고, {c['additional_visitors']:,}명을 추가 방문 목표로 계산했습니다.")
+    text(slide,'capacity-scale-rule',rule,106,708,1388,104,21,MUTED)
     label=plan.get('participation_basis','참여 목표의 비율과 운영 정원을 함께 적용합니다.')
     disclosure=text(slide,'capacity-disclosure',label,
          106,832,1388,57,19,MUTED)
@@ -77,7 +65,7 @@ def scenario_chart(slide,name,x,key,color,money=False):
     divisor=10000 if money else 1
     # The chart is shown in whole 만원; retain two decimal places in its editable
     # workbook to avoid binary-float/cache discrepancies. Full won values stay in notes.
-    data.add_series('계획 시나리오',[round(s[metric]/divisor,2) for s in plan['scenarios']])
+    data.add_series('월별 추가 목표',[round(s[metric]/divisor,2) for s in plan['scenarios']])
     obj=slide.shapes.add_chart(XL_CHART_TYPE.COLUMN_CLUSTERED,round(x*EMU),round(351*EMU),round(652*EMU),round(300*EMU),data)
     obj.name=name
     chart=obj.chart;chart.has_legend=False;chart.has_title=False
@@ -89,7 +77,7 @@ def scenario_chart(slide,name,x,key,color,money=False):
     chart.value_axis.major_gridlines.format.line.color.rgb=RGBColor.from_string('DEE4E8')
     series=chart.series[0]
     for i,point in enumerate(series.points):
-        point.format.fill.solid();point.format.fill.fore_color.rgb=RGBColor.from_string(color if i==1 else 'B9C9D4')
+        point.format.fill.solid();point.format.fill.fore_color.rgb=RGBColor.from_string(color)
         point.format.line.fill.background()
     chart.plots[0].has_data_labels=True
     labels=chart.plots[0].data_labels;labels.position=XL_LABEL_POSITION.OUTSIDE_END
@@ -99,21 +87,32 @@ def scenario_chart(slide,name,x,key,color,money=False):
     return obj
 
 
-def scenario_page(slide,plan):
-    title(slide,'2.4 기대 변화의 시나리오','같은 운영량에서 이용률과 추가 방문 비중을 달리한 계획 범위')
-    for i,(label,metric,color,money) in enumerate([('추가 방문 목표 · 명','additional_visitors',OCEAN,False),
-                                                   ('추가 소비 목표 · 만 원','additional_spending_krw',JADE,True)]):
+def scenario_page(slide,plan,report=None):
+    from .proposal_presentation_v4 import _scenario_for_display
+    strategy=((report or {}).get('strategies') or [{}])[0]
+    import re
+    full_name=str(strategy.get('title') or plan['program_label'])
+    quoted=re.search(r"['‘](.+?)['’]",full_name)
+    name=quoted.group(1) if quoted else full_name
+    if len(name)>32:name=str(plan['program_label'])
+    title(slide,'2.4 월별 방문·소비 증가 목표',f'‘{name}’으로 인한 방문자 및 소비액 증가 목표')
+    scenario,_=_scenario_for_display(report or {})
+    monthly=[]
+    if scenario:
+        for i,month in enumerate(scenario['categories']):
+            monthly.append({'label':month,
+                'additional_visitors':scenario['target_visitors'][i]-scenario['baseline_visitors'][i],
+                'additional_spending_krw':scenario['target_spending'][i]-scenario['baseline_spending'][i]})
+    chart_plan={'scenarios':monthly}
+    for i,(label,metric,color,money) in enumerate([('추가 방문 목표 · 명','additional_visitors',OCEAN,False),('추가 소비 목표 · 만 원','additional_spending_krw',JADE,True)]):
         x=106+i*714
-        panel=rect(slide,f'scenario-panel-{i}',x,270,674,434,WHITE);rounded(panel)
-        text(slide,f'scenario-label-{i}',label,x+24,289,626,47,29,color,True)
-        scenario_chart(slide,f'operating-scenario-chart-{i}',x+10,(plan,metric),color,money)
-        c=plan['central'];pct=c['spending_growth_pct' if money else 'visitor_growth_pct']
-        text(slide,f'scenario-growth-{i}',f"기준 시나리오 · 기간 합계 ML 전망 대비 +{pct:.2f}%",x+24,653,626,40,22,color,True)
-    rates=' / '.join(f"{s['label']} {s['utilization_pct']:g}%·{s['additional_visitor_share_pct']:g}%" for s in plan['scenarios'])
-    text(slide,'scenario-rates','이용률·추가 방문 비중  '+rates,106,730,1388,45,23,DARK)
-    formula=plan['spending_formula']
-    text(slide,'scenario-consumption-formula',formula,106,780,1388,48,21,MUTED)
-    text(slide,'scenario-disclaimer','계획 가정을 바꾼 범위이며 통계적 신뢰구간이 아닙니다. 소비/방문 비율은 실측 객단가가 아니며 사업 효과는 사후 확인합니다.',106,845,1388,42,18,MUTED)
+        panel=rect(slide,f'scenario-panel-{i}',x,290,674,434,WHITE);rounded(panel)
+        text(slide,f'scenario-label-{i}',label,x+24,302,626,47,29,color,True)
+        if monthly:scenario_chart(slide,f'operating-scenario-chart-{i}',x+10,(chart_plan,metric),color,money)
+        total=sum(row[metric] for row in monthly)
+        value=amount(total) if money else f'{total:,.0f}명'
+        text(slide,f'scenario-growth-{i}',f'3개월 추가 목표 합계 · {value}',x+24,674,626,40,24,color,True)
+    text(slide,'scenario-disclaimer','기준 전망에 더하는 월별 계획 목표입니다. 준비월은 추가 목표를 배분하지 않으며, 실제 효과는 사업 후 확인합니다.',106,800,1388,65,21,MUTED)
 
 
 def append_operating_pages(prs,report):
@@ -124,7 +123,7 @@ def append_operating_pages(prs,report):
     for offset,draw in enumerate((operating_page,scenario_page),1):
         slide=prs.slides.add_slide(prs.slides[-1].slide_layout)
         if draw is operating_page:draw(slide,plan,report)
-        else:draw(slide,plan)
+        else:draw(slide,plan,report)
         if basis.get('target_mode')=='user' or (report.get('reference_estimate') or {}).get('user_adjusted'):
             text(slide,'manual-target-notice','사용자 지정 목표·견적과 별도로 계산한 운영 참고안입니다.',106,237,1388,29,18,RED)
         slide.notes_slide.notes_text_frame.text=json.dumps(plan,ensure_ascii=False,indent=2)

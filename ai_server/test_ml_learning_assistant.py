@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import unittest
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, Mock, patch
+from types import SimpleNamespace
 
 from fastapi.testclient import TestClient
 
@@ -41,6 +42,9 @@ class MlLearningAssistantTest(unittest.IsolatedAsyncioTestCase):
 class MlLearningAssistantApiTest(unittest.TestCase):
     def setUp(self) -> None:
         # TestClient startup must never resume the developer's live MySQL jobs.
+        region = Mock(region_code='11680', status='available')
+        region.model_dump.return_value = {'region_code': '11680', 'modules': []}
+        self.catalog = self.enterContext(patch('ai_server.app.main.build_ml_learning_catalog', return_value=SimpleNamespace(regions=[region])))
         self.enterContext(patch('ai_server.app.main.initialize_strategy_store'))
         self.enterContext(patch('ai_server.app.main.list_interrupted_strategy_jobs', return_value=[]))
 
@@ -50,6 +54,7 @@ class MlLearningAssistantApiTest(unittest.TestCase):
             response = client.post('/ai/v1/ml/learning/11680/assistant', json={'question': 'MAE가 뭐야?'})
         self.assertEqual(response.status_code, 503)
         self.assertEqual(response.json()['detail']['code'], 'OPENAI_KEY_MISSING')
+        self.catalog.assert_not_called()
 
     def test_api_returns_structured_ml_answer(self) -> None:
         """선택 지역의 등록 모델이 있을 때 구조화된 학습 답변을 반환합니다."""

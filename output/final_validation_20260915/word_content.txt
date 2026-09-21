@@ -1,0 +1,387 @@
+제주특별자치도 제주시
+제주시 야간 문화유산 및 시설 개방 프로그램
+관광 전략기획안
+사업기간  26.10 ~ 26.12
+핵심 제안
+제주시의 방문자 감소와 낮은 숙박 비율을 개선하기 위해 기존 문화유산 및 시설을 활용한 야간 개방·체험 프로그램을 확대합니다. 이를 통해 야간 체류를 유도하고 지역 내 소비 활성화를 도모합니다.
+사업의 목표
+
+목표는 월별 ML 기준 전망에 계획 증가율을 적용한 값입니다. 방문 합계는 월간 순 방문 수의 합계이며, 3개월 동안 중복을 제거한 인원이 아닙니다.
+제안의 방향
+방문자 수 감소 및 낮은 숙박 비율을 개선하기 위한 야간 관광 콘텐츠 부족
+제주시 내 박물관, 공연장, 문화유산 등 기존 시설을 활용하여 야간 개방 및 체험 프로그램을 확대 운영
+문서 구성
+01 전망과 목표  ·  02 지역별 참고 사례  ·  03 지역 적용
+04 실행 가이드  ·  05 견적  ·  06 산출 근거  ·  07 데이터 활용  ·  출처
+01  머신러닝 전망과 목표 KPI
+방문자 수
+
+
+수치 해석과 계산 기준
+202401~202606 월별 데이터에서 1·3·12개월 전 값과 계절 정보를 구성합니다. 방문은 랜덤 포레스트, 소비는 선형 회귀로 산출합니다. 전년 동월 기준모델이 선택된 지표는 해당 월의 전년 값을 사용합니다. 최신 관측월 이후를 순차 계산한 뒤 사업기간의 3개월을 표시합니다.
+월별 목표 = 월별 기준 전망 × (1 + 최종월 목표율 × 경과월/전체월). 합계 증가율은 월별 목표 합계 ÷ 기준 전망 합계 − 1로 계산합니다.
+소비액 표시는 억 원 단위 소수 둘째 자리로 반올림합니다. 합계와 증가율은 반올림 전 값으로 계산합니다. 방문 합계는 3개월 고유 인원이 아닌 월간 순 방문 수의 합계입니다.
+01  머신러닝 전망과 목표 KPI 계속
+관광소비액
+
+
+수치 해석과 계산 기준
+202401~202606 월별 데이터에서 1·3·12개월 전 값과 계절 정보를 구성합니다. 방문은 랜덤 포레스트, 소비는 선형 회귀로 산출합니다. 전년 동월 기준모델이 선택된 지표는 해당 월의 전년 값을 사용합니다. 최신 관측월 이후를 순차 계산한 뒤 사업기간의 3개월을 표시합니다.
+월별 목표 = 월별 기준 전망 × (1 + 최종월 목표율 × 경과월/전체월). 합계 증가율은 월별 목표 합계 ÷ 기준 전망 합계 − 1로 계산합니다.
+소비액 표시는 억 원 단위 소수 둘째 자리로 반올림합니다. 합계와 증가율은 반올림 전 값으로 계산합니다. 방문 합계는 3개월 고유 인원이 아닌 월간 순 방문 수의 합계입니다.
+02  지역별 참고 사례
+공식 문서에서 사업의 실제 운영 방식이 연결되는 사례를 참고합니다. 아래 구분은 선정 사업의 근거와 추가 참고 사례의 역할을 나타냅니다.
+01  서울특별시 문화유산 집적지역  기존 문화유산을 활용한 야간 개방·체험 프로그램
+핵심 운영 참고
+문화유산이 모인 거점을 중심으로 야간 개방, 해설, 공연과 체험프로그램을 구성하고 국비와 지방비를 결합해 운영했다.
+
+유사 사업 참고 · 전남 여수시 야경 · 문화체육관광부 코리아넷 (2024)
+https://www.korean-culture.org/koreanet/view.do?seq=1047457
+사업 원문  https://culture.seoul.go.kr/culture/cmmn/file/fileDown.do?atchFileId=c4638ecc9ce84bba9e51ecc2e11293e2&bbsId=&fileSn=2&menuNo=200050
+02  전라남도 강진군  반값여행 지역환급
+후보 비교에 사용한 사례
+여행자가 지역에서 지출한 비용의 일부를 지역상품권으로 돌려받게 하여 혜택이 다시 지역 상점에서 사용되도록 설계
+
+강진군 · 반값여행 공식 홍보물 · 강진 반값여행 공식 홈페이지
+https://www.gangjintour.com/
+사업 원문  https://jnfarm.jeonnam.go.kr/board/FARM_BOARD_008/boardView.do?bdId=BD_00000000000011721&menuCd=farm004002
+03  전국 인구감소지역 34곳  디지털 관광주민증과 교통·숙박·상점 할인 결합
+후보 비교에 사용한 사례
+디지털 관광주민증 참여업체 현장 인증과 숙박·식음·관람·체험 할인, 특정 시간대 KTX 할인과 방문 후 교통 할인권을 결합
+
+전국 · 디지털 관광주민증 홍보물 · 대한민국 정책브리핑 (2025)
+https://www.korea.kr/news/policyNewsView.do?newsId=148947084
+사업 원문  https://mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%280514%29%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-6%EC%9B%94_%EC%97%AC%ED%96%89%EA%B0%80%EB%8A%94_%EB%8B%AC_%EC%B6%94%EC%A7%84.pdf&pPath=0302000000&pRealName=20240514083202149235802932_PRESS20240514083202456506.pdf
+03  사례 선정과 지역 적용
+사업의 이용 흐름
+문화유산이 모인 거점을 중심으로 야간 개방, 해설, 공연과 체험프로그램을 구성하고 국비와 지방비를 결합해 운영했다.
+결제·혜택·재이용 또는 예약·체류 등 실제 이용 흐름이 같은 사례를 연결합니다.
+선택 지역의 소비와 체류
+
+지역 소비·체류 지표를 보고 참여 업종과 이용 대상을 정합니다.
+운영 규모
+사업기간 추가 방문 목표 348,601명 × 시범 담당 비중 1% → 3,487건(올림). 1%는 직접 운영할 참여량 배분 가정이며 전환율 예측이 아닙니다.
+사례에서 우리 지역의 제안으로
+제주시 내 박물관, 공연장, 문화유산 등 기존 시설을 활용하여 야간 개방 및 체험 프로그램을 확대 운영
+선정 판단
+서울특별시 문화유산 집적지역의 야간 개방 사례를 참고하되, 제주시의 항공·렌터카 중심 이동 환경과 가을·겨울철 기상 변수를 고려하여 프로그램을 조정함
+연결 근거  2024년 문화재야행 사업 예산 확정자료
+04  4단계 실행 가이드 예시안
+01  준비와 협의
+2026-10  |  사업 총괄
+함께 운영할 곳과 업무 범위를 정합니다.
+계획에 나온 참여처와 운영 가능 시간을 확인합니다. 누가 이용자를 안내하고 문의에 답할지 정한 뒤, 신청 대상과 이용 조건을 하나의 안내문으로 정리합니다.
+02  운영 절차 점검
+2026-10  |  운영·정산 담당
+이용자 입장에서 전 과정을 시험합니다.
+안내를 보고 신청한 뒤 현장에서 이용을 마칠 때까지 직접 따라가 봅니다. 예약이 안 되거나 취소가 생겼을 때의 처리 방법을 정하고 담당자에게 공유합니다.
+03  시범 운영
+2026-11 ~ 2026-12  |  현장 운영 담당
+제한된 범위에서 먼저 운영합니다.
+협의된 참여처와 시간대로 시작합니다. 현장 담당자가 안내와 안전 상태를 확인하고, 매일 신청 수와 실제 이용 수를 기록합니다. 반복되는 문의는 안내문에 반영합니다.
+04  실적 확인과 평가
+2026-12  |  사업·평가 담당
+이용 실적과 비용을 함께 정리합니다.
+매주 이용 기록과 지출 내역을 확인하고 불편이 생긴 원인을 정리합니다. 종료 후 같은 기준의 운영 전 자료와 비교하되, 계절 변화와 사업 효과를 구분해 보고합니다.
+일정은 저장 기획안, 업무 설명은 사업 유형별 운영 안내 함수를 사용한 실행 예시입니다. 담당 역할과 운영 조건은 협의해 조정할 수 있습니다.
+05  견적 예시안
+총 79,057,000원
+예상 견적이며 실제 액수와 다를 수 있습니다.
+
+규모를 정한 기준
+사업기간 추가 방문 목표 348,601명 × 시범 담당 비중 1% → 3,487건(올림). 1%는 직접 운영할 참여량 배분 가정이며 전환율 예측이 아닙니다.
+직접비 = 참여 혜택 + 운영·정산 + 시스템 + 홍보 + 평가. 예비비 = 직접비 × 10%. 단가와 처리량은 기획 가정입니다.
+전 항목은 기획용 가정 단가이며 확정 견적·공식 표준단가가 아닙니다.
+인력 15만원/인일은 현장 용역 예산 가정입니다. 근로계약 임금 산정값이 아닙니다.
+시스템은 기존 신청·정산 수단의 설정·운영 범위입니다. 신규 앱·키오스크 구축비는 제외합니다.
+용역비는 세금 포함 예산 한도로 가정합니다. 환급금 과세·수수료·계약조건은 착수 전 확인합니다.
+지원 건수·평균 지원액·80% 후속 사용 목표는 운영 제안이며 관측값 또는 ML 산출값이 아닙니다.
+06  전망에서 목표와 견적까지
+1  월별 기준 전망을 계산합니다
+202401~202606 월별 데이터에서 1·3·12개월 전 값과 계절 정보를 구성합니다. 방문은 랜덤 포레스트, 소비는 선형 회귀로 산출합니다. 전년 동월 기준모델이 선택된 지표는 해당 월의 전년 값을 사용합니다. 최신 관측월 이후를 순차 계산한 뒤 사업기간의 3개월을 표시합니다.
+2  사례와 계획 목표의 관계를 설명합니다
+선정 사례의 운영 방식을 참고하여 최종월 방문·소비 +5%를 초기 계획 목표로 제안한다. 이 비율은 사례의 검증된 효과율이나 ML 결과가 아니라 조정 가능한 기획 가정이다. 방문 수가 0보다 큰 월은 ML 소비액÷ML 방문 수를 추가 방문 수에 곱한다. 같은 월의 두 증가율은 같으며, 이 비율은 실제 1인당 소비액이 아니다.
+3  월별 목표와 추가 규모를 계산합니다
+방문자 수: 기준 10,580,165명 → 목표 10,928,766명 (추가 348,601명, +3.29%)
+관광소비액: 기준 444,918,852,321원 → 목표 459,731,140,176원 (추가 14,812,287,855원, +3.33%)
+월별 목표 = 월별 기준 전망 × (1 + 최종월 목표율 × 경과월/전체월). 합계 증가율 = (월별 목표 합계 ÷ 월별 기준 합계 − 1) × 100. 방문 합계는 월간 순 방문 수의 합계로, 3개월 고유 인원과 다릅니다.
+4  참여량과 운영비를 편성합니다
+사업기간 추가 방문 목표 348,601명 × 시범 담당 비중 1% → 3,487건(올림). 1%는 직접 운영할 참여량 배분 가정이며 전환율 예측이 아닙니다.
+참여량·단가·운영 처리량은 기획 가정입니다. 운영 예산이 지역 전체 목표 증가를 발생시킨다는 인과 계산은 아닙니다.
+07  머신러닝 결과가 기획에 쓰이는 과정
+
+공식 근거에서 최종 기획까지
+저장된 공식 사례 6건 → 설계 후보 3개 → 참고 사례 3건 표시
+01  지역 데이터와 전망
+원자료의 관측값과 7개 지표 전망을 지역 기획 입력으로 구성합니다. 방문·소비는 수치 기준선이며 나머지는 조사와 설계 방향을 검토하는 진단 입력입니다.
+02  Qwen의 후보 비교
+공식 사례의 운영 방식과 지역 입력을 읽고 후보를 비교합니다. 함수가 사업 운영 방식과 맞는 공식 문서를 연결합니다. 7개 예측값으로 학습한 지역 추천 모델은 아닙니다.
+03  Gemma의 본문 작성
+선정 후보와 지역 수치·공식 근거를 바탕으로 사업 소개와 실행 내용을 작성합니다. 목표와 견적은 별도의 계획 가정과 Python 산식으로 구성합니다.
+04  검수와 문서 출력
+수치·출처·기간을 확인한 저장 보고서에서 PPT와 Word를 생성합니다. 문서 출력 과정에서 LLM을 새로 호출하거나 예측 모델을 다시 학습하지 않습니다.
+참고 자료와 출처
+저장 보고서의 전체 근거 목록입니다. 원자료·ML 전망·공식 사례를 구분하고 원문 주소와 문서 위치를 유지합니다.
+01  한국관광 데이터랩 · 제주특별자치도 제주시 순 방문자 수 및 숙박 비율 (이동통신 기반 외지인)
+dataset · dataset:50110:1
+https://datalab.visitkorea.or.kr/
+02  한국관광 데이터랩 · 제주특별자치도 제주시 월간 순 방문자 수 (이동통신 기반 외지인)
+dataset · dataset:50110:2
+https://datalab.visitkorea.or.kr/
+03  한국관광 데이터랩 · 제주특별자치도 제주시 관광소비 추이_외지인
+dataset · dataset:50110:3
+https://datalab.visitkorea.or.kr/
+04  한국관광 데이터랩 · 제주특별자치도 제주시 숙박방문자 비율 추이 (이동통신 기반 외지인)
+dataset · dataset:50110:4
+https://datalab.visitkorea.or.kr/
+05  한국관광 데이터랩 · 제주특별자치도 제주시 평균 숙박일 (이동통신 기반 외지인)
+dataset · dataset:50110:5
+https://datalab.visitkorea.or.kr/
+06  한국관광 데이터랩 · 제주특별자치도 제주시 내비게이션 목적지 유형별 검색량
+dataset · dataset:50110:6
+https://datalab.visitkorea.or.kr/
+07  한국관광 데이터랩 · 제주특별자치도 제주시 SNS 언급량
+dataset · dataset:50110:7
+https://datalab.visitkorea.or.kr/
+08  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/방문자/2026_01_06.zip
+nationwide_dataset · datalab:3ec866bde028:27b141591f10
+https://datalab.visitkorea.or.kr/
+09  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/숙박_체류시간/2026_01_06.zip
+nationwide_dataset · datalab:4833a91757b2:5c2efa032440
+https://datalab.visitkorea.or.kr/
+10  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/숙박_체류시간/2025_01_12.zip
+nationwide_dataset · datalab:5d9f73f9fe47:2904d99e7279
+https://datalab.visitkorea.or.kr/
+11  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/관광소비/2026_01_06.zip
+nationwide_dataset · datalab:95122c38b4fc:522e2d839300
+https://datalab.visitkorea.or.kr/
+12  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/방문자/2025_01_12.zip
+nationwide_dataset · datalab:d73227708014:f4517115deb9
+https://datalab.visitkorea.or.kr/
+13  한국관광 데이터랩 공식 다운로드 · 제주특별자치도_제주시/관광소비/2025_01_12.zip
+nationwide_dataset · datalab:f07ad8a73d99:ed1b998de1b3
+https://datalab.visitkorea.or.kr/
+14  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140607__202601-202606_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:23ea68053684:6bfbcf8aabf6
+https://datalab.visitkorea.or.kr/
+15  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141710_전국_202601-202606_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:98d4ae590d9a:3be52dd54323
+https://datalab.visitkorea.or.kr/
+16  한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820140046__202601-202606_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:367cd0294ec4:873930d645e5
+https://datalab.visitkorea.or.kr/
+17  한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140355__202601-202606_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:553a0dad4bb4:5a31355dffe8
+https://datalab.visitkorea.or.kr/
+18  한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820195507__202601-202606_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:a53dbe1c21df:77a052de41d5
+https://datalab.visitkorea.or.kr/
+19  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140614__202501-202512_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:823a38d1d61c:5385261d02e5
+https://datalab.visitkorea.or.kr/
+20  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141649_전국_202501-202512_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:2723bdb0d589:1666a34058ed
+https://datalab.visitkorea.or.kr/
+21  한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/내국인/지역별 관광지출액/20260820135957__202501-202512_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:83177a234971:c02cb7972e0f
+https://datalab.visitkorea.or.kr/
+22  한국관광 데이터랩 전국 빅데이터 다운로드 · 신용카드/외국인/지역별 관광지출액/20260820140409__202501-202512_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:58ded7732251:589c76395cbc
+https://datalab.visitkorea.or.kr/
+23  한국관광 데이터랩 전국 빅데이터 다운로드 · 네비게이션/지역별 검색건수/20260820132007__202501-202512_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:e28c947cb52f:bb4cb344a6ba
+https://datalab.visitkorea.or.kr/
+24  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/내국인/지역별 방문자수/20260820140624__202401-202412_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:8815bbb11a39:1a5988f5f8ec
+https://datalab.visitkorea.or.kr/
+25  한국관광 데이터랩 전국 빅데이터 다운로드 · 이동통신/외국인/20260820141639_전국_202401-202412_데이터랩_다운로드.zip
+nationwide_bigdata_dataset · team-bigdata:19fd67fbb73d:afa4f0f54a2f
+https://datalab.visitkorea.or.kr/
+26  한국관광 데이터랩 지역별 관광 현황 · 제주특별자치도 제주시 · 유입유출
+regional_tourism_status · regional-status:9ac27e83f27b:e998409010f6
+https://datalab.visitkorea.or.kr/
+27  한국관광 데이터랩 지역별 관광 현황 · 제주특별자치도 제주시 · 인기관광지
+regional_tourism_status · regional-status:daecd5ff8069:00c8b971be40
+https://datalab.visitkorea.or.kr/
+28  한국관광 데이터랩 지역별 관광 현황 · 제주특별자치도 제주시 · 지역집중률
+regional_tourism_status · regional-status:dd0eaa9c763f:3aadcdcac2c5
+https://datalab.visitkorea.or.kr/
+29  지역 관광수요 ML 전망 · 공식 관측값 아님
+model_forecast · ml:50110:regional-demand-v3.1:202606
+30  가는곶 세화
+open_api · tour-api:2850913
+https://apis.data.go.kr/B551011/KorService2
+31  가마오름
+open_api · tour-api:1884191
+https://apis.data.go.kr/B551011/KorService2
+32  가새기오름
+open_api · tour-api:1884521
+https://apis.data.go.kr/B551011/KorService2
+33  가시어멍김밥
+open_api · tour-api:2837181
+https://apis.data.go.kr/B551011/KorService2
+34  갈치공장
+open_api · tour-api:2853435
+https://apis.data.go.kr/B551011/KorService2
+35  개오리오름
+open_api · tour-api:1889809
+https://apis.data.go.kr/B551011/KorService2
+36  거슨새미오름
+open_api · tour-api:1918646
+https://apis.data.go.kr/B551011/KorService2
+37  경성수산
+open_api · tour-api:2870515
+https://apis.data.go.kr/B551011/KorService2
+38  고내포구
+open_api · tour-api:2791433
+https://apis.data.go.kr/B551011/KorService2
+39  고사리커피
+open_api · tour-api:2863927
+https://apis.data.go.kr/B551011/KorService2
+40  고스트타운
+open_api · tour-api:2759120
+https://apis.data.go.kr/B551011/KorService2
+41  고이정
+open_api · tour-api:2759061
+https://apis.data.go.kr/B551011/KorService2
+42  고토커피바
+open_api · tour-api:2863913
+https://apis.data.go.kr/B551011/KorService2
+43  골목식당
+open_api · tour-api:2857289
+https://apis.data.go.kr/B551011/KorService2
+44  골목카페옥수
+open_api · tour-api:2852311
+https://apis.data.go.kr/B551011/KorService2
+45  골체오름캠핑
+open_api · tour-api:2739395
+https://apis.data.go.kr/B551011/KorService2
+46  곰막식당/곰막
+open_api · tour-api:2759096
+https://apis.data.go.kr/B551011/KorService2
+47  곽지해수욕장
+open_api · tour-api:127870
+https://apis.data.go.kr/B551011/KorService2
+48  괴오름
+open_api · tour-api:1918950
+https://apis.data.go.kr/B551011/KorService2
+49  교래 삼다수마을
+open_api · tour-api:128443
+https://apis.data.go.kr/B551011/KorService2
+50  요즘, 한국관광 2호 - 지방공항 연계 지역관광 활성화 방안
+rag · reference:kto:2026:local-airport · 페이지 PDF 44쪽, PDF 40쪽, PDF 41쪽, PDF 41쪽, PDF 43쪽, PDF 36쪽, PDF 43쪽, PDF 43쪽 · 문서 구간 reference:kto:2026:local-airport:page:036:chunk:01, reference:kto:2026:local-airport:page:040:chunk:02, reference:kto:2026:local-airport:page:041:chunk:01, reference:kto:2026:local-airport:page:041:chunk:02, reference:kto:2026:local-airport:page:043:chunk:01, reference:kto:2026:local-airport:page:043:chunk:02, reference:kto:2026:local-airport:page:043:chunk:03, reference:kto:2026:local-airport:page:044:chunk:01
+https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311068&cbIdx=1135&pageIndex=1
+51  2024년 문화재야행 사업 예산 확정자료
+benchmark_case · case:4bac3530eca721
+https://culture.seoul.go.kr/culture/cmmn/file/fileDown.do?atchFileId=c4638ecc9ce84bba9e51ecc2e11293e2&bbsId=&fileSn=2&menuNo=200050
+52  강진 반값여행 지역경제 효과 소개
+benchmark_case · case:gangjin_half_price_2024
+https://jnfarm.jeonnam.go.kr/board/FARM_BOARD_008/boardView.do?bdId=BD_00000000000011721&menuCd=farm004002
+53  2024년 6월 여행가는 달 추진 보도자료
+benchmark_case · case:digital_tourism_resident_2024
+https://mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%280514%29%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-6%EC%9B%94_%EC%97%AC%ED%96%89%EA%B0%80%EB%8A%94_%EB%8B%AC_%EC%B6%94%EC%A7%84.pdf&pPath=0302000000&pRealName=20240514083202149235802932_PRESS20240514083202456506.pdf
+54  2022 대한민국 숙박대전 경제파급효과 공개자료
+benchmark_case · case:kto_stay_discount_2022
+https://kto.visitkorea.or.kr/upload/flexer/upload/ktobiz/20220928/b623b5f9-3ec0-11ed-9832-ddf31964842e.hwp.files/Sections1.html
+55  2025 대한민국 밤밤페스타 개최 도시 및 일정
+benchmark_case · case:night_festival_2025
+https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=f9c636b2-dd7c-4f09-af3d-6af43b33d371
+56  2024년도 정부업무평가 관광분야 성과자료
+benchmark_case · case:night_tourism_cities_2024
+https://www.evaluation.go.kr/upload2/atch/eval/20250429095846463.pdf
+지표
+3개월 목표 합계
+기준 전망 대비 추가 규모
+방문자 수
+10,928,766명
+↑ 3.29% · +348,601명
+관광소비액
+4,597.31억 원
+↑ 3.33% · +148.12억 원
+기준월
+ML 기준 전망
+목표 KPI
+기준 대비 증가
+26.10
+3,615,062명
+3,675,313명
+↑ 1.67%
++60,251명
+26.11
+3,594,310명
+3,714,120명
+↑ 3.33%
++119,810명
+26.12
+3,370,793명
+3,539,333명
+↑ 5.00%
++168,540명
+월별 합계
+10,580,165명
+10,928,766명
+↑ 3.29%
++348,601명
+기준월
+ML 기준 전망
+목표 KPI
+기준 대비 증가
+26.10
+1,504.67억 원
+1,529.75억 원
+↑ 1.67%
++25.08억 원
+26.11
+1,450.85억 원
+1,499.21억 원
+↑ 3.33%
++48.36억 원
+26.12
+1,493.67억 원
+1,568.35억 원
+↑ 5.00%
++74.68억 원
+월별 합계
+4,449.19억 원
+4,597.31억 원
+↑ 3.33%
++148.12억 원
+진단 지표
+관측값·전망
+월간 순 방문자 수
+3,131,476명
+내비게이션 목적지 검색량
+580,380건
+외지인 숙박 방문 비율
+21.0%
+항목
+금액
+산출근거
+참여 혜택
+34,870,000원
+3,487건 × 10,000원
+현장 운영·정산
+21,000,000원
+max(월 20인일 × 3, 3,487건 ÷ 25건/인일 올림) = 140인일 × 150,000원
+신청·증빙 시스템
+8,000,000원
+기존 시스템 설정 1식 × 800만원
+홍보·참여처 안내
+5,000,000원
+콘텐츠·안내물 1식 × 500만원
+성과 집계·검토
+3,000,000원
+자료 정리·평가 1식 × 300만원
+예비비
+7,187,000원
+직접비 7,187만원 × 10%
+합계
+79,057,000원
+항목별 금액 합계
+입력
+결과의 사용처
+방문자 수 · 관광소비액 전망
+전망 그래프 → 월별 목표 → 추가 규모 → 견적의 운영량 가정
+체류시간 · 숙박일수 · 숙박방문 비율
+내비게이션 검색 · 숙박 검색 전망
+관광 흐름 진단 → 공식 사례 조사 방향 → 후보별 지역 적용 검토

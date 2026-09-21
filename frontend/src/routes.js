@@ -9,6 +9,7 @@ export const APP_ROUTES = Object.freeze({
   '/planning': 'planning',
   '/strategy': 'strategy',
   '/saved-plans': 'savedPlans',
+  '/admin-login': 'adminLogin',
   '/ml-test': 'mlTest',
   '/openai-test': 'openAiLearning',
   '/react-test': 'reactLearning',

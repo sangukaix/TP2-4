@@ -35,10 +35,12 @@ CONTEXT_OPTIONS = {'families': '가족 방문객 중심', 'young_adults': '청�
 
 
 def next_three_months(as_of_date: date | None = None) -> tuple[date, date]:
-    """한국 시간의 요청 월 다음 달부터 세 달. 관측 자료의 마지막 월과 구분합니다."""
+    """한국 시간 15일까지 다음 달, 16일부터 다다음 달 시작의 3개월입니다."""
     today = as_of_date or datetime.now(timezone(timedelta(hours=9))).date()
-    year, month = divmod(today.year * 12 + today.month, 12)
-    end_year, end_month = divmod(today.year * 12 + today.month + 2, 12)
+    offset = 1 if today.day <= 15 else 2
+    start_index = today.year * 12 + today.month - 1 + offset
+    year, month = divmod(start_index, 12)
+    end_year, end_month = divmod(start_index + 2, 12)
     return date(year, month + 1, 1), date(end_year, end_month + 1, calendar.monthrange(end_year, end_month + 1)[1])
 
 

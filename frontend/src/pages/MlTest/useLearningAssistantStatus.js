@@ -7,8 +7,8 @@ const INITIAL_STATUS = { status: 'checking', message: 'AI 연결 상태를 확�
  * AI Server가 내려가거나 OpenAI 연결이 실패했을 때 배지를 실제 상태로 바꿉니다.
  * 30초 간격 확인은 즉시성·네트워크 요청량 사이의 균형을 위한 값입니다.
  */
-export default function useLearningAssistantStatus() {
-  const [assistantStatus, setAssistantStatus] = useState(INITIAL_STATUS)
+export default function useLearningAssistantStatus(checkConnection = true) {
+  const [assistantStatus, setAssistantStatus] = useState(checkConnection ? INITIAL_STATUS : { status: 'unchecked', message: '연결 확인 전입니다. 질문을 보낼 때 API를 사용합니다.' })
 
   const refreshStatus = useCallback(async () => {
     try {
@@ -20,11 +20,12 @@ export default function useLearningAssistantStatus() {
   }, [])
 
   useEffect(() => {
+    if (!checkConnection) return undefined
     // Effect 본문에서는 구독만 설정하고, 실제 상태 요청은 다음 microtask에서 시작합니다.
     void Promise.resolve().then(refreshStatus)
     const timer = window.setInterval(refreshStatus, 30000)
     return () => window.clearInterval(timer)
-  }, [refreshStatus])
+  }, [refreshStatus, checkConnection])
 
   // 실제 답변 성공·실패도 즉시 반영해 다음 자동 점검을 기다리지 않게 합니다.
   const markActive = useCallback(() => setAssistantStatus({ status: 'active', message: 'AI 챗봇이 정상적으로 답변했습니다.' }), [])

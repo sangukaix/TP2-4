@@ -8,11 +8,14 @@ class CaseImageTest(unittest.TestCase):
     def test_unknown_case_labels_reference_and_preserves_real_location(self):
         result=case_image({'source_id':'case:unknown','case_region':'전주시','intervention':'야간 관광'})
         self.assertEqual(result['match_kind'],'similar_operation')
-        self.assertIn('유사 사업 참고',result['caption'])
+        self.assertIn('다른 지역 참고 사진',result['caption'])
         self.assertIn('여수',result['caption'])
         self.assertNotIn('전주',result['caption'])
         self.assertTrue(result['path'].is_file())
-        self.assertEqual(case_image({'source_id':'case:unknown'})['match_kind'],'general_tourism_reference')
+        fallback=case_image({'source_id':'case:unknown'})
+        self.assertEqual(fallback['match_kind'],'generated_operating_example')
+        self.assertIn('AI 생성 이미지',fallback['credit'])
+        self.assertTrue(fallback['path'].is_file())
         self.assertTrue(all(case_image({'source_id':key}) for key in IMAGES))
 
     def test_card_uses_official_asset_and_credit_without_generated_fallback(self):

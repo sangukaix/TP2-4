@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date
-from io import BytesIO
 import json
 import logging
 import os
@@ -18,7 +17,7 @@ import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 from .openai_responses import OpenAIResponseError, check_openai_readiness
@@ -39,7 +38,7 @@ from .agents.chat_assistant_agent import TourismChatAssistantAgent
 from .agents.ml_learning_assistant_agent import MlLearningAssistantAgent
 from .agents.project_learning_assistant_agent import ProjectLearningAssistantAgent
 from .tourism_open_api import TourismOpenApiClient
-from .planning_brief import PlanningBrief, resolve_new_planning_brief, brief_fingerprint, extract_brief_reference, without_reference_text
+from .planning_brief import PlanningBrief, next_three_months, resolve_new_planning_brief, brief_fingerprint, extract_brief_reference, without_reference_text
 from .project_learning_catalog import ProjectLearningCatalog, build_project_learning_catalog
 from .strategy_store import (
     initialize_strategy_store,
@@ -73,7 +72,7 @@ LOGGER = logging.getLogger(__name__)
 
 # 저장 문서의 레이아웃·생성 규칙이 바뀌면 이 값만 올려 과거 캐시를 안전하게 다시 만듭니다.
 DOCUMENT_RENDER_VERSIONS = {
-    'docx': 'strategy-docx-v18-linked-cost',
+    'docx': 'strategy-docx-v24-learned-all-forecast',
     'pptx': PRESENTATION_RENDER_VERSION,
 }
 # Matplotlib의 전역 상태와 문서 렌더러를 동시에 사용하지 않습니다.
@@ -271,6 +270,7 @@ class StrategyReportJobResponse(BaseModel):
     report: ReportResponse | None = None
     error: str = ''
     progress_step: int | None = None
+    persistence_status: Literal['unknown', 'saved', 'failed'] = 'unknown'
 
 
 # 브라우저 요청과 별개로 실행되는 개발용 작업 저장소입니다.
@@ -359,7 +359,7 @@ class LlmRouteUpdate(BaseModel):
 
 
 class LlmRuntimeConfigUpdate(BaseModel):
-    mode: Literal['openai_only', 'hybrid', 'local_only', 'local_first', 'student_budget'] | None = None
+    mode: Literal['openai_only', 'hybrid', 'local_only', 'local_first', 'local_first_gemma', 'student_budget'] | None = None
     routes: dict[str, LlmRouteUpdate] = Field(default_factory=dict)
 
 
@@ -668,12 +668,9 @@ def _change_direction(value: float) -> Literal['up', 'down', 'same']:
 
 
 def _next_calendar_month() -> str:
-    """화면의 대표 예측월을 현재 달의 다음 달로 정합니다."""
-    current = date.today()
-    year, month = current.year, current.month + 1
-    if month == 13:
-        year, month = year + 1, 1
-    return f'{year}{month:02d}'
+    """웹 전망과 신규 기획안에 동일한 한국 시간 15일 마감 규칙을 씁니다."""
+    start, _ = next_three_months()
+    return start.strftime('%Y%m')
 
 
 def _months_between(start_month: str, end_month: str) -> int:
@@ -682,7 +679,7 @@ def _months_between(start_month: str, end_month: str) -> int:
 
 
 def _select_display_forecasts(forecasts: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
-    """차트의 전체 예측 중 현재 시점의 다음 달을 카드 대표값으로 고릅니다."""
+    """차트의 전체 예측 중 공통 사업기간의 첫 달을 카드 대표값으로 고릅니다."""
     target_month = _next_calendar_month()
     for index, forecast in enumerate(forecasts):
         if forecast['month'] == target_month:
@@ -703,7 +700,7 @@ def _build_registered_ml_dashboard(region_code: str, region_name: str) -> Dashbo
     target_month = _next_calendar_month()
     history = pipeline.load_history()
     latest_observed_month = str(history['year_month'].iloc[-1])
-    # 최신 원자료가 늦게 공개돼도, 다음 달부터 3개월을 끊김 없이 보여 줄 만큼만 재귀 예측합니다.
+    # 최신 원자료가 늦게 공개돼도, 선택 사업기간 3개월을 끊김 없이 보여 줄 만큼만 재귀 예측합니다.
     required_horizon = max(4, _months_between(latest_observed_month, target_month) + 2)
     forecast_result = predict_region_demand(region_code, required_horizon)
     visible_forecasts, previous_forecast = _select_display_forecasts(forecast_result['forecasts'])
@@ -1362,6 +1359,7 @@ def _strategy_job_response(job_id: str) -> StrategyReportJobResponse:
         report=job.get('report'),
         error=job.get('error', ''),
         progress_step=job.get('progress_step'),
+        persistence_status=job.get('persistence_status', 'unknown'),
     )
 
 
@@ -1425,10 +1423,12 @@ async def _run_strategy_report_job(
         job.update(status='running', progress_step=4, message='품질검토를 마쳤습니다. 기획안 본문을 저장하고 Word·PowerPoint를 준비하고 있습니다.')
         try:
             warnings = await asyncio.to_thread(_persist_completed_strategy_report, job_id, region_code, job['report'], snapshot=snapshot)
+            job['persistence_status'] = 'saved'
             completion_message += ' ' + ' '.join(warnings or [])
         except Exception as exc:
             # 저장 실패는 생성 결과를 없애지 않고, 서버 로그에서 DB 연결을 점검할 수 있게 남깁니다.
             LOGGER.exception('Strategy report persistence failed: job_id=%s error=%s', job_id, type(exc).__name__)
+            job['persistence_status'] = 'failed'
             completion_message = '기획안은 생성됐지만 MySQL 저장에 실패했습니다. 서버 DB 설정을 확인해 주세요.'
         job.update(status='completed', message=completion_message.strip())
     _persist_job_state_best_effort(job_id, job)
@@ -1509,7 +1509,7 @@ async def read_saved_strategy_report(report_id: str) -> dict[str, Any]:
 
 @app.put('/ai/v1/strategy-reports/{report_id}')
 async def update_saved_strategy_report(report_id: str, region_code: str, report: ReportResponse) -> dict[str, str]:
-    """챗봇 수정 후 사용자가 저장한 기획안을 같은 MySQL 기록에 반영합니다."""
+    """챗봇 수정 내용을 같은 MySQL 기록에 자동 반영합니다."""
     try:
         save_strategy_report(report_id, region_code, report.model_dump(mode='json'))
     except Exception as exc:
@@ -1519,7 +1519,7 @@ async def update_saved_strategy_report(report_id: str, region_code: str, report:
 
 
 @app.get('/ai/v1/strategy-reports/{report_id}/documents/{file_format}')
-async def download_saved_strategy_document(report_id: str, file_format: Literal['docx', 'pptx']) -> StreamingResponse:
+async def download_saved_strategy_document(report_id: str, file_format: Literal['docx', 'pptx']) -> Response:
     """현재 기획안 내용·출력 버전과 일치하는 Word/PPT만 캐시에서 내려보냅니다."""
     try:
         render_version = DOCUMENT_RENDER_VERSIONS[file_format]
@@ -1540,7 +1540,8 @@ async def download_saved_strategy_document(report_id: str, file_format: Literal[
         if file_format == 'docx'
         else 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
     )
-    return StreamingResponse(BytesIO(content), media_type=media_type, headers={'Content-Disposition': f'attachment; filename="tourism-strategy-proposal.{file_format}"'})
+    # 이미 메모리에 완성된 ZIP 바이너리를 줄 단위로 순회하지 않고 그대로 전송합니다.
+    return Response(content, media_type=media_type, headers={'Content-Disposition': f'attachment; filename="tourism-strategy-proposal.{file_format}"'})
 
 
 @app.get('/ai/v1/ml/{region_code}/planning-evidence', response_model=PlanningMlEvidence)
@@ -1561,17 +1562,17 @@ async def chat_with_ml_learning_assistant(
     request: MlLearningChatRequest,
 ) -> MlLearningChatResponse:
     """등록 모델·평가·함수 정보만 근거로 ML 학습 질문에 답합니다."""
+    if not (ENV_VALUES.get('OPENAI_API_KEY') or '').strip():
+        raise HTTPException(
+            status_code=503,
+            detail={'code': 'OPENAI_KEY_MISSING', 'message': 'ML 챗봇을 사용하려면 AI 서버의 OpenAI API 키가 필요합니다.'},
+        )
     catalog = await asyncio.to_thread(build_ml_learning_catalog)
     region = next((item for item in catalog.regions if item.region_code == region_code), None)
     if region is None or region.status != 'available':
         raise HTTPException(
             status_code=404,
             detail={'code': 'ML_LEARNING_REGION_UNAVAILABLE', 'message': '선택 지역의 머신러닝 학습 정보를 찾지 못했습니다.'},
-        )
-    if not (ENV_VALUES.get('OPENAI_API_KEY') or '').strip():
-        raise HTTPException(
-            status_code=503,
-            detail={'code': 'OPENAI_KEY_MISSING', 'message': 'ML 챗봇을 사용하려면 AI 서버의 OpenAI API 키가 필요합니다.'},
         )
     try:
         result = await MlLearningAssistantAgent(env_values=ENV_VALUES).answer(
@@ -1625,6 +1626,12 @@ def _require_llm_admin_token(x_llm_admin_token: str | None) -> None:
 async def read_llm_status() -> dict[str, Any]:
     """OpenAI·Qwen·Gemma 연결, 모델 목록, 능력 잠금을 비밀값 없이 반환합니다."""
     return await _llm_router().status()
+
+
+@app.get('/ai/v1/llm/overview')
+async def read_llm_overview() -> dict[str, Any]:
+    """설정만 조회합니다. Ollama·OpenAI 연결이나 추론을 호출하지 않습니다."""
+    return _llm_router().runtime_summary()
 
 
 @app.get('/ai/v1/llm/config')
@@ -1711,15 +1718,15 @@ async def read_regions_readiness_audit():
     from .region_readiness_audit import read_audit
     audit=await asyncio.to_thread(read_audit)
     router = _llm_router()
-    states = await asyncio.gather(*(router.providers[name].health() for name in ('qwen', 'gemma')), return_exceptions=True)
+    states = await asyncio.gather(*(router.providers[name].health() for name in router.required_local_providers), return_exceptions=True)
     routes = router.effective_routes()
-    installed = dict(zip(('qwen', 'gemma'), states))
+    installed = dict(zip(router.required_local_providers, states))
     local_ready = all(not isinstance(state, Exception) and state.status == 'active' for state in states) and all(
         routes[task]['provider'] in installed and routes[task]['model'] in installed[routes[task]['provider']].models
         for task in ('transferability', 'planner'))
     return {'checked_at':audit['checked_at'],'status':audit['status'],
             'local_models_ready': local_ready,
-            'local_model_message': 'Qwen·Gemma 연결 확인' if local_ready else 'Qwen·Gemma 연결 또는 모델 설정 확인 필요',
+            'local_model_message': ('Gemma 연결 확인' if router.gemma_only_local else 'Qwen·Gemma 연결 확인') if local_ready else '선택 로컬 모델 연결 또는 설정 확인 필요',
             'regions':[{**{k:r[k] for k in ('region_code','region_name','verified','data_ready','issues')},
                         'readiness_reason': r.get('readiness_reason'),
                         'generation_ready': bool(r['data_ready'] and local_ready)} for r in audit['regions']]}
@@ -1885,7 +1892,7 @@ async def read_planning_reference(request: Request, filename: str) -> dict:
 @app.post('/ai/v1/demo/{region_code}/strategy-report/jobs', response_model=StrategyReportJobResponse, status_code=202)
 async def start_region_strategy_report_job(region_code: str, request: ReportRequest) -> StrategyReportJobResponse:
     """AI 전략기획 생성을 백그라운드에 등록하고 즉시 작업 ID를 반환합니다."""
-    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief)}, deep=True)
+    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief or PlanningBrief(region_code=region_code, input_profile='guided_v2'))}, deep=True)
     if request.planning_brief and request.planning_brief.region_code != region_code:
         raise HTTPException(status_code=422, detail={'code': 'BRIEF_REGION_MISMATCH', 'message': '기획 조건의 지역과 선택 지역이 다릅니다.'})
     # 큐 등록 전에 차단해 오래된 자료에서 OpenAI·로컬 LLM·문서 렌더링이 시작되지 않게 합니다.
@@ -1954,6 +1961,7 @@ async def read_region_strategy_report_job(region_code: str, job_id: str) -> Stra
                 'region_code': stored_job['region_code'], 'region_name': stored_job['region_name'],
                 'status': restored_status, 'message': restored_message,
                 'error': restored_error, 'report': report,
+                'persistence_status': 'saved' if report is not None else 'unknown',
             }
             STRATEGY_REPORT_JOBS[job_id] = job
             if restored_status != stored_job['status']:
@@ -1966,7 +1974,7 @@ async def read_region_strategy_report_job(region_code: str, job_id: str) -> Stra
 @app.post('/ai/v1/demo/{region_code}/strategy-report', response_model=ReportResponse)
 async def create_region_strategy_report(region_code: str, request: ReportRequest) -> ReportResponse:
     """선택 지역 근거와 공식 성공사례를 다섯 Agent가 처리한 전략 보고서를 생성합니다."""
-    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief)}, deep=True)
+    request = request.model_copy(update={'planning_brief': resolve_new_planning_brief(request.planning_brief or PlanningBrief(region_code=region_code, input_profile='guided_v2'))}, deep=True)
     try:
         return await generate_orchestrated_report(region_code, request)
     except (FileNotFoundError, KeyError, ValueError) as exc:
@@ -2054,13 +2062,13 @@ async def chat_with_tourism_assistant(region_code: str, request: AssistantChatRe
 
 
 @app.post('/ai/v1/demo/{region_code}/strategy-proposal.docx')
-async def download_region_strategy_proposal(region_code: str, report: ReportResponse) -> StreamingResponse:
-    """이미 검증된 OpenAI 보고서를 최대 5쪽의 도표 중심 Word 기획서로 내려보냅니다."""
+async def download_region_strategy_proposal(region_code: str, report: ReportResponse) -> Response:
+    """전달된 보고서의 본문·수치·출처를 Word 기획서로 내려보냅니다."""
     try:
-        document = BytesIO(await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'docx'))
+        document = await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'docx')
     except (KeyError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=500, detail={'code': 'PROPOSAL_DOCUMENT_ERROR', 'message': 'Word 기획서를 생성하지 못했습니다.'}) from exc
-    return StreamingResponse(
+    return Response(
         document,
         media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         headers={'Content-Disposition': 'attachment; filename="tourism-strategy-proposal.docx"'},
@@ -2068,14 +2076,50 @@ async def download_region_strategy_proposal(region_code: str, report: ReportResp
 
 
 @app.post('/ai/v1/demo/{region_code}/strategy-proposal.pptx')
-async def download_region_strategy_presentation(region_code: str, report: ReportResponse) -> StreamingResponse:
-    """같은 구조화 보고서를 편집 가능한 12장 PowerPoint로 내려보냅니다."""
+async def download_region_strategy_presentation(region_code: str, report: ReportResponse) -> Response:
+    """같은 구조화 보고서와 출처를 편집 가능한 PowerPoint로 내려보냅니다."""
     try:
-        presentation = BytesIO(await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'pptx'))
+        presentation = await asyncio.to_thread(_render_strategy_document, report.model_dump(), 'pptx')
     except (KeyError, TypeError, ValueError, OSError) as exc:
         raise HTTPException(status_code=500, detail={'code': 'PROPOSAL_PRESENTATION_ERROR', 'message': 'PowerPoint 기획서를 생성하지 못했습니다.'}) from exc
-    return StreamingResponse(
+    return Response(
         presentation,
         media_type='application/vnd.openxmlformats-officedocument.presentationml.presentation',
         headers={'Content-Disposition': 'attachment; filename="tourism-strategy-proposal.pptx"'},
+    )
+
+
+@app.post('/ai/v1/demo/{region_code}/strategy-proposal.preview.pdf')
+async def preview_region_strategy_presentation(region_code: str, report: ReportResponse, report_id: str = '') -> Response:
+    """현재 화면과 일치하는 저장 PPTX를 우선 재사용해 PDF 미리보기를 반환합니다."""
+    try:
+        payload = report.model_dump(mode='json')
+        def build_presentation() -> bytes:
+            if report_id:
+                try:
+                    stored_report = read_strategy_report(report_id)
+                    # Only reuse a document when the full supplied report matches the saved report.
+                    if stored_report and ReportResponse(**stored_report).model_dump(mode='json') == payload:
+                        saved = read_document(report_id, 'pptx', render_version=DOCUMENT_RENDER_VERSIONS['pptx'])
+                        if saved is not None:
+                            return saved
+                except Exception as exc:
+                    LOGGER.warning('Preview cache unavailable: %s', type(exc).__name__)
+            return _render_strategy_document(payload, 'pptx')
+
+        from .proposal_preview import render_report_preview
+        preview, slide_count = await asyncio.to_thread(
+            render_report_preview, payload, DOCUMENT_RENDER_VERSIONS['pptx'], build_presentation,
+        )
+    except (KeyError, TypeError, ValueError, OSError) as exc:
+        LOGGER.exception('PowerPoint preview failed: %s', type(exc).__name__)
+        raise HTTPException(
+            status_code=503,
+            detail={'code': 'PROPOSAL_PREVIEW_ERROR', 'message': str(exc) or '기획서 미리보기를 준비하지 못했습니다.'},
+        ) from exc
+    return Response(
+        preview,
+        media_type='application/pdf',
+        headers={'Content-Disposition': 'inline; filename="tourism-strategy-preview.pdf"',
+                 'X-Slide-Count': str(slide_count), 'Cache-Control': 'no-store'},
     )

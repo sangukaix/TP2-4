@@ -22,16 +22,30 @@ class ChatRoutingTest(unittest.IsolatedAsyncioTestCase):
     def test_source_url_must_be_in_supplied_material(self):
         self.assertEqual(supplied_urls({'sources': [{'url': 'https://example.go.kr/a'}], 'empty': []}), {'https://example.go.kr/a'})
         self.assertEqual(supplied_urls(None), set())
-    async def call(self, question, web=True, report=None):
+    async def call(self, question, web=True, report=None, history=None, planning_brief=None):
+        provider = 'openai' if web else 'gemma'
         router = SimpleNamespace(generate=AsyncMock(return_value={'mode': 'revise', 'sources': [], 'report_patch': {'solution': '수정'}}),
-                                 trace=[{'provider': 'gemma', 'model': 'gemma4:26b', 'web_search_used': False, 'usage': {'output_tokens': 10}}])
+                                 trace=[{'provider': provider, 'model': 'gpt-test' if web else 'gemma4:26b', 'web_search_used': web, 'usage': {'output_tokens': 10}}])
         result = await TourismChatAssistantAgent(env_values={}, llm_router=router).answer(
-            snapshot={'region_name': '원주시', 'period': '2026-06'}, question=question, history=[],
-            current_report=report, enable_web_search=web)
+            snapshot={'region_name': '원주시', 'period': '2026-06'}, question=question, history=history or [],
+            current_report=report, enable_web_search=web, planning_brief=planning_brief)
         return router.generate.call_args.args[0], result
 
-    async def test_checkbox_does_not_force_paid_research(self):
-        request, result = await self.call('기획안을 더 구체적으로 바꿔줘', report={'strategies': [{}]})
+    async def test_web_toggle_searches_without_sending_report_history_or_brief(self):
+        request, result = await self.call('최신 공식 사례를 찾아줘', report={'strategies': [{'solution': '내부 초안'}]},
+                                          history=[{'role': 'user', 'content': '과거 대화'}],
+                                          planning_brief={'must_have': '비공개 조건'})
+        self.assertEqual(request.task, 'chat_research')
+        self.assertTrue(request.requires_web_search)
+        self.assertIsNone(request.input_payload['current_report'])
+        self.assertIsNone(request.input_payload['planning_brief'])
+        self.assertEqual(request.input_payload['recent_conversation'], [])
+        self.assertNotIn('내부 초안', str(request.input_payload))
+        self.assertEqual(result['mode'], 'research')
+        self.assertIsNone(result['report_patch'])
+
+    async def test_search_off_uses_local_revision_route(self):
+        request, result = await self.call('기획안을 더 구체적으로 바꿔줘', web=False, report={'strategies': [{}]})
         self.assertEqual(request.task, 'chat_revise')
         self.assertFalse(request.requires_web_search)
         self.assertIsNone(request.tools)

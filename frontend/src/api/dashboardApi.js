@@ -75,6 +75,22 @@ export async function downloadAiStrategyPresentation(regionCode, report) {
   return response.blob()
 }
 
+/** 현재 기획안과 동일한 PPTX를 브라우저에서 볼 수 있는 PDF로 변환합니다. */
+export async function createAiStrategyPresentationPreview(regionCode, report, signal) {
+  const previewParams = report?.__savedEntryId ? `?report_id=${encodeURIComponent(report.__savedEntryId)}` : ''
+  const response = await fetch(`/ai/v1/demo/${regionCode}/strategy-proposal.preview.pdf${previewParams}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(report),
+    signal,
+  })
+  if (!response.ok) {
+    const error = await response.json().catch(() => null)
+    throw new Error(error?.detail?.message || '기획서 미리보기를 준비하지 못했습니다.')
+  }
+  return { blob: await response.blob(), slideCount: Number(response.headers.get('X-Slide-Count')) || 1 }
+}
+
 /** 팀 공용 MySQL에 저장된 기획서 목록입니다. 브라우저별 localStorage를 사용하지 않습니다. */
 export async function getStoredStrategyReports() {
   const response = await fetch('/ai/v1/strategy-reports')
@@ -99,7 +115,7 @@ export async function downloadStoredStrategyDocument(reportId, fileFormat) {
   return response.blob()
 }
 
-/** 챗봇으로 수정한 기획안을 사용자가 저장 버튼을 눌렀을 때 MySQL 원문에 반영합니다. */
+/** 챗봇으로 수정한 기획안을 같은 MySQL 원문에 자동 반영합니다. */
 export async function saveStoredStrategyReport(reportId, regionCode, report) {
   const response = await fetch(`/ai/v1/strategy-reports/${encodeURIComponent(reportId)}?region_code=${encodeURIComponent(regionCode)}`, {
     method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(report),

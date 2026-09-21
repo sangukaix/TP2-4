@@ -74,6 +74,7 @@ def read_audit():
                 reason = '최신 월별 자료 갱신 필요'
             if reason:
                 row['data_ready'] = False
+                row['verified'] = False
                 row['readiness_reason'] = reason
         data['status'] = 'completed'
         return data

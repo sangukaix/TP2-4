@@ -6,6 +6,7 @@ async function readJson(url, options) {
   return payload
 }
 
+export const getLlmOverview = () => readJson('/ai/v1/llm/overview')
 export const getLlmStatus = () => readJson('/ai/v1/llm/status')
 export const getLlmConfig = () => readJson('/ai/v1/llm/config')
 export const getLlmTrace = () => readJson('/ai/v1/llm/trace')

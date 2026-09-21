@@ -357,8 +357,8 @@ class ReportOrchestratorTest(unittest.IsolatedAsyncioTestCase):
         self.assertIn('강진 반값여행', document_text)
         self.assertNotIn('미실행', table_text)
 
-    def test_word_proposal_uses_ml_natural_trend_without_default_policy_effect(self) -> None:
-        """사용자 목표가 없으면 임의 +5%/+8%를 만들지 않고 ML 전망만 표시합니다."""
+    def test_word_proposal_preserves_ml_and_labels_automatic_capacity_targets(self) -> None:
+        """D-181/186: 자동 운영 목표는 계획 가정이며 고정 +5% 정책효과가 아닙니다."""
         trend = [
             {'month': f'2026.{month:02d}', 'visitors': 1000 + month * 10, 'spending_krw': 10_000_000 + month * 100_000}
             for month in range(1, 7)
@@ -387,14 +387,23 @@ class ReportOrchestratorTest(unittest.IsolatedAsyncioTestCase):
             },
         }
 
+        from copy import deepcopy
+        from ai_server.app.idea_proposal import prepare_idea_report
+        before=deepcopy(report)
+        prepared=prepare_idea_report(report)
         proposal = Document(create_strategy_proposal_document(report))
         text = '\n'.join(paragraph.text for paragraph in proposal.paragraphs)
         table_text = '\n'.join(cell.text for table in proposal.tables for row in table.rows for cell in row.cells)
 
-        self.assertIn('머신러닝 전망과 목표 KPI', text)
-        self.assertIn('5.00%', table_text)
+        self.assertIn('사업 목표', text)
         self.assertIn('기획 가정', text)
-        self.assertNotIn('추가 관광소비', table_text)
+        self.assertIn('실측 객단가가 아닙니다', text)
+        pct=prepared['execution_scenario']['visitor_target_pct']
+        self.assertNotEqual(pct,5)
+        self.assertIn(f'{pct:.2f}%',text)
+        self.assertIn('1,170',table_text)
+        self.assertEqual(prepared['ml_analysis'],before['ml_analysis'])
+        self.assertEqual(report,before)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,11 @@
+{
+  "source_id": "tour-api:2555010",
+  "source_type": "open_api",
+  "title": "강원감영관찰사·무릉고서화미술박물관",
+  "source_url": "https://apis.data.go.kr/B551011/KorService2",
+  "content_id": "2555010",
+  "content_type_id": "14",
+  "address": "강원특별자치도 원주시 흥업면 사제로 399-10",
+  "image_url": "http://tong.visitkorea.or.kr/cms/resource/64/3437164_image2_1.jpg",
+  "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+}

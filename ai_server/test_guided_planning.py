@@ -50,14 +50,20 @@ class GuidedPlanningTest(unittest.TestCase):
             with self.subTest(changes=changes),self.assertRaises(ValidationError):
                 PlanningBrief(region_code='51110',input_profile='guided_v1',**changes)
 
-    def test_budget_total_allocated_without_changing_ml(self):
-        report=_sample_report();before=report['ml_analysis']
+    def test_budget_ceiling_is_not_a_spending_target_and_ml_is_preserved(self):
+        from copy import deepcopy
+        report=_sample_report();before=deepcopy(report)
         report['planning_brief']={'input_profile':'guided_v1','budget_max_krw':30000000}
         result=prepare_idea_report(report)
-        self.assertEqual(result['reference_estimate']['total_krw'],30000000)
-        self.assertEqual(sum(i['amount'] for i in result['reference_estimate']['items']),30000000)
-        self.assertEqual(result['ml_analysis'],before)
-        self.assertNotIn('quantity',result['reference_estimate'])
+        estimate=result['reference_estimate']
+        # D-186: linked participation costs replace spending the entire ceiling.
+        self.assertEqual(estimate['total_krw'],27885000)
+        self.assertLessEqual(estimate['total_krw'],30000000)
+        self.assertEqual(sum(i['amount'] for i in estimate['items']),estimate['total_krw'])
+        self.assertTrue(estimate['within_hard_budget'])
+        self.assertEqual(result['ml_analysis'],before['ml_analysis'])
+        self.assertEqual(report['ml_analysis'],before['ml_analysis'])
+        self.assertEqual(result['execution_scenario'],before['execution_scenario'])
 
     def test_excluded_operation_cannot_reappear_as_selected_design(self):
         brief={'input_profile':'guided_v1','business_direction':'auto','excluded_operations':['night_time_experience']}

@@ -29,8 +29,8 @@
 선택 지역의 `data/raw/{시도}/{시군구}` 원본과 공식 보조 근거를 이용해 실행 기획안을 생성합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
-.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8112
+cd C:\Users\Admin\mbca\TP2-4
+.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8212
 ```
 
 - OpenAI 키는 루트 `.env`에서만 읽고 React에는 전달하지 않습니다.

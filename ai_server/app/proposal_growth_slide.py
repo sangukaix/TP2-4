@@ -91,7 +91,18 @@ def growth_page(slide, report):
         return
     start,end=result['months'][0],result['months'][-1]
     text(slide,'purpose-period',f"향후 3개월 전망 · {start[:4]}년 {start[4:]}–{end[4:]}월",561,211,933,42,26,SLATE)
-    text(slide,'purpose-comparison','전년 같은 기간 대비 증가율을 전국 비교 평균과 비교합니다.',561,253,933,40,22,SLATE)
+    evaluation = ((report.get('ml_analysis') or {}).get('evaluation') or {}).get('metrics') or {}
+    seasonal_baseline = any(
+        abs(result['metrics'][key]['growth_pct']) < 1e-9
+        and (evaluation.get(metric) or {}).get('selected_model') == 'seasonal_naive_previous_year_same_month'
+        for key, metric in (('visitors', 'visitors'), ('spending', 'spending_krw'))
+    )
+    if seasonal_baseline:
+        comparison_copy = ('전년 같은 기간 대비 증가율입니다.\n'
+                           '0%는 데이터 없음이 아니라, 검증 결과 전년 동월 계절 기준선이 선택된 전망입니다.')
+        text(slide,'purpose-comparison',comparison_copy,561,246,933,60,18,SLATE)
+    else:
+        text(slide,'purpose-comparison','전년 같은 기간 대비 증가율을 전국 비교 평균과 비교합니다.',561,253,933,40,22,SLATE)
     for i,(key,label) in enumerate([('visitors','관광객 방문자 수'),('spending','관광소비액')]):
         row=result['metrics'][key]; y=315+i*245
         text(slide,f'growth-label-{i}',label,561,y,400,40,27,BLUE,True)
@@ -110,7 +121,9 @@ def growth_page(slide, report):
 
 SECTIONS = {
     '지역별 참고 사례':('1. 지역별 사례','1.1 지역별 참고 사례'),
-    '사례 실적':('1. 지역별 사례','1.2 참고 사례 실적'),
+    '사례 실적':('1. 지역별 사례','1.2 적용 사례 운영 방식'),
+    '참고 사례 운영 방식':('1. 지역별 사례','1.2 적용 사례 운영 방식'),
+    '적용 사례 운영 방식':('1. 지역별 사례','1.2 적용 사례 운영 방식'),
     '사업 목표':('2. 사업 목표','2.1 사업 목표'),
     '목표 KPI 산출근거':('2. 사업 목표','2.2 목표 KPI 산출근거'),
     '이 사업을 참고한 이유와 지역 적용 방법':('3. 지역 적용과 실행','3.1 사례 선정과 지역 적용'),

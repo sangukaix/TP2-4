@@ -1,0 +1,275 @@
+[
+  {
+    "region_code": "28237",
+    "region_name": "인천광역시 부평구",
+    "observation_period": "2025-07 ~ 2026-06",
+    "latest_observed_month": "2026-06",
+    "ml_status": "available",
+    "model_version": "regional-demand-v3.1",
+    "training_source_period": "202401~202606",
+    "targets": {
+      "visitors": {
+        "model": "RandomForestRegressor",
+        "test_mae": 116276.26,
+        "baseline_test_mae": 112602.75,
+        "model_reliability": "below_baseline_on_test"
+      },
+      "spending_krw": {
+        "model": "LinearRegression",
+        "test_mae": 8497417178.46,
+        "baseline_test_mae": 6182689000.0,
+        "model_reliability": "below_baseline_on_test"
+      },
+      "lodging_nights": {
+        "model": "LinearRegression",
+        "test_mae": 0.08,
+        "baseline_test_mae": 0.09,
+        "model_reliability": "limited_backtest_support"
+      },
+      "lodging_rate_pct": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 0.27,
+        "baseline_test_mae": 0.27,
+        "model_reliability": "seasonal_baseline"
+      },
+      "stay_minutes": {
+        "model": "LinearRegression",
+        "test_mae": 251.99,
+        "baseline_test_mae": 131.5,
+        "model_reliability": "below_baseline_on_test"
+      },
+      "navigation_searches": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 6613.5,
+        "baseline_test_mae": 6613.5,
+        "model_reliability": "seasonal_baseline"
+      },
+      "lodging_searches": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 414.25,
+        "baseline_test_mae": 414.25,
+        "model_reliability": "seasonal_baseline"
+      }
+    },
+    "horizon_policy": {
+      "schedule_status": "unknown",
+      "selection_basis": "unknown_compare_3_and_6_months",
+      "forecast_horizon_months": 8,
+      "forecast_start_month": "202607",
+      "forecast_end_month": "202702",
+      "requested_start_month": "",
+      "requested_end_month": "",
+      "strategy_duration_min_months": 3,
+      "strategy_duration_max_months": 6,
+      "validated_recursive_horizon_months": 3,
+      "coverage_complete": true,
+      "decision_windows": [
+        {
+          "label": "3개월 실행 후보",
+          "start_month": "202609",
+          "end_month": "202611",
+          "months": 3,
+          "forecast_start_index": 2,
+          "forecast_end_index": 4,
+          "reliability": "exploratory_longer_horizon"
+        },
+        {
+          "label": "6개월 실행 후보",
+          "start_month": "202609",
+          "end_month": "202702",
+          "months": 6,
+          "forecast_start_index": 2,
+          "forecast_end_index": 7,
+          "reliability": "exploratory_longer_horizon"
+        }
+      ],
+      "notes": [
+        "일정 미정은 현재 월 이후의 3개월·6개월 실행 후보를 비교합니다. 준비기간도 후보 기간에 포함합니다.",
+        "신뢰도는 실행기간 길이가 아니라 마지막 관측월로부터의 예측 거리로 판단합니다.",
+        "관측 공백 월도 내부 예측에는 포함하지만 이미 지난 달은 실행 후보의 합계에서 제외합니다."
+      ],
+      "as_of_date": "2026-09-14"
+    },
+    "nationwide_available": true,
+    "nationwide_period": "2025-07 ~ 2026-06",
+    "peer_count": 5,
+    "official_cases_total": 6,
+    "official_cases_allowed": 6,
+    "excluded_case_hosts": [],
+    "llm_mode": "local_first",
+    "configured_routes": {
+      "evidence": "openai",
+      "case_study": "openai",
+      "local_web_query_planner": "qwen",
+      "transferability": "qwen",
+      "planner": "gemma",
+      "planner_revision": "gemma",
+      "reviewer": "openai",
+      "final_reviewer": "openai",
+      "chat_explain": "qwen",
+      "chat_research": "openai",
+      "chat_revise": "gemma"
+    },
+    "effective_routes": {
+      "evidence": "openai",
+      "case_study": "openai",
+      "local_web_query_planner": "qwen",
+      "transferability": "qwen",
+      "planner": "gemma",
+      "planner_revision": "gemma",
+      "reviewer": "qwen",
+      "final_reviewer": "openai",
+      "chat_explain": "qwen",
+      "chat_research": "openai",
+      "chat_revise": "gemma"
+    },
+    "editable_template_exists": true,
+    "warnings": [
+      "visitors: below_baseline_on_test — 전망을 단독 선정 근거로 사용하지 마세요.",
+      "spending_krw: below_baseline_on_test — 전망을 단독 선정 근거로 사용하지 마세요.",
+      "stay_minutes: below_baseline_on_test — 전망을 단독 선정 근거로 사용하지 마세요."
+    ],
+    "not_tested": [
+      "유료 기획안 생성 품질",
+      "LLM 실제 응답",
+      "공식 웹 검색 결과",
+      "RAG 문서 수"
+    ]
+  },
+  {
+    "region_code": "50110",
+    "region_name": "제주특별자치도 제주시",
+    "observation_period": "2025-07 ~ 2026-06",
+    "latest_observed_month": "2026-06",
+    "ml_status": "available",
+    "model_version": "regional-demand-v3.1",
+    "training_source_period": "202401~202606",
+    "targets": {
+      "visitors": {
+        "model": "RandomForestRegressor",
+        "test_mae": 183762.22,
+        "baseline_test_mae": 219359.25,
+        "model_reliability": "mixed_recursive_performance"
+      },
+      "spending_krw": {
+        "model": "LinearRegression",
+        "test_mae": 7866027889.97,
+        "baseline_test_mae": 8640464250.0,
+        "model_reliability": "mixed_recursive_performance"
+      },
+      "lodging_nights": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 0.03,
+        "baseline_test_mae": 0.03,
+        "model_reliability": "seasonal_baseline"
+      },
+      "lodging_rate_pct": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 0.5,
+        "baseline_test_mae": 0.5,
+        "model_reliability": "seasonal_baseline"
+      },
+      "stay_minutes": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 138.75,
+        "baseline_test_mae": 138.75,
+        "model_reliability": "seasonal_baseline"
+      },
+      "navigation_searches": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 29189.5,
+        "baseline_test_mae": 29189.5,
+        "model_reliability": "seasonal_baseline"
+      },
+      "lodging_searches": {
+        "model": "seasonal_naive_previous_year_same_month",
+        "test_mae": 5915.25,
+        "baseline_test_mae": 5915.25,
+        "model_reliability": "seasonal_baseline"
+      }
+    },
+    "horizon_policy": {
+      "schedule_status": "unknown",
+      "selection_basis": "unknown_compare_3_and_6_months",
+      "forecast_horizon_months": 8,
+      "forecast_start_month": "202607",
+      "forecast_end_month": "202702",
+      "requested_start_month": "",
+      "requested_end_month": "",
+      "strategy_duration_min_months": 3,
+      "strategy_duration_max_months": 6,
+      "validated_recursive_horizon_months": 3,
+      "coverage_complete": true,
+      "decision_windows": [
+        {
+          "label": "3개월 실행 후보",
+          "start_month": "202609",
+          "end_month": "202611",
+          "months": 3,
+          "forecast_start_index": 2,
+          "forecast_end_index": 4,
+          "reliability": "exploratory_longer_horizon"
+        },
+        {
+          "label": "6개월 실행 후보",
+          "start_month": "202609",
+          "end_month": "202702",
+          "months": 6,
+          "forecast_start_index": 2,
+          "forecast_end_index": 7,
+          "reliability": "exploratory_longer_horizon"
+        }
+      ],
+      "notes": [
+        "일정 미정은 현재 월 이후의 3개월·6개월 실행 후보를 비교합니다. 준비기간도 후보 기간에 포함합니다.",
+        "신뢰도는 실행기간 길이가 아니라 마지막 관측월로부터의 예측 거리로 판단합니다.",
+        "관측 공백 월도 내부 예측에는 포함하지만 이미 지난 달은 실행 후보의 합계에서 제외합니다."
+      ],
+      "as_of_date": "2026-09-14"
+    },
+    "nationwide_available": true,
+    "nationwide_period": "2025-07 ~ 2026-06",
+    "peer_count": 5,
+    "official_cases_total": 6,
+    "official_cases_allowed": 6,
+    "excluded_case_hosts": [],
+    "llm_mode": "local_first",
+    "configured_routes": {
+      "evidence": "openai",
+      "case_study": "openai",
+      "local_web_query_planner": "qwen",
+      "transferability": "qwen",
+      "planner": "gemma",
+      "planner_revision": "gemma",
+      "reviewer": "openai",
+      "final_reviewer": "openai",
+      "chat_explain": "qwen",
+      "chat_research": "openai",
+      "chat_revise": "gemma"
+    },
+    "effective_routes": {
+      "evidence": "openai",
+      "case_study": "openai",
+      "local_web_query_planner": "qwen",
+      "transferability": "qwen",
+      "planner": "gemma",
+      "planner_revision": "gemma",
+      "reviewer": "qwen",
+      "final_reviewer": "openai",
+      "chat_explain": "qwen",
+      "chat_research": "openai",
+      "chat_revise": "gemma"
+    },
+    "editable_template_exists": true,
+    "warnings": [
+      "visitors: mixed_recursive_performance — 전망을 단독 선정 근거로 사용하지 마세요.",
+      "spending_krw: mixed_recursive_performance — 전망을 단독 선정 근거로 사용하지 마세요."
+    ],
+    "not_tested": [
+      "유료 기획안 생성 품질",
+      "LLM 실제 응답",
+      "공식 웹 검색 결과",
+      "RAG 문서 수"
+    ]
+  }
+]

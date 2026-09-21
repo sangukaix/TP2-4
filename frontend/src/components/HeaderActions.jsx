@@ -1,0 +1,28 @@
+import { Moon, ShieldCheck, Sun } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { applyTheme, getStoredTheme, THEME_CHANGE_EVENT } from '../theme'
+
+export default function HeaderActions() {
+  const [theme, setTheme] = useState(getStoredTheme)
+
+  useEffect(() => {
+    const syncTheme = (event) => setTheme(event.detail || getStoredTheme())
+    window.addEventListener(THEME_CHANGE_EVENT, syncTheme)
+    return () => window.removeEventListener(THEME_CHANGE_EVENT, syncTheme)
+  }, [])
+
+  const isNight = theme === 'night'
+  const toggleTheme = () => {
+    setTheme(applyTheme(isNight ? 'day' : 'night'))
+  }
+
+  return (
+    <div className="global-header-actions">
+      <a className="admin-login-link" href="/admin-login"><ShieldCheck size={15} /><span>Admin</span></a>
+      <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label={isNight ? '주간 화면으로 전환' : '야간 화면으로 전환'}>
+        {isNight ? <Sun size={16} /> : <Moon size={16} />}
+        <span>{isNight ? 'Day Mode' : 'Night Mode'}</span>
+      </button>
+    </div>
+  )
+}

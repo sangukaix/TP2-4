@@ -1,0 +1,75 @@
+{
+  "slides": 17,
+  "native_charts": 6,
+  "native_tables": 4,
+  "source_and_ml_unchanged": true,
+  "central": {
+    "label": "기준",
+    "utilization_pct": 65.0,
+    "additional_visitor_share_pct": 30.0,
+    "participants": 7488,
+    "additional_visitors": 2246,
+    "additional_spending_krw": 157353164,
+    "visitor_growth_pct": 0.021228402392590284,
+    "spending_growth_pct": 0.03536671084606522,
+    "visitor_target_pct": 0.03221447862482329,
+    "spending_target_pct": 0.05311575279200933
+  },
+  "scenarios": [
+    {
+      "label": "보수",
+      "utilization_pct": 50.0,
+      "additional_visitor_share_pct": 15.0,
+      "participants": 5760,
+      "additional_visitors": 864,
+      "additional_spending_krw": 95085071,
+      "visitor_growth_pct": 0.008166224250756015,
+      "spending_growth_pct": 0.021371328839848314,
+      "visitor_target_pct": 0.012392390708747696,
+      "spending_target_pct": 0.03209668618704518
+    },
+    {
+      "label": "기준",
+      "utilization_pct": 65.0,
+      "additional_visitor_share_pct": 30.0,
+      "participants": 7488,
+      "additional_visitors": 2246,
+      "additional_spending_krw": 157353164,
+      "visitor_growth_pct": 0.021228402392590284,
+      "spending_growth_pct": 0.03536671084606522,
+      "visitor_target_pct": 0.03221447862482329,
+      "spending_target_pct": 0.05311575279200933
+    },
+    {
+      "label": "확대",
+      "utilization_pct": 80.0,
+      "additional_visitor_share_pct": 44.99999999999999,
+      "participants": 9216,
+      "additional_visitors": 4147,
+      "additional_spending_krw": 235218331,
+      "visitor_growth_pct": 0.03919598607394119,
+      "spending_growth_pct": 0.05286769256302377,
+      "visitor_target_pct": 0.05948060679302858,
+      "spending_target_pct": 0.07939972990657515
+    }
+  ],
+  "estimate_krw": 168080000,
+  "population_adjusted": false,
+  "learned_business_effect": false,
+  "capacity_rate_sources": [
+    {
+      "kind": "planning_assumption",
+      "metric": "utilization_rate",
+      "value": 65.0,
+      "unit": "percent",
+      "reason": "사업 규모를 검토하기 위한 공통 계획 가정"
+    },
+    {
+      "kind": "planning_assumption",
+      "metric": "additional_visitor_share",
+      "value": 30.0,
+      "unit": "percent",
+      "reason": "사업 규모를 검토하기 위한 공통 계획 가정"
+    }
+  ]
+}

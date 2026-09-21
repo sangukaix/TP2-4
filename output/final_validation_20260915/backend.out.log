@@ -1,0 +1,10 @@
+INFO:     127.0.0.1:2038 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:12886 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:3473 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:3990 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:4006 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:2059 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:2955 - "GET /api/v1/boundaries/sigungu?sido_code=11 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:10721 - "GET /api/v1/boundaries/sido HTTP/1.1" 200 OK
+INFO:     127.0.0.1:10361 - "GET /api/v1/boundaries/sido HTTP/1.1" 200 OK
+INFO:     127.0.0.1:1152 - "GET /api/v1/boundaries/sigungu?sido_code=50 HTTP/1.1" 200 OK

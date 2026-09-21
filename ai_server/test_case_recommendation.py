@@ -80,6 +80,18 @@ class RecommendationTest(unittest.TestCase):
         report={'strategies':[{'solution':'여행비 환급'}], 'planning_decision':{'selected_candidate_id':'a','design_candidates':[{'candidate_id':'a','mechanism':'여행비 환급','case_source_ids':['case:z_valid']}]},'evidence_sources':[{**sources()[1],'source_id':sid,'source_type':'benchmark_case'} for sid in ['case:a_other','case:z_valid']]}
         self.assertEqual(report_cases(report)[1][0]['source_id'],'case:z_valid')
 
+    def test_export_does_not_reclassify_shortened_mixed_operation(self):
+        from ai_server.app.case_recommendation import report_cases
+        report = {'strategies': [{'title': '외지인 1박형 상권 결제 인증 지원',
+                                  'solution': '숙박·식음·체험 중 2개 이상 업종 결제 후 혜택 지급'}],
+                  'planning_decision': {'selected_candidate_id': 'a', 'design_candidates': [
+                      {'candidate_id': 'a', 'mechanism': '숙박·식음 결제 증빙 후 여행비를 지역상품권으로 환급',
+                       'case_source_ids': ['case:refund']}]},
+                  'evidence_sources': [{**s, 'source_type': 'benchmark_case'} for s in sources()]}
+        before = copy.deepcopy(report)
+        self.assertEqual(report_cases(report)[1][0]['source_id'], 'case:refund')
+        self.assertEqual(report, before)
+
 
 class AgentIntegrationTest(unittest.IsolatedAsyncioTestCase):
     async def test_local_model_selection_failure_is_returned_for_existing_repair(self):

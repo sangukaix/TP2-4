@@ -1,0 +1,57 @@
+오후 2:35:15 [vite] http proxy error: /ai/v1/learning/assistant-status
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 2:35:15 [vite] http proxy error: /ai/v1/llm/status
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 2:35:15 [vite] http proxy error: /ai/v1/llm/config
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 2:35:15 [vite] http proxy error: /ai/v1/llm/trace
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:14 [vite] http proxy error: /ai/v1/regions/readiness-audit
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:15 [vite] http proxy error: /ai/v1/learning/assistant-status
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/demo/50110/generation-readiness?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/regions/catalog
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/regions/readiness-audit
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/demo/50110/dashboard?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/demo/50110/generation-readiness?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/regions/catalog
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/regions/readiness-audit
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:35 [vite] http proxy error: /ai/v1/demo/50110/dashboard?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:37 [vite] http proxy error: /ai/v1/regions/catalog
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:37 [vite] http proxy error: /ai/v1/demo/50110/dashboard?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:37 [vite] http proxy error: /ai/v1/regions/catalog
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 3:52:37 [vite] http proxy error: /ai/v1/demo/50110/dashboard?region_name=%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%A0%9C%EC%A3%BC%EC%8B%9C
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)
+오후 4:03:14 [vite] http proxy error: /ai/v1/learning/assistant-status
+Error: connect ECONNREFUSED 127.0.0.1:8112
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1706:16)

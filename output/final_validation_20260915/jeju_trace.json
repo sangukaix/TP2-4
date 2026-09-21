@@ -1,0 +1,748 @@
+{
+  "events": [
+    {
+      "recorded_at": "2026-09-15T09:53:19.492546+09:00",
+      "agent": "reviewer",
+      "stage": "reviewer",
+      "status": "completed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 199164,
+      "usage": {
+        "input_tokens": 104889,
+        "output_tokens": 1906,
+        "total_tokens": 106795
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 25899,
+            "output_tokens": 62,
+            "total_tokens": 25961
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26027,
+            "output_tokens": 40,
+            "total_tokens": 26067
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26194,
+            "output_tokens": 36,
+            "total_tokens": 26230
+          }
+        },
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26769,
+            "output_tokens": 1768,
+            "total_tokens": 28537
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 165426,
+        "overview_bytes": 8430,
+        "sources_available": 56,
+        "sources_read": 1
+      },
+      "max_output_tokens": 5500,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:50:00.32562+09:00",
+      "agent": "planner",
+      "stage": "planner_revision",
+      "status": "completed",
+      "provider": "gemma",
+      "requested_provider": "gemma",
+      "model": "gemma4:26b",
+      "duration_ms": 51425,
+      "usage": {
+        "input_tokens": 21443,
+        "output_tokens": 1360,
+        "total_tokens": 22803
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 21443,
+            "output_tokens": 1360,
+            "total_tokens": 22803
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 116390,
+        "overview_bytes": 7308,
+        "sources_available": 17,
+        "sources_read": 1
+      },
+      "max_output_tokens": 10000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:49:08.894683+09:00",
+      "agent": "reviewer",
+      "stage": "reviewer",
+      "status": "completed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 116810,
+      "usage": {
+        "input_tokens": 105725,
+        "output_tokens": 922,
+        "total_tokens": 106647
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26108,
+            "output_tokens": 62,
+            "total_tokens": 26170
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26236,
+            "output_tokens": 40,
+            "total_tokens": 26276
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26403,
+            "output_tokens": 36,
+            "total_tokens": 26439
+          }
+        },
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 26978,
+            "output_tokens": 784,
+            "total_tokens": 27762
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "invalid_arguments"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 166562,
+        "overview_bytes": 9885,
+        "sources_available": 56,
+        "sources_read": 1
+      },
+      "max_output_tokens": 5500,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:47:12.067091+09:00",
+      "agent": "planner",
+      "stage": "planner",
+      "status": "completed",
+      "provider": "gemma",
+      "requested_provider": "gemma",
+      "model": "gemma4:26b",
+      "duration_ms": 79980,
+      "usage": {
+        "input_tokens": 40752,
+        "output_tokens": 1805,
+        "total_tokens": 42557
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "continued_without_optional_tools",
+          "error_code": "OLLAMA_INCOMPLETE_RESPONSE",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 20670,
+            "output_tokens": 512,
+            "total_tokens": 21182
+          }
+        },
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 20082,
+            "output_tokens": 1293,
+            "total_tokens": 21375
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 160816,
+        "overview_bytes": 7951,
+        "sources_available": 56,
+        "sources_read": 1
+      },
+      "max_output_tokens": 10000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:45:52.078954+09:00",
+      "agent": "transferability",
+      "stage": "transferability",
+      "status": "completed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 537061,
+      "usage": {
+        "input_tokens": 29106,
+        "output_tokens": 4926,
+        "total_tokens": 34032
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 29106,
+            "output_tokens": 4926,
+            "total_tokens": 34032
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_planning_decision",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        },
+        {
+          "tool": "read_task_section",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 158499,
+        "overview_bytes": 7998,
+        "sources_available": 56,
+        "sources_read": 3
+      },
+      "max_output_tokens": 8000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:36:55.011076+09:00",
+      "agent": "transferability",
+      "stage": "transferability",
+      "status": "completed",
+      "provider": "qwen",
+      "requested_provider": "qwen",
+      "model": "qwen3:14b",
+      "duration_ms": 544341,
+      "usage": {
+        "input_tokens": 110250,
+        "output_tokens": 5122,
+        "total_tokens": 115372
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27608,
+            "output_tokens": 22,
+            "total_tokens": 27630
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27686,
+            "output_tokens": 21,
+            "total_tokens": 27707
+          }
+        },
+        {
+          "phase": "tool_selection",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27764,
+            "output_tokens": 21,
+            "total_tokens": 27785
+          }
+        },
+        {
+          "phase": "final_json",
+          "status": "completed",
+          "usage_reported": true,
+          "usage": {
+            "input_tokens": 27192,
+            "output_tokens": 5058,
+            "total_tokens": 32250
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "get_region_metrics",
+          "status": "completed"
+        },
+        {
+          "tool": "get_regional_tourism_status",
+          "status": "completed"
+        },
+        {
+          "tool": "compare_regions",
+          "status": "completed"
+        },
+        {
+          "tool": "get_nationwide_bigdata_context",
+          "status": "completed"
+        },
+        {
+          "tool": "get_ml_forecast",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "read_collected_source",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        },
+        {
+          "tool": "get_case_comparison_matrix",
+          "status": "completed"
+        }
+      ],
+      "input_preparation": {
+        "mode": "request_scoped_evidence_tools",
+        "original_bytes": 133773,
+        "overview_bytes": 7974,
+        "sources_available": 56,
+        "sources_read": 3
+      },
+      "max_output_tokens": 8000,
+      "paid_reason": "",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:27:50.665806+09:00",
+      "agent": "case_scout",
+      "stage": "case_study",
+      "status": "completed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-sol",
+      "duration_ms": 128076,
+      "usage": {
+        "input_tokens": 76035,
+        "output_tokens": 7257,
+        "total_tokens": 83292,
+        "cached_tokens": 0,
+        "reasoning_tokens": 3512
+      },
+      "fallback": false,
+      "fallback_reason": "",
+      "web_search_used": true,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 16000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 76035,
+            "output_tokens": 7257,
+            "total_tokens": 83292,
+            "cached_tokens": 0,
+            "reasoning_tokens": 3512
+          },
+          "usage_reported": true,
+          "duration_ms": 128073,
+          "web_grounding": {
+            "searched": true,
+            "accepted_cases": 5,
+            "rejected_cases": []
+          }
+        }
+      ],
+      "tool_trace": [],
+      "input_preparation": {},
+      "max_output_tokens": 16000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    },
+    {
+      "recorded_at": "2026-09-15T09:26:19.960409+09:00",
+      "agent": "evidence",
+      "stage": "evidence",
+      "status": "failed",
+      "provider": "openai",
+      "requested_provider": "openai",
+      "model": "gpt-5.6-terra",
+      "duration_ms": 36610,
+      "usage": {
+        "input_tokens": 35273,
+        "output_tokens": 2929,
+        "total_tokens": 38202,
+        "cached_tokens": 0,
+        "reasoning_tokens": 966
+      },
+      "fallback": false,
+      "fallback_reason": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "error_code": "OPENAI_UNVERIFIED_WEB_SOURCE",
+      "web_search_used": false,
+      "attempts": [
+        {
+          "attempt": 1,
+          "max_output_tokens": 10000,
+          "status": "completed",
+          "reason": null,
+          "usage": {
+            "input_tokens": 35273,
+            "output_tokens": 2929,
+            "total_tokens": 38202,
+            "cached_tokens": 0,
+            "reasoning_tokens": 966
+          },
+          "usage_reported": true,
+          "duration_ms": 36609
+        }
+      ],
+      "tool_trace": [],
+      "max_output_tokens": 10000,
+      "paid_reason": "부족한 공식 근거의 웹 조사",
+      "retry_count": 0
+    }
+  ],
+  "usage": {
+    "tracked_calls": 8,
+    "total_tokens": 549700,
+    "usage_unknown_attempts": 0,
+    "note": "현재 프로세스에서 API가 보고한 성공·실패·재시도 토큰 합계입니다. 사용량 미확인 호출은 포함되지 않아 실제 청구량과 다를 수 있습니다."
+  }
+}

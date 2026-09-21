@@ -1,5 +1,15 @@
 # STAY-UP AI
 
+2026-09-17 현재 설정: 관리자 **로컬우선(Gemma)**. 모든 로컬 작업은 Gemma, 공식 조사·독립 최종 검수는 OpenAI. Qwen 전환 기록은 이전 설정이다. [실행·복구·사례 캐시 안내](docs/GEMMA_FIRST_MODE.md).
+
+2026-09-17 간결한 기획 보완: 다음 생성의 공통 지침에 핵심 KPI 예시, 준비와 실제 운영 개시의 구분, 상품권·협약의 집행 전 확인 절차를 명시했습니다. 운영 규모는 선정 후보의 상세 운영 방식에 맞춥니다. 관련 검사 62개 중 61개 통과·1개 skip. 추가 LLM 생성/전체 반복 검사는 하지 않았으며 실제 생성 검토는 사용자가 웹에서 생성한 뒤 진행합니다.
+
+대전 서구 동일 조건 1건 실생성은 완료했으나 **78점·미승인**입니다. KPI 측정 조건·실행월·지역 적용 조건을 더 확인해야 하므로 제출 완료로 판정하지 않습니다. 실생성에서 발견한 PPT 출력 오류·잘못된 적용 사례 표시·글자 겹침·Word 빈 페이지는 보정했으며, 기존 기획서와 새 결과의 ML·검수 상태는 보존합니다. [상세 결과](docs/SUBMISSION_VALIDATION_20260917.md).
+
+문서 출력 후속: Word 산출근거의 한 문장짜리 넘침 페이지를 내용 손실 없이 정리했습니다. 이미 완성된 Word/PPT는 바이너리 줄 단위 스트리밍 대신 바이트 응답으로 다운로드합니다. 첫 전국 비교 출력은 저장 ML 비교 캐시 계산 때문에 오래 걸릴 수 있습니다. 활성 기획서 생성 중에는 출력 수정을 적용하려고 AI 서버를 재시작하지 않습니다.
+
+2026-09-17 TP2-4 후속 점검: 초록색은 **입력자료 준비**이며 기획서 품질·출력·제출 승인이 아닙니다. 조회 실패 또는 파일/SQL 변경 시 이전 확인 상태를 재사용하지 않습니다. 최소 운영비 미만의 0원 견적은 실행 가능한 견적으로 표시하지 않습니다. 정상 예산 산식·원자료·저장 ML·기존 보고서는 보존합니다. [검증 진행 기록](docs/SUBMISSION_VALIDATION_20260917.md).
+
 2026-09-16 개인 환경 Qwen 전환: `qwen3.8:27b`, 요청 문맥 70,000. 재시작 후 웹의 새 모델 경로와 별도 로컬 시험의 실제 70,000 할당을 확인했습니다. 전체 기획 품질 승인은 별도입니다. [적용·14B 복구 방법](docs/QWEN_MODEL_SWITCH_20260916.md).
 
 2026-09-16 대전 서구 재점검: 긴 축제 사례 원문이 도구별 크기 제한으로 읽히지 않던 오류를 무손실 분할 전달로 수정했습니다. PPT·Word의 4단계 요약도 실제 시범 운영 시작월과 일치하도록 맞췄습니다. 관련 71개 검사와 실제 저장 사례의 전문 복원을 확인했으며, 새 LLM 생성 품질 승인은 별도입니다. [실측·수정 범위](docs/DAEJEON_SECOND_REPORT_REVIEW_20260916.md).
@@ -28,7 +38,7 @@
 
 ## 시작하기 전
 
-지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8112가 필요합니다.
+지역 선택창의 초록색은 최근 점검에서 데이터·저장 기획안 목표/검수·문서 출력이 통과한 지역입니다. 미래 생성 성공 보장이 아닙니다. `python -m ai_server.app.scripts.audit_all_regions`로 읽기 전용 재점검하며 24시간 뒤 표시를 만료합니다. 실행에는 로컬 AI 서버 8212가 필요합니다.
 
 2026-09-07: [원주 기획안 정밀 점검·필요 자료 목록](docs/WONJU_PROPOSAL_QUALITY_AUDIT_20260907.md),
 [전국 사례 선택 정책](docs/NATIONWIDE_CASE_SELECTION.md), [전체 기획안 생성 준비도 점검](docs/PROPOSAL_READINESS_AUDIT_20260907.md)을 추가했습니다.
@@ -39,6 +49,7 @@ PowerPoint 출력은 승인 디자인의 v6 원본 위에 v9 출력 레이아웃
 사업 설명과 3개월 ML예측치·목표 KPI 비교 차트, 4개 사례, 4단계 실행표를 제공합니다.
 중복 예측·지속 운영 장을 제거하여 출처는 10장부터 1~2장, 감사 장을 포함해 총 11~12장입니다. 방문·소비 표는 분리하고, 목표 증가율과 월별 합계를 표시합니다. 사례는 선정 자료를 유지한 채 서로 다른 운영방식을 우선 배치합니다. 저장된 기획서의
 PowerPoint를 다시 다운로드하면 재생성하며, 이 과정에 OpenAI·Ollama 생성 호출은 없습니다.
+AI 전략기획 결과 화면은 장문 설명 대신 최종 PowerPoint와 같은 입력으로 만든 PDF 미리보기를 표시합니다. 왼쪽 페이지 번호로 이동하고 전체보기에서 문서와 AI 챗봇을 함께 사용할 수 있습니다. 개발 PC에는 PDF 변환을 위한 Microsoft PowerPoint 또는 LibreOffice가 필요하며, 변환 결과는 PPTX 내용 해시로 재사용합니다.
 수치 예측과 사업 효과·가정 목표의 경계는 `docs/DECISIONS.md`의 D-089를 참고합니다.
 
 현재 로컬 우선 기획의 구현 범위·비용 제한·남은 GPU/PPT 검증은
@@ -105,7 +116,7 @@ Codex 또는 팀원은 먼저 루트의 `AGENTS.md`와 아래 문서를 순서�
 - 지역 선택의 `지역 정보 상세보기`는 OpenAI를 호출하지 않고, 서버가 한국관광공사 국문 관광정보 Open API에서 읽은 관광자원 정보를 월간 원자료 요약과 분리해 보여 줍니다.
 - AI 전략기획 생성은 서버 백그라운드 작업으로 실행합니다. 화면을 다른 업무 페이지나 탭으로 바꿔도 작업 ID를 통해 상태를 이어서 확인하며, MySQL의 작업 상태와 완료된 기획안·Word/PPT를 다시 조회합니다.
 - 기존 `test-gangnam-dashboard/`는 별도의 Streamlit 프로토타입으로 유지합니다.
-- React 공개 경로는 `frontend/src/routes.js`에서 관리합니다. 주요 업무는 `/dashboard`, `/planning`, `/strategy`, `/saved-plans`이며 `/diagnosis`는 `/dashboard`, `/proposal`은 `/strategy`의 과거 주소 별칭입니다. 알 수 없는 경로는 404 안내를 표시합니다.
+- React 공개 경로는 `frontend/src/routes.js`에서 관리합니다. 주요 업무는 `/dashboard`, `/planning`, `/strategy`, `/saved-plans`이며 `/admin-login`에서 교육용 관리자 화면 잠금을 해제합니다. `/diagnosis`는 `/dashboard`, `/proposal`은 `/strategy`의 과거 주소 별칭입니다. 알 수 없는 경로는 404 안내를 표시합니다.
 
 ## 팀원 최초 설치
 
@@ -164,24 +175,24 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 최초 설치가 끝난 뒤 세 서버를 한 번에 실행하려면 프로젝트 루트에서 아래 명령을 사용합니다. Backend, AI Server, Frontend가 각각 별도 PowerShell 창에서 계속 실행됩니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
+cd C:\Users\Admin\mbca\TP2-4
 .\start-dev.ps1
 ```
 
 개별 실행이 필요하면 아래 명령을 사용합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\frontend
-$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8100'
-$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8112'
-npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
+cd C:\Users\Admin\mbca\TP2-4\frontend
+$env:VITE_BACKEND_PROXY_TARGET='http://127.0.0.1:8200'
+$env:VITE_AI_PROXY_TARGET='http://127.0.0.1:8212'
+npm run dev -- --host 0.0.0.0 --port 5177 --strictPort
 ```
 
-`start-dev.ps1`로 실행한 TP2-3 개발 주소는 `http://localhost:5176`입니다. TP2-2와 동시에 실행해도 충돌하지 않도록 TP2-3은 Backend `8100`, AI Server `8112`, Frontend `5176`을 사용합니다. Windows에서 기존 `8111` 리스너가 중복 잔류한 개발 환경을 피해 AI 포트를 옮겼습니다. 첫 설치 이후에만 `npm install`이 필요합니다.
+`start-dev.ps1`로 실행한 TP2-4 개발 주소는 `http://localhost:5177`입니다. 기존 TP2-3과 동시에 실행해도 충돌하지 않도록 TP2-4는 Backend `8200`, AI Server `8212`, Frontend `5177`을 사용합니다. 첫 설치 이후에만 `npm install`이 필요합니다.
 
 `start-dev.ps1`에서 `Python virtual environment was not found` 오류가 나오면 프로젝트 루트에서 `.\setup-dev.ps1`를 먼저 실행합니다.
 
-같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5176 인바운드 허용이 필요할 수 있습니다.
+같은 네트워크의 팀원이 접속할 때는 `start-dev.ps1` 실행 후 표시되는 현재 PC의 LAN 주소를 사용합니다. 네트워크 어댑터가 여러 개면 주소가 여러 줄 표시될 수 있으며, 같은 네트워크 대역의 주소를 선택합니다. Windows 방화벽에서 5177 인바운드 허용이 필요할 수 있습니다.
 
 ## 발표용 프로젝트 구조 탐색기
 
@@ -192,27 +203,27 @@ npm run dev -- --host 0.0.0.0 --port 5176 --strictPort
 & .\backend\.venv\Scripts\python.exe -m streamlit run project_tree_explorer/app.py --server.port 8501
 ```
 
-React 화면에서 `http://localhost:5176/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
+React 화면에서 `http://localhost:5177/project-tree`를 열면 전체 트리·파일 역할·앱 시작·대시보드·AI 전략·챗봇 실행 흐름을 확인할 수 있습니다. Streamlit 설치 후에는 `start-dev.ps1`이 구조 탐색기 포트 `8501`도 함께 실행합니다. LAN으로 접속할 때도 React와 같은 개발 PC 호스트의 `8501`을 사용합니다. CLI 트리만 출력하려면 `& .\backend\.venv\Scripts\python.exe project_tree_explorer\tree_cli.py`를 사용하고, 의존성·캐시 폴더까지 포함하려면 `--include-generated`를 추가합니다.
 
 ## 지도 Backend 실행
 
 새 터미널에서 아래를 실행합니다. 지도에는 루트 `.env`의 `VWORLD_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3\backend
+cd C:\Users\Admin\mbca\TP2-4\backend
 .\.venv\Scripts\Activate.ps1
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8100
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8200
 ```
 
-Backend와 프론트엔드가 모두 실행되면 `http://localhost:5176/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
+Backend와 프론트엔드가 모두 실행되면 `http://localhost:5177/dashboard`의 지도는 시연 점 대신 클릭 가능한 시도·시군구 면 경계를 표시합니다.
 
 ## AI 서버와 Word 기획서 실행
 
 강남구 AI 전략기획서와 Word 다운로드는 별도 AI 서버가 담당합니다. 루트 `.env`에 `OPENAI_API_KEY`가 있어야 합니다.
 
 ```powershell
-cd C:\Users\Admin\mbca\TP2-3
-.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8112
+cd C:\Users\Admin\mbca\TP2-4
+.\backend\.venv\Scripts\python.exe -m uvicorn ai_server.app.main:app --reload --host 127.0.0.1 --port 8212
 ```
 
 - 화면의 `AI 전략기획서 생성`은 Evidence Agent가 선택 지역 근거를 모으고, Case Scout가 전국 공식 성공사례의 실행 방식·예산·성과를 조사합니다. Transferability Agent가 지역 적합성을 평가한 뒤 Planner가 3~6개월 기획안을 작성하고 Reviewer가 사례 오용과 실행 가능성을 검토합니다. 기준 미달 시 한 번 수정합니다.
@@ -269,7 +280,7 @@ PPT는 승인된 양식을 유지하며 사례 소개 다음에 선정 근거 �
 
 전체 구조 지도에서도 **ML 결과 → 전략**을 선택해 같은 ML 연결 설명을 기존 단계별 파일 탐색 방식으로 확인할 수 있습니다.
 
-관리자 [머신러닝 결과](http://localhost:5176/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
+관리자 [머신러닝 결과](http://localhost:5177/ml-test)의 각 Target에는 계산 파일·함수, ML 근거 필드, 사례 조사, Qwen/Gemma 전달, 출력 위치를 설명하는 7단계 안내와 호출 트리가 있습니다. 설명 데이터는 `ai_server/ml/module_usage.py`에서 관리합니다.
 
 PPT 사례 카드는 오른쪽 여백과 자동 줄바꿈을 적용합니다. 출력 버전은 `pptx-case-wrap-v13`입니다.
 
@@ -398,3 +409,21 @@ D-175: 자동 초기 목표를 고정 5%/20%에서 사업 유형·지역 전망�
 - 견적은 참여 목표의 예상 집행액을 표시합니다. 환급형은 계획 결제액×환급률과 건별 상한 중 작은 금액을 사용하고, 참여자 결제액·추가 소비·사업비를 구분합니다. 웹·PPT·Word 공통 적용이며 사용자 지정 견적은 보존합니다. [D-186 및 점검 기록](docs/DAEJEON_LINKED_SCENARIO_20260916.md).
 
 - 시도 원본 ZIP 415개를 로컬 보관하고, 15개 시도의 월별 4개 지표 1,800행을 CSV/MySQL에 연결했습니다. 시군구 기획서에 동일 관측월의 상위 지역 관광 흐름만 보조 근거로 전달합니다. 시도 생성·ML·KPI·PPT 양식은 확장하지 않습니다. [자료/재현 안내](docs/PROVINCIAL_TOURISM_CONTEXT.md).
+
+
+2026-09-17 최종 작업 폴더는 **TP2-4**입니다. 누락 코드·산출물 이관과 최신 UI/출력 보존을 완료했습니다. [파일별 이관·복구 기록](docs/TP2_4_MIGRATION_20260917.md).
+
+
+### 사업기간 자동 선택 규칙 (2026-09-17)
+
+한국 시간 기준 생성일이 1~15일이면 다음 달부터, 16일~말일이면 다다음 달부터 연속 3개월로 정한다. 예: 2026-09-15 → 2026-10~12, 2026-09-16 → 2026-11~2027-01. 웹 입력·대시보드와 신규 보고서 API는 같은 규칙을 사용하고, 서버가 생성 요청 시 날짜를 확정한다. ML은 종료월까지 실제 월별 전망을 계산하고 PPT·Word·웹 목표는 저장된 같은 기간을 사용한다. 기존 저장본·진행 중 작업을 현재 날짜로 이동하지 않는다. 신규 본문은 첫 사업월 운영 개시를 명시하며 실제 준비일에는 운영량을 배분하지 않는다.
+
+
+### 최종 오프라인 점검 (2026-09-20)
+
+현재 작업 루트는 `C:\Users\Admin\mbca\TP2-4`입니다. 관리자 `/llm-control`에서 현재 모드의 Agent 파이프라인·프롬프트·설정·명령·실행 기록을 확인할 수 있습니다. 이 화면의 설정 자동 조회는 모델을 호출하지 않습니다.
+
+프론트 검증: `cd frontend` 후 `npm run lint`, `npm test`, `npm run build`.
+서버 오프라인 검증: 프로젝트 루트에서 `backend\.venv\Scripts\python.exe -m ai_server.run_offline_tests`. 이 실행기는 외부 소켓 연결을 막으며 MySQL/LLM/API 실연동 검사를 대신하지 않습니다.
+
+미리보기는 서버의 PowerPoint(Windows) 또는 LibreOffice가 필요합니다. 로컬 서버에서 사용하려면 AI 서버를 재시작하여 새 overview/preview 코드를 적용하세요. 실행 중인 `start-dev.ps1`은 중복 시작을 생략하므로 재시작 버튼 역할이 아닙니다. Netlify Drop에는 `frontend/dist`를 다시 올리며, API 프록시/공개 로컬 서버 연결도 유지해야 합니다. [결과와 남은 확인](docs/FINAL_OFFLINE_REVIEW_20260920.md).

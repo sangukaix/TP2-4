@@ -1,4 +1,4 @@
-"""승인된 12장 편집형 PowerPoint의 공개 계약을 오프라인으로 검증합니다.
+"""선정 사례 표시를 보정한 v47 편집형 PowerPoint 계약을 오프라인으로 검증합니다.
 
 OpenAI·관광 Open API·MySQL을 호출하지 않고도 템플릿 구조, 핵심 문구,
 네이티브 차트와 편집 가능한 텍스트 개체가 유지되는지 확인합니다.
@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+from hashlib import sha256
 from pathlib import Path
 from unittest.mock import patch
 
@@ -17,6 +18,7 @@ from pptx.enum.shapes import MSO_SHAPE_TYPE
 from ai_server.app import proposal_presentation
 from ai_server.app import proposal_presentation_v3
 from ai_server.app import proposal_presentation_v4
+from ai_server.presentation_test_support import slide_with_title, named_shape
 
 
 def _sample_report(*, with_ml: bool = True) -> dict:
@@ -177,7 +179,7 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
             proposal_presentation.create_strategy_proposal_presentation,
             proposal_presentation_v4.create_strategy_proposal_presentation,
         )
-        self.assertEqual(proposal_presentation_v4.PRESENTATION_RENDER_VERSION, 'pptx-source-bound-rationale-v20')
+        self.assertEqual(proposal_presentation_v4.PRESENTATION_RENDER_VERSION, 'pptx-v73-matched-selected-case-photo')
         template_path = Path(proposal_presentation_v4.PRESENTATION_TEMPLATE_PATH)
         self.assertEqual(template_path.name, 'tourism_strategy_12_slide_template_v6.pptx')
         self.assertTrue(template_path.is_file(), f'승인된 PPT 레이아웃 원본을 찾을 수 없습니다: {template_path}')
@@ -194,34 +196,33 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
         output = proposal_presentation.create_strategy_proposal_presentation(_sample_report())
         deck = Presentation(output)
 
-        self.assertGreaterEqual(len(deck.slides), 12)
+        # This fixture has one sources page and two operating-capacity pages.
+        self.assertEqual(len(deck.slides), 16)
         texts_by_slide = [_slide_text(slide) for slide in deck.slides]
         required_by_slide = {
             1: ('강남 이브닝 스테이 패스', '서울특별시 강남구'),
             2: ('목차',),
-            3: ('강남 이브닝 스테이 패스', '야간 동선'),
-            4: ('사업 설계', '사업내용', '사업기간', '목표 KPI'),
-            5: ('지역별 참고 사례',),
-            6: ('지역 적용 방법',),
-            7: ('4단계 실행 가이드', '01'),
-            8: ('머신러닝 예측값과 목표 KPI',),
-            9: ('사례 실적과 목표 KPI 설정 근거',),
-            10: ('견적 예시안', '시범 예산',),
-            11: ('산출 근거 ①', 'ML 기준 전망', '견적 총액'),
-            12: ('산출 근거 ②',),
-            13: ('근거·데이터', '관측 데이터'),
+            3: ('1.1 지역 관광 전망', '월별 관광 흐름'),
+            4: ('1.2 제안 사업 소개', '사업개요'),
+            5: ('2.1 지역별 참고 사례',),
+            6: ('2.2 적용 사례 운영 방식',),
+            7: ('3.1 사업 목표', '사업내용', '사업기간', '목표 KPI'),
+            8: ('3.2 목표 KPI 산출근거', '계획 가정'),
+            9: ('3.3 운영 규모와 산출 근거', '참여 목표'),
+            10: ('3.4 월별 방문·소비 증가 목표', '추가 목표 합계'),
+            11: ('4.1 4단계 실행 가이드 예시안', '01'),
+            12: ('4.2 머신러닝 예측값과 목표 KPI',),
+            13: ('5.1 견적 예시안', '예상 사업비'),
+            14: ('6.1 기획서 생성 파이프라인',),
+            15: ('7.1 근거·데이터·출처', '관측 데이터'),
+            16: ('감사합니다', '서울특별시 강남구'),
         }
         for slide_number, labels in required_by_slide.items():
             for label in labels:
                 self.assertIn(label, texts_by_slide[slide_number - 1], f'{slide_number}장 필수 문구 누락: {label}')
-        self.assertNotRegex(texts_by_slide[3], r'\bC\d+\b', '4장에 내부 후보 ID가 노출됐습니다.')
-        self.assertTrue(
-            any(
-                phrase in texts_by_slide[3]
-                for phrase in ('사례 실적을 참고한 계획 가정',)
-            ),
-            '5장에 ML 자연추세와 정책효과를 구분하는 안전 문구가 없습니다.',
-        )
+        self.assertNotRegex(texts_by_slide[5], r'\bC\d+\b', '사업 목표에 내부 후보 ID가 노출됐습니다.')
+        self.assertIn('사례의 사업 효과를 예측한 값이 아니며',texts_by_slide[7])
+        self.assertIn('사용자 지정 목표',texts_by_slide[8])
 
         native_text_shapes = [
             shape
@@ -239,15 +240,16 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
             if shape.shape_type == MSO_SHAPE_TYPE.PICTURE
         ]
         self.assertGreaterEqual(len(native_text_shapes), 90, '편집 가능한 텍스트 개체가 지나치게 적습니다.')
-        self.assertGreaterEqual(len(native_charts), 2, 'ML 전망 차트 2개는 네이티브 PowerPoint 차트여야 합니다.')
+        self.assertEqual(len(native_charts), 6, '개요·목표·운영 시나리오의 차트가 편집 가능해야 합니다.')
+        self.assertEqual(sum(shape.has_table for slide in deck.slides for shape in slide.shapes),3)
         self.assertGreaterEqual(len(pictures), 1, '템플릿의 지역 사진 프레임이 유지되어야 합니다.')
         self.assertIn('감사합니다', texts_by_slide[-1])
-        self.assertIn('머신러닝 예측치', '\n'.join(texts_by_slide[9:]))
+        self.assertIn('머신러닝 예측치', '\n'.join(texts_by_slide[10:]))
         self.assertNotRegex('\n'.join(texts_by_slide), r'…|\.{3}|자연추세')
         for slide_number, slide_text in enumerate(texts_by_slide, start=1):
             self.assertTrue(slide_text.strip(), f'{slide_number}장이 통이미지 또는 빈 슬라이드입니다.')
 
-    def test_missing_optional_image_and_ml_data_keeps_twelve_slide_structure(self) -> None:
+    def test_missing_optional_image_and_ml_data_keeps_core_sections_without_fake_charts(self) -> None:
         """사진 URL이나 ML 전망이 없어도 외부 통신 없이 동일한 템플릿으로 출력합니다."""
         report = _sample_report(with_ml=False)
         report['evidence_sources'] = []
@@ -258,25 +260,42 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
             output = proposal_presentation.create_strategy_proposal_presentation(report)
 
         deck = Presentation(output)
-        self.assertGreaterEqual(len(deck.slides), 12)
+        self.assertEqual(len(deck.slides), 14)
         self.assertTrue(all(_slide_text(slide).strip() for slide in deck.slides))
-        self.assertIn('예측치 미제공', _slide_text(deck.slides[3]))
-        self.assertFalse(any(getattr(s, 'has_chart', False) for s in deck.slides[3].shapes))
+        self.assertIn('예측치 미제공', _slide_text(slide_with_title(deck,'3.1 사업 목표')))
+        self.assertFalse(any(s.has_chart for slide in deck.slides for s in slide.shapes))
 
     def test_approved_template_positions_and_final_decision_copy_are_preserved(self) -> None:
         """출력 때 이미 정돈한 최신 템플릿을 다시 이동하거나 축소하지 않습니다."""
         source = Presentation(str(proposal_presentation_v4.PRESENTATION_TEMPLATE_PATH))
         result = Presentation(proposal_presentation.create_strategy_proposal_presentation(_sample_report()))
-        for index, result_index, names in (
-            (0, 0, ('title-panel', 'center-top-vertical')),
-        ):
-            before = {shape.name: shape for shape in source.slides[index].shapes}
-            after = {shape.name: shape for shape in result.slides[result_index].shapes}
-            for name in names:
-                self.assertEqual(
-                    tuple(getattr(before[name], attr) for attr in ('left', 'top', 'width', 'height')),
-                    tuple(getattr(after[name], attr) for attr in ('left', 'top', 'width', 'height')),
-                )
+        self.assertEqual((result.slide_width,result.slide_height),(source.slide_width,source.slide_height))
+        changed=_sample_report();changed['strategies'][0]['title']='강남 문화 체험'
+        alternate=Presentation(proposal_presentation.create_strategy_proposal_presentation(changed))
+        # D-180 replaced the old title-panel cover. Current named editable fields
+        # retain their approved anchors when the report's content changes.
+        for name in ('cover-title-line1','cover-date','cover-issued-date','org-title'):
+            before=named_shape(result.slides[0],name)
+            after=named_shape(alternate.slides[0],name)
+            self.assertEqual(tuple(getattr(before,a) for a in ('left','top','width','height')),
+                             tuple(getattr(after,a) for a in ('left','top','width','height')))
+            self.assertTrue(before.has_text_frame)
+            self.assertGreaterEqual(before.left,0);self.assertGreaterEqual(before.top,0)
+            self.assertLessEqual(before.left+before.width,result.slide_width)
+            self.assertLessEqual(before.top+before.height,result.slide_height)
+        cover_photos=[shape for shape in result.slides[0].shapes if shape.name=='cover-regional-photo']
+        self.assertLessEqual(len(cover_photos),1)
+        if cover_photos:
+            cover_photo=cover_photos[0]
+            self.assertEqual((cover_photo.left,cover_photo.top,cover_photo.width,cover_photo.height),
+                             (8953500,0,6286500,8572500))
+        self.assertNotIn('cover-photo-blend',{shape.name for shape in result.slides[0].shapes})
+        self.assertIn('서울특별시 강남구',named_shape(result.slides[0],'org-title').text)
+        self.assertEqual(named_shape(result.slides[0],'org-title').top,
+                         named_shape(result.slides[0],'cover-ribbon-main').top)
+        from ai_server.app.case_images import GENERATED_IMAGE_PATH
+        self.assertTrue(GENERATED_IMAGE_PATH.is_file())
+        self.assertIn('강남 문화 체험',_slide_text(alternate.slides[-1]))
 
     def test_comparison_uses_selected_case_and_only_plots_observed_yoy(self) -> None:
         """사례 선택을 보존하고 수치가 없을 때는 장식 막대를 사실처럼 남기지 않습니다."""
@@ -296,22 +315,56 @@ class ProposalPresentationV4ContractTest(unittest.TestCase):
                                       'adaptation': '문화시설 이용을 확인한 참여자에게 지역 상점 후속 혜택을 제공합니다.'}],
         }
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        text = ' '.join(_slide_text(output.slides[4]).split())
-        self.assertIn('선정된 공식 문화 프로그램 사례', text)
-        self.assertIn('문화시설 이용을 확인한', text)
-        self.assertIn('핵심 운영 참고', text)
-        self.assertNotIn('peer-visitors-yoy-index', [shape.name for shape in output.slides[4].shapes])
+        case_slide=slide_with_title(output,'2.1 지역별 참고 사례')
+        result_slide=slide_with_title(output,'2.2 적용 사례 운영 방식')
+        self.assertIn('선정된 공식 문화 프로그램 사례',_slide_text(case_slide))
+        self.assertIn('문화시설 예약 프로그램',_slide_text(result_slide))
+        self.assertIn('case:selected',result_slide.notes_slide.notes_text_frame.text)
+        self.assertNotIn('다른 사례',_slide_text(case_slide))
+        self.assertNotIn('peer-visitors-yoy-index', [shape.name for shape in result_slide.shapes])
         report['observed_findings'].append({'metric': '전년동월 외지인 방문자 증감률', 'value': '-8.3%'})
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        self.assertFalse(any(shape.has_chart for shape in output.slides[4].shapes))
+        self.assertFalse(any(shape.has_chart for shape in slide_with_title(output,'2.2 적용 사례 운영 방식').shapes))
+
+    def test_selected_case_photo_is_intentionally_reused_on_operating_method_slide(self) -> None:
+        report = _sample_report()
+        source = {
+            'source_id': 'case:291a33370ec9b1', 'source_type': 'benchmark_case',
+            'case_region': '인천광역시', 'intervention': '야간관광 특화도시',
+            'title': '올 나이츠 인천',
+            'source_url': 'https://isum.incheon.go.kr/theme/themeContent.do?key=2407020018',
+            'operating_model': '공연·야시장·섬 체험을 연계하고 할인패스로 지역 상권 이용을 유도',
+        }
+        report['evidence_sources'].append(source)
+        report['planning_decision'] = {
+            'selected_candidate_id': 'candidate:a',
+            'design_candidates': [{'candidate_id': 'candidate:a', 'title': '야간 관광',
+                                   'case_source_ids': [source['source_id']]}],
+            'candidate_assessments': [{'case_source_id': source['source_id']}],
+            'recommended_case_ids': [source['source_id']],
+        }
+        deck = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
+        case_slide = slide_with_title(deck, '2.1 지역별 참고 사례')
+        result_slide = slide_with_title(deck, '2.2 적용 사례 운영 방식')
+        case_photo = next(shape for shape in case_slide.shapes if shape.name == 'case-photo-0')
+        result_photo = next(shape for shape in result_slide.shapes if shape.name == 'result-photo')
+        self.assertEqual(sha256(case_photo.image.blob).digest(), sha256(result_photo.image.blob).digest())
+        self.assertNotIn('AI 생성 이미지', _slide_text(case_slide))
+        groups = {}
+        for slide in deck.slides:
+            for shape in slide.shapes:
+                if hasattr(shape, 'image') and ('photo' in shape.name.lower() or 'image' in shape.name.lower()):
+                    groups.setdefault(sha256(shape.image.blob).digest(), []).append(shape.name)
+        duplicates = [sorted(names) for names in groups.values() if len(names) > 1]
+        self.assertEqual(duplicates, [['case-photo-0', 'result-photo']])
 
     def test_estimate_and_provenance_do_not_invent_missing_facts(self) -> None:
         """참고 견적을 확정 견적과 구분하고 요청대로 AI 검수 블록을 제외합니다."""
         report = _sample_report()
         report['agent_trace'] = [{'provider': 'qwen', 'status': 'completed'}]
         output = Presentation(proposal_presentation.create_strategy_proposal_presentation(report))
-        estimate_text = _slide_text(output.slides[9])
-        provenance_text = _slide_text(output.slides[10])
+        estimate_text = _slide_text(slide_with_title(output,'5.1 견적 예시안'))
+        provenance_text = _slide_text(slide_with_title(output,'6.1 기획서 생성 파이프라인'))
         self.assertIn('실제 액수와 다를 수 있습니다', estimate_text)
         self.assertNotIn('2.40억 원', estimate_text)
         self.assertNotIn('AI 기획·검수', provenance_text)

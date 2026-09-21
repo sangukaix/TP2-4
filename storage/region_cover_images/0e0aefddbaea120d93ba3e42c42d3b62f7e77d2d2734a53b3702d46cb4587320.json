@@ -1,0 +1,11 @@
+{
+  "source_id": "tour-api:250263",
+  "source_type": "open_api",
+  "title": "경주 남산 미륵곡 석조여래좌상",
+  "source_url": "https://apis.data.go.kr/B551011/KorService2",
+  "content_id": "250263",
+  "content_type_id": "12",
+  "address": "경상북도 경주시 배반동",
+  "image_url": "http://tong.visitkorea.or.kr/cms/resource/23/3570523_image2_1.jpg",
+  "summary": "한국관광공사 국문관광정보 API가 반환한 선택 지역 관광자원"
+}

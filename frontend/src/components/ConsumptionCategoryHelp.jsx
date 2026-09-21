@@ -21,11 +21,11 @@ export default function ConsumptionCategoryHelp({ category, index, amountLabel }
       <div className="consumption-category-name">
         <i aria-hidden="true">{index + 1}</i>
         <span>{category.name}</span>
+        <b>{category.share.toFixed(1)}%</b>
         <button type="button" className="consumption-help-toggle" aria-label={`${category.name} 소비 항목 설명`}
           aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}
           onKeyDown={(event) => { if (event.key === 'Escape') setOpen(false) }}>?</button>
       </div>
-      <b>{category.share.toFixed(1)}%</b>
       <small>{amountLabel}</small>
       {open && <div id={id} className="consumption-help-content" role="region" aria-label={`${category.name} 소비 예시`}>
         <strong>{category.name}에서는 어떤 지출을 하나요?</strong>

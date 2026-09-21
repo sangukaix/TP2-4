@@ -22,7 +22,7 @@ from .trace_store import record_trace
 # 학생 절약 모드에서는 별도의 무료 공식 검색 API 도구가 Qwen의 질문만 제한적으로 실행합니다.
 WEB_SEARCH_TASKS = {'evidence', 'case_study', 'chat_research'}
 REVIEW_TASKS = {'reviewer', 'final_reviewer'}
-MODES = {'openai_only', 'hybrid', 'local_only', 'local_first', 'student_budget'}
+MODES = {'openai_only', 'hybrid', 'local_only', 'local_first', 'local_first_gemma', 'student_budget'}
 LOCAL_FIRST_CLOUD_TASKS = {'evidence', 'case_study', 'final_reviewer', 'chat_research'}
 STUDENT_BUDGET_CLOUD_TASKS = {'final_reviewer'}
 DEFAULT_ROUTES = {
@@ -73,7 +73,7 @@ class LLMRouter:
             'gemma': OllamaProvider(
                 base_url=str(env_values.get('LOCAL_LLM_BASE_URL') or ''),
                 default_model=str(env_values.get('OLLAMA_GEMMA_MODEL') or ''),
-                timeout_seconds=float(env_values.get('LOCAL_LLM_TIMEOUT_SECONDS') or 1800),
+                timeout_seconds=float(env_values.get('OLLAMA_GEMMA_TIMEOUT_SECONDS') or env_values.get('LOCAL_LLM_TIMEOUT_SECONDS') or 1800),
                 # 모델별 문맥을 분리한다. 명시된 공통 설정은 하위 호환용으로 유지.
                 context_length=int(env_values.get('OLLAMA_GEMMA_CONTEXT_LENGTH') or env_values.get('LOCAL_LLM_CONTEXT_LENGTH') or 40960),
                 native_context_validation=str(env_values.get('OLLAMA_NATIVE_CONTEXT_VALIDATION') or '').lower() == 'true',
@@ -85,7 +85,15 @@ class LLMRouter:
     @property
     def local_first(self) -> bool:
         """Qwen·Gemma 선행 실행과 유료 폴백 차단을 공유하는 두 모드입니다."""
-        return self.config['mode'] in {'local_first', 'student_budget'}
+        return self.config['mode'] in {'local_first', 'local_first_gemma', 'student_budget'}
+
+    @property
+    def gemma_only_local(self) -> bool:
+        return self.config['mode'] == 'local_first_gemma'
+
+    @property
+    def required_local_providers(self) -> tuple[str, ...]:
+        return ('gemma',) if self.gemma_only_local else ('qwen', 'gemma')
 
     @property
     def student_budget(self) -> bool:
@@ -104,11 +112,11 @@ class LLMRouter:
         if not self.local_first:
             return
         import asyncio
-        states = await asyncio.gather(*(self.providers[name].health() for name in ('qwen', 'gemma')))
+        states = await asyncio.gather(*(self.providers[name].health() for name in self.required_local_providers))
         if any(state.status != 'active' for state in states):
             # Retry only a read-only connection check; never run paid generation here.
-            states = await asyncio.gather(*(self.providers[name].health() for name in ('qwen', 'gemma')))
-        available = dict(zip(('qwen', 'gemma'), states))
+            states = await asyncio.gather(*(self.providers[name].health() for name in self.required_local_providers))
+        available = dict(zip(self.required_local_providers, states))
         routes = self.effective_routes()
         model_missing = any(routes[task]['model'] not in available[routes[task]['provider']].models
                             for task in ('transferability', 'planner', 'reviewer'))
@@ -223,7 +231,7 @@ class LLMRouter:
         elif self.local_first:
             # 저장된 과거 Hybrid 폴백 설정도 이 모드에서는 유료 대체를 허용하지 않습니다.
             provider = 'openai' if request.task == 'final_reviewer' else (
-                'gemma' if request.task in {'planner', 'planner_revision', 'chat_revise'} else 'qwen')
+                'gemma' if self.gemma_only_local or request.task in {'planner', 'planner_revision', 'chat_revise'} else 'qwen')
             route.update({'provider': provider, 'fallback': 'none', 'locked_reason': '로컬 우선 비용 정책'})
         if route['provider'] != configured_provider:
             # 강제 Provider 전환 때 다른 회사/로컬 모델명을 그대로 보내지 않습니다.
@@ -325,20 +333,23 @@ class LLMRouter:
         return trace
 
     async def status(self) -> dict[str, Any]:
-        openai, qwen, gemma = await __import__('asyncio').gather(
-            self.providers['openai'].health(), self.providers['qwen'].health(), self.providers['gemma'].health(),
-        )
+        roles = ('openai', *self.required_local_providers)
+        health_states = await __import__('asyncio').gather(*(self.providers[role].health() for role in roles))
         # Qwen·Gemma는 같은 Ollama 서버를 사용하므로 health.provider 값만으로는
         # 관리자 화면에서 서로 구분할 수 없습니다. Router 역할(role)을 별도로 제공합니다.
         provider_rows = []
-        for role, health in (('openai', openai), ('qwen', qwen), ('gemma', gemma)):
+        for role, health in zip(roles, health_states):
             row = health.as_dict()
             row['role'] = role
             row['backend'] = health.provider
-            if role == 'qwen':
+            if role == ('gemma' if self.gemma_only_local else 'qwen'):
                 # 실행 권한이 아니라 제한된 질문 설계 역할임을 관리자에게 구분해 보여 줍니다.
                 row['capabilities'] = [*row['capabilities'], 'constrained_official_web_query_planning']
             provider_rows.append(row)
+        return {**self.runtime_summary(), 'providers': provider_rows}
+
+    def runtime_summary(self) -> dict[str, Any]:
+        """Read effective settings without contacting any model or external API."""
         domains = [item.strip().lower() for item in re.split(r'[,;\s]+', str(
             self.env_values.get('TOURISM_ALLOWED_RESEARCH_DOMAINS') or ''
         )) if item.strip()]
@@ -347,16 +358,18 @@ class LLMRouter:
             allowed_domains=domains or ['go.kr', 'visitkorea.or.kr', 'data.go.kr'],
         ).provider_status()
         return {
-            'mode': self.config['mode'], 'providers': provider_rows,
+            'mode': self.config['mode'],
             'cost_policy': {
                 'local_first': self.local_first,
                 'student_budget': self.student_budget,
+                'gemma_only_local': self.gemma_only_local,
+                'local_context_lengths': {name: getattr(self.providers[name], 'context_length', None) for name in self.required_local_providers},
                 'max_cloud_calls_per_generation': self.max_cloud_calls_per_generation,
                 'local_llm_timeout_seconds': int(getattr(
-                    self.providers['qwen'], 'timeout_seconds',
+                    self.providers['gemma' if self.gemma_only_local else 'qwen'], 'timeout_seconds',
                     float(self.env_values.get('LOCAL_LLM_TIMEOUT_SECONDS') or 1800),
                 )),
-                'automatic_paid_fallback': not self.local_first and self.config['mode'] != 'local_only',
+                'automatic_paid_fallback': any(route.get('fallback') == 'openai' and route.get('provider') in {'qwen', 'gemma'} for route in self.effective_routes().values()),
                 'automatic_web_research': not self.student_budget and self.config['mode'] != 'local_only',
                 'free_official_web_search': local_web_search,
             },

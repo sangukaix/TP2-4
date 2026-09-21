@@ -1,0 +1,17 @@
+{
+  "initial_identical_files": 12939,
+  "initial_missing_files": 1339,
+  "initial_changed_files": 501,
+  "missing_files_verified": 1337,
+  "unaccounted_missing": [],
+  "actions": {
+    "merged_active": 14,
+    "copied_missing": 1331,
+    "archived_superseded_ui": 6,
+    "merged_only_mode_and_missing_settings": 1
+  },
+  "database_document_paths_repointed": 12,
+  "tests": "133 passed in combined run; readiness fixture updated, all 5 readiness tests passed on rerun",
+  "frontend": "lint and production build passed",
+  "generation_started": false
+}

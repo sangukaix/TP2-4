@@ -2,9 +2,9 @@ $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $pythonPath = Join-Path $projectRoot 'backend\.venv\Scripts\python.exe'
-$backendPort = 8100
-$aiPort = 8112
-$frontendPort = 5176
+$backendPort = 8200
+$aiPort = 8212
+$frontendPort = 5177
 $projectTreePort = 8501
 
 # Load .env into this PowerShell process so child server windows use the same settings.
@@ -99,15 +99,24 @@ $frontendStarted = Start-DevTerminalIfAvailable "TOUR Frontend $frontendPort" (J
 # /project-tree는 별도 Streamlit 앱을 iframe으로 표시하므로 개발 서버와 함께 시작한다.
 # Streamlit이 아직 없는 PC에서는 나머지 세 서버를 막지 않고 설치 명령을 안내한다.
 $projectTreeStarted = $false
-& $pythonPath -c 'import streamlit' 2>$null
-if ($LASTEXITCODE -eq 0) {
+$streamlitAvailable = $false
+try {
+  & $pythonPath -c 'import streamlit' 2>$null
+  $streamlitAvailable = ($LASTEXITCODE -eq 0)
+} catch {
+  # Windows PowerShell turns a native process's stderr into a terminating
+  # NativeCommandError when ErrorActionPreference is Stop. Missing Streamlit
+  # is optional here, so handle it without aborting the three core services.
+  $streamlitAvailable = $false
+}
+if ($streamlitAvailable) {
   $projectTreeCommand = "& '$pythonPath' -m streamlit run project_tree_explorer/app.py --server.address 0.0.0.0 --server.port $projectTreePort --server.headless true --browser.gatherUsageStats false"
   $projectTreeStarted = Start-DevTerminalIfAvailable "TOUR Project Tree $projectTreePort" $projectRoot $projectTreeCommand $projectTreePort
 } else {
   Write-Warning "Project Tree was not started because Streamlit is missing. Install project_tree_explorer/requirements.txt, then run start-dev.ps1 again."
 }
 
-Write-Host "TP2-3 development services checked. New windows were opened only for ports that were not already listening."
+Write-Host "TP2-4 development services checked. New windows were opened only for ports that were not already listening."
 Write-Host "Local URL: http://localhost:$frontendPort"
 # Print a private LAN address for teammates. Keep this block ASCII-only because
 # Windows PowerShell can misread UTF-8-without-BOM Korean text inside string literals.

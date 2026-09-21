@@ -9,7 +9,9 @@ from ai_server.ml.region_catalog import list_region_data_catalog
 from ai_server.app.region_readiness_audit import AUDIT_PATH, file_signature, sql_signatures
 from ai_server.app.report_projection import execution_target,select_report_forecast
 
-def inspect(entry,reports):
+DEFAULT_API_BASE_URL = 'http://127.0.0.1:8212'
+
+def inspect(entry,reports,api_base_url=DEFAULT_API_BASE_URL):
     row={'region_code':entry.region_code,'region_name':entry.region_name,'verified':False,'data_ready':False,'issues':[]}
     try:
         before = file_signature(entry)
@@ -30,7 +32,7 @@ def inspect(entry,reports):
         matching=[r for r in reports if r['regionCode']==entry.region_code]
         if not matching:row['issues'].append('기획안 실생성·목표·출력 미검증')
         else:
-            response=httpx.get('http://127.0.0.1:8112/ai/v1/strategy-reports/'+matching[0]['entryId'],timeout=30)
+            response=httpx.get(api_base_url.rstrip('/')+'/ai/v1/strategy-reports/'+matching[0]['entryId'],timeout=30)
             response.raise_for_status();report=response.json()
             if execution_target(report) is None:row['issues'].append('방문자·소비 목표값 미저장')
             if not select_report_forecast(report)['complete']:row['issues'].append('사업기간 전망 누락')
@@ -52,16 +54,17 @@ def inspect(entry,reports):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-only', action='store_true', help='서버 실행 없이 생성 입력을 점검합니다. 실생성 승인을 부여하지 않습니다.')
+    parser.add_argument('--api-base-url', default=DEFAULT_API_BASE_URL, help='저장 기획서를 읽을 AI 서버 주소. TP2-4 기본 포트는 8212입니다.')
     args=parser.parse_args()
     if args.data_only:
         reports=[]
     else:
-        response=httpx.get('http://127.0.0.1:8112/ai/v1/strategy-reports',timeout=30)
+        response=httpx.get(args.api_base_url.rstrip('/')+'/ai/v1/strategy-reports',timeout=30)
         response.raise_for_status();reports=response.json()
     entries=list(list_region_data_catalog(enabled_only=True));rows=[]
     sql_before = sql_signatures()
     with ThreadPoolExecutor(max_workers=2) as pool:
-        jobs=[pool.submit(inspect,e,reports) for e in entries]
+        jobs=[pool.submit(inspect,e,reports,args.api_base_url) for e in entries]
         for f in as_completed(jobs):
             r=f.result();rows.append(r);print(f"{len(rows)}/{len(entries)} {r['region_code']} data={r['data_ready']}",flush=True)
     sql_after = sql_signatures()
@@ -70,6 +73,7 @@ def main():
         row['sql_signature'] = sql_after.get(code)
         if not sql_after.get(code) or sql_before.get(code) != sql_after[code]:
             row['data_ready'] = False
+            row['verified'] = False
             row['issues'].append('SQL 자료 점검 도중 변경 또는 누락')
     payload={'checked_at':datetime.now(timezone.utc).isoformat(),'status':'completed','scope':'generation_inputs' if args.data_only else 'generation_inputs_and_saved_reports','regions':sorted(rows,key=lambda r:r['region_code'])}
     temporary=AUDIT_PATH.with_suffix('.tmp')

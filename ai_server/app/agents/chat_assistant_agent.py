@@ -133,12 +133,11 @@ class TourismChatAssistantAgent:
         enable_web_search: bool,
         planning_brief: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        if current_report:
+        if current_report and not enable_web_search:
             from ..idea_proposal import bounded_chat_reply
             direct = bounded_chat_reply(current_report, question)
             if direct:
                 return direct
-            enable_web_search = False
         tools = None
         include = None
         if enable_web_search:
@@ -150,26 +149,32 @@ class TourismChatAssistantAgent:
             include = ['web_search_call.action.sources']
 
         lowered_question = question.lower()
-        # 검색 허용 체크박스는 모든 질문을 유료 검색 작업으로 바꾸는 스위치가 아니다.
+        # 웹 검색은 지역명과 이번 질문만 외부 조사 경로로 보낸다. 보고서 원문,
+        # 사업 여건, 과거 대화는 보내지 않고 실제 수정은 로컬 경로에서만 처리한다.
         revise = any(word in lowered_question for word in ('수정', '고쳐', '바꿔', '추가', '구체적', '다듬', '보완'))
-        research = any(word in lowered_question for word in ('검색', '찾아', '최신', '조사'))
-        use_search = enable_web_search and research
+        use_search = enable_web_search
         task = 'chat_research' if use_search else ('chat_revise' if revise else 'chat_explain')
         if not use_search:
             tools = include = None
-        editing_report = revision_report(current_report) if revise and current_report and not use_search else current_report
+        editing_report = None if use_search else (revision_report(current_report) if revise and current_report else current_report)
         report_context = pack_report(editing_report) if editing_report else None
         # 저장 보고서 수정에 최신 snapshot 전체를 섞으면 기간과 근거가 중복·충돌한다.
         snapshot_context = ({'region_name': snapshot['region_name'], 'period': current_report.get('period'),
                              'basis': 'current_report: saved observations and evidence'}
-                            if revise and current_report and not use_search else snapshot)
+                            if revise and current_report and not use_search else (
+                                {'region_name': snapshot['region_name'], 'period': snapshot.get('period'),
+                                 'basis': 'web_research: region name and current question only'}
+                                if use_search else snapshot
+                            ))
+        request_history = [] if use_search else history[-8:]
+        request_planning_brief = None if use_search else planning_brief
         request = LLMRequest(
             task=task, agent='tourism_chat', model=None,
             instructions=ASSISTANT_INSTRUCTIONS + PLANNING_CONTEXT_RULES + READING_RULE,
             input_payload={
                 'selected_region': snapshot['region_name'], 'analysis_period': snapshot_context['period'],
-                'snapshot': snapshot_context, 'planning_brief': planning_brief, 'current_report': report_context,
-                'recent_conversation': history[-8:], 'user_request': question, 'web_search_allowed': use_search,
+                'snapshot': snapshot_context, 'planning_brief': request_planning_brief, 'current_report': report_context,
+                'recent_conversation': request_history, 'user_request': question, 'web_search_allowed': use_search,
             }, schema_name='tourism_analysis_assistant', schema=ASSISTANT_CHAT_SCHEMA,
             reasoning_effort='medium', max_output_tokens=6000, tools=tools, include=include,
             requires_web_search=use_search,
@@ -182,9 +187,9 @@ class TourismChatAssistantAgent:
                 'selected_region': snapshot['region_name'],
                 'analysis_period': snapshot_context['period'],
                 'snapshot': snapshot_context,
-                'planning_brief': planning_brief,
+                'planning_brief': request_planning_brief,
                 'current_report': report_context,
-                'recent_conversation': history[-8:],
+                'recent_conversation': request_history,
                 'user_request': question,
                 'web_search_allowed': use_search,
             },
@@ -202,7 +207,10 @@ class TourismChatAssistantAgent:
             if _url_is_allowed(str(source.get('url') or ''), self.domains)
             and (use_search or str(source.get('url') or '') in known_urls)
         ]
-        if not current_report or result.get('mode') != 'revise':
+        if use_search:
+            result['mode'] = 'research'
+            result['report_patch'] = None
+        elif not current_report or result.get('mode') != 'revise':
             result['report_patch'] = None
         trace = getattr(self.llm_router, 'trace', [])
         last = trace[-1] if trace else {}

@@ -39,7 +39,9 @@ def candidates(report, excluded_title=''):
 def choose_cover_photo(report, excluded_blob=None, excluded_title='', *, excluded_blobs=()):
     excluded_hashes={sha256(blob).digest() for blob in excluded_blobs if blob}
     if excluded_blob:excluded_hashes.add(sha256(excluded_blob).digest())
-    for source in candidates(report,excluded_title)[:3]:
+    # Keep looking until a distinct image is found. A document must never
+    # reuse a body, case, overview, or ending photo on its cover.
+    for source in candidates(report,excluded_title):
         key=sha256(source['image_url'].encode()).hexdigest()
         path=CACHE/(key+'.img')
         blob=None

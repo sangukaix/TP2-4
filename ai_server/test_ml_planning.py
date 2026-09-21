@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 from datetime import date
 import numpy as np
 import pandas as pd
@@ -52,6 +53,20 @@ class MlValidationTest(unittest.TestCase):
         self.assertEqual(result['selection_basis'], 'validation_mae_only')
         self.assertEqual(result['validation']['candidate']['sample_count'], VALIDATION_MONTHS)
         self.assertEqual(result['selected_model_metrics']['sample_count'], TEST_MONTHS)
+
+    def test_forecast_can_require_learned_model_with_baseline_disclosure(self) -> None:
+        """모든 전망은 학습모델을 쓰되 기준선 열세를 숨기지 않습니다."""
+        x = np.arange(20, dtype=float).reshape(-1, 1)
+        y = np.tile([100.0, 200.0], 10)
+        baseline = y.copy()
+        model, result = select_and_evaluate(
+            x, y, baseline, LinearRegression, prefer_learned_model=True,
+        )
+        self.assertIsNotNone(model)
+        self.assertEqual(result['selected_model'], 'LinearRegression')
+        self.assertEqual(result['selection_basis'], 'learned_model_required_with_baseline_disclosure')
+        self.assertFalse(result['candidate_beats_baseline_on_validation'])
+        self.assertFalse(result['beats_baseline_on_test'])
 
     def test_unsupported_region_never_uses_gangnam_model(self) -> None:
         """등록하지 않은 지역에는 강남 예측을 복사하지 않습니다."""
@@ -103,7 +118,12 @@ class MlValidationTest(unittest.TestCase):
 
     def test_learning_catalog_comes_from_registered_model_targets(self) -> None:
         """현재 모델 Target 7개가 학습 페이지 카드 7개로 자동 변환되는지 확인합니다."""
-        catalog = build_ml_learning_catalog()
+        # This contract checks one region, not a nationwide batch forecast.
+        from ai_server.ml.learning_catalog import list_region_pipelines
+        selected = [item for item in list_region_pipelines() if item.region_code == '11680']
+        self.assertEqual(len(selected), 1)
+        with patch('ai_server.ml.learning_catalog.list_region_pipelines', return_value=selected):
+            catalog = build_ml_learning_catalog()
         gangnam = next(region for region in catalog.regions if region.region_code == '11680')
         self.assertEqual(gangnam.status, 'available')
         self.assertEqual(

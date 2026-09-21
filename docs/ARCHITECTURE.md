@@ -1,5 +1,7 @@
 # 시스템 아키텍처
 
+현재 선택 모드(2026-09-17): `local_first_gemma`는 OpenAI 공식 조사 → Gemma 비교·작성·로컬 검수/보완 → OpenAI 독립 최종 검수 순서다. Qwen 연결을 요구하지 않는다. 기존 모드는 보존한다. [설정·사례 재사용 범위](GEMMA_FIRST_MODE.md).
+
 ### 전국 사례와 실행 근거 계약 (D-090 / D-091, 2026-09-07)
 
 ```text
@@ -82,7 +84,7 @@ ML은 OpenAI 호출 전에 실행하며 방문·소비·체류·검색 전망 �
 ### 내부 학습 페이지
 
 ```text
-로고의 작은 점 → /ml-test
+로고의 작은 점 → /admin-login → /ml-test
   → GET /ai/v1/ml/learning/catalog
   → region_registry의 등록 지역 순회
   → 모델 metadata.target별 학습 카드 자동 생성
@@ -121,7 +123,7 @@ Ollama IP·OpenAI 키는 React에 전달하지 않는다. `GET /ai/v1/llm/status
 `GET /ai/v1/learning/assistant-status`는 AI Server와 OpenAI 모델 연결을 Models API로 확인하며,
 토큰을 생성하지 않는다. 프런트엔드는 30초마다 상태를 갱신하고, 실제 답변 실패도 즉시 `Inactive`로 표시한다.
 
-관리자 학습 영역은 `/ml-test`, `/openai-test`, `/react-test` 세 페이지다. OpenAI 페이지는
+관리자 학습 영역은 `/admin-login`의 교육용 세션 잠금 뒤에 있는 `/ml-test`, `/openai-test`, `/react-test`, `/llm-control`, `/project-tree`다. OpenAI 페이지는
 Python AST로 Agent 클래스와 FastAPI route를 읽고, React 페이지는 `frontend/src`, App route,
 fetch endpoint와 package.json 의존성을 읽는다. `project_learning_catalog.py`가 매 요청마다 현재
 소스를 다시 스캔하므로 같은 규칙으로 파일·Agent·route를 추가하면 새로고침 후 구조표에 반영된다.
@@ -443,3 +445,10 @@ LLM은 DB를 직접 저장·삭제하지 못한다. 보고서 저장은 사용�
 ### 상위 시도 관광 흐름 (D-187, 2026-09-16)
 
 로컬 시도 ZIP snapshot → 재현 가능한 CSV → MySQL `provincial_tourism_monthly_context` → 시군구 snapshot의 `provincial_context` → Evidence/Case Scout 및 Qwen/Gemma의 기존 읽기 전용 근거 도구 → 저장 출처/공통 출력. 비교는 동일 관측월의 전년 대비 증감률·숙박 특성에 한정하며 기존 시군구 ML·목표·생성 지원 카탈로그를 변경하지 않는다. 자료 미확보 시 비교만 생략한다. [데이터와 검증](PROVINCIAL_TOURISM_CONTEXT.md).
+
+
+## 2026-09-20 미리보기·관리자 조회 경계
+
+`/llm-control`의 RouterPipelineGuide는 현재 서버 effective_routes를 표시한다. 설정 자동 조회는 외부 연결을 수행하지 않는 `/ai/v1/llm/overview`를 사용한다. 설정 편집과 적용된 경로를 구분하며 기존 생성 모드는 변경하지 않는다.
+
+`TourismStrategyPage` → 보고서별 저장 큐 → MySQL 자동 저장. 기본/전체보기 챗봇은 WorkspaceConversationProvider의 대화 상태를 공유한다. `StrategyPresentationPreview` → 동일 기획 JSON/PPT 버전 캐시 → PPT 생성기 → PowerPoint/LibreOffice PDF 변환. 이 경로는 LLM을 호출하지 않는다. 사용자가 보고서를 바꾸면 이전 비동기 미리보기 응답을 폐기한다.

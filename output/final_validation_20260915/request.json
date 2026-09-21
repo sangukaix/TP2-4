@@ -1,0 +1,12 @@
+{
+  "planning_brief": {
+    "resource_options": [],
+    "region_code": "50110",
+    "excluded_operations": [],
+    "context_options": [],
+    "input_profile": "guided_v2",
+    "business_direction": "auto",
+    "budget_status": "unknown"
+  },
+  "region_name": "제주특별자치도 제주시"
+}

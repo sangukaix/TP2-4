@@ -4,8 +4,10 @@ import {
   Sparkles,
   ClipboardList,
 } from 'lucide-react'
-import logo from '../assets/logo.png'
+import nightLogo from '../assets/logo-night.png'
+import dayLogo from '../assets/logo-day.png'
 import { resolveAppRoute } from '../routes'
+import HeaderActions from './HeaderActions'
 
 const menuItems = [
   { href: '/dashboard', label: '지역선택', icon: LayoutDashboard },
@@ -13,6 +15,7 @@ const menuItems = [
   { href: '/strategy', label: '기획안 수정 · 출력', icon: Sparkles },
 ]
 const savedPlansMenuItem = { href: '/saved-plans', label: '저장된 기획서', icon: FileBarChart }
+const themedWorkspacePaths = new Set(['/dashboard', '/planning', '/strategy', '/saved-plans'])
 
 /**
  * bid3의 224px 사이드바·64px 상단바 비율을 React + Vite에 맞춰 옮긴 공통 화면 틀입니다.
@@ -20,6 +23,9 @@ const savedPlansMenuItem = { href: '/saved-plans', label: '저장된 기획서',
  */
 export default function WorkspaceShell({ children }) {
   const currentPath = resolveAppRoute(window.location.pathname).canonicalPath
+  const pageClassName = themedWorkspacePaths.has(currentPath)
+    ? 'workspace-shell oligo-seoul-page'
+    : 'workspace-shell'
   const topbarLabel = currentPath === '/dashboard'
     ? '1. 희망 지역을 선택해주세요'
     : currentPath === '/planning'
@@ -41,12 +47,16 @@ export default function WorkspaceShell({ children }) {
           : '지역관광 전략 업무공간'
 
   return (
-    <div className="workspace-shell">
+    <div className={pageClassName}>
       <header className="home-header workspace-global-header">
         <div>
           <div className="home-brand-wrap">
-            <a className="home-brand" href="/" aria-label="OLIGO 홈"><img className="home-brand-logo" src={logo} alt="OLIGO (가제)" /></a>
-            <a className="ml-learning-dot" href="/ml-test" aria-label="머신러닝 학습 결과 보기" title="머신러닝 학습 결과" />
+            <a className="home-brand" href="/" aria-label="OLIGO 홈">
+              <img className="home-brand-logo theme-logo theme-logo--night" src={nightLogo} alt="OLIGO-K" />
+              <img className="home-brand-logo theme-logo theme-logo--day" src={dayLogo} alt="OLIGO-K" />
+            </a>
+            <a className="ml-learning-dot" href="/admin-login" aria-label="관리자 페이지 로그인" title="관리자 페이지" />
+            <HeaderActions />
           </div>
         </div>
       </header>

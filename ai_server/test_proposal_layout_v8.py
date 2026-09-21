@@ -4,6 +4,7 @@ from ai_server.test_proposal_presentation_v3_contract import _sample_report, _sl
 from ai_server.app.proposal_presentation_v4 import create_strategy_proposal_presentation
 from ai_server.app.proposal_layout_v8 import diverse_cases
 from ai_server.app.agents.case_study_agent import _case_mechanism_family
+from ai_server.presentation_test_support import slide_with_title
 
 
 class LayoutV8Test(unittest.TestCase):
@@ -18,7 +19,7 @@ class LayoutV8Test(unittest.TestCase):
 
     def test_labels_totals_and_removed_sections(self):
         deck=Presentation(create_strategy_proposal_presentation(_sample_report()))
-        slide=deck.slides[3]
+        slide=slide_with_title(deck,'3.1 사업 목표')
         chart=next(s.chart for s in slide.shapes if s.has_chart)
         self.assertEqual(chart.series[0].name,'ML 기준 전망')
         self.assertGreater(chart.value_axis.minimum_scale,0)
@@ -32,10 +33,11 @@ class LayoutV8Test(unittest.TestCase):
         bodies=[s for s in slide.shapes if s.name.startswith('block-body-')]
         self.assertEqual(len(bodies),3)
         self.assertEqual(len({r.font.size for s in bodies for p in s.text_frame.paragraphs for r in p.runs}),1)
-        tables=[s.table for s in deck.slides[7].shapes if s.has_table]
+        kpi=slide_with_title(deck,'4.2 머신러닝 예측값과 목표 KPI')
+        tables=[s.table for s in kpi.shapes if s.has_table]
         self.assertEqual(len(tables),2)
         self.assertTrue(all(t.cell(4,0).text=='3개월 월별 합계' for t in tables))
-        self.assertIn('3개월 목표 추가 규모',_slide_text(deck.slides[7]))
+        self.assertIn('3개월 목표 추가 규모',_slide_text(kpi))
         self.assertNotIn('시범사업 이후','\n'.join(_slide_text(s) for s in deck.slides))
         self.assertNotIn('FINAL',_slide_text(deck.slides[-1]))
         self.assertNotIn('TOUR INSIGHT',_slide_text(deck.slides[-1]))
